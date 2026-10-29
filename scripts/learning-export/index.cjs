@@ -18,8 +18,8 @@ const { inputFile, readJson, jsonBytes, contentHash, packageHash, compare, requi
 
 const WORKTREE = path.resolve(__dirname, '../..')
 const MAIN_READ_ONLY = path.resolve(WORKTREE, '../ChinaTextbookStudyFree')
-const DEFAULT_THINKY = '/Users/my-project/AI-PROJECT/thinky-act-core'
-const DEFAULT_EVIDENCE_ROOT = '/Users/my-project/AI-PROJECT/thinky-wp-10'
+const DEFAULT_THINKY = '/Users/my-project/AI-PROJECT/thinky'
+const DEFAULT_EVIDENCE_ROOT = '/Users/my-project/AI-PROJECT/thinky'
 const SITE_RELATIVE = 'deploy-output/family-learning-share-20261027-button-stability/site'
 const RESTORED_INTERACTIONS = {
   'g3up-2026-u3-l01': ['extension-1', 'extension-3'],
@@ -27,11 +27,11 @@ const RESTORED_INTERACTIONS = {
   'chinese-g3down-2026-u1-kp1': ['extension-1', 'extension-3', 'extension-4'],
 }
 
-function options(argv = process.argv.slice(2)) {
+function options(argv = process.argv.slice(2), env = process.env) {
   const { values } = parseArgs({ args: argv, options: {
     'source-root': { type: 'string' }, 'site-dir': { type: 'string' },
-    'thinky-root': { type: 'string', default: DEFAULT_THINKY },
-    'evidence-root': { type: 'string', default: DEFAULT_EVIDENCE_ROOT },
+    'thinky-root': { type: 'string', default: env.THINKY_ROOT || DEFAULT_THINKY },
+    'evidence-root': { type: 'string', default: env.THINKY_ROOT || DEFAULT_EVIDENCE_ROOT },
     'output-root': { type: 'string', default: path.join(WORKTREE, '.local/learning-export') },
     'validate': { type: 'string' },
     'help': { type: 'boolean', short: 'h' },

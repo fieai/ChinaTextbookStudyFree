@@ -8,7 +8,7 @@ const path = require('node:path');
 const { buildStudioLessons, SOURCE_LESSON_IDS } = require('./studio.cjs');
 
 const siteDir = process.env.LEARNING_EXPORT_SITE_DIR || '/Users/shouzongchang/Documents/ZCTD/ChinaTextbookStudyFree/deploy-output/family-learning-share-20261027-button-stability/site';
-const evidenceDir = process.env.LEARNING_EXPORT_EVIDENCE_DIR || '/Users/my-project/AI-PROJECT/thinky-wp-10/docs/learning/evidence/wp-10';
+const evidenceDir = process.env.LEARNING_EXPORT_EVIDENCE_DIR || require('./index.cjs').options([]).evidenceDir;
 const contractDir = process.env.LEARNING_EXPORT_CONTRACT_DIR || path.join(require('./index.cjs').options([]).thinkyRoot, 'packages/learning-contract/dist');
 
 test('five studio patches validate against the built authoritative contract', async () => {

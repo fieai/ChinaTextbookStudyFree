@@ -22,8 +22,8 @@ node --test scripts/learning-export/*.test.cjs
 | 输入 | 默认位置 |
 | --- | --- |
 | 修订版题库、原型 | 当前 worktree 若有指定原型则用当前目录；否则只读相邻 `ChinaTextbookStudyFree` 主检出 |
-| Thinky 契约及包校验模块 | `/Users/my-project/AI-PROJECT/thinky-act-core`（只读） |
-| WP-10 证据与本地完整数据 | `/Users/my-project/AI-PROJECT/thinky-wp-10` |
+| Thinky 契约及包校验模块 | `/Users/my-project/AI-PROJECT/thinky`（只读） |
+| WP-10 证据与本地完整数据 | `/Users/my-project/AI-PROJECT/thinky` |
 
 当前基线 `f522eee` 未跟踪修订版题库和部署原型，因此实际读取主检出的指定文件。
 脚本不对该目录执行 git 操作或写入；只在当前 worktree 查询 HEAD。
@@ -31,14 +31,19 @@ node --test scripts/learning-export/*.test.cjs
 每张页图对照部署父目录 `checksums.json` 的冻结 SHA256 和字节数，并检查 PNG chunk CRC。
 来源漂移、缺文件或不完整元数据均阻断，不自动刷新研究证据。
 
+`--thinky-root` 与 `--evidence-root` 各自按命令行参数、环境变量 `THINKY_ROOT`、默认值的顺序取值。
+`THINKY_ROOT` 同时覆盖契约根目录和证据根目录；证据及完整数据分别读取该根目录下的
+`docs/learning/evidence/wp-10` 和 `.local/wp-10`。默认主检出使用集成分支 `feat/learn-v2`。
+`.local/wp-10` 是未跟踪的完整证据数据，切换检出时需要迁移或重建。
+
 不同目录可显式指定：
 
 ```bash
 node scripts/learning-export/index.cjs \
   --source-root /path/to/read-only-content-checkout \
   --site-dir /path/to/family-learning-share-20261027-button-stability/site \
-  --thinky-root /path/to/thinky-act-core \
-  --evidence-root /path/to/thinky-wp-10
+  --thinky-root /path/to/thinky \
+  --evidence-root /path/to/thinky
 ```
 
 `--output-root` 可改变输出父目录，但必须位于本 worktree `.local/learning-export/` 内。
@@ -173,7 +178,7 @@ authoring.definition 必须等于同一课的 content，每条 widgetGradings �
 使用真实 content-sync 作不连库校验：
 
 ```bash
-cd /Users/my-project/AI-PROJECT/thinky-act-core
+cd /Users/my-project/AI-PROJECT/thinky
 NODE_ENV=learning-local node -r ts-node/register/transpile-only -r tsconfig-paths/register scripts/content-sync/cli.ts validate /absolute/path/to/bundle
 ```
 
