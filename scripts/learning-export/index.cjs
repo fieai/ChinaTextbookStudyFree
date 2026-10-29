@@ -6,7 +6,7 @@ const path = require('node:path')
 const { parseArgs } = require('node:util')
 const { execFileSync } = require('node:child_process')
 const { loadAuthority } = require('./authority.cjs')
-const { loadCatalog, buildCatalog } = require('./catalog.cjs')
+const { loadCatalog, buildCatalog, bookPageLabel } = require('./catalog.cjs')
 const { loadSourceQuestions, buildQuestions } = require('./questions.cjs')
 const { buildStudioLessons } = require('./studio.cjs')
 const { inspectPages, materializeMedia, inputFingerprint } = require('./pages.cjs')
@@ -84,12 +84,8 @@ function exportContent(config) {
   const pageResult = inspectPages({ ...config, books: data.raw.books })
   for (const book of contentCatalog.books) {
     const pages = pageResult.manifest.books.find(item => item.sourceBookId === book.sourceBookId).pages
-    for (const { content: lesson } of book.lessons) {
-      const from = pages[lesson.textbookPages.from - 1]?.printedPage
-      const to = pages[lesson.textbookPages.to - 1]?.printedPage
-      if (from !== null && from !== undefined && to !== null && to !== undefined)
-        lesson.bookPageLabel = from === to ? `书上第 ${from} 页` : `书上第 ${from}–${to} 页`
-    }
+    for (const { content: lesson } of book.lessons)
+      lesson.bookPageLabel = bookPageLabel(pages, lesson.textbookPages)
   }
   inputFiles.push(...pageResult.inputFiles)
   for (const filename of authority.inputPaths) addInput(`thinky/${path.relative(config.thinkyRoot, filename)}`, filename)

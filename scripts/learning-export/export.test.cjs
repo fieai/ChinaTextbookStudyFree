@@ -100,6 +100,11 @@ test('full real-source export is byte deterministic, retains decisions and block
     assert.equal(one.report.issues.some(issue => /overlap lesson g3down-2026-u101-l02/u.test(issue.message)), false)
     assert.equal(one.report.checks.validateLessonCatalog.valid, true)
     const lessons = one.content.books.flatMap(book => book.lessons.map(lesson => lesson.content))
+    for (const lesson of lessons) {
+      assert.doesNotMatch(lesson.bookPageLabel, /PDF/u, lesson.sourceLessonId)
+      const range = lesson.bookPageLabel.match(/第\s*(\d+)\s*–\s*(\d+)\s*页/u)
+      if (range) assert.notEqual(Number(range[1]), Number(range[2]), lesson.sourceLessonId)
+    }
     assert.deepEqual(lessons.find(lesson => lesson.sourceLessonId === 'g3down-2026-u101-l02').textbookPages, { from: 86, to: 88 })
     assert.deepEqual(lessons.find(lesson => lesson.sourceLessonId === 'g3down-2026-u101-l03').textbookPages, { from: 88, to: 91 })
     assert.deepEqual(lessons.find(lesson => lesson.sourceLessonId === 'chinese-g3down-2026-u4-kp7').textbookPages, { from: 60, to: 60 })

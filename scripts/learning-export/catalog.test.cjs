@@ -3,13 +3,31 @@
 const test = require('node:test')
 const assert = require('node:assert/strict')
 const path = require('node:path')
-const { applyMathReviews, loadCatalog, buildCatalog } = require('./catalog.cjs')
+const { applyMathReviews, loadCatalog, buildCatalog, bookPageLabel } = require('./catalog.cjs')
 const { options } = require('./index.cjs')
 const { parseCsv, inputFingerprint } = require('./pages.cjs')
 const { inputFile } = require('./common.cjs')
 
 const draft = [{ lessonId: 'lesson', pdfFrom: '88', pdfTo: '91' }]
 const review = row => parseCsv(`sourceLessonId,verdict,confirmedFrom,confirmedTo\n${row}\n`)
+
+const pages = labels => labels.map(printedPage => ({ printedPage }))
+
+test('book page labels use a range only when every printed page is a consecutive integer', () => {
+  assert.equal(bookPageLabel(pages([null, '1', '2', '3', null]), { from: 2, to: 4 }), '书上第 1–3 页')
+  assert.equal(bookPageLabel(pages([null, '7']), { from: 2, to: 2 }), '书上第 7 页')
+})
+
+test('book page labels use the reliable start when the full printed range is not known or consecutive', () => {
+  for (const labels of [['1', null, '3'], ['1', '3'], ['1', '1'], ['1', '2.5']])
+    assert.equal(bookPageLabel(pages(labels), { from: 1, to: labels.length }), '书上第 1 页起')
+  assert.equal(bookPageLabel(pages(['1']), { from: 1, to: 2 }), '书上第 1 页起')
+})
+
+test('book page labels use a generic label when the start has no printed page evidence', () => {
+  for (const labels of [[null, '2'], ['', '2'], []])
+    assert.equal(bookPageLabel(pages(labels), { from: 1, to: 2 }), '课本原页')
+})
 
 test('human-review fix overrides both draft page endpoints without changing the draft', () => {
   const math = applyMathReviews(draft, review('lesson,fix,89,92'))

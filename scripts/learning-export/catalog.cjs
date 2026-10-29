@@ -13,6 +13,15 @@ const ACTIVITIES = new Set([
   '奇妙的想象', '应该怎样安排座位', '身边那些有特点的人', '国宝大熊猫', '趣味故事会', '这样想象真有趣',
 ])
 
+function bookPageLabel(pages, { from, to }) {
+  const labels = Array.from({ length: to - from + 1 }, (_, index) => pages[from + index - 1]?.printedPage)
+  const start = labels[0]
+  const numbers = labels.map(label => /^(0|[1-9]\d*)$/u.test(label ?? '') ? Number(label) : NaN)
+  if (numbers.every((number, index) => Number.isSafeInteger(number) && number === numbers[0] + index))
+    return from === to ? `书上第 ${start} 页` : `书上第 ${start}–${labels.at(-1)} 页`
+  return start ? `书上第 ${start} 页起` : '课本原页'
+}
+
 function applyMathReviews(math, reviews) {
   const lessons = new Map(math.map(row => [row.lessonId, row]))
   const confirmed = new Map()
@@ -117,7 +126,7 @@ function buildCatalog({ catalog, raw, math, maps, candidates, questions, assignm
       const content = {
         schemaVersion: 1, sourceLessonId: item.id, title: item.title, subject: book.subject,
         lessonKind: item.kind, knowledgePointIds: item.points,
-        textbookPages: { from: item.from, to: item.to }, bookPageLabel: `PDF 第 ${item.from}–${item.to} 页`,
+        textbookPages: { from: item.from, to: item.to }, bookPageLabel: '课本原页',
         level: 'textbook-only', homework: { questionRefs: [...new Set([...owned, ...shared])] }, cards: [],
         ...patches[item.id],
       }
@@ -131,4 +140,4 @@ function buildCatalog({ catalog, raw, math, maps, candidates, questions, assignm
   return { books, knowledgePoints }
 }
 
-module.exports = { ACTIVITIES, applyMathReviews, loadCatalog, buildCatalog }
+module.exports = { ACTIVITIES, bookPageLabel, applyMathReviews, loadCatalog, buildCatalog }
