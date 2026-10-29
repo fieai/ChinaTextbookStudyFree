@@ -49,11 +49,39 @@ JSON/Markdown 使用原子替换，不覆盖原有硬链接的 inode；已有媒
 输出目录为 `.local/learning-export/<sourceRevision>/`，包含：
 
 - `package.json`：只有完整校验通过才生成，严格符合 Thinky `ContentPackageSchema`。
-- `candidate-package.json`：有契约错误时生成，不能导入或发布；失败命令退出码为 1。
-- `pages-manifest.json`：四册每个 PDF 物理页的 SHA256、MIME、宽高、媒体相对路径、印刷页号及其证据。
+- `candidate-package.json`：包或页图清单有契约错误时生成，不能导入或发布；失败命令退出码为 1，仍输出页图清单与报告，不生成有效 `package.json`。
+- `pages-manifest.json`：严格符合 Thinky `PagesManifestSchema`，包含四册每个 PDF 物理页的 SHA256、MIME、宽高及印刷页号。
 - `media/<sha256>.png`：页图按内容哈希命名，优先硬链接，跨盘或权限不允许时复制；完成后核验目标哈希。
-- `report.json`：分项校验结果、四册统计、全部警告、表达缺口、完整输入指纹及逐题 provenance。
+- `report.json`：分项校验结果、四册统计与逐页证据、全部警告、表达缺口、完整输入指纹及逐题 provenance。
 - `report.md`：便于审阅的统计、错误、缺印刷页号页表、警告、缺口与决定来源。
+
+`pages-manifest.json` 顶层仅有 `schemaVersion` 与 `books`，每册仅有 `sourceBookId` 与 `pages`，
+每页仅有 `page`、`printedPage`、`sha256`、`mime`、`width`、`height`：
+
+```json
+{
+  "schemaVersion": 1,
+  "books": [{
+    "sourceBookId": "math-g3-up",
+    "pages": [{
+      "page": 7,
+      "printedPage": "1",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "mime": "image/png",
+      "width": 1000,
+      "height": 1414
+    }]
+  }]
+}
+```
+
+`page` 为从 1 起的 PDF 物理页；`printedPage` 为最长 16 字符的字符串或 `null`，
+源 `printedPageNumber` 为数字时转为字符串，`null` 保持不变。
+清单不携带 `physicalPage`、`printedPageNumber`、`printedPageEvidence`、`mediaPath`、`totalPages` 或 `pdfSha256`。
+这些来源信息保留在 `report.json`：`books[]` 包含 `totalPages`、`pdfSha256`，
+其 `pages[]` 保留 `physicalPage`、`printedPageNumber`、`printedPageEvidence` 与 `mediaPath`。
+媒体文件路径仍为 `media/<sha256>.<ext>`，导入端按 `sha256` 与 `mime` 找文件；
+`image/png`、`image/jpeg`、`image/webp` 分别对应 `.png`、`.jpg`、`.webp`。
 
 页图硬链接不可就地编辑；如需修改内容，应修改获授权的新源版本后重新导出。
 输出没有时间戳、随机教学内容或依赖遍历顺序的 ID，两次相同输入导出逐文件字节一致。
@@ -109,6 +137,8 @@ publisher 使用已核四册的人民教育出版社；教材标题保持原型�
 
 脚本在内存转译并读取 Thinky `content-package.ts`、`content-validation.ts`，
 使用其真实 `ContentPackageSchema`、`validateContentPackage()` 和已构建契约包。
+页图清单使用同一契约 dist 导出的 `PagesManifestSchema` 校验，结果并入报告的 `checks`、`valid` 与 `issues`；
+未知字段或其它清单错误与包错误一样阻断有效包输出。
 不构建或写入 Thinky。即使包级结构错误导致 Thinky 提前返回，仍独立运行并报告：
 
 - 每课 `LessonDefinitionSchema` 及 `validateLessonDefinition()`，覆盖黑名单、totalPages、同书 questionRefs。
@@ -123,7 +153,8 @@ node scripts/learning-export/index.cjs --validate .local/learning-export/REVISIO
 ```
 
 测试包括真实四册两次全量导出逐文件字节比较（含媒体）、权威哈希、UUID v5、源文本抽样、
-用户决定、共享题引用，以及缺字段、黑名单、越界、坏引用、数学交叠、未知知识点、
+用户决定、共享题引用、页图清单契约通过、印刷页号转字符串与报告证据保留，
+以及清单多余字段阻断、缺字段、黑名单、越界、坏引用、数学交叠、未知知识点、
 推断歧义、人工规则失效、显式元数据冲突、冻结媒体漂移、坏 PNG CRC、输出软链、复制损坏等反例。
 契约 dist 为旧版本时，依赖 v1.6 映射的测试会失败，必须报告具体失败与版本原因；
 负向校验使用真实导出包的内存副本，不绕过映射校验，不据此宣称真实包校验通过。

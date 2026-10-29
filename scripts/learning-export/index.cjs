@@ -85,8 +85,8 @@ function exportContent(config) {
   for (const book of contentCatalog.books) {
     const pages = pageResult.manifest.books.find(item => item.sourceBookId === book.sourceBookId).pages
     for (const { content: lesson } of book.lessons) {
-      const from = pages[lesson.textbookPages.from - 1]?.printedPageNumber
-      const to = pages[lesson.textbookPages.to - 1]?.printedPageNumber
+      const from = pages[lesson.textbookPages.from - 1]?.printedPage
+      const to = pages[lesson.textbookPages.to - 1]?.printedPage
       if (from !== null && from !== undefined && to !== null && to !== undefined)
         lesson.bookPageLabel = from === to ? `书上第 ${from} 页` : `书上第 ${from}–${to} 页`
     }
@@ -109,7 +109,7 @@ function exportContent(config) {
     manifestSha256: '0'.repeat(64), ...contentCatalog, questions: questionResult.questions }
   content.manifestSha256 = authority.packageHash(content)
   check(packageHash(content) === content.manifestSha256, 'Independent package hash differs from Thinky authority')
-  const validation = validateExport(content, authority, questionResult.contractIssues)
+  const validation = validateExport(content, authority, questionResult.contractIssues, pageResult.manifest)
   const warnings = [...validation.warnings, ...pageResult.warnings, ...questionResult.warnings, ...sharedEndpoints(content)]
   for (const book of content.books) {
     const lessons = book.lessons.filter(lesson => !lesson.content.homework.questionRefs.length).map(lesson => lesson.content.sourceLessonId)
@@ -132,7 +132,7 @@ function exportContent(config) {
     checks: { ...validation.checks, packageHashAuthorityParity: { valid: true },
       frozenInputs: { valid: true, count: inputs.length }, pageInventory: { valid: true, count: pageResult.mediaSources.length } },
     issues: validation.issues, questionContractIssues: questionResult.contractIssues,
-    warnings, gaps: studio.gaps, books: statistics(content, pageResult.manifest),
+    warnings, gaps: studio.gaps, books: statistics(content, pageResult.manifest, pageResult.bookEvidence),
     assets: { physicalPages: pageResult.mediaSources.length,
       uniqueMediaFiles: new Set(pageResult.mediaSources.map(item => item.mediaPath)).size },
     inputs, questionProvenance: questionResult.provenance,

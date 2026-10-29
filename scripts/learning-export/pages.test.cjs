@@ -6,6 +6,10 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { inspectPages, materializeMedia, inputFingerprint, pngDimensions, sha256, parseCsv } = require('./pages.cjs');
+const { loadAuthority } = require('./authority.cjs');
+const { options } = require('./index.cjs');
+
+const { PagesManifestSchema } = loadAuthority(options([]).thinkyRoot).contract;
 
 const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=', 'base64');
 
@@ -32,15 +36,27 @@ function fixture(t) {
 test('manifest is deterministic and uses only reviewed printed-page evidence', t => {
   const args = fixture(t), first = inspectPages(args), second = inspectPages(args);
   assert.equal(JSON.stringify(first.manifest), JSON.stringify(second.manifest));
+  assert.equal(PagesManifestSchema.safeParse(first.manifest).success, true);
   const book = first.manifest.books[0];
+  assert.deepEqual(Object.keys(book).sort(), ['pages', 'sourceBookId']);
   assert.equal(book.pages.length, 8);
-  assert.equal(book.pages[7].printedPageNumber, 2);
-  assert.match(book.pages[7].printedPageEvidence, /page-start-review.csv:2/);
-  assert.ok(book.pages.slice(0, 7).every(page => page.printedPageNumber === null));
+  assert.equal(book.pages[7].page, 8);
+  assert.equal(book.pages[7].printedPage, '2');
+  assert.ok(book.pages.slice(0, 7).every(page => page.printedPage === null));
+  assert.deepEqual(Object.keys(book.pages[0]).sort(), ['height', 'mime', 'page', 'printedPage', 'sha256', 'width']);
   assert.deepEqual(first.warnings[0].pages, [1, 2, 3, 4, 5, 6, 7]);
   assert.deepEqual({ width: book.pages[0].width, height: book.pages[0].height }, { width: 1, height: 1 });
   assert.equal(book.pages[0].sha256, sha256(PNG));
-  assert.equal(book.pages[0].mediaPath, `media/${sha256(PNG)}.png`);
+  const evidence = first.bookEvidence[0];
+  assert.deepEqual(first.bookEvidence, second.bookEvidence);
+  assert.equal(evidence.sourceBookId, book.sourceBookId);
+  assert.equal(evidence.totalPages, 8);
+  assert.equal(evidence.pdfSha256, args.books[0].pdf.sha256);
+  assert.equal(evidence.pages[7].physicalPage, 8);
+  assert.equal(evidence.pages[7].printedPageNumber, 2);
+  assert.match(evidence.pages[7].printedPageEvidence, /page-start-review.csv:2/);
+  assert.ok(evidence.pages.slice(0, 7).every(page => page.printedPageEvidence === null));
+  assert.equal(evidence.pages[0].mediaPath, `media/${sha256(PNG)}.png`);
 });
 
 test('input fingerprint excludes absolute paths and order, includes evidence contents', t => {

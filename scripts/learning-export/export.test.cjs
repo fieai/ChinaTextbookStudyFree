@@ -75,6 +75,26 @@ test('full real-source export is byte deterministic, retains decisions and block
     assert.equal(one.content.knowledgePoints.length, 191)
     assert.equal(one.report.books.reduce((sum, book) => sum + book.pageImages, 0), 478)
     assert.equal(one.report.books.reduce((sum, book) => sum + book.studio, 0), 5)
+    const pagesManifest = JSON.parse(fs.readFileSync(path.join(one.outputDir, 'pages-manifest.json'), 'utf8'))
+    assert.equal(authority.contract.PagesManifestSchema.safeParse(pagesManifest).success, true)
+    assert.equal(one.report.checks.PagesManifestSchema.valid, true)
+    const diskReport = JSON.parse(fs.readFileSync(path.join(one.outputDir, 'report.json'), 'utf8'))
+    for (const book of pagesManifest.books) {
+      const evidence = diskReport.books.find(item => item.sourceBookId === book.sourceBookId)
+      assert.equal(evidence.totalPages, book.pages.length)
+      assert.equal(evidence.pdfSha256, one.report.inputs.find(file => file.label === `prototype/textbook/${book.sourceBookId}.pdf`).sha256)
+      assert.equal(evidence.pages.length, book.pages.length)
+      for (const [index, page] of book.pages.entries()) {
+        const recorded = evidence.pages[index]
+        assert.equal(recorded.physicalPage, page.page)
+        assert.equal(page.printedPage, recorded.printedPageNumber === null ? null : String(recorded.printedPageNumber))
+        assert.equal(recorded.printedPageEvidence === null, page.printedPage === null)
+        if (page.printedPage !== null) assert.ok(recorded.printedPageEvidence.length > 0)
+        assert.equal(recorded.mediaPath, `media/${page.sha256}.png`)
+        assert.ok(fs.existsSync(path.join(one.outputDir, recorded.mediaPath)))
+      }
+    }
+    assert.equal(pagesManifest.books.find(book => book.sourceBookId === 'g3up-2026').pages[6].printedPage, '1')
     assert.equal(one.report.checks.LessonDefinitionSchema.valid, true)
     assert.equal(one.report.checks.validateLessonDefinition.valid, true)
     assert.equal(one.report.issues.some(issue => /overlap lesson g3down-2026-u101-l02/u.test(issue.message)), false)
@@ -120,6 +140,50 @@ test('full real-source export is byte deterministic, retains decisions and block
       assert.equal(result.valid, false)
       assert.match(JSON.stringify(result.issues), message)
     }
-    assert.equal(validateExport(one.content, authority, one.report.questionContractIssues).valid, one.report.valid)
+    assert.equal(validateExport(one.content, authority, one.report.questionContractIssues, pagesManifest).valid, one.report.valid)
+    const badManifests = [
+      value => value.books[0].totalPages = 8,
+      value => value.books[0].pdfSha256 = 'a'.repeat(64),
+      value => value.books[0].pages[0].physicalPage = 1,
+      value => value.books[0].pages[0].printedPageNumber = null,
+      value => value.books[0].pages[0].printedPageEvidence = 'evidence',
+      value => value.books[0].pages[0].mediaPath = 'media/page.png',
+      value => value.books[0].pages[0].printedPage = 1,
+      value => value.books[0].pages[0].printedPage = '1'.repeat(17),
+    ]
+    for (const mutate of badManifests) {
+      const invalid = structuredClone(pagesManifest)
+      mutate(invalid)
+      const result = validateExport(one.content, authority, [], invalid)
+      assert.equal(result.valid, false)
+      assert.equal(result.checks.ContentPackageSchema.valid, true)
+      assert.equal(result.checks.PagesManifestSchema.valid, false)
+      assert.ok(result.issues.some(issue => issue.path.startsWith('pages-manifest.books.0')))
+    }
+  } finally { fs.rmSync(base, { recursive: true, force: true }) }
+})
+
+test('extra manifest fields block a valid package and are written to both reports', t => {
+  const base = path.join(WORKTREE, '.local/learning-export', `.invalid-manifest-${randomUUID()}`)
+  const schema = authority.contract.PagesManifestSchema
+  const safeParse = schema.safeParse.bind(schema)
+  // Inject an exporter regression at the manifest boundary; the real schema still validates it.
+  t.mock.method(schema, 'safeParse', manifest => {
+    manifest.books[0].pages[0].mediaPath = `media/${manifest.books[0].pages[0].sha256}.png`
+    return safeParse(manifest)
+  })
+  try {
+    const result = exportContent({ ...options([]), outputRoot: base })
+    assert.equal(result.report.valid, false)
+    assert.equal(result.report.checks.validateContentPackage.valid, true)
+    assert.equal(result.report.checks.PagesManifestSchema.valid, false)
+    assert.equal(fs.existsSync(path.join(result.outputDir, 'package.json')), false)
+    assert.equal(fs.existsSync(path.join(result.outputDir, 'candidate-package.json')), true)
+    const report = JSON.parse(fs.readFileSync(path.join(result.outputDir, 'report.json'), 'utf8'))
+    assert.equal(report.valid, false)
+    assert.ok(report.issues.some(issue => issue.path === 'pages-manifest.books.0.pages.0' && /mediaPath/.test(issue.message)))
+    assert.match(fs.readFileSync(path.join(result.outputDir, 'report.md'), 'utf8'), /pages-manifest\.books\.0\.pages\.0: .*mediaPath/)
+    const manifest = JSON.parse(fs.readFileSync(path.join(result.outputDir, 'pages-manifest.json'), 'utf8'))
+    assert.equal(safeParse(manifest).success, false)
   } finally { fs.rmSync(base, { recursive: true, force: true }) }
 })

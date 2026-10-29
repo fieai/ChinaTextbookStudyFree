@@ -1,7 +1,7 @@
 'use strict'
 
 /** Run each named check even if a package-level schema error short-circuits Thinky validation. */
-function validateExport(content, authority, questionContractIssues = []) {
+function validateExport(content, authority, questionContractIssues = [], pagesManifest) {
   const result = authority.validateContentPackage(content).report
   const issues = [...result.issues]
   const contract = authority.contract
@@ -11,6 +11,8 @@ function validateExport(content, authority, questionContractIssues = []) {
     return parsed.success
   }
   const schema = authority.ContentPackageSchema.safeParse(content)
+  const pagesSchema = contract.PagesManifestSchema.safeParse(pagesManifest)
+  collect('pages-manifest', pagesSchema)
   const lessons = content.books.flatMap((book, bi) => book.lessons.map((lesson, li) => ({
     book, lesson, prefix: `books.${bi}.lessons.${li}.content`,
   })))
@@ -43,6 +45,7 @@ function validateExport(content, authority, questionContractIssues = []) {
     warnings: result.warnings,
     checks: {
       ContentPackageSchema: { valid: schema.success },
+      PagesManifestSchema: { valid: pagesSchema.success },
       LessonDefinitionSchema: { valid: lessonShapes, count: lessons.length },
       validateLessonDefinition: { valid: lessonRules, count: lessons.length, includes: ['blacklist', 'totalPages', 'questionRefs'] },
       validateLessonCatalog: { valid: catalog.success, includes: ['knowledgePoints', 'D9 interior overlap'] },

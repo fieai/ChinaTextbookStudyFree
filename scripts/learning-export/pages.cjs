@@ -74,7 +74,7 @@ function pngDimensions(bytes) {
 /** Read-only inventory. Pass the prototype's raw books to also verify frozen PDF hashes. */
 function inspectPages({ siteDir, evidenceDir, books }) {
   if (!Array.isArray(books) || !books.length) throw new Error('Page inventory requires books');
-  const inputFiles = [], mediaSources = [], warnings = [];
+  const inputFiles = [], mediaSources = [], warnings = [], bookEvidence = [];
   const readInput = (filePath, label) => {
     const bytes = fs.readFileSync(filePath);
     inputFiles.push({ path: filePath, label, sha256: sha256(bytes) });
@@ -129,7 +129,7 @@ function inspectPages({ siteDir, evidenceDir, books }) {
       if (sourceBookId === 'g3down-2026' && !text.includes('p7–111 为课时正文'))
         throw new Error(`${sourceBookId}: reviewed body-page bounds changed`);
     }
-    const unknown = [], pages = [];
+    const unknown = [], pages = [], pageEvidence = [];
     for (let physicalPage = 1; physicalPage <= totalPages; physicalPage++) {
       const sourcePath = path.join(imageDir, `${physicalPage}.png`);
       const bytes = readInput(sourcePath, `prototype/page-image/${sourceBookId}/${physicalPage}.png`);
@@ -147,7 +147,9 @@ function inspectPages({ siteDir, evidenceDir, books }) {
         if (reviewed) { printedPageNumber = reviewed.printed; printedPageEvidence = reviewed.evidence; }
       }
       if (printedPageNumber === null) unknown.push(physicalPage);
-      pages.push({ physicalPage, printedPageNumber, printedPageEvidence, sha256: digest, mime: 'image/png', ...dimensions, mediaPath });
+      pages.push({ page: physicalPage, printedPage: printedPageNumber === null ? null : String(printedPageNumber),
+        sha256: digest, mime: 'image/png', ...dimensions });
+      pageEvidence.push({ physicalPage, printedPageNumber, printedPageEvidence, mediaPath });
       mediaSources.push({ sourcePath, mediaPath, sha256: digest });
     }
     for (const physical of printedByBook.get(sourceBookId)?.keys() || [])
@@ -156,9 +158,10 @@ function inspectPages({ siteDir, evidenceDir, books }) {
       code: 'PRINTED_PAGE_UNKNOWN', sourceBookId, pages: unknown,
       message: `${sourceBookId}: ${unknown.length} 页缺少可直接使用的印刷页码证据，保留 null；语文只采用目录明确起页，数学只采用逐页记录明示的正文偏移区间。`,
     });
-    return { sourceBookId, totalPages, pdfSha256, pages };
+    bookEvidence.push({ sourceBookId, totalPages, pdfSha256, pages: pageEvidence });
+    return { sourceBookId, pages };
   });
-  return { manifest: { schemaVersion: 1, books: manifestBooks }, inputFiles, warnings, mediaSources };
+  return { manifest: { schemaVersion: 1, books: manifestBooks }, bookEvidence, inputFiles, warnings, mediaSources };
 }
 
 /** Hash stable labels and bytes, never absolute filesystem paths or timestamps. */

@@ -1,6 +1,6 @@
 'use strict'
 
-function statistics(content, pagesManifest) {
+function statistics(content, pagesManifest, bookEvidence) {
   return content.books.map(book => {
     const pages = pagesManifest.books.find(item => item.sourceBookId === book.sourceBookId)
     const byLessonKind = {}
@@ -9,6 +9,7 @@ function statistics(content, pagesManifest) {
       counts[lesson.level]++
     }
     return {
+      ...bookEvidence.find(item => item.sourceBookId === book.sourceBookId),
       sourceBookId: book.sourceBookId, lessons: book.lessons.length,
       studio: book.lessons.filter(lesson => lesson.content.level === 'studio').length,
       textbookOnly: book.lessons.filter(lesson => lesson.content.level === 'textbook-only').length,
@@ -16,7 +17,7 @@ function statistics(content, pagesManifest) {
       questions: content.questions.filter(question => question.sourceBookId === book.sourceBookId).length,
       knowledgePoints: content.knowledgePoints.filter(point => point.sourceBookId === book.sourceBookId).length,
       pageImages: pages.pages.length,
-      missingPrintedPages: pages.pages.filter(page => page.printedPageNumber === null).map(page => page.physicalPage),
+      missingPrintedPages: pages.pages.filter(page => page.printedPage === null).map(page => page.page),
       noHomeworkLessons: book.lessons.filter(lesson => !lesson.content.homework.questionRefs.length).map(lesson => lesson.content.sourceLessonId),
     }
   })
@@ -50,6 +51,7 @@ function markdownReport(report) {
     `- 页图清单摘要：\`${report.pagesManifestSha256}\``,
     `- 物理页 ${report.assets.physicalPages}；按内容去重后 media 文件 ${report.assets.uniqueMediaFiles}。`,
     '- 来源文件、逐题原始数据及规则出处完整保存在 report.json。',
+    '- 每册总页数、PDF SHA256、逐页印刷页号证据及媒体路径保存在 report.json 的 books 中。',
     '', '| 教材 | 课程 | studio | textbook-only | 题目 | 知识点 | 页图 | 缺印刷页号 |',
     '| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |',
   ]
