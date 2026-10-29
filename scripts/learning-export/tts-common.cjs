@@ -5,7 +5,7 @@ const path = require('node:path')
 const { contentHash, sha256 } = require('./common.cjs')
 
 const DEFAULT_SETTINGS = Object.freeze({
-  modelId: 'eleven_multilingual_v2', outputFormat: 'mp3_44100_128',
+  modelId: 'eleven_v4', languageCode: 'zh', outputFormat: 'mp3_44100_128',
   voiceSettings: { stability: 0.65, similarity_boost: 0.75, style: 0, use_speaker_boost: true, speed: 0.85 },
 })
 // Small review list for the characters in the current lessons. This is a listening
@@ -50,6 +50,7 @@ function loadSettings({ root, env = process.env }) {
   const settings = {
     voiceId: (values.ELEVENLABS_VOICE_ID || '').trim(),
     modelId: (values.ELEVENLABS_MODEL_ID || DEFAULT_SETTINGS.modelId).trim(),
+    languageCode: String(values.ELEVENLABS_LANGUAGE_CODE ?? DEFAULT_SETTINGS.languageCode).trim(),
     outputFormat: (values.ELEVENLABS_OUTPUT_FORMAT || DEFAULT_SETTINGS.outputFormat).trim(),
     voiceSettings: {
       stability: numeric('ELEVENLABS_STABILITY', 0.65, 0, 1),
@@ -76,22 +77,43 @@ function collectAudioEntries(patches) {
   }
   const lineText = value => typeof value === 'string' ? value : (value || []).map(span => span.text).join('')
   for (const [lessonId, lesson] of Object.entries(patches)) {
-    for (const stage of [...(lesson.basicStages || []), ...(lesson.extension?.stages || [])]) {
+    const stages = [...(lesson.basicStages || []), ...(lesson.extension?.stages || [])]
+    // Collect the whole lesson before choosing context, so recognition and writing
+    // use the same first vocabulary-table match even when it appears in a later stage.
+    const words = [], families = [], sentenceWords = []
+    const segmenter = new Intl.Segmenter('zh', { granularity: 'word' })
+    for (const { widget, props = {} } of stages) {
+      if (['char-learn', 'hanzi-write'].includes(widget)) {
+        for (const word of props.words || []) words.push(word.text ?? word.word)
+        for (const character of props.characters || [])
+          for (const word of character.family || []) families.push(word.text ?? word.word)
+      }
+      if (['read-aloud', 'recite-ladder'].includes(widget)) {
+        for (const sentence of props.sentences || []) {
+          for (const part of segmenter.segment(sentence.text || ''))
+            if (part.isWordLike && /^[\p{Script=Han}]{2}$/u.test(part.segment)) sentenceWords.push(part.segment)
+        }
+      }
+    }
+    const contextWord = char => [...words, ...families, ...sentenceWords]
+      .find(word => typeof word === 'string' && [...word].length > 1 && word.includes(char))
+    for (const stage of stages) {
       const props = stage.props || {}, key = stage.key
       if (['char-learn', 'hanzi-write'].includes(stage.widget)) {
         for (const character of props.characters || []) {
-          add(lessonId, key, `characters/${character.id}`, character.char, character, { isCharacter: true })
+          add(lessonId, key, `characters/${character.id}`, character.char, character,
+            { isCharacter: true, kind: 'character', contextWord: contextWord(character.char) })
           for (const word of character.family || []) add(lessonId, key,
-            `characters/${character.id}/family/${word.id}`, word.text ?? word.word, word)
+            `characters/${character.id}/family/${word.id}`, word.text ?? word.word, word, { kind: 'word' })
         }
-        for (const word of props.words || []) add(lessonId, key, `words/${word.id}`, word.text, word)
+        for (const word of props.words || []) add(lessonId, key, `words/${word.id}`, word.text, word, { kind: 'word' })
       }
       if (['read-aloud', 'recite-ladder'].includes(stage.widget)) {
-        for (const sentence of props.sentences || []) add(lessonId, key, `sentences/${sentence.id}`, sentence.text, sentence)
+        for (const sentence of props.sentences || []) add(lessonId, key, `sentences/${sentence.id}`, sentence.text, sentence, { kind: 'sentence' })
         if (stage.widget === 'read-aloud') add(lessonId, key, 'whole',
-          (props.sentences || []).map(sentence => sentence.text).join('\n'), props)
+          (props.sentences || []).map(sentence => sentence.text).join('\n'), props, { kind: 'whole' })
         for (const pair of props.pairs || []) add(lessonId, key, `pairs/${pair.id}`,
-          `${lineText(pair.upper)}，${lineText(pair.lower)}`, pair)
+          `${lineText(pair.upper)}，${lineText(pair.lower)}`, pair, { kind: 'pair' })
       }
     }
   }
@@ -110,7 +132,8 @@ function readOverrides(root) {
       for (const value of Object.values(data[group] || {})) {
         if (typeof value === 'string' && value.trim()) continue
         if (value && typeof value === 'object' && !Array.isArray(value)
-          && (value.skip === true || (typeof value.text === 'string' && value.text.trim()))) continue
+          && (value.skip === true || (typeof value.text === 'string' && value.text.trim())
+            || (typeof value.word === 'string' && value.word.trim()))) continue
         throw new Error()
       }
     }
@@ -122,10 +145,15 @@ function prepareEntries(entries, overrides, settings) {
   const configFingerprint = contentHash(settings)
   return entries.map(entry => {
     const override = overrides.entries?.[entry.id] ?? overrides.texts?.[entry.text]
-    const readingText = (typeof override === 'string' ? override : override?.text) ?? entry.text
+    const contextWord = override?.word ?? entry.contextWord
+    const explicitText = typeof override === 'string' ? override : override?.text
+    const readingText = explicitText ?? (entry.isCharacter && contextWord
+      ? `${entry.text}，${contextWord}的${entry.text}` : entry.text)
     const skipped = override?.skip === true
-    return { ...entry, readingText, charCount: [...readingText].length, skipped, configFingerprint,
+    const missingWord = Boolean(entry.isCharacter && !contextWord && !explicitText && !skipped)
+    return { ...entry, contextWord, missingWord, readingText, charCount: [...readingText].length, skipped, configFingerprint,
       cacheKey: contentHash({ text: readingText, voiceId: settings.voiceId, modelId: settings.modelId,
+        language_code: settings.languageCode,
         voice_settings: settings.voiceSettings, outputFormat: settings.outputFormat }),
       ...(entry.isCharacter && POLYPHONIC[entry.text] ? { polyphonic: POLYPHONIC[entry.text] } : {}) }
   })

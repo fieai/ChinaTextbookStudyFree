@@ -209,30 +209,33 @@ node scripts/learning-export/index.cjs --validate .local/learning-export/REVISIO
    cp .env.local.example .env.local
    ```
 
-2. 先预览数量与字数。没有 key 或 voice id 也可以 dry-run；填写实际 voice id 后重跑，缓存命中统计才对应这套声音。
+2. 先预览数量与字数。dry-run 同时显示模型、language_code 是否生效，以及单字的实际朗读文本示例。没有 key 或 voice id 也可以 dry-run；填写实际 voice id 后重跑，缓存命中统计才对应这套声音。
 
    ```bash
    node scripts/learning-export/tts-elevenlabs.cjs --dry-run
    ```
 
-3. 先选一课的几条音频试听。课程 ID 沿用导出器；五课中的三节数学课当前没有这些语文读音条目。
+3. 先选一课生成对比样本。`--sample` 必须与 `--only` 一起使用，从指定课按稳定顺序选择 3 个单字、3 个词语、2 个句子，共 8 条，方便一次试听。每类按原文本去重并排除跳过项，数量不足时直接报错，不调用合成；不能与 `--limit` 同用。课程 ID 沿用导出器；五课中的三节数学课当前没有这些语文读音条目。
 
    ```bash
-   node scripts/learning-export/tts-elevenlabs.cjs --only chinese-g3up-2026-u1-kp1 --limit 5
+   node scripts/learning-export/tts-elevenlabs.cjs --only chinese-g3up-2026-u1-kp1 --sample
    ```
 
-   `.local/tts-cache/plan.json` 含条目 ID、实际朗读文本和缓存键；按缓存键打开同目录 `<cacheKey>.mp3` 试听。多音字会在终端及计划的 `needsListeningReview` 提醒。需要调整时，编辑入库的 `scripts/learning-export/tts-overrides.json`，重跑 dry-run 和试生成。例如：
+   终端与 `.local/tts-cache/sample.txt` 列出每条样本的条目 ID、实际朗读文本，以及 `.local/tts-cache/` 下 MP3 文件的绝对路径和状态。可加 `--dry-run` 预览，此时 `planned` 表示尚未生成；`success` / `cached` 可直接试听，`failed` 需重试。`.local/tts-cache/plan.json` 也含条目 ID、实际朗读文本和缓存键；按路径打开音频试听。多音字会在终端及计划的 `needsListeningReview` 提醒。需要调整时，编辑入库的 `scripts/learning-export/tts-overrides.json`，重跑 dry-run 和 sample。例如：
 
    ```json
    {
      "entries": {
        "chinese-g3up-2026-u1-kp1/basic-1/characters/read-12": { "skip": true }
      },
-     "texts": { "闹": "闹，热闹的闹" }
+     "texts": {
+       "闹": { "word": "热闹" },
+       "扬": { "text": "扬，飘扬的扬" }
+     }
    }
    ```
 
-   上面的 ID 仅演示格式，实际 ID 从 plan.json 复制。`entries` 按精确条目 ID 优先，`texts` 按原文本匹配；值可为字符串或 `{ "text": "实际朗读文本" }`，`{ "skip": true }` 跳过。覆写只改变合成文本，课程显示文字保持原样。
+   上面的 ID 仅演示格式，实际 ID 从 plan.json 复制。`entries` 按精确条目 ID 优先，`texts` 按原文本匹配；覆盖优先于自动选词。值可为字符串或 `{ "text": "实际朗读文本" }`；单字也可用 `{ "word": "组词" }` 指定带读词，`{ "skip": true }` 跳过。覆写只改变合成文本，条目 ID 和课程显示文字保持原样。
 
 4. 全量生成，然后重新导出，交给协调者在 Thinky 补齐音频支持后导入、发布。
 
@@ -244,11 +247,17 @@ node scripts/learning-export/index.cjs --validate .local/learning-export/REVISIO
 
    `--only chinese-g3down-2026-u1-kp1` 可只生成绝句课，`--limit N` 按稳定条目顺序限制试生成范围。脚本与导出器共用 `--source-root`、`--site-dir`、`--thinky-root` 和 `--evidence-root` 输入选项。失败条目不阻塞其他条目，结果写 `result.json`，有失败时退出码为 1。429/5xx 使用指数退避，默认最多重试 3 次。同一缓存目录的真实生成通过 `.generation.lock` 互斥；重复启动会直接提示已有任务，避免重复计费和清单互相覆盖。正常结束或可捕获错误会释放锁；若进程被强制结束，先确认没有生成任务在运行，再手动删除 `.local/tts-cache/.generation.lock` 后重试。
 
-可选变量见 `.env.local.example`：模型默认 `eleven_multilingual_v2`、格式默认 `mp3_44100_128`，语速 `ELEVENLABS_SPEED=0.85`、稳定度 `ELEVENLABS_STABILITY=0.65`、相似度 `ELEVENLABS_SIMILARITY_BOOST=0.75`，另可设置 `ELEVENLABS_STYLE`、`ELEVENLABS_USE_SPEAKER_BOOST`。这些是试听起点，可按声音调整。
+可选变量见 `.env.local.example`：模型默认 `eleven_v4`，`ELEVENLABS_LANGUAGE_CODE` 默认 `zh`（普通话），可在 `.env.local` 覆盖或设为空以关闭语言指定。仅当模型不是 `eleven_multilingual_v2` 且语言代码非空时发送 `language_code`。`eleven_multilingual_v2` 不支持该参数；若保留旧模型配置并配置了语言代码，终端会提示“该模型不支持指定中文，建议改为 eleven_v4”。脚本不会修改用户的 `.env.local`，切换模型需自行编辑。格式默认 `mp3_44100_128`，语速 `ELEVENLABS_SPEED=0.85`、稳定度 `ELEVENLABS_STABILITY=0.65`、相似度 `ELEVENLABS_SIMILARITY_BOOST=0.75`，另可设置 `ELEVENLABS_STYLE`、`ELEVENLABS_USE_SPEAKER_BOOST`。这些是试听起点，可按声音调整。
 
-费用按**实际送入合成的文本字符数**估算，含覆写后的上下文、标点和空白。计划给出所选条目总字数、命中缓存数、需新生成数，以及去重后新请求的计费字数；同文本在不同关卡共用一次请求。默认模型按约 1 credit/字符给出参考，实际模型费率、额度、套餐及金额以 ElevenLabs 账户结算为准，不在脚本内固定金额。重试已到达服务端的请求可能再次计费。
+所有 `isCharacter` 单字条目（识字、写字、字族根字等）默认带词读，例如“扬，飘扬的扬”。组词优先取本课词语表 `words` 中含该字的第一个词，其次取写字字的 `family` / 组词、字族词，再取课文句子中含该字的二字词。找不到组词时只读单字，并在报告标出“无组词”。
 
-音频及清单位于被忽略的 `.local/tts-cache/`：`<cacheKey>.mp3`、每键 JSON 校验记录、`manifest.json`（ID → 缓存键 → 音频 SHA256/字符数，并保存历史缓存索引）、`plan.json`、`result.json`。API key 不进入这些清单、文件名或日志。缓存键覆盖实际朗读文本、voice id、model id、全部 voice settings 和输出格式；命中且字节哈希正确才复用。改 `ELEVENLABS_VOICE_ID` 会生成新的缓存键并重新请求，切回旧声音可复用旧缓存。改读法、语速、模型同样如此。重跑无需删除缓存，删除缓存可能造成再次计费。
+### 声调不准时怎么办
+
+先试听 `eleven_v4` + `ELEVENLABS_LANGUAGE_CODE=zh` 与单字带词读；原来写有 `ELEVENLABS_MODEL_ID=eleven_multilingual_v2` 的 `.env.local` 需要手动改为 `eleven_v4`。多音字优先用 `tts-overrides.json` 指定符合本课语境的组词或完整朗读文本，再用 `--sample --only` 试听。仍不准确时，可考虑支持拼音标注的语音服务。
+
+费用按**实际送入合成的文本字符数**估算，含覆写后的上下文、标点和空白。计划给出所选条目总字数、命中缓存数、需新生成数，以及去重后新请求的计费字数；同文本在不同关卡共用一次请求。计划中的 credit 数仅作参考，实际模型费率、额度、套餐及金额以 ElevenLabs 账户结算为准，不在脚本内固定金额。重试已到达服务端的请求可能再次计费。
+
+音频及清单位于被忽略的 `.local/tts-cache/`：`<cacheKey>.mp3`、每键 JSON 校验记录、`manifest.json`（ID → 缓存键 → 音频 SHA256/字符数，并保存历史缓存索引）、`plan.json`、`result.json`、`sample.txt`（对比样本列表）。API key 不进入这些清单、文件名或日志。缓存键覆盖实际朗读文本、voice id、model id、language_code、全部 voice settings 和输出格式；命中且字节哈希正确才复用。改 `ELEVENLABS_VOICE_ID` 会生成新的缓存键并重新请求，切回旧声音可复用旧缓存。改读法、语速、模型或语言代码同样如此。重跑无需删除缓存，删除缓存可能造成再次计费。
 
 收集范围直接复用 studio 转换后的课、关卡、条目 ID：识字单字、词语/听写词、会写字及其字族词、逐句与整篇朗读、绝句各关的诗句及对仗、再读一首。每课覆盖见 `report.json.audio.lessons` / `report.md` 的“音频覆盖”；详细条目列出 `attached`、`missing`、`skipped` 或 `contract-unsupported`。有文件与 props 已引用分开统计。
 

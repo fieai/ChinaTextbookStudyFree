@@ -74,11 +74,26 @@ test('all converted audio targets are bundled, supported props validate, and abs
       assert.deepEqual(entry.target.audio, { sha256: record.sha256, kind: 'audio' })
     }
     assert.ok(result.report.audio.entries.every(item => item.status !== 'contract-unsupported'))
+    const missingWords = entries.filter(item => item.missingWord)
+      .map(({ id, text }) => ({ id, text, reason: '无组词' }))
+    assert.ok(missingWords.length > 0, 'fixture includes characters without lesson context words')
+    assert.deepEqual(result.report.audio.missingWords, missingWords)
+    const savedReport = JSON.parse(fs.readFileSync(path.join(result.outputDir, 'report.json'), 'utf8'))
+    assert.deepEqual(savedReport.audio.missingWords, missingWords)
+    for (const entry of entries) {
+      const saved = savedReport.audio.entries.find(item => item.id === entry.id)
+      assert.equal(saved.readingText, entry.readingText)
+      if (entry.missingWord) {
+        assert.equal(saved.missingWord, true)
+        assert.equal(saved.readingNote, '无组词')
+      }
+    }
     const counts = result.report.audio.lessons
     assert.equal(counts.reduce((n, x) => n + x.total, 0), entries.length)
     assert.ok(counts.every(x => x.total === x.withAudio + x.missingAudio))
     assert.ok(counts.every(x => x.withAudio === x.attached && x.unsupported === 0))
     assert.match(fs.readFileSync(path.join(result.outputDir, 'report.md'), 'utf8'), /音频覆盖/u)
+    assert.match(fs.readFileSync(path.join(result.outputDir, 'report.md'), 'utf8'), /无组词/u)
     assert.equal(result.report.audio.deliverySupported, true)
     assert.ok(!result.report.warnings.some(item => item.code === 'AUDIO_DELIVERY_UNSUPPORTED'))
     assert.deepEqual(result.content.media.filter(item => item.kind === 'audio'),

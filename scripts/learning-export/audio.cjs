@@ -32,7 +32,8 @@ function attachCachedAudio(studio, { root, env = process.env, cacheDir = path.jo
         counts.attached++
       } else counts.unsupported++
     } else counts.missingAudio++
-    details.push({ id: entry.id, lessonId: entry.lessonId, text: entry.text,
+    details.push({ id: entry.id, lessonId: entry.lessonId, text: entry.text, readingText: entry.readingText,
+      ...(entry.missingWord ? { missingWord: true, readingNote: '无组词' } : {}),
       ...(audio ? { sha256: audio.sha256, mediaPath: audio.mediaPath } : {}),
       status: entry.skipped ? 'skipped' : !audio ? 'missing' : entry.supportsAudio === false ? 'contract-unsupported' : 'attached' })
   }
@@ -48,7 +49,8 @@ function attachCachedAudio(studio, { root, env = process.env, cacheDir = path.jo
     id: entry.id, text: entry.text, readingText: entry.readingText, readings: entry.polyphonic,
   }))
   return { sources: [...sources.values()], inputs,
-    coverage: { deliverySupported: true, lessons, entries: details, listeningReview }, gaps: THINKY_AUDIO_GAPS }
+    coverage: { deliverySupported: true, lessons, entries: details, listeningReview,
+      missingWords: details.filter(entry => entry.missingWord).map(({ id, text, readingNote }) => ({ id, text, reason: readingNote })) }, gaps: THINKY_AUDIO_GAPS }
 }
 
 module.exports = { attachCachedAudio, THINKY_AUDIO_GAPS }

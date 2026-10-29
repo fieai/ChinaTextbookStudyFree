@@ -61,6 +61,7 @@ function markdownReport(report) {
     for (const item of report.audio.lessons) lines.push(`| ${item.lessonId} | ${item.total} | ${item.withAudio} | ${item.missingAudio} | ${item.attached} | ${item.unsupported} | ${item.skipped} |`)
     lines.push('', '有音频表示文件随包携带；字族词写入 family 项的 audio，整篇朗读写入 ReadAloud props.audio，详见 report.json.audio.entries。Thinky content-sync 支持音频导入、发布和下发；本报告不代表已部署或完成播放验收。')
     if (report.audio.listeningReview?.length) lines.push('', `请人工试听多音字：${report.audio.listeningReview.map(item => `${item.text}（${item.id}；${item.readings.join('/')}）`).join('、')}。`)
+    if (report.audio.missingWords?.length) lines.push('', `无组词（仅朗读单字）：${report.audio.missingWords.map(item => `${item.text}（${item.id}）`).join('、')}。`)
   }
   lines.push('', '## 九处交互导出', '', '| 课程 | 关卡 | 交互 | 导出 |', '| --- | --- | --- | --- |')
   for (const item of report.interactions ?? []) lines.push(`| ${item.sourceLessonId} | ${item.stageKey} | ${item.title} | ${item.widget}${item.activity ? ` / ${item.activity}` : ''}${item.presentation ? ` / ${item.presentation}` : ''} |`)
