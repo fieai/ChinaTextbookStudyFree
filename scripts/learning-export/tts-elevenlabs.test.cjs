@@ -38,8 +38,10 @@ test('uses shared converted props references and stable IDs for all requested st
   const entries = collectAudioEntries(patches)
   assert.equal(entries.length, 11)
   assert.equal(entries.find(item => item.id === 'lesson/c/characters/a').target, character)
-  assert.equal(entries.find(item => item.id === 'lesson/c/characters/a/family/f').supportsAudio, false)
-  assert.equal(entries.find(item => item.id === 'lesson/r/whole').supportsAudio, false)
+  for (const id of ['lesson/c/characters/a/family/f', 'lesson/h/characters/a/family/f', 'lesson/r/whole', 'lesson/l/whole'])
+    assert.equal(entries.find(item => item.id === id).supportsAudio, true)
+  assert.equal(entries.find(item => item.id === 'lesson/c/characters/a/family/f').target, character.family[0])
+  assert.equal(entries.find(item => item.id === 'lesson/r/whole').target, patches.lesson.basicStages[2].props)
   assert.equal(entries.find(item => item.id === 'lesson/p/pairs/p').text, '泥融，沙暖')
   assert.equal(entries.find(item => item.id === 'lesson/p/pairs/p').target, pair)
   assert(entries.some(item => item.id === 'lesson/l/whole'))
@@ -74,6 +76,26 @@ test('dry-run requires no key, never calls fetch, writes estimates and polyphoni
   assert(logs[0].includes('2 条'))
   await assert.rejects(runTts({ root, patches, env: {}, log: quiet }), /ELEVENLABS_API_KEY/u)
   await assert.rejects(runTts({ root, patches, env: { ELEVENLABS_API_KEY: SECRET }, log: quiet }), /ELEVENLABS_VOICE_ID/u)
+})
+
+test('keyless dry-run plans supported family words and whole readings in sentence order', async t => {
+  const root = fixture(t)
+  const family = [{ id: 'f1', text: '读书' }, { id: 'f2', word: '朗读' }]
+  const sentences = [{ id: 's1', text: '第一句。' }, { id: 's2', text: '第二句。' }]
+  const patches = { lesson: { basicStages: [
+    stage('c', 'char-learn', { characters: [{ id: 'a', char: '读', family }] }),
+    stage('h', 'hanzi-write', { characters: [{ id: 'a', char: '读', family }] }),
+    stage('r', 'read-aloud', { presentation: 'reading', sentences }),
+    stage('l', 'read-aloud', { presentation: 'listen', sentences }),
+  ] } }
+  const { plan } = await runTts({ root, patches, env: {}, dryRun: true, log: quiet,
+    fetchImpl: () => assert.fail('dry-run must not fetch') })
+  const families = plan.entries.filter(item => item.id.includes('/family/'))
+  assert.deepEqual(families.map(item => item.text), ['读书', '朗读', '读书', '朗读'])
+  const whole = plan.entries.filter(item => item.id.endsWith('/whole'))
+  assert.equal(whole.length, 2)
+  assert.ok(whole.every(item => item.text === '第一句。\n第二句。'))
+  assert.ok([...families, ...whole].every(item => item.supportsAudio === true))
 })
 
 test('successful generation uses native fetch contract, cache hit and voice A/B/A avoid duplicate billing', async t => {

@@ -20,8 +20,12 @@ function cacheEntries(root, entries) {
   fs.mkdirSync(cacheDir, { recursive: true })
   const manifest = { schemaVersion: 1, entries: {} }
   for (const entry of entries) {
-    // Simulated provider bytes; this test never contacts a speech service.
-    const bytes = Buffer.from(`ID3 simulated MP3 ${entry.cacheKey}`)
+    // Two complete MPEG-1 Layer III frames; no speech service is contacted.
+    const bytes = Buffer.alloc(417 * 2)
+    for (const offset of [0, 417]) {
+      bytes.writeUInt32BE(0xfffb9000, offset)
+      bytes.write(entry.cacheKey, offset + 4, 'ascii')
+    }
     fs.writeFileSync(path.join(cacheDir, `${entry.cacheKey}.mp3`), bytes)
     manifest.entries[entry.id] = { cacheKey: entry.cacheKey, sha256: sha256(bytes), charCount: entry.charCount,
       readingText: entry.readingText, configFingerprint: entry.configFingerprint }
@@ -62,18 +66,27 @@ test('all converted audio targets are bundled, supported props validate, and abs
       else assert.equal(entry.target.audio, undefined)
     }
     assert.ok(result.report.audio.entries.some(item => item.status === 'missing'))
-    assert.ok(result.report.audio.entries.some(item => item.status === 'contract-unsupported'))
+    const newTargets = collectAudioEntries(lessons).filter(item => item.id.includes('/family/') || item.id.endsWith('/whole'))
+    assert.ok(newTargets.length > 0)
+    for (const entry of newTargets) {
+      const record = result.report.audio.entries.find(item => item.id === entry.id)
+      assert.equal(record.status, 'attached', entry.id)
+      assert.deepEqual(entry.target.audio, { sha256: record.sha256, kind: 'audio' })
+    }
+    assert.ok(result.report.audio.entries.every(item => item.status !== 'contract-unsupported'))
     const counts = result.report.audio.lessons
     assert.equal(counts.reduce((n, x) => n + x.total, 0), entries.length)
     assert.ok(counts.every(x => x.total === x.withAudio + x.missingAudio))
+    assert.ok(counts.every(x => x.withAudio === x.attached && x.unsupported === 0))
     assert.match(fs.readFileSync(path.join(result.outputDir, 'report.md'), 'utf8'), /音频覆盖/u)
-    assert.match(result.report.gaps.join('\n'), /Range\/206\/416/u)
-    assert.ok(result.content.media.every(item => item.kind === 'document')) // frozen Thinky package contract
+    assert.equal(result.report.audio.deliverySupported, true)
+    assert.ok(!result.report.warnings.some(item => item.code === 'AUDIO_DELIVERY_UNSUPPORTED'))
+    assert.deepEqual(result.content.media.filter(item => item.kind === 'audio'),
+      audio.map(({ sha256, kind, mime }) => ({ sha256, kind, mime })))
     const authority = loadAuthority(config.thinkyRoot)
     assert.equal(authority.ContentPackageSchema.safeParse(result.content).success, true)
     assert.equal(authority.validateContentPackage(result.content).report.valid, true)
-    // Current content-sync validates supported audio props but does not import
-    // audio sidecars; document that gap rather than claiming playback support.
+    // Validate the real bundle, including MP3 sidecar metadata and frame checks.
     const validated = execFileSync(process.execPath, ['-r', 'ts-node/register/transpile-only',
       '-r', 'tsconfig-paths/register', 'scripts/content-sync/cli.ts', 'validate', result.outputDir], {
       cwd: config.thinkyRoot, env: { ...process.env, NODE_ENV: 'learning-local' }, encoding: 'utf8',

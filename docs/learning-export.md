@@ -254,10 +254,9 @@ node scripts/learning-export/index.cjs --validate .local/learning-export/REVISIO
 
 **Thinky 当前支持边界（本次只读核查）**：
 
-- 契约允许 `characters[].audio`、`words[].audio`、`sentences[].audio`、`pairs[].audio`，引用严格为 `{sha256,kind:"audio"}`；有缓存即写入，缺缓存省略以保留设备朗读兜底。`CharacterFamilySchema` 和 `ReadAloudPropsSchema` 暂无字族词/整篇音频字段，这两类文件随包携带并在报告列出，不添加非法 props。
-- `content-package.ts` 顶层 `media` 当前只接受 `document/application/json`。因此音频写入导出器 `media-manifest.json`，元数据为 `sha256/kind:"audio"/mime:"audio/mpeg"/path/byteLength`，文件为 `media/<sha256>.mp3`；当前不将 audio 塞入只允许文档的 `package.json.media`。支持的 props 和内容包仍通过真实契约校验，但 **content-sync validate 通过不表示音频已被导入**，它当前忽略音频 sidecar。
-- Thinky 还需扩展音频元数据、引用完整性校验、`audio/mpeg → mp3` 存储映射、MP3 文件校验和音频发布。现有 `content-media.ts` 对 package.media 一律走笔顺文档发布，不能直接发布 MP3。
-- 媒体接口已有 `public, max-age=31536000, immutable` 和 `nosniff`，但 MIME 映射拒绝音频，未实现 Range、206、Content-Range、Accept-Ranges 或 416。需补齐音频下发与 Range 测试后再协调发布；本次没有修改 Thinky，也未验证实际播放音质。
+- 契约允许 `characters[].audio`、`characters[].family[].audio`、`words[].audio`、`sentences[].audio`、`pairs[].audio` 及 `ReadAloudProps.audio`，引用严格为 `{sha256,kind:"audio"}`；有缓存即写入，缺缓存省略以保留设备朗读兜底。字族词保留 `text`/`word` 两种文案；整篇文本按 sentences 顺序以换行拼接，适用于 reading/listen。
+- 音频元数据写入 `package.json.media`（`sha256/kind:"audio"/mime:"audio/mpeg"`）及 `media-manifest.json`（另含 `path/byteLength`），文件为 `media/<sha256>.mp3`。Thinky content-sync 校验音频引用、清单、文件大小、SHA256 和完整 MP3 帧，并支持导入与发布。
+- Thinky 媒体接口支持 MP3 下发与单段 Range 请求、206/416 响应。报告 `deliverySupported` 表示主检出源码具备该能力；本次没有修改 Thinky，也不代表已部署或完成实际播放音质验收。
 
 ## 当前表达缺口
 

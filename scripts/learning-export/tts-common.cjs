@@ -82,14 +82,14 @@ function collectAudioEntries(patches) {
         for (const character of props.characters || []) {
           add(lessonId, key, `characters/${character.id}`, character.char, character, { isCharacter: true })
           for (const word of character.family || []) add(lessonId, key,
-            `characters/${character.id}/family/${word.id}`, word.text ?? word.word, word, { supportsAudio: false })
+            `characters/${character.id}/family/${word.id}`, word.text ?? word.word, word)
         }
         for (const word of props.words || []) add(lessonId, key, `words/${word.id}`, word.text, word)
       }
       if (['read-aloud', 'recite-ladder'].includes(stage.widget)) {
         for (const sentence of props.sentences || []) add(lessonId, key, `sentences/${sentence.id}`, sentence.text, sentence)
         if (stage.widget === 'read-aloud') add(lessonId, key, 'whole',
-          (props.sentences || []).map(sentence => sentence.text).join('\n'), props, { supportsAudio: false })
+          (props.sentences || []).map(sentence => sentence.text).join('\n'), props)
         for (const pair of props.pairs || []) add(lessonId, key, `pairs/${pair.id}`,
           `${lineText(pair.upper)}，${lineText(pair.lower)}`, pair)
       }

@@ -3,11 +3,7 @@
 const path = require('node:path')
 const { collectAudioEntries, loadSettings, readOverrides, prepareEntries, readManifest, readCachedAudio } = require('./tts-common.cjs')
 
-const THINKY_AUDIO_GAPS = [
-  'Thinky content-sync 当前包内 media 仅允许 document/application/json。音频登记于 media-manifest.json 并随包携带，支持的 props 写 audio 引用；尚不能由当前 content-sync 导入、发布音频。',
-  'Thinky 需要补齐 audio/mpeg 元数据、MP3 文件校验和存储扩展名、音频引用完整性校验及媒体发布；当前媒体接口会拒绝音频 MIME。已有 immutable 缓存头，但未实现 Range/206/416。',
-  'Thinky CharacterFamilySchema 和 ReadAloudPropsSchema 尚无字族词 audio、整篇 audio 字段。已缓存的这两类音频随包携带并列于音频报告，未往 strict props 添加不支持的字段。',
-]
+const THINKY_AUDIO_GAPS = []
 
 /** Use exactly the same converted objects and IDs as the generator; never read credentials. */
 function attachCachedAudio(studio, { root, env = process.env, cacheDir = path.join(root, '.local/tts-cache') }) {
@@ -52,7 +48,7 @@ function attachCachedAudio(studio, { root, env = process.env, cacheDir = path.jo
     id: entry.id, text: entry.text, readingText: entry.readingText, readings: entry.polyphonic,
   }))
   return { sources: [...sources.values()], inputs,
-    coverage: { deliverySupported: false, lessons, entries: details, listeningReview }, gaps: THINKY_AUDIO_GAPS }
+    coverage: { deliverySupported: true, lessons, entries: details, listeningReview }, gaps: THINKY_AUDIO_GAPS }
 }
 
 module.exports = { attachCachedAudio, THINKY_AUDIO_GAPS }

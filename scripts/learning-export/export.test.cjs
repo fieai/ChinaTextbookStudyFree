@@ -131,7 +131,7 @@ test('full real-source export is byte deterministic, retains decisions and block
     assert.deepEqual(one.report.strokeData.missing, [])
     assert.equal(one.report.assets.strokeDocuments, 12)
     assert.equal(one.media.media.filter(item => item.kind === 'document').length, 12)
-    assert.deepEqual(one.content.media, one.media.media.filter(item => item.kind === 'document')
+    assert.deepEqual(one.content.media, one.media.media.filter(item => ['document', 'audio'].includes(item.kind))
       .map(({ sha256, kind, mime }) => ({ sha256, kind, mime })))
     const packagedLessons = one.content.books.flatMap(book => book.lessons)
     assert.deepEqual(packagedLessons.filter(lesson => lesson.authoring).map(lesson =>
@@ -149,8 +149,10 @@ test('full real-source export is byte deterministic, retains decisions and block
     for (const book of legacy.books) for (const lesson of book.lessons) delete lesson.authoring
     legacy.manifestSha256 = authority.packageHash(legacy)
     const legacyIssues = authority.validateContentPackage(legacy).report.issues
-    assert.equal(legacyIssues.length, 19)
+    const audioFiles = one.content.media.filter(item => item.kind === 'audio').length
+    assert.equal(legacyIssues.length, 19 + audioFiles)
     assert.equal(legacyIssues.filter(issue => /Missing stroke document metadata/.test(issue.message)).length, 12)
+    assert.equal(legacyIssues.filter(issue => /Missing audio metadata/.test(issue.message)).length, audioFiles)
     assert.equal(legacyIssues.filter(issue => /requires complete private grading/.test(issue.message)).length, 7)
     for (const lesson of packagedLessons.filter(lesson => lesson.authoring)) {
       for (const { stageKey } of lesson.authoring.widgetGradings) {

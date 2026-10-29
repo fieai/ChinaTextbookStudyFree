@@ -59,7 +59,7 @@ function markdownReport(report) {
   if (report.audio) {
     lines.push('', '## 音频覆盖', '', '| 课程 | 条目 | 有音频 | 缺音频 | props 已引用 | 契约缺字段 | 跳过 |', '| --- | ---: | ---: | ---: | ---: | ---: | ---: |')
     for (const item of report.audio.lessons) lines.push(`| ${item.lessonId} | ${item.total} | ${item.withAudio} | ${item.missingAudio} | ${item.attached} | ${item.unsupported} | ${item.skipped} |`)
-    lines.push('', '有音频表示文件随包携带；字族词与整篇的契约缺字段条目未写 props，详见 report.json.audio.entries。当前 Thinky 仍需补齐音频导入、发布和下发支持。')
+    lines.push('', '有音频表示文件随包携带；字族词写入 family 项的 audio，整篇朗读写入 ReadAloud props.audio，详见 report.json.audio.entries。Thinky content-sync 支持音频导入、发布和下发；本报告不代表已部署或完成播放验收。')
     if (report.audio.listeningReview?.length) lines.push('', `请人工试听多音字：${report.audio.listeningReview.map(item => `${item.text}（${item.id}；${item.readings.join('/')}）`).join('、')}。`)
   }
   lines.push('', '## 九处交互导出', '', '| 课程 | 关卡 | 交互 | 导出 |', '| --- | --- | --- | --- |')

@@ -12,7 +12,7 @@ function loadAuthority(thinkyRoot) {
   const directory = path.join(thinkyRoot, 'src/modules/learning-v2/content-release')
   function load(name) {
     if (cache.has(name)) return cache.get(name).exports
-    if (!['content-package', 'content-validation', 'activity-validation'].includes(name))
+    if (!['content-package', 'content-validation', 'activity-validation', 'content-media-references'].includes(name))
       throw new Error(`Unexpected authority module: ${name}`)
     const filename = path.join(directory, `${name}.ts`)
     const instance = new Module(filename)

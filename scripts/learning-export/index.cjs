@@ -134,14 +134,12 @@ function exportContent(config) {
   const documents = strokes.documents.filter(item => coverage.required.includes(item.char))
   const mediaSources = [...pageResult.mediaSources, ...documents, ...audio.sources]
   const media = mediaManifest(pageResult, [...documents, ...audio.sources])
-  if (documents.length) content.media = media.media.filter(item => item.kind === 'document')
+  if (documents.length || audio.sources.length) content.media = media.media.filter(item => ['document', 'audio'].includes(item.kind))
     .map(({ sha256, kind, mime }) => ({ sha256, kind, mime }))
   content.manifestSha256 = authority.packageHash(content)
   check(packageHash(content) === content.manifestSha256, 'Independent package hash differs from Thinky authority')
   const validation = validateExport(content, authority, questionResult.contractIssues, pageResult.manifest, authorings, media, mediaSources)
   const warnings = [...validation.warnings, ...pageResult.warnings, ...questionResult.warnings, ...sharedEndpoints(content)]
-  if (audio.sources.length) warnings.push({ code: 'AUDIO_DELIVERY_UNSUPPORTED',
-    message: '音频已随包携带；当前 Thinky 不能导入、发布或下发 MP3，需补齐支持后协调发布。' })
   for (const book of content.books) {
     const lessons = book.lessons.filter(lesson => !lesson.content.homework.questionRefs.length).map(lesson => lesson.content.sourceLessonId)
     if (lessons.length) warnings.push({ code: 'NO_HOMEWORK', sourceBookId: book.sourceBookId, lessons,
@@ -163,8 +161,7 @@ function exportContent(config) {
     checks: { ...validation.checks, packageHashAuthorityParity: { valid: true },
       frozenInputs: { valid: true, count: inputs.length }, pageInventory: { valid: true, count: pageResult.mediaSources.length } },
     issues: validation.issues, questionContractIssues: questionResult.contractIssues,
-    warnings, gaps: [...studio.gaps, ...audio.gaps,
-      '统一媒体清单 media-manifest.json 为导出器 sidecar；content-sync 从 package.json.media 读取笔顺文档元数据，从 PagesManifest 读取页图；audio 尚需 Thinky 接入。'],
+    warnings, gaps: [...studio.gaps, ...audio.gaps],
     interactions: content.books.flatMap(book => book.lessons).flatMap(({ content: lesson }) =>
       [...(lesson.basicStages ?? []), ...(lesson.extension?.stages ?? [])]
         .filter(stage => RESTORED_INTERACTIONS[lesson.sourceLessonId]?.includes(stage.key))
