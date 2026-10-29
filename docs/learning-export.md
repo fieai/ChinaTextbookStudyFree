@@ -22,7 +22,7 @@ node --test scripts/learning-export/*.test.cjs
 | 输入 | 默认位置 |
 | --- | --- |
 | 修订版题库、原型 | 当前 worktree 若有指定原型则用当前目录；否则只读相邻 `ChinaTextbookStudyFree` 主检出 |
-| Thinky 契约及包校验模块 | `/Users/my-project/AI-PROJECT/thinky` |
+| Thinky 契约及包校验模块 | `/Users/my-project/AI-PROJECT/thinky-act-core`（只读） |
 | WP-10 证据与本地完整数据 | `/Users/my-project/AI-PROJECT/thinky-wp-10` |
 
 当前基线 `f522eee` 未跟踪修订版题库和部署原型，因此实际读取主检出的指定文件。
@@ -37,7 +37,7 @@ node --test scripts/learning-export/*.test.cjs
 node scripts/learning-export/index.cjs \
   --source-root /path/to/read-only-content-checkout \
   --site-dir /path/to/family-learning-share-20261027-button-stability/site \
-  --thinky-root /path/to/thinky \
+  --thinky-root /path/to/thinky-act-core \
   --evidence-root /path/to/thinky-wp-10
 ```
 
@@ -49,13 +49,13 @@ JSON/Markdown 使用原子替换，不覆盖原有硬链接的 inode；已有媒
 
 输出目录为 `.local/learning-export/<sourceRevision>/`，包含：
 
-- `package.json`：只有完整校验通过才生成，严格符合 Thinky `ContentPackageSchema`。
+- `package.json`：只有完整校验通过才生成，严格符合 Thinky `ContentPackageSchema`。七关评分置于 `books[].lessons[].authoring`；12 份笔顺文档元数据置于顶层 `media`。
 - `candidate-package.json`：包或页图清单有契约错误时生成，不能导入或发布；失败命令退出码为 1，仍输出页图清单与报告，不生成有效 `package.json`。
 - `pages-manifest.json`：严格符合 Thinky `PagesManifestSchema`，包含四册每个 PDF 物理页的 SHA256、MIME、宽高及印刷页号。
 - `media/<sha256>.png`：页图按内容哈希命名，优先硬链接，跨盘或权限不允许时复制；完成后核验目标哈希。
 - `media/<sha256>.json`：每个会写字的笔顺文档，保留原型 Make Me a Hanzi 的 strokes/medians，按 JSON UTF-8 字节哈希命名；Character.strokeData 使用 `{sha256,kind:"document"}`。
 - `media-manifest.json`：统一登记页图与笔顺文档，字段为 schemaVersion、media[]；每项包含 sha256/kind/mime/path/byteLength。这是导出器 sidecar，使用契约 MediaReferenceSchema 加本地 Zod 严格校验，不扩展仅限页图的 PagesManifest。
-- `authoring.<sourceLessonId>.json`：五份课级私有 LessonAuthoring（definition、widgetGradings），评分绑定公开关卡的相同 widget/props；与 package.json 分文件保存。content-sync 私有评分导入格式尚未定义，由协调者对齐，不直接传入公共课程接口。
+- `authoring.<sourceLessonId>.json`：五份课级私有 LessonAuthoring（definition、widgetGradings），评分绑定公开关卡的相同 widget/props，保留供审阅。有评分的三课同步嵌入 `package.json` 的课时 `authoring`；另两课省略此字段，避免导入器拒绝空评分。content-sync 直接读取包内字段，不读取独立作者文件；不将 grading 放入公开 content/props。
 - `Make-Me-a-Hanzi-LICENSE.txt` / `Make-Me-a-Hanzi-NOTICE.txt`：原型附带的 Arphic Public License 原文、上游来源和 JSON 提取说明。
 - `report.json`：分项校验结果、四册统计与逐页证据、全部警告、表达缺口、完整输入指纹及逐题 provenance。
 - `report.md`：便于审阅的统计、错误、缺印刷页号页表、警告、缺口与决定来源。
@@ -102,9 +102,9 @@ UUID v5 命名空间固定为 `7cf6f510-4932-5bc9-99bc-35ce4d897d72`。
 `question/<源相对路径>#/<section>/questions/<数组下标>` 生成逻辑键。
 题目 `id` 直接使用其逻辑键；练习课引用相同题目 ID，不复制题目记录。
 
-`manifestSha256` 直接调用 Thinky `content-package.ts` 的 `packageHash()`：
+`manifestSha256` 直接调用 Thinky `content-package.ts` 的 `packageHash()`，包含私有 authoring 与文档元数据：
 排除 manifest 本身，books 按 sourceBookId、知识点和题目按 id、课时按 ordinal 排序，
-对象键递归排序后用 `JSON.stringify` 的 UTF-8 字节 SHA256；教学数组保持原顺序。
+media 按 sha256 排序；对象键递归排序后用 `JSON.stringify` 的 UTF-8 字节 SHA256；教学数组保持原顺序。
 脚本用独立实现作对照，测试另比较真实 Thinky 算法和 Python 标准库 UUID v5。
 
 ## 内容决定与证据
@@ -142,7 +142,7 @@ publisher 使用已核四册的人民教育出版社；教材标题保持原型�
 
 ## 校验与测试
 
-脚本在内存转译并读取 Thinky `content-package.ts`、`content-validation.ts`，
+脚本在内存转译并读取 Thinky `content-package.ts`、`content-validation.ts`、`activity-validation.ts`，
 使用其真实 `ContentPackageSchema`、`validateContentPackage()` 和已构建契约包。
 页图清单使用同一契约 dist 导出的 `PagesManifestSchema` 校验，结果并入报告的 `checks`、`valid` 与 `issues`；
 未知字段或其它清单错误与包错误一样阻断有效包输出。
@@ -152,6 +152,30 @@ publisher 使用已核四册的人民教育出版社；教材标题保持原型�
 - `validateLessonCatalog()`，覆盖知识点引用及数学内部页段交叠。
 - 每题 `validateQuestionImport()`，传入已知知识点与原始显式元数据。
 - 唯一身份、同书/单元归属、页码和引用等发布端附加检查由 Thinky 权威校验执行。
+
+content-sync 的文档元数据格式为 `media:[{sha256,kind:"document",mime:"application/json"}]`，
+不含 path/byteLength，也不在此数组放页图；媒体文件仍为 `media/<sha256>.json`。
+包中每个笔顺引用和文档元数据必须双向匹配。导入器会核对文件字节哈希及 strokes/medians 结构。
+authoring.definition 必须等于同一课的 content，每条 widgetGradings 绑定相同 stageKey/widget/props。
+
+本轮七关答案均已核对冻结原型 `lesson-studio.js`，没有缺答案的关卡：
+
+| 课程与关卡 | 原型答案 | 原型位置 |
+| --- | --- | --- |
+| 毫米 extension-1 | 毫米、厘米、毫米、厘米 | 734；反馈 772 |
+| 毫米 extension-3 | >、=、< | 735；反馈 780 |
+| 轴对称 basic-1 | 等腰三角形、爱心、长方形为是，平行四边形为否 | 790–793；反馈 804 |
+| 轴对称 basic-2 | 正方形 4、长方形 2、等边三角形 3、圆 infinite，含轴坐标 | 796–799；圆说明 829 |
+| 轴对称 extension-2 | 中田王山为是，我七为否 | 802；解释 844 |
+| 大青树 extension-2 | 坡、飘、扬、洁 | 222–225；含错误选项追加提示的完整反馈 347 |
+| 大青树 extension-3 | 声旁求、乎、票、召、吉、皮 | 245–250；反馈 351 |
+
+使用真实 content-sync 作不连库校验：
+
+```bash
+cd /Users/my-project/AI-PROJECT/thinky-act-core
+NODE_ENV=learning-local node -r ts-node/register/transpile-only -r tsconfig-paths/register scripts/content-sync/cli.ts validate /absolute/path/to/bundle
+```
 
 单独只读校验一个包：
 
@@ -164,6 +188,8 @@ node scripts/learning-export/index.cjs --validate .local/learning-export/REVISIO
 三种页码标签规则及单页写法、真实包所有 `bookPageLabel` 均无“PDF”或重复起止页码，
 以及清单多余字段阻断、缺字段、黑名单、越界、坏引用、数学交叠、未知知识点、
 推断歧义、人工规则失效、显式元数据冲突、冻结媒体漂移、坏 PNG CRC、输出软链、复制损坏等反例。
+额外覆盖旧包 19 个错误重现、七关逐项评分缺失、包内作者数据与审阅文件一致、
+私有评分参与包哈希、文档元数据排序，以及真实 content-sync CLI 对完整目录的校验。
 契约 dist 为旧版本时，依赖 v1.6 映射的测试会失败，必须报告具体失败与版本原因；
 负向校验使用真实导出包的内存副本，不绕过映射校验，不据此宣称真实包校验通过。
 

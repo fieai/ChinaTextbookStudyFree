@@ -22,6 +22,7 @@ function packageHash(value) {
   const { manifestSha256, ...payload } = value
   return contentHash({
     ...payload,
+    ...(value.media ? { media: [...value.media].sort((a, b) => compare(a.sha256, b.sha256)) } : {}),
     books: [...value.books].sort((a, b) => compare(a.sourceBookId, b.sourceBookId))
       .map(book => ({ ...book, lessons: [...book.lessons].sort((a, b) => a.ordinal - b.ordinal) })),
     knowledgePoints: [...value.knowledgePoints].sort((a, b) => compare(a.id, b.id)),

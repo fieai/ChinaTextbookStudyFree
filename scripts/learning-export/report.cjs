@@ -63,7 +63,7 @@ function markdownReport(report) {
     `- 来源：${report.strokeData.source}；许可：${report.strokeData.license}；原文随包附于 ${report.strokeData.licenseFile}，转换说明见 ${report.strokeData.noticeFile}。`,
     `- 每字 JSON 按字节 SHA256 命名，Character.strokeData 引用 kind=document；${report.assets.strokeDocuments} 份文档与页图共同登记于 media-manifest.json。`,
     `- 私有 authoring 文件 ${report.authoringFiles.length} 份，逐份通过 LessonAuthoringSchema 并核对公开 definition/props；文件名与摘要见 report.json。`,
-    '- content-sync 尚无私有 widget grading 导入格式，当前采用契约 LessonAuthoring 课级 sidecar；不把 grading 加到公共课程定义。',
+    '- content-sync 从 package.json 的 books[].lessons[].authoring 读取七关完整私有评分；顶层 media 登记笔顺文档的 sha256/kind/mime。独立 authoring 文件保留供审阅，公开 content/props 不含 grading。',
     '- 题目 sourceLabel 原先被 QuestionCard 直接显示为内部 output 路径；已从公开题目删除，溯源仅保留 report.json 的 questionProvenance。')
   lines.push('', '## 课程类型与空作业', '')
   for (const book of report.books) lines.push(`- ${book.sourceBookId}：\`${JSON.stringify(book.byLessonKind)}\`；无作业引用：${book.noHomeworkLessons.join('、') || '无'}。`)

@@ -9,7 +9,7 @@ const { buildStudioLessons, SOURCE_LESSON_IDS } = require('./studio.cjs');
 
 const siteDir = process.env.LEARNING_EXPORT_SITE_DIR || '/Users/shouzongchang/Documents/ZCTD/ChinaTextbookStudyFree/deploy-output/family-learning-share-20261027-button-stability/site';
 const evidenceDir = process.env.LEARNING_EXPORT_EVIDENCE_DIR || '/Users/my-project/AI-PROJECT/thinky-wp-10/docs/learning/evidence/wp-10';
-const contractDir = process.env.LEARNING_EXPORT_CONTRACT_DIR || '/Users/my-project/AI-PROJECT/thinky/packages/learning-contract/dist';
+const contractDir = process.env.LEARNING_EXPORT_CONTRACT_DIR || path.join(require('./index.cjs').options([]).thinkyRoot, 'packages/learning-contract/dist');
 
 test('five studio patches validate against the built authoritative contract', async () => {
   const { LessonDefinitionSchema } = await import(path.join(contractDir, 'index.js'));
@@ -83,6 +83,35 @@ test('all nine interactions use structured activities and answers remain private
   assert.equal(privateDqs.find(x => x.stageKey === 'extension-2').content.grading.detective['detective-1'].answer, 'option-1');
   assert.equal(privateDqs.find(x => x.stageKey === 'extension-3').content.grading.characters['sound-1'].correctPartId, 'sound');
   assert.equal(gaps.some(x => x.includes('未还原该互动')), false);
+});
+
+test('detective answers and every option feedback preserve the complete prototype reveal', () => {
+  const source = fs.readFileSync(path.join(siteDir, 'lesson-studio.js'), 'utf8');
+  const { DQS } = require('./studio.cjs').readPrototype(source);
+  const { patches, widgetGradings } = buildStudioLessons({ siteDir, evidenceDir });
+  const id = 'chinese-g3up-2026-u1-kp1';
+  const stage = patches[id].extension.stages.find(x => x.key === 'extension-2');
+  const grading = widgetGradings[id].find(x => x.stageKey === stage.key).content.grading;
+  assert.deepEqual(DQS.detective.map(item => item.answer), ['坡', '飘', '扬', '洁']);
+  stage.props.detective.forEach((item, i) => {
+    const original = DQS.detective[i];
+    const grade = grading.detective[item.id];
+    assert.equal(item.options.find(option => option.id === grade.answer).text, original.answer);
+    for (const option of item.options) assert.equal(grade.optionExplanations[option.id],
+      original.why[option.text] + (option.text === original.answer ? '' : ` 想想“${original.blank.replace('＿', original.answer)}”。`));
+  });
+  const parts = patches[id].extension.stages.find(x => x.key === 'extension-3');
+  const partGrading = widgetGradings[id].find(x => x.stageKey === parts.key).content.grading;
+  assert.deepEqual(DQS.soundParts.map(item => item.sound), ['求', '乎', '票', '召', '吉', '皮']);
+  parts.props.characters.forEach((item, i) => {
+    const original = DQS.soundParts[i];
+    const grade = partGrading.characters[item.id];
+    assert.equal(item.parts.find(part => part.id === grade.correctPartId).text, original.sound);
+    assert.deepEqual(grade.feedback, {
+      sound: `对！“${original.sound}”读 ${original.soundPy}。${original.hint}`,
+      meaning: `“${original.meaning}”管意思。${original.hint}`,
+    });
+  });
 });
 
 test('explicit family and writing fields are preserved without guessing generators', () => {

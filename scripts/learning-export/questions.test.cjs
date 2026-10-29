@@ -6,7 +6,7 @@ const { loadAuthority } = require('./authority.cjs')
 const { logicalKey } = require('./common.cjs')
 const { inferQuestions, resolvedMetadata, makePayload, buildQuestions, MANUAL } = require('./questions.cjs')
 
-const thinkyRoot = process.env.THINKY_ROOT || '/Users/my-project/AI-PROJECT/thinky'
+const thinkyRoot = process.env.THINKY_ROOT || require('./index.cjs').options([]).thinkyRoot
 const evidenceDir = process.env.WP10_EVIDENCE_DIR || '/Users/my-project/AI-PROJECT/thinky-wp-10/docs/learning/evidence/wp-10'
 const { contract } = loadAuthority(thinkyRoot)
 const pointId = 'g3up-2026-u1-kp1'

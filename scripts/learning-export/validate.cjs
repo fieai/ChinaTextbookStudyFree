@@ -50,6 +50,11 @@ function validateExport(content, authority, questionContractIssues = [], pagesMa
         issues.push({ path: `authoring.${lesson.content.sourceLessonId}.definition`, message: 'Authoring definition differs from public lesson' })
         authoringValid = false
       }
+      const expected = authoring?.widgetGradings?.length ? authoring : undefined
+      if (JSON.stringify(lesson.authoring) !== JSON.stringify(expected)) {
+        issues.push({ path: `authoring.${lesson.content.sourceLessonId}`, message: 'Private sidecar differs from packaged authoring' })
+        authoringValid = false
+      }
     }
     if (Object.keys(authorings).length !== studioLessons.length) {
       issues.push({ path: 'authoring', message: 'Authoring must cover exactly the studio lessons' })

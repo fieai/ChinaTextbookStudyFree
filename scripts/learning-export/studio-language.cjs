@@ -72,7 +72,8 @@ function createLanguageConverter(data, source, strokeDataByCharacter = {}) {
         const detective = DQS.detective.map((item, i) => ({ id: `detective-${i + 1}`, blank: item.blank, options: item.options.map((text, j) => ({ id: `option-${j + 1}`, text })) }));
         const grading = { detective: Object.fromEntries(DQS.detective.map((item, i) => [detective[i].id, {
           answer: detective[i].options.find(option => option.text === item.answer).id,
-          optionExplanations: Object.fromEntries(detective[i].options.map(option => [option.id, item.why[option.text]])),
+          optionExplanations: Object.fromEntries(detective[i].options.map(option => [option.id,
+            item.why[option.text] + (option.text === item.answer ? '' : ` 想想“${item.blank.replace('＿', item.answer)}”。`)])),
         }])) };
         return { widget: 'char-learn', props: { activity: 'detective', characters: [], detective, sourceNote: literal('原创辨字练习，只给提示，不计分。') }, grading };
       }

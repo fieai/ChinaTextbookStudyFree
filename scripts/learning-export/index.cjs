@@ -18,7 +18,7 @@ const { inputFile, readJson, jsonBytes, contentHash, packageHash, compare, requi
 
 const WORKTREE = path.resolve(__dirname, '../..')
 const MAIN_READ_ONLY = path.resolve(WORKTREE, '../ChinaTextbookStudyFree')
-const DEFAULT_THINKY = '/Users/my-project/AI-PROJECT/thinky'
+const DEFAULT_THINKY = '/Users/my-project/AI-PROJECT/thinky-act-core'
 const DEFAULT_EVIDENCE_ROOT = '/Users/my-project/AI-PROJECT/thinky-wp-10'
 const SITE_RELATIVE = 'deploy-output/family-learning-share-20261027-button-stability/site'
 const RESTORED_INTERACTIONS = {
@@ -116,16 +116,24 @@ function exportContent(config) {
   const sourceRevision = `${head}-${inputSha256.slice(0, 20)}`
   const content = { schemaVersion: 1, sourceSystem: 'china-textbook-study-free', sourceRevision,
     manifestSha256: '0'.repeat(64), ...contentCatalog, questions: questionResult.questions }
-  content.manifestSha256 = authority.packageHash(content)
-  check(packageHash(content) === content.manifestSha256, 'Independent package hash differs from Thinky authority')
   const authorings = Object.fromEntries(content.books.flatMap(book => book.lessons)
     .filter(lesson => lesson.content.level === 'studio')
     .map(lesson => [lesson.content.sourceLessonId, { definition: lesson.content,
       widgetGradings: studio.widgetGradings?.[lesson.content.sourceLessonId] ?? [] }]))
+  // content-sync consumes private grading from the package, not exporter sidecar files.
+  // Lessons without graded activities omit authoring: Thinky rejects an empty sidecar.
+  for (const book of content.books) for (const lesson of book.lessons) {
+    const authoring = authorings[lesson.content.sourceLessonId]
+    if (authoring?.widgetGradings.length) lesson.authoring = authoring
+  }
   const coverage = strokeCoverage(content, strokes)
   const documents = strokes.documents.filter(item => coverage.required.includes(item.char))
   const mediaSources = [...pageResult.mediaSources, ...documents]
   const media = mediaManifest(pageResult, documents)
+  if (documents.length) content.media = media.media.filter(item => item.kind === 'document')
+    .map(({ sha256, kind, mime }) => ({ sha256, kind, mime }))
+  content.manifestSha256 = authority.packageHash(content)
+  check(packageHash(content) === content.manifestSha256, 'Independent package hash differs from Thinky authority')
   const validation = validateExport(content, authority, questionResult.contractIssues, pageResult.manifest, authorings, media, mediaSources)
   const warnings = [...validation.warnings, ...pageResult.warnings, ...questionResult.warnings, ...sharedEndpoints(content)]
   for (const book of content.books) {
@@ -150,8 +158,7 @@ function exportContent(config) {
       frozenInputs: { valid: true, count: inputs.length }, pageInventory: { valid: true, count: pageResult.mediaSources.length } },
     issues: validation.issues, questionContractIssues: questionResult.contractIssues,
     warnings, gaps: [...studio.gaps,
-      '私有 widget grading 的 content-sync 导入格式尚未定义：按 LessonAuthoring 输出五份课级 authoring.<sourceLessonId>.json，不传入公共课程接口；由协调者对齐导入。',
-      '统一媒体清单 media-manifest.json 为导出器 sidecar（每项复用契约 MediaReferenceSchema 并用本地 Zod 严格校验），PagesManifest 按契约仅存页图。'],
+      '统一媒体清单 media-manifest.json 为导出器 sidecar；content-sync 从 package.json.media 读取笔顺文档元数据，从 PagesManifest 读取页图。'],
     interactions: content.books.flatMap(book => book.lessons).flatMap(({ content: lesson }) =>
       [...(lesson.basicStages ?? []), ...(lesson.extension?.stages ?? [])]
         .filter(stage => RESTORED_INTERACTIONS[lesson.sourceLessonId]?.includes(stage.key))

@@ -8,7 +8,7 @@ const { readPrototype } = require('./studio.cjs');
 const { createMathConverter } = require('./studio-math.cjs');
 
 const siteDir = process.env.LEARNING_EXPORT_SITE_DIR || '/Users/shouzongchang/Documents/ZCTD/ChinaTextbookStudyFree/deploy-output/family-learning-share-20261027-button-stability/site';
-const contractDir = process.env.LEARNING_EXPORT_CONTRACT_DIR || '/Users/my-project/AI-PROJECT/thinky/packages/learning-contract/dist';
+const contractDir = process.env.LEARNING_EXPORT_CONTRACT_DIR || path.join(require('./index.cjs').options([]).thinkyRoot, 'packages/learning-contract/dist');
 const source = fs.readFileSync(path.join(siteDir, 'lesson-studio.js'), 'utf8');
 const data = readPrototype(source);
 const convert = createMathConverter(data, source);

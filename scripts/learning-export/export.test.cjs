@@ -4,6 +4,7 @@ const test = require('node:test')
 const assert = require('node:assert/strict')
 const fs = require('node:fs')
 const path = require('node:path')
+const { execFileSync } = require('node:child_process')
 const { randomUUID } = require('node:crypto')
 const { options, exportContent, WORKTREE, guardedOutput } = require('./index.cjs')
 const { loadAuthority } = require('./authority.cjs')
@@ -19,10 +20,12 @@ test('canonical content and collection hashing exactly match the Thinky implemen
   for (const value of cases) assert.equal(contentHash(value), authority.contentHash(value))
   const transport = { manifestSha256: 'f'.repeat(64), sourceRevision: 'test',
     books: [{ sourceBookId: 'z', lessons: [{ ordinal: 3 }, { ordinal: 1 }] }, { sourceBookId: 'a', lessons: [] }],
-    questions: [{ id: 'z' }, { id: 'a' }], knowledgePoints: [{ id: 'z' }, { id: 'a' }] }
+    questions: [{ id: 'z' }, { id: 'a' }], knowledgePoints: [{ id: 'z' }, { id: 'a' }],
+    media: [{ sha256: 'f'.repeat(64), kind: 'document', mime: 'application/json' },
+      { sha256: 'a'.repeat(64), kind: 'document', mime: 'application/json' }] }
   assert.equal(packageHash(transport), authority.packageHash(transport))
   assert.equal(packageHash(transport), packageHash({ ...transport,
-    books: transport.books.toReversed(), questions: transport.questions.toReversed() }))
+    books: transport.books.toReversed(), questions: transport.questions.toReversed(), media: transport.media.toReversed() }))
   assert.notEqual(contentHash(['stage-a', 'stage-b']), contentHash(['stage-b', 'stage-a']))
 })
 
@@ -128,6 +131,56 @@ test('full real-source export is byte deterministic, retains decisions and block
     assert.deepEqual(one.report.strokeData.missing, [])
     assert.equal(one.report.assets.strokeDocuments, 12)
     assert.equal(one.media.media.filter(item => item.kind === 'document').length, 12)
+    assert.deepEqual(one.content.media, one.media.media.filter(item => item.kind === 'document')
+      .map(({ sha256, kind, mime }) => ({ sha256, kind, mime })))
+    const packagedLessons = one.content.books.flatMap(book => book.lessons)
+    assert.deepEqual(packagedLessons.filter(lesson => lesson.authoring).map(lesson =>
+      [lesson.content.sourceLessonId, lesson.authoring.widgetGradings.map(item => item.stageKey)]), [
+      ['g3up-2026-u3-l01', ['extension-1', 'extension-3']],
+      ['g3down-2026-u1-l01', ['basic-1', 'basic-2', 'extension-2']],
+      ['chinese-g3up-2026-u1-kp1', ['extension-2', 'extension-3']],
+    ])
+    for (const lesson of packagedLessons) {
+      const authoring = one.authorings[lesson.content.sourceLessonId]
+      assert.deepEqual(lesson.authoring, authoring?.widgetGradings.length ? authoring : undefined)
+    }
+    const legacy = structuredClone(one.content)
+    delete legacy.media
+    for (const book of legacy.books) for (const lesson of book.lessons) delete lesson.authoring
+    legacy.manifestSha256 = authority.packageHash(legacy)
+    const legacyIssues = authority.validateContentPackage(legacy).report.issues
+    assert.equal(legacyIssues.length, 19)
+    assert.equal(legacyIssues.filter(issue => /Missing stroke document metadata/.test(issue.message)).length, 12)
+    assert.equal(legacyIssues.filter(issue => /requires complete private grading/.test(issue.message)).length, 7)
+    for (const lesson of packagedLessons.filter(lesson => lesson.authoring)) {
+      for (const { stageKey } of lesson.authoring.widgetGradings) {
+        const incomplete = structuredClone(one.content)
+        const target = incomplete.books.flatMap(book => book.lessons)
+          .find(item => item.content.sourceLessonId === lesson.content.sourceLessonId)
+        const { grading } = target.authoring.widgetGradings.find(item => item.stageKey === stageKey).content
+        if (grading.items) grading.items.shift()
+        else if (grading.shapes) delete grading.shapes[Object.keys(grading.shapes)[0]]
+        else if (grading.detective) delete grading.detective[Object.keys(grading.detective)[0]]
+        else delete grading.characters[Object.keys(grading.characters)[0]]
+        incomplete.manifestSha256 = authority.packageHash(incomplete)
+        const report = authority.validateContentPackage(incomplete).report
+        assert.equal(report.valid, false, `${lesson.content.sourceLessonId}/${stageKey}`)
+        const expected = grading.items
+          ? /(?:Choice|Comparison) grading must match all item IDs/
+          : new RegExp(`^Activity ${stageKey} requires complete private grading$`)
+        assert.ok(report.issues.some(issue => issue.path.includes('.authoring') && expected.test(issue.message)),
+          `${lesson.content.sourceLessonId}/${stageKey}: ${JSON.stringify(report.issues)}`)
+      }
+    }
+    const changedPrivate = structuredClone(one.content)
+    changedPrivate.books[0].lessons[11].authoring.widgetGradings[0].content.grading.items[0].explanation += ' changed'
+    assert.notEqual(authority.packageHash(changedPrivate), one.content.manifestSha256)
+    const cliOutput = execFileSync(process.execPath, ['-r', 'ts-node/register/transpile-only',
+      '-r', 'tsconfig-paths/register', 'scripts/content-sync/cli.ts', 'validate', one.outputDir], {
+      cwd: config.thinkyRoot, env: { ...process.env, NODE_ENV: 'learning-local' }, encoding: 'utf8',
+    })
+    assert.match(cliOutput, /VALID: package accepted/)
+    assert.doesNotMatch(cliOutput, /ERROR /)
     assert.equal(one.media.media.filter(item => item.kind === 'image').length,
       new Set(pagesManifest.books.flatMap(book => book.pages.map(page => page.sha256))).size)
     for (const [id, authoring] of Object.entries(one.authorings)) {
