@@ -68,7 +68,7 @@ test('full real-source export is byte deterministic, retains decisions and block
       const first = fs.readFileSync(path.join(one.outputDir, 'media', name))
       const second = fs.readFileSync(path.join(two.outputDir, 'media', name))
       assert.deepEqual(first, second)
-      assert.equal(sha256(first), name.slice(0, -4))
+      assert.equal(sha256(first), path.parse(name).name)
     }
     assert.equal(one.report.books.reduce((sum, book) => sum + book.lessons, 0), 213)
     assert.equal(one.content.questions.length, 1446)
@@ -119,6 +119,62 @@ test('full real-source export is byte deterministic, retains decisions and block
     assert.equal(one.report.questionContractIssues.length, 0, 'Question imports require the Thinky v1.6 calculation mapping')
     assert.equal(one.report.valid, true)
     assert.equal(fs.existsSync(path.join(one.outputDir, 'package.json')), true)
+
+    assert.equal(one.report.interactions.length, 9)
+    assert.equal(one.report.interactions.some(item => item.widget === 'concept-card'), false)
+    assert.equal(one.report.checks.LessonAuthoringSchema.valid, true)
+    assert.equal(one.report.checks.MediaManifestSchema.valid, true)
+    assert.equal(one.report.strokeData.covered.length, 12)
+    assert.deepEqual(one.report.strokeData.missing, [])
+    assert.equal(one.report.assets.strokeDocuments, 12)
+    assert.equal(one.media.media.filter(item => item.kind === 'document').length, 12)
+    assert.equal(one.media.media.filter(item => item.kind === 'image').length,
+      new Set(pagesManifest.books.flatMap(book => book.pages.map(page => page.sha256))).size)
+    for (const [id, authoring] of Object.entries(one.authorings)) {
+      const stored = JSON.parse(fs.readFileSync(path.join(one.outputDir, `authoring.${id}.json`), 'utf8'))
+      assert.deepEqual(stored, authoring)
+      assert.equal(authority.contract.LessonAuthoringSchema.safeParse(stored).success, true)
+      assert.deepEqual(stored.definition, lessons.find(lesson => lesson.sourceLessonId === id))
+      for (const stage of [...authoring.definition.basicStages, ...authoring.definition.extension.stages]) {
+        assert.doesNotMatch(JSON.stringify(stage.props), /"(?:grading|answer|optionExplanations|correctPartId|symmetric|feedback)":/u)
+        for (const character of stage.props.characters ?? []) {
+          if (stage.widget !== 'hanzi-write') continue
+          const ref = character.strokeData
+          assert.equal(ref.kind, 'document')
+          const item = one.media.media.find(item => item.sha256 === ref.sha256)
+          assert.equal(item.mime, 'application/json')
+          const bytes = fs.readFileSync(path.join(one.outputDir, item.path))
+          assert.equal(sha256(bytes), ref.sha256)
+          assert.equal(bytes.length, item.byteLength)
+          const strokes = JSON.parse(bytes)
+          assert.equal(strokes.strokes.length, strokes.medians.length)
+        }
+      }
+    }
+    assert.deepEqual(fs.readFileSync(path.join(one.outputDir, 'Make-Me-a-Hanzi-LICENSE.txt')),
+      fs.readFileSync(path.join(config.siteDir, 'vendor/hanzi-writer-data-ARPHICPL.txt')))
+    for (const question of one.content.questions)
+      assert.doesNotMatch(JSON.stringify(question.payload.question), /output\/.*\.json#/u)
+    assert.ok(one.report.questionProvenance.every(item => item.locator.startsWith('output/')))
+    const sourceEntries = one.media.media.map(item => ({ sha256: item.sha256, sourcePath: path.join(one.outputDir, item.path) }))
+    const validateFull = (authorings = one.authorings, manifest = one.media) =>
+      validateExport(one.content, authority, [], pagesManifest, authorings, manifest, sourceEntries)
+    assert.equal(validateFull().valid, true)
+    const badPrivate = structuredClone(one.authorings)
+    badPrivate['g3up-2026-u3-l01'].widgetGradings[0].content.grading.items[0].answer = '未定义的单位'
+    assert.equal(validateFull(badPrivate).checks.LessonAuthoringSchema.valid, false)
+    const badBinding = structuredClone(one.authorings)
+    badBinding['g3up-2026-u3-l01'].widgetGradings[0].content.props.items[0].prompt = '不相同的题面'
+    assert.equal(validateFull(badBinding).valid, false)
+    const badMedia = structuredClone(one.media)
+    badMedia.media.find(item => item.kind === 'document').byteLength += 1
+    assert.equal(validateFull(one.authorings, badMedia).checks.MediaManifestSchema.valid, false)
+    const noDocuments = structuredClone(one.media)
+    noDocuments.media = noDocuments.media.filter(item => item.kind !== 'document')
+    assert.equal(validateFull(one.authorings, noDocuments).checks.MediaManifestSchema.valid, false)
+    const noImages = structuredClone(one.media)
+    noImages.media = noImages.media.filter(item => item.kind !== 'image')
+    assert.equal(validateFull(one.authorings, noImages).checks.MediaManifestSchema.valid, false)
 
     const fixture = structuredClone(one.content)
     for (const question of fixture.questions) {

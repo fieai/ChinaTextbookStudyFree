@@ -46,32 +46,43 @@ test('openings, takeaways, cards and sampled widget text remain literal source e
   assert.equal(view.props.builds[0].name, '小台阶');
   assert.deepEqual(view.props.builds[0].visual.cubes, [[0, 0, 0], [1, 0, 0], [2, 0, 0], [0, 0, 1]]);
   const ruler = patches['g3up-2026-u3-l01'].extension.stages[1];
-  assert.deepEqual(ruler.props, { start: 40, end: 75, unit: 'mm' });
+  assert.equal(ruler.props.start, 40);
+  assert.equal(ruler.props.end, 75);
+  assert.equal(ruler.props.unit, 'mm');
   assert.ok(source.includes('from: 4, cms: 6, start: 40, end: 75'));
   const ladder = patches['chinese-g3down-2026-u1-kp1'].basicStages.find(x => x.widget === 'recite-ladder');
   for (const level of ladder.props.levels) assert.ok(source.includes(`'${level.label}'`));
 });
 
-test('unexpressed interactions have concrete field gaps; static fact panels use concept-card directly', () => {
-  const { patches, gaps } = buildStudioLessons({ siteDir, evidenceDir });
-  const staticPanels = new Set([
-    'chinese-g3up-2026-u1-kp1/extension-5', 'chinese-g3down-2026-u1-kp1/basic-2',
-    'chinese-g3down-2026-u1-kp1/basic-4', 'chinese-g3down-2026-u1-kp1/extension-2',
-  ]);
-  let unsupported = 0;
-  for (const [id, patch] of Object.entries(patches)) {
-    for (const stage of [...patch.basicStages, ...patch.extension.stages]) {
-      if (stage.widget === 'concept-card') {
-        if (!staticPanels.has(`${id}/${stage.key}`)) {
-          unsupported++;
-          assert.ok(gaps.some(gap => gap.includes(`${id}/${stage.key}`) && gap.includes('未还原该互动')));
-        }
-        assert.equal(stage.props.explanation, stage.moreHelp);
-      }
-    }
+test('all nine interactions use structured activities and answers remain private', async () => {
+  const { LessonAuthoringSchema } = await import(path.join(contractDir, 'index.js'));
+  const { patches, gaps, widgetGradings } = buildStudioLessons({ siteDir, evidenceDir });
+  const expected = [
+    ['g3up-2026-u3-l01', 'extension-1', 'unit-choice'], ['g3up-2026-u3-l01', 'extension-3', 'unit-compare'],
+    ['chinese-g3up-2026-u1-kp1', 'basic-4', 'char-learn', 'words'],
+    ['chinese-g3up-2026-u1-kp1', 'basic-6', 'char-learn', 'dictation'],
+    ['chinese-g3up-2026-u1-kp1', 'extension-2', 'char-learn', 'detective'],
+    ['chinese-g3up-2026-u1-kp1', 'extension-4', 'char-learn', 'imitation'],
+    ['chinese-g3down-2026-u1-kp1', 'extension-1', 'recite-ladder', 'scene'],
+    ['chinese-g3down-2026-u1-kp1', 'extension-3', 'recite-ladder', 'pairs'],
+    ['chinese-g3down-2026-u1-kp1', 'extension-4', 'read-aloud', 'listen'],
+  ];
+  for (const [id, key, widget, activity] of expected) {
+    const stage = [...patches[id].basicStages, ...patches[id].extension.stages].find(x => x.key === key);
+    assert.equal(stage.widget, widget, `${id}/${key}`);
+    if (activity) assert.equal(stage.props.activity || stage.props.presentation, activity);
+    assert.doesNotMatch(JSON.stringify(stage.props), /"(?:answer|grading|correctPartId|optionExplanations|symmetric|feedback)":/);
   }
-  assert.equal(unsupported, 9);
-  assert.ok(gaps.every(gap => !gap.includes('没有原型互动的专用 props')));
+  for (const [sourceLessonId, patch] of Object.entries(patches)) {
+    const definition = { schemaVersion: 1, sourceLessonId, title: sourceLessonId,
+      subject: sourceLessonId.startsWith('chinese-') ? 'chinese' : 'math', lessonKind: 'new',
+      knowledgePointIds: [], textbookPages: { from: 1, to: 1 }, bookPageLabel: '1', homework: { questionRefs: [] }, ...patch };
+    LessonAuthoringSchema.parse({ definition, widgetGradings: widgetGradings[sourceLessonId] || [] });
+  }
+  const privateDqs = widgetGradings['chinese-g3up-2026-u1-kp1'];
+  assert.equal(privateDqs.find(x => x.stageKey === 'extension-2').content.grading.detective['detective-1'].answer, 'option-1');
+  assert.equal(privateDqs.find(x => x.stageKey === 'extension-3').content.grading.characters['sound-1'].correctPartId, 'sound');
+  assert.equal(gaps.some(x => x.includes('未还原该互动')), false);
 });
 
 test('explicit family and writing fields are preserved without guessing generators', () => {
@@ -84,14 +95,22 @@ test('explicit family and writing fields are preserved without guessing generato
   assert.equal(families.props.characters.flatMap(x => x.family).length, 12);
   for (const character of families.props.characters) {
     assert.ok(source.includes(`'${character.pinyin}'`));
-    for (const family of character.family) assert.ok(source.includes(`'${family.text}'`));
+    for (const family of character.family) {
+      assert.ok(source.includes(`'${family.text}'`));
+      if (family.pinyin) assert.ok(source.includes(`'${family.pinyin}'`));
+      if (family.meaning) assert.ok(source.includes(`'${family.meaning}'`));
+    }
   }
   const writing = dqs.basicStages.find(x => x.widget === 'hanzi-write');
   assert.equal(writing.props.characters.length, 12);
   for (const character of writing.props.characters) {
     assert.ok(source.includes(`rad: '${character.parts[0].text}'`));
     assert.ok(source.includes(`tip: '${character.hint}'`));
-    for (const family of character.family) assert.ok(source.includes(`'${family.text}'`));
+    for (const family of character.family) {
+      assert.ok(source.includes(`'${family.text}'`));
+      if (family.pinyin) assert.ok(source.includes(`'${family.pinyin}'`));
+      if (family.meaning) assert.ok(source.includes(`'${family.meaning}'`));
+    }
   }
   assert.deepEqual(variantGenerators['g3up-2026-u3-l01'], ['mm-read', 'mm-convert', 'mm-compare']);
   assert.equal(Object.values(prototypeQuestionSets).flat().length, 20);
@@ -111,4 +130,38 @@ test('missing declarations and prototype/evidence disagreements block studio exp
   } finally {
     fs.rmSync(temporary, { recursive: true, force: true });
   }
+});
+
+test('language details retain source grouping, words, strokes and teacher materials', () => {
+  const strokeDataByCharacter = { 飘: { kind: 'document', sha256: 'a'.repeat(64) } };
+  const { patches } = buildStudioLessons({ siteDir, evidenceDir, strokeDataByCharacter });
+  const dqs = patches['chinese-g3up-2026-u1-kp1'];
+  const byKey = key => [...dqs.basicStages, ...dqs.extension.stages].find(x => x.key === key);
+  assert.equal(byKey('basic-4').props.words.length, 11);
+  assert.deepEqual(byKey('basic-4').props.words[0], { id: 'word-1', text: '山坡', pinyin: 'shān pō', context: { text: '早晨，从山坡上，从坪坝里……走来了许多小学生。', physicalPage: 8 } });
+  assert.equal(byKey('basic-6').props.dictation.count, 5);
+  assert.deepEqual(byKey('basic-6').props.dictation.kinds.map(x => x.label), ['偏旁', '多笔少笔', '写成别的字', '笔画位置']);
+  const reading = byKey('basic-2').props;
+  assert.equal(new Set(reading.sentences.map(x => x.paragraphId)).size, 4);
+  assert.ok(reading.sentences[0].spans.some(x => x.text === '傣' && x.pinyin === 'dǎi'));
+  assert.equal(reading.sentences[0].segments.length, 9);
+  assert.deepEqual(reading.sentences.map(x => x.paragraphId), [1, 1, 1, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4].map(i => `paragraph-${i}`));
+  assert.deepEqual(reading.passes.find(x => x.id === 'fluent').presentation.pauses, reading.sentences.flatMap((x, i) => [0, 2, 5, 8].includes(i) ? x.segments.flatMap((segment, j) => segment.text.endsWith('，') ? [{ sentenceId: x.id, afterSegment: j }] : []) : []));
+  assert.ok(reading.passes.find(x => x.id === 'fluent').presentation.pauses.length > 0);
+  assert.equal(reading.parentTitle, '家长听 30 秒 · 只听第 3 自然段');
+  const character = byKey('basic-5').props.characters.find(x => x.char === '飘');
+  assert.deepEqual(character.strokeData, strokeDataByCharacter.飘);
+  assert.equal(character.structure, '左右结构');
+  assert.equal(character.strokeCount, 15);
+  assert.ok(character.explanation && character.usage && character.warning && character.commonMistakes.length);
+  assert.equal(dqs.teachBack.characterPrompts.length, 12);
+  assert.equal(dqs.teachBack.parentErrorCards.length, 16);
+  assert.equal(dqs.teachBack.parentErrorCards[0].text, '把“山坡”写成“山波”，让孩子来纠正。');
+  const scene = patches['chinese-g3down-2026-u1-kp1'].extension.stages.find(x => x.key === 'extension-1').props;
+  assert.equal(scene.sourceNote, '原创示意图，非教材插图。');
+  const other = patches['chinese-g3down-2026-u1-kp1'].extension.stages.find(x => x.key === 'extension-4').props;
+  assert.deepEqual(other.passes, []);
+  // Prototype JJ.other renders one <p> per line, unlike the prose paragraph groups.
+  assert.deepEqual(other.sentences.map(x => x.paragraphId), ['paragraph-1', 'paragraph-2', 'paragraph-3', 'paragraph-4']);
+  assert.deepEqual(other.sentences.flatMap(x => x.spans).filter(x => x.role === 'color').map(x => x.text), ['黄', '翠', '白', '青']);
 });

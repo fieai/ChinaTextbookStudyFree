@@ -187,7 +187,8 @@ function materializeMedia({ outputDir, mediaSources }) {
   }
   const seen = new Set();
   for (const item of mediaSources) {
-    if (!/^[a-f0-9]{64}$/.test(item.sha256) || item.mediaPath !== `media/${item.sha256}.png`)
+    const extension = item.bytes ? 'json' : 'png';
+    if (!/^[a-f0-9]{64}$/.test(item.sha256) || item.mediaPath !== `media/${item.sha256}.${extension}`)
       throw new Error('Invalid content-addressed media path');
     if (seen.has(item.mediaPath)) continue;
     seen.add(item.mediaPath);
@@ -197,11 +198,16 @@ function materializeMedia({ outputDir, mediaSources }) {
         throw new Error(`Existing media is not the expected content: ${item.mediaPath}`);
       continue;
     }
-    if (sha256(fs.readFileSync(item.sourcePath)) !== item.sha256) throw new Error(`Page changed after inventory: ${item.sourcePath}`);
-    try { fs.linkSync(item.sourcePath, target); }
-    catch (error) {
-      if (!['EXDEV', 'EPERM', 'EACCES', 'ENOTSUP', 'EMLINK'].includes(error.code)) throw error;
-      fs.copyFileSync(item.sourcePath, target, fs.constants.COPYFILE_EXCL);
+    if (item.bytes) {
+      if (sha256(item.bytes) !== item.sha256) throw new Error('Document changed after inventory');
+      fs.writeFileSync(target, item.bytes, { flag: 'wx' });
+    } else {
+      if (sha256(fs.readFileSync(item.sourcePath)) !== item.sha256) throw new Error(`Page changed after inventory: ${item.sourcePath}`);
+      try { fs.linkSync(item.sourcePath, target); }
+      catch (error) {
+        if (!['EXDEV', 'EPERM', 'EACCES', 'ENOTSUP', 'EMLINK'].includes(error.code)) throw error;
+        fs.copyFileSync(item.sourcePath, target, fs.constants.COPYFILE_EXCL);
+      }
     }
     if (!fs.lstatSync(target).isFile() || sha256(fs.readFileSync(target)) !== item.sha256)
       throw new Error(`Materialized media differs from its content hash: ${item.mediaPath}`);

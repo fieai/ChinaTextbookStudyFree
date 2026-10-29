@@ -69,7 +69,9 @@ function makePayload(record, metadata, knowledgePointId) {
   const q = record.question
   const kind = metadata.renderKind
   const sourceType = q.type
-  const question = { kind, prompt: q.question, sourceKind: sourceType, sourceLabel: record.locator }
+  // sourceLabel is rendered to learners. Keep internal locators in the report's
+  // provenance records instead of presenting a repository path as a source label.
+  const question = { kind, prompt: q.question, sourceKind: sourceType }
   const grading = { kind, score: q.score, explanation: q.explanation, partialCredit: false }
   if (kind === 'choice' || kind === 'multi') {
     question.options = q.options.map((label, index) => ({ id: metadata.optionIds[index], label: label.normalize('NFC').trim() }))

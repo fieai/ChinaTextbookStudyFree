@@ -1,7 +1,9 @@
 'use strict'
+const { logicalKey } = require('./common.cjs')
+const { mediaManifestSchema, validateMediaReferences } = require('./media.cjs')
 
 /** Run each named check even if a package-level schema error short-circuits Thinky validation. */
-function validateExport(content, authority, questionContractIssues = [], pagesManifest) {
+function validateExport(content, authority, questionContractIssues = [], pagesManifest, authorings, media, mediaSources) {
   const result = authority.validateContentPackage(content).report
   const issues = [...result.issues]
   const contract = authority.contract
@@ -34,9 +36,34 @@ function validateExport(content, authority, questionContractIssues = [], pagesMa
     questions = collect(`questions.${index}.payload`, contract.validateQuestionImport(question.payload, {}, known)) && questions
   })
   for (const entry of questionContractIssues) {
-    const index = content.questions.findIndex(question => question.payload.question.sourceLabel === entry.locator)
+    const index = content.questions.findIndex(question => question.id === logicalKey('question', entry.locator))
     for (const issue of entry.issues)
       issues.push({ path: [`questions.${index}.payload`, ...issue.path].join('.'), message: issue.message })
+  }
+  let authoringValid = true, mediaValid = true
+  if (authorings) {
+    const studioLessons = lessons.filter(({ lesson }) => lesson.content.level === 'studio')
+    for (const { lesson } of studioLessons) {
+      const authoring = authorings[lesson.content.sourceLessonId]
+      authoringValid = collect(`authoring.${lesson.content.sourceLessonId}`, contract.LessonAuthoringSchema.safeParse(authoring)) && authoringValid
+      if (JSON.stringify(authoring?.definition) !== JSON.stringify(lesson.content)) {
+        issues.push({ path: `authoring.${lesson.content.sourceLessonId}.definition`, message: 'Authoring definition differs from public lesson' })
+        authoringValid = false
+      }
+    }
+    if (Object.keys(authorings).length !== studioLessons.length) {
+      issues.push({ path: 'authoring', message: 'Authoring must cover exactly the studio lessons' })
+      authoringValid = false
+    }
+  }
+  if (media) {
+    mediaValid = collect('media-manifest', mediaManifestSchema(authority).safeParse(media))
+    const mediaIssues = validateMediaReferences(content, media, mediaSources)
+    for (const book of pagesManifest.books) for (const page of book.pages)
+      if (!media.media.some(item => item.sha256 === page.sha256 && item.kind === 'image' && item.mime === page.mime))
+        mediaIssues.push({ path: `media-manifest.${book.sourceBookId}.${page.page}`, message: 'Missing page image media' })
+    issues.push(...mediaIssues)
+    mediaValid = mediaValid && mediaIssues.length === 0
   }
   const unique = [...new Map(issues.map(issue => [`${issue.path}:${issue.message}`, issue])).values()]
   return {
@@ -51,6 +78,8 @@ function validateExport(content, authority, questionContractIssues = [], pagesMa
       validateLessonCatalog: { valid: catalog.success, includes: ['knowledgePoints', 'D9 interior overlap'] },
       validateQuestionImport: { valid: questions, count: content.questions.length, knownKnowledgePoints: known.length },
       validateContentPackage: { valid: result.valid },
+      ...(authorings ? { LessonAuthoringSchema: { valid: authoringValid, count: Object.keys(authorings).length } } : {}),
+      ...(media ? { MediaManifestSchema: { valid: mediaValid, count: media.media.length } } : {}),
     },
   }
 }

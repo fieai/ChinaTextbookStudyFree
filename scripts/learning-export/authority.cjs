@@ -31,6 +31,7 @@ function loadAuthority(thinkyRoot) {
     ...load('content-package'),
     ...load('content-validation'),
     contract: externalRequire('@thinky/learning-contract'),
+    z: externalRequire('zod').z,
     inputPaths: [
       path.join(directory, 'content-package.ts'),
       path.join(directory, 'content-validation.ts'),

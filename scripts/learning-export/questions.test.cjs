@@ -3,6 +3,7 @@
 const test = require('node:test')
 const assert = require('node:assert/strict')
 const { loadAuthority } = require('./authority.cjs')
+const { logicalKey } = require('./common.cjs')
 const { inferQuestions, resolvedMetadata, makePayload, buildQuestions, MANUAL } = require('./questions.cjs')
 
 const thinkyRoot = process.env.THINKY_ROOT || '/Users/my-project/AI-PROJECT/thinky'
@@ -96,6 +97,21 @@ test('source calculation exports as numeric and retains its supplied exact final
   // Source-answer inference parses representation; it must not silently recalculate source answers.
   assert.equal(buildOne(record({ answer: '35' })).questions[0].payload.grading.value, 35)
   assert.equal(contract.validateQuestionImport(payload, {}, [pointId]).success, true)
+})
+
+test('internal question locators remain report provenance and never become a learner-facing source label', () => {
+  const source = record()
+  const result = buildOne(source)
+  const exported = result.questions[0]
+  assert.equal(Object.hasOwn(exported.payload.question, 'sourceLabel'), false)
+  assert.equal(JSON.stringify(exported.payload.question).includes('output/'), false)
+  assert.equal(JSON.stringify(exported.payload.question).includes('.json#/'), false)
+  assert.equal(result.provenance[0].locator, source.locator)
+  assert.equal(result.provenance[0].fileSha256, source.fileSha256)
+  assert.equal(exported.id, logicalKey('question', source.locator))
+  assert.equal(exported.logicalKey, exported.id)
+  assert.equal(exported.sourceLessonId, 'g3up-2026-u1-l01')
+  assert.equal(contract.validateQuestionImport(exported.payload, {}, [pointId]).success, true)
 })
 
 for (const metadata of [

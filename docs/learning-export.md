@@ -7,8 +7,9 @@ WP-10 第一部分，执行位置为 `ChinaTextbookStudyFree-wp-10` worktree。
 ## 命令
 
 需要 Node.js 22+、Python 3，以及已安装依赖且构建完成的 Thinky 契约包。
-生成有效 `package.json` 依赖 Thinky 契约 dist v1.6，支持
-`calculation → calculation | numeric | measurement`；旧 dist 会如实阻断，不绕过校验。
+生成有效 `package.json` 依赖 Thinky 契约 dist v1.6 第二部分，支持
+`calculation → calculation | numeric | measurement`、新增活动与 `LessonAuthoringSchema`；
+旧 dist 会如实阻断，不绕过校验，由协调者构建。
 无需在本 worktree 安装 npm 依赖。
 
 ```bash
@@ -26,7 +27,7 @@ node --test scripts/learning-export/*.test.cjs
 
 当前基线 `f522eee` 未跟踪修订版题库和部署原型，因此实际读取主检出的指定文件。
 脚本不对该目录执行 git 操作或写入；只在当前 worktree 查询 HEAD。
-每个题库文件及四份原型 JS 必须与 WP-10 冻结 SHA256 一致；PDF 对照原型元数据，
+题库及原有原型 JS 对照 WP-10 冻结 SHA256；笔顺 JS 与许可文件也计入本次输入指纹；PDF 对照原型元数据，
 每张页图对照部署父目录 `checksums.json` 的冻结 SHA256 和字节数，并检查 PNG chunk CRC。
 来源漂移、缺文件或不完整元数据均阻断，不自动刷新研究证据。
 
@@ -52,6 +53,10 @@ JSON/Markdown 使用原子替换，不覆盖原有硬链接的 inode；已有媒
 - `candidate-package.json`：包或页图清单有契约错误时生成，不能导入或发布；失败命令退出码为 1，仍输出页图清单与报告，不生成有效 `package.json`。
 - `pages-manifest.json`：严格符合 Thinky `PagesManifestSchema`，包含四册每个 PDF 物理页的 SHA256、MIME、宽高及印刷页号。
 - `media/<sha256>.png`：页图按内容哈希命名，优先硬链接，跨盘或权限不允许时复制；完成后核验目标哈希。
+- `media/<sha256>.json`：每个会写字的笔顺文档，保留原型 Make Me a Hanzi 的 strokes/medians，按 JSON UTF-8 字节哈希命名；Character.strokeData 使用 `{sha256,kind:"document"}`。
+- `media-manifest.json`：统一登记页图与笔顺文档，字段为 schemaVersion、media[]；每项包含 sha256/kind/mime/path/byteLength。这是导出器 sidecar，使用契约 MediaReferenceSchema 加本地 Zod 严格校验，不扩展仅限页图的 PagesManifest。
+- `authoring.<sourceLessonId>.json`：五份课级私有 LessonAuthoring（definition、widgetGradings），评分绑定公开关卡的相同 widget/props；与 package.json 分文件保存。content-sync 私有评分导入格式尚未定义，由协调者对齐，不直接传入公共课程接口。
+- `Make-Me-a-Hanzi-LICENSE.txt` / `Make-Me-a-Hanzi-NOTICE.txt`：原型附带的 Arphic Public License 原文、上游来源和 JSON 提取说明。
 - `report.json`：分项校验结果、四册统计与逐页证据、全部警告、表达缺口、完整输入指纹及逐题 provenance。
 - `report.md`：便于审阅的统计、错误、缺印刷页号页表、警告、缺口与决定来源。
 
@@ -168,13 +173,19 @@ node scripts/learning-export/index.cjs --validate .local/learning-export/REVISIO
 
 - 周长题保留原句“一个正方形边长是5分米，求它的周长。”；按用户决定判分为 dm，
   待作者将末句补为“它的周长是多少分米？”。
-- cube-views 的已知投影及推理揭晓、symmetry-fold 的完整对称轴答案、ruler 的显示窗口和读数步骤，
-  当前 props 无法完整携带原型定义；不添加未获契约支持的 props。
-- 朗读的逐字注音/停顿/自然段/复习遍与写字笔顺资源、孩子选字后动态小老师等仍有表达缺口。
-- 契约无法表达的互动只保留逐字默认态文本，并明确列为 concept-card 文字退化，不宣称互动等价。
+- 原先九处 concept-card 降级全部改为真实活动：unit-choice/compare、words/dictation/detective/imitation、scene/pairs/listen；答案和逐选反馈保存在私有 authoring，不进入公开 props。
+- cube 活动与已知投影、ruler 视口与预设/步骤、对称私有反馈与轴序/汉字答案、朗读自然段与注音/停顿/家长任务、字族拼音释义、字符教学字段和小老师/家长出错卡均已导出。
+- 当前 12 个会写字均有真实笔顺文档。设备 TTS 与临时录音没有稳定媒体，不伪造音频；复习模式替代遍没有专用作者字段，不新增必做遍。
+- 绝句“写对”中的鸳、鸯、融、暖保持静态字形提示，原型笔顺文件没有这四字的数据，报告明确列出。
+- scene visualKey 对应的画面、仿说模板占位符、移动尺子后的动态读数仍需消费端接线；按选字筛家长卡等运行约束与动态卡持久化不由导出包代替。
 - 原型题集 SETS 的手工课本题、额外读懂题，以及动态变式规则，与 output 题库并非同一集合；
   本次按已确认 assign-v2 导出源题，未伪造这部分题目的归属或把默认快照当成动态定义。
 - 7 个数学课时没有题目引用，保留空数组并警告；页图已齐全不等于印刷页码证据已齐全。
+
+题目公开 sourceLabel 原先被前端 QuestionCard 直接显示成内部 output 路径，现已删除；
+完整 locator 与原始题目保存在 report.json.questionProvenance，题目 UUID 与归属不变。
+homework.notice 说明配套题库来源；未逐题核对的原型手工题不自动写入 Stage.questionRefs。
+`--validate` 会同时回读校验包、页图清单、统一媒体清单及五份私有 authoring，并核对实际媒体字节与引用。
 
 本任务只提供本地导出、校验和审阅结果。Thinky 侧导入、校验后发布及真实前端 widget 验收属于后续工作。
 

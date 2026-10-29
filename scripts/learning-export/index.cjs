@@ -12,6 +12,8 @@ const { buildStudioLessons } = require('./studio.cjs')
 const { inspectPages, materializeMedia, inputFingerprint } = require('./pages.cjs')
 const { statistics, sharedEndpoints, markdownReport } = require('./report.cjs')
 const { validateExport } = require('./validate.cjs')
+const { readStrokeDocuments, strokeCoverage, STROKE_NOTICE } = require('./strokes.cjs')
+const { mediaManifest } = require('./media.cjs')
 const { inputFile, readJson, jsonBytes, contentHash, packageHash, compare, requireCondition: check } = require('./common.cjs')
 
 const WORKTREE = path.resolve(__dirname, '../..')
@@ -19,6 +21,11 @@ const MAIN_READ_ONLY = path.resolve(WORKTREE, '../ChinaTextbookStudyFree')
 const DEFAULT_THINKY = '/Users/my-project/AI-PROJECT/thinky'
 const DEFAULT_EVIDENCE_ROOT = '/Users/my-project/AI-PROJECT/thinky-wp-10'
 const SITE_RELATIVE = 'deploy-output/family-learning-share-20261027-button-stability/site'
+const RESTORED_INTERACTIONS = {
+  'g3up-2026-u3-l01': ['extension-1', 'extension-3'],
+  'chinese-g3up-2026-u1-kp1': ['basic-4', 'basic-6', 'extension-2', 'extension-4'],
+  'chinese-g3down-2026-u1-kp1': ['extension-1', 'extension-3', 'extension-4'],
+}
 
 function options(argv = process.argv.slice(2)) {
   const { values } = parseArgs({ args: argv, options: {
@@ -60,6 +67,7 @@ function guardedOutput(outputRoot) {
 function exportContent(config) {
   guardedOutput(config.outputRoot)
   const authority = loadAuthority(config.thinkyRoot)
+  check(authority.contract.LessonAuthoringSchema, 'Thinky contract dist missing LessonAuthoringSchema; coordinator must build contract v1.6 part two')
   const inputFiles = []
   const addInput = (label, filename) => {
     const file = inputFile(label, filename)
@@ -67,7 +75,9 @@ function exportContent(config) {
     return file
   }
   const data = loadCatalog({ ...config, addInput })
-  const studio = buildStudioLessons(config)
+  const strokes = readStrokeDocuments(config)
+  const studio = buildStudioLessons({ ...config, strokeDataByCharacter: strokes.references })
+  inputFiles.push(...strokes.inputFiles)
   for (const filename of studio.inputFiles) addInput(filename.startsWith(config.siteDir) ? `prototype/${path.basename(filename)}` : `evidence/${path.basename(filename)}`, filename)
   for (const name of ['lesson-guides.js', 'question-bank.js']) {
     const file = addInput(`prototype/${name}`, path.join(config.siteDir, name))
@@ -84,8 +94,11 @@ function exportContent(config) {
   const pageResult = inspectPages({ ...config, books: data.raw.books })
   for (const book of contentCatalog.books) {
     const pages = pageResult.manifest.books.find(item => item.sourceBookId === book.sourceBookId).pages
-    for (const { content: lesson } of book.lessons)
+    for (const { content: lesson } of book.lessons) {
       lesson.bookPageLabel = bookPageLabel(pages, lesson.textbookPages)
+      if (lesson.homework.questionRefs.length)
+        lesson.homework.notice = '本组练习来自题库；课本原题请查看教材原页。'
+    }
   }
   inputFiles.push(...pageResult.inputFiles)
   for (const filename of authority.inputPaths) addInput(`thinky/${path.relative(config.thinkyRoot, filename)}`, filename)
@@ -105,7 +118,15 @@ function exportContent(config) {
     manifestSha256: '0'.repeat(64), ...contentCatalog, questions: questionResult.questions }
   content.manifestSha256 = authority.packageHash(content)
   check(packageHash(content) === content.manifestSha256, 'Independent package hash differs from Thinky authority')
-  const validation = validateExport(content, authority, questionResult.contractIssues, pageResult.manifest)
+  const authorings = Object.fromEntries(content.books.flatMap(book => book.lessons)
+    .filter(lesson => lesson.content.level === 'studio')
+    .map(lesson => [lesson.content.sourceLessonId, { definition: lesson.content,
+      widgetGradings: studio.widgetGradings?.[lesson.content.sourceLessonId] ?? [] }]))
+  const coverage = strokeCoverage(content, strokes)
+  const documents = strokes.documents.filter(item => coverage.required.includes(item.char))
+  const mediaSources = [...pageResult.mediaSources, ...documents]
+  const media = mediaManifest(pageResult, documents)
+  const validation = validateExport(content, authority, questionResult.contractIssues, pageResult.manifest, authorings, media, mediaSources)
   const warnings = [...validation.warnings, ...pageResult.warnings, ...questionResult.warnings, ...sharedEndpoints(content)]
   for (const book of content.books) {
     const lessons = book.lessons.filter(lesson => !lesson.content.homework.questionRefs.length).map(lesson => lesson.content.sourceLessonId)
@@ -128,9 +149,22 @@ function exportContent(config) {
     checks: { ...validation.checks, packageHashAuthorityParity: { valid: true },
       frozenInputs: { valid: true, count: inputs.length }, pageInventory: { valid: true, count: pageResult.mediaSources.length } },
     issues: validation.issues, questionContractIssues: questionResult.contractIssues,
-    warnings, gaps: studio.gaps, books: statistics(content, pageResult.manifest, pageResult.bookEvidence),
+    warnings, gaps: [...studio.gaps,
+      '私有 widget grading 的 content-sync 导入格式尚未定义：按 LessonAuthoring 输出五份课级 authoring.<sourceLessonId>.json，不传入公共课程接口；由协调者对齐导入。',
+      '统一媒体清单 media-manifest.json 为导出器 sidecar（每项复用契约 MediaReferenceSchema 并用本地 Zod 严格校验），PagesManifest 按契约仅存页图。'],
+    interactions: content.books.flatMap(book => book.lessons).flatMap(({ content: lesson }) =>
+      [...(lesson.basicStages ?? []), ...(lesson.extension?.stages ?? [])]
+        .filter(stage => RESTORED_INTERACTIONS[lesson.sourceLessonId]?.includes(stage.key))
+        .map(stage => ({ sourceLessonId: lesson.sourceLessonId, stageKey: stage.key, title: stage.title,
+          widget: stage.widget, ...(stage.props.activity ? { activity: stage.props.activity } : {}),
+          ...(stage.props.presentation ? { presentation: stage.props.presentation } : {}) }))),
+    strokeData: coverage,
+    authoringFiles: Object.keys(authorings).map(id => `authoring.${id}.json`),
+    authoringSha256: Object.fromEntries(Object.entries(authorings).map(([id, value]) => [id, contentHash(value)])),
+    mediaManifestSha256: contentHash(media),
+    books: statistics(content, pageResult.manifest, pageResult.bookEvidence),
     assets: { physicalPages: pageResult.mediaSources.length,
-      uniqueMediaFiles: new Set(pageResult.mediaSources.map(item => item.mediaPath)).size },
+      strokeDocuments: documents.length, uniqueMediaFiles: media.media.length },
     inputs, questionProvenance: questionResult.provenance,
     prototypeQuestions, prototypeVariantGenerators: studio.variantGenerators,
   }
@@ -140,16 +174,22 @@ function exportContent(config) {
   guardedOutput(outputDir)
   guardedOutput(path.join(outputDir, 'media'))
   fs.mkdirSync(outputDir, { recursive: true })
-  for (const name of ['package.json', 'candidate-package.json', 'pages-manifest.json', 'report.json', 'report.md']) {
+  for (const name of ['package.json', 'candidate-package.json', 'pages-manifest.json', 'media-manifest.json', 'report.json', 'report.md',
+    ...report.authoringFiles, 'Make-Me-a-Hanzi-LICENSE.txt', 'Make-Me-a-Hanzi-NOTICE.txt']) {
     const filename = path.join(outputDir, name)
     check(!fs.existsSync(filename) || fs.lstatSync(filename).isFile(), `Output symlink or non-file rejected: ${filename}`)
   }
-  materializeMedia({ outputDir, mediaSources: pageResult.mediaSources })
+  materializeMedia({ outputDir, mediaSources })
   atomicWrite(path.join(outputDir, report.valid ? 'package.json' : 'candidate-package.json'), jsonBytes(content))
   atomicWrite(path.join(outputDir, 'pages-manifest.json'), jsonBytes(pageResult.manifest))
+  atomicWrite(path.join(outputDir, 'media-manifest.json'), jsonBytes(media))
+  for (const [id, authoring] of Object.entries(authorings))
+    atomicWrite(path.join(outputDir, `authoring.${id}.json`), jsonBytes(authoring))
+  atomicWrite(path.join(outputDir, 'Make-Me-a-Hanzi-LICENSE.txt'), strokes.licenseBytes)
+  atomicWrite(path.join(outputDir, 'Make-Me-a-Hanzi-NOTICE.txt'), STROKE_NOTICE)
   atomicWrite(path.join(outputDir, 'report.json'), jsonBytes(report))
   atomicWrite(path.join(outputDir, 'report.md'), markdownReport(report))
-  return { outputDir, report, content }
+  return { outputDir, report, content, authorings, media }
 }
 
 function atomicWrite(filename, bytes) {
@@ -169,7 +209,16 @@ function main() {
     return
   }
   if (config.validate) {
-    const { report } = loadAuthority(config.thinkyRoot).validateContentPackage(readJson(config.validate))
+    const directory = path.dirname(path.resolve(config.validate))
+    const content = readJson(config.validate)
+    const authorings = Object.fromEntries(content.books.flatMap(book => book.lessons)
+      .filter(lesson => lesson.content.level === 'studio').map(lesson => [lesson.content.sourceLessonId,
+        readJson(path.join(directory, `authoring.${lesson.content.sourceLessonId}.json`))]))
+    const media = readJson(path.join(directory, 'media-manifest.json'))
+    const authority = loadAuthority(config.thinkyRoot)
+    require('./media.cjs').mediaManifestSchema(authority).parse(media)
+    const mediaSources = media.media.map(item => ({ sha256: item.sha256, sourcePath: path.join(directory, item.path) }))
+    const report = validateExport(content, authority, [], readJson(path.join(directory, 'pages-manifest.json')), authorings, media, mediaSources)
     console.log(jsonBytes(report))
     if (!report.valid) process.exitCode = 1
     return

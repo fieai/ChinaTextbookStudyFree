@@ -56,6 +56,15 @@ function markdownReport(report) {
     '| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |',
   ]
   for (const book of report.books) lines.push(`| ${book.sourceBookId} | ${book.lessons} | ${book.studio} | ${book.textbookOnly} | ${book.questions} | ${book.knowledgePoints} | ${book.pageImages} | ${book.missingPrintedPages.length} |`)
+  lines.push('', '## 九处交互导出', '', '| 课程 | 关卡 | 交互 | 导出 |', '| --- | --- | --- | --- |')
+  for (const item of report.interactions ?? []) lines.push(`| ${item.sourceLessonId} | ${item.stageKey} | ${item.title} | ${item.widget}${item.activity ? ` / ${item.activity}` : ''}${item.presentation ? ` / ${item.presentation}` : ''} |`)
+  if (report.strokeData) lines.push('', '## 笔顺与私有作者文件', '',
+    `- 会写字覆盖 ${report.strokeData.covered.length}/${report.strokeData.required.length}：${report.strokeData.covered.join('、')}。缺数据：${report.strokeData.missing.join('、') || '无'}。`,
+    `- 来源：${report.strokeData.source}；许可：${report.strokeData.license}；原文随包附于 ${report.strokeData.licenseFile}，转换说明见 ${report.strokeData.noticeFile}。`,
+    `- 每字 JSON 按字节 SHA256 命名，Character.strokeData 引用 kind=document；${report.assets.strokeDocuments} 份文档与页图共同登记于 media-manifest.json。`,
+    `- 私有 authoring 文件 ${report.authoringFiles.length} 份，逐份通过 LessonAuthoringSchema 并核对公开 definition/props；文件名与摘要见 report.json。`,
+    '- content-sync 尚无私有 widget grading 导入格式，当前采用契约 LessonAuthoring 课级 sidecar；不把 grading 加到公共课程定义。',
+    '- 题目 sourceLabel 原先被 QuestionCard 直接显示为内部 output 路径；已从公开题目删除，溯源仅保留 report.json 的 questionProvenance。')
   lines.push('', '## 课程类型与空作业', '')
   for (const book of report.books) lines.push(`- ${book.sourceBookId}：\`${JSON.stringify(book.byLessonKind)}\`；无作业引用：${book.noHomeworkLessons.join('、') || '无'}。`)
   lines.push('', '## 缺印刷页号的物理页', '')
