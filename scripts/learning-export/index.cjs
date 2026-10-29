@@ -14,6 +14,7 @@ const { statistics, sharedEndpoints, markdownReport } = require('./report.cjs')
 const { validateExport } = require('./validate.cjs')
 const { readStrokeDocuments, strokeCoverage, STROKE_NOTICE } = require('./strokes.cjs')
 const { mediaManifest } = require('./media.cjs')
+const { attachCachedAudio } = require('./audio.cjs')
 const { inputFile, readJson, jsonBytes, contentHash, packageHash, compare, requireCondition: check } = require('./common.cjs')
 
 const WORKTREE = path.resolve(__dirname, '../..')
@@ -77,6 +78,9 @@ function exportContent(config) {
   const data = loadCatalog({ ...config, addInput })
   const strokes = readStrokeDocuments(config)
   const studio = buildStudioLessons({ ...config, strokeDataByCharacter: strokes.references })
+  const audio = attachCachedAudio(studio, { root: config.ttsRoot ?? WORKTREE, env: config.ttsEnv ?? process.env })
+  inputFiles.push(...audio.inputs)
+  addInput('exporter/tts-overrides.json', path.join(__dirname, 'tts-overrides.json'))
   inputFiles.push(...strokes.inputFiles)
   for (const filename of studio.inputFiles) addInput(filename.startsWith(config.siteDir) ? `prototype/${path.basename(filename)}` : `evidence/${path.basename(filename)}`, filename)
   for (const name of ['lesson-guides.js', 'question-bank.js']) {
@@ -128,14 +132,16 @@ function exportContent(config) {
   }
   const coverage = strokeCoverage(content, strokes)
   const documents = strokes.documents.filter(item => coverage.required.includes(item.char))
-  const mediaSources = [...pageResult.mediaSources, ...documents]
-  const media = mediaManifest(pageResult, documents)
+  const mediaSources = [...pageResult.mediaSources, ...documents, ...audio.sources]
+  const media = mediaManifest(pageResult, [...documents, ...audio.sources])
   if (documents.length) content.media = media.media.filter(item => item.kind === 'document')
     .map(({ sha256, kind, mime }) => ({ sha256, kind, mime }))
   content.manifestSha256 = authority.packageHash(content)
   check(packageHash(content) === content.manifestSha256, 'Independent package hash differs from Thinky authority')
   const validation = validateExport(content, authority, questionResult.contractIssues, pageResult.manifest, authorings, media, mediaSources)
   const warnings = [...validation.warnings, ...pageResult.warnings, ...questionResult.warnings, ...sharedEndpoints(content)]
+  if (audio.sources.length) warnings.push({ code: 'AUDIO_DELIVERY_UNSUPPORTED',
+    message: '音频已随包携带；当前 Thinky 不能导入、发布或下发 MP3，需补齐支持后协调发布。' })
   for (const book of content.books) {
     const lessons = book.lessons.filter(lesson => !lesson.content.homework.questionRefs.length).map(lesson => lesson.content.sourceLessonId)
     if (lessons.length) warnings.push({ code: 'NO_HOMEWORK', sourceBookId: book.sourceBookId, lessons,
@@ -157,8 +163,8 @@ function exportContent(config) {
     checks: { ...validation.checks, packageHashAuthorityParity: { valid: true },
       frozenInputs: { valid: true, count: inputs.length }, pageInventory: { valid: true, count: pageResult.mediaSources.length } },
     issues: validation.issues, questionContractIssues: questionResult.contractIssues,
-    warnings, gaps: [...studio.gaps,
-      '统一媒体清单 media-manifest.json 为导出器 sidecar；content-sync 从 package.json.media 读取笔顺文档元数据，从 PagesManifest 读取页图。'],
+    warnings, gaps: [...studio.gaps, ...audio.gaps,
+      '统一媒体清单 media-manifest.json 为导出器 sidecar；content-sync 从 package.json.media 读取笔顺文档元数据，从 PagesManifest 读取页图；audio 尚需 Thinky 接入。'],
     interactions: content.books.flatMap(book => book.lessons).flatMap(({ content: lesson }) =>
       [...(lesson.basicStages ?? []), ...(lesson.extension?.stages ?? [])]
         .filter(stage => RESTORED_INTERACTIONS[lesson.sourceLessonId]?.includes(stage.key))
@@ -166,12 +172,13 @@ function exportContent(config) {
           widget: stage.widget, ...(stage.props.activity ? { activity: stage.props.activity } : {}),
           ...(stage.props.presentation ? { presentation: stage.props.presentation } : {}) }))),
     strokeData: coverage,
+    audio: audio.coverage,
     authoringFiles: Object.keys(authorings).map(id => `authoring.${id}.json`),
     authoringSha256: Object.fromEntries(Object.entries(authorings).map(([id, value]) => [id, contentHash(value)])),
     mediaManifestSha256: contentHash(media),
     books: statistics(content, pageResult.manifest, pageResult.bookEvidence),
     assets: { physicalPages: pageResult.mediaSources.length,
-      strokeDocuments: documents.length, uniqueMediaFiles: media.media.length },
+      strokeDocuments: documents.length, audioFiles: audio.sources.length, uniqueMediaFiles: media.media.length },
     inputs, questionProvenance: questionResult.provenance,
     prototypeQuestions, prototypeVariantGenerators: studio.variantGenerators,
   }
@@ -237,6 +244,8 @@ function main() {
       questions: book.questions, knowledgePoints: book.knowledgePoints, pageImages: book.pageImages,
       missingPrintedPageCount: book.missingPrintedPages.length,
     })),
+    audio: { files: result.report.assets.audioFiles, deliverySupported: result.report.audio.deliverySupported,
+      lessons: result.report.audio.lessons },
     issues: result.report.issues.length, warnings: result.report.warnings.length, gaps: result.report.gaps.length }))
   if (!result.report.valid) process.exitCode = 1
 }

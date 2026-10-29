@@ -1,6 +1,7 @@
 'use strict';
 
-// Convert author data only. Runtime TTS, recording and child state are not media.
+// Convert author data only. Cached provider audio is attached after conversion;
+// runtime device TTS, recording and child state are not media.
 function createLanguageConverter(data, source, strokeDataByCharacter = {}) {
   const { DQS, JJ, READ } = data;
   const literal = text => {

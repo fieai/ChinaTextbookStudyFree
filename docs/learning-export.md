@@ -1,7 +1,7 @@
 # 三年级四册学习内容导出
 
 WP-10 第一部分，执行位置为 `ChinaTextbookStudyFree-wp-10` worktree。
-仅新增导出脚本、测试、本文及 `.gitignore` 的 `/.local/learning-export/` 一行。
+导出脚本、测试和配置示例位于本 worktree；生成物保存在被忽略的 `.local/` 子目录。
 不修改源题、原型、既有业务代码或 Thinky，不调用导入、数据库、发布接口，不提交。
 
 ## 命令
@@ -59,7 +59,8 @@ JSON/Markdown 使用原子替换，不覆盖原有硬链接的 inode；已有媒
 - `pages-manifest.json`：严格符合 Thinky `PagesManifestSchema`，包含四册每个 PDF 物理页的 SHA256、MIME、宽高及印刷页号。
 - `media/<sha256>.png`：页图按内容哈希命名，优先硬链接，跨盘或权限不允许时复制；完成后核验目标哈希。
 - `media/<sha256>.json`：每个会写字的笔顺文档，保留原型 Make Me a Hanzi 的 strokes/medians，按 JSON UTF-8 字节哈希命名；Character.strokeData 使用 `{sha256,kind:"document"}`。
-- `media-manifest.json`：统一登记页图与笔顺文档，字段为 schemaVersion、media[]；每项包含 sha256/kind/mime/path/byteLength。这是导出器 sidecar，使用契约 MediaReferenceSchema 加本地 Zod 严格校验，不扩展仅限页图的 PagesManifest。
+- `media/<sha256>.mp3`：已生成的 ElevenLabs 读音，按音频字节 SHA256 命名。
+- `media-manifest.json`：统一登记页图、笔顺文档与已缓存音频，字段为 schemaVersion、media[]；每项包含 sha256/kind/mime/path/byteLength。这是导出器 sidecar，使用契约 MediaReferenceSchema 加本地 Zod 严格校验，不扩展仅限页图的 PagesManifest。
 - `authoring.<sourceLessonId>.json`：五份课级私有 LessonAuthoring（definition、widgetGradings），评分绑定公开关卡的相同 widget/props，保留供审阅。有评分的三课同步嵌入 `package.json` 的课时 `authoring`；另两课省略此字段，避免导入器拒绝空评分。content-sync 直接读取包内字段，不读取独立作者文件；不将 grading 放入公开 content/props。
 - `Make-Me-a-Hanzi-LICENSE.txt` / `Make-Me-a-Hanzi-NOTICE.txt`：原型附带的 Arphic Public License 原文、上游来源和 JSON 提取说明。
 - `report.json`：分项校验结果、四册统计与逐页证据、全部警告、表达缺口、完整输入指纹及逐题 provenance。
@@ -198,6 +199,66 @@ node scripts/learning-export/index.cjs --validate .local/learning-export/REVISIO
 契约 dist 为旧版本时，依赖 v1.6 映射的测试会失败，必须报告具体失败与版本原因；
 负向校验使用真实导出包的内存副本，不绕过映射校验，不据此宣称真实包校验通过。
 
+## 生成读音音频
+
+使用 Node.js 22+ 内置 `fetch`，无需新增依赖。真实合成由用户在有网络的环境运行；测试只使用模拟 fetch，不调用 ElevenLabs。
+
+1. 在仓库根目录复制配置示例，编辑 `.env.local`，填写 `ELEVENLABS_API_KEY` 和 `ELEVENLABS_VOICE_ID`。不要提交真实 key，不要把 key 放进命令参数或分享终端环境。环境变量优先于文件；API key 只从这两个位置读取。
+
+   ```bash
+   cp .env.local.example .env.local
+   ```
+
+2. 先预览数量与字数。没有 key 或 voice id 也可以 dry-run；填写实际 voice id 后重跑，缓存命中统计才对应这套声音。
+
+   ```bash
+   node scripts/learning-export/tts-elevenlabs.cjs --dry-run
+   ```
+
+3. 先选一课的几条音频试听。课程 ID 沿用导出器；五课中的三节数学课当前没有这些语文读音条目。
+
+   ```bash
+   node scripts/learning-export/tts-elevenlabs.cjs --only chinese-g3up-2026-u1-kp1 --limit 5
+   ```
+
+   `.local/tts-cache/plan.json` 含条目 ID、实际朗读文本和缓存键；按缓存键打开同目录 `<cacheKey>.mp3` 试听。多音字会在终端及计划的 `needsListeningReview` 提醒。需要调整时，编辑入库的 `scripts/learning-export/tts-overrides.json`，重跑 dry-run 和试生成。例如：
+
+   ```json
+   {
+     "entries": {
+       "chinese-g3up-2026-u1-kp1/basic-1/characters/read-12": { "skip": true }
+     },
+     "texts": { "闹": "闹，热闹的闹" }
+   }
+   ```
+
+   上面的 ID 仅演示格式，实际 ID 从 plan.json 复制。`entries` 按精确条目 ID 优先，`texts` 按原文本匹配；值可为字符串或 `{ "text": "实际朗读文本" }`，`{ "skip": true }` 跳过。覆写只改变合成文本，课程显示文字保持原样。
+
+4. 全量生成，然后重新导出，交给协调者在 Thinky 补齐音频支持后导入、发布。
+
+   ```bash
+   node scripts/learning-export/tts-elevenlabs.cjs --concurrency 2
+   node scripts/learning-export/index.cjs
+   node --test scripts/learning-export/*.test.cjs
+   ```
+
+   `--only chinese-g3down-2026-u1-kp1` 可只生成绝句课，`--limit N` 按稳定条目顺序限制试生成范围。脚本与导出器共用 `--source-root`、`--site-dir`、`--thinky-root` 和 `--evidence-root` 输入选项。失败条目不阻塞其他条目，结果写 `result.json`，有失败时退出码为 1。429/5xx 使用指数退避，默认最多重试 3 次。同一缓存目录的真实生成通过 `.generation.lock` 互斥；重复启动会直接提示已有任务，避免重复计费和清单互相覆盖。正常结束或可捕获错误会释放锁；若进程被强制结束，先确认没有生成任务在运行，再手动删除 `.local/tts-cache/.generation.lock` 后重试。
+
+可选变量见 `.env.local.example`：模型默认 `eleven_multilingual_v2`、格式默认 `mp3_44100_128`，语速 `ELEVENLABS_SPEED=0.85`、稳定度 `ELEVENLABS_STABILITY=0.65`、相似度 `ELEVENLABS_SIMILARITY_BOOST=0.75`，另可设置 `ELEVENLABS_STYLE`、`ELEVENLABS_USE_SPEAKER_BOOST`。这些是试听起点，可按声音调整。
+
+费用按**实际送入合成的文本字符数**估算，含覆写后的上下文、标点和空白。计划给出所选条目总字数、命中缓存数、需新生成数，以及去重后新请求的计费字数；同文本在不同关卡共用一次请求。默认模型按约 1 credit/字符给出参考，实际模型费率、额度、套餐及金额以 ElevenLabs 账户结算为准，不在脚本内固定金额。重试已到达服务端的请求可能再次计费。
+
+音频及清单位于被忽略的 `.local/tts-cache/`：`<cacheKey>.mp3`、每键 JSON 校验记录、`manifest.json`（ID → 缓存键 → 音频 SHA256/字符数，并保存历史缓存索引）、`plan.json`、`result.json`。API key 不进入这些清单、文件名或日志。缓存键覆盖实际朗读文本、voice id、model id、全部 voice settings 和输出格式；命中且字节哈希正确才复用。改 `ELEVENLABS_VOICE_ID` 会生成新的缓存键并重新请求，切回旧声音可复用旧缓存。改读法、语速、模型同样如此。重跑无需删除缓存，删除缓存可能造成再次计费。
+
+收集范围直接复用 studio 转换后的课、关卡、条目 ID：识字单字、词语/听写词、会写字及其字族词、逐句与整篇朗读、绝句各关的诗句及对仗、再读一首。每课覆盖见 `report.json.audio.lessons` / `report.md` 的“音频覆盖”；详细条目列出 `attached`、`missing`、`skipped` 或 `contract-unsupported`。有文件与 props 已引用分开统计。
+
+**Thinky 当前支持边界（本次只读核查）**：
+
+- 契约允许 `characters[].audio`、`words[].audio`、`sentences[].audio`、`pairs[].audio`，引用严格为 `{sha256,kind:"audio"}`；有缓存即写入，缺缓存省略以保留设备朗读兜底。`CharacterFamilySchema` 和 `ReadAloudPropsSchema` 暂无字族词/整篇音频字段，这两类文件随包携带并在报告列出，不添加非法 props。
+- `content-package.ts` 顶层 `media` 当前只接受 `document/application/json`。因此音频写入导出器 `media-manifest.json`，元数据为 `sha256/kind:"audio"/mime:"audio/mpeg"/path/byteLength`，文件为 `media/<sha256>.mp3`；当前不将 audio 塞入只允许文档的 `package.json.media`。支持的 props 和内容包仍通过真实契约校验，但 **content-sync validate 通过不表示音频已被导入**，它当前忽略音频 sidecar。
+- Thinky 还需扩展音频元数据、引用完整性校验、`audio/mpeg → mp3` 存储映射、MP3 文件校验和音频发布。现有 `content-media.ts` 对 package.media 一律走笔顺文档发布，不能直接发布 MP3。
+- 媒体接口已有 `public, max-age=31536000, immutable` 和 `nosniff`，但 MIME 映射拒绝音频，未实现 Range、206、Content-Range、Accept-Ranges 或 416。需补齐音频下发与 Range 测试后再协调发布；本次没有修改 Thinky，也未验证实际播放音质。
+
 ## 当前表达缺口
 
 保留以下可追溯缺口，逐关详情以最新 report.json/report.md 为准：
@@ -206,7 +267,7 @@ node scripts/learning-export/index.cjs --validate .local/learning-export/REVISIO
   待作者将末句补为“它的周长是多少分米？”。
 - 原先九处 concept-card 降级全部改为真实活动：unit-choice/compare、words/dictation/detective/imitation、scene/pairs/listen；答案和逐选反馈保存在私有 authoring，不进入公开 props。
 - cube 活动与已知投影、ruler 视口与预设/步骤、对称私有反馈与轴序/汉字答案、朗读自然段与注音/停顿/家长任务、字族拼音释义、字符教学字段和小老师/家长出错卡均已导出。
-- 当前 12 个会写字均有真实笔顺文档。设备 TTS 与临时录音没有稳定媒体，不伪造音频；复习模式替代遍没有专用作者字段，不新增必做遍。
+- 当前 12 个会写字均有真实笔顺文档。ElevenLabs 缓存可作为稳定音频媒体；设备 TTS 与临时录音不作为媒体源；复习模式替代遍没有专用作者字段，不新增必做遍。
 - 绝句“写对”中的鸳、鸯、融、暖保持静态字形提示，原型笔顺文件没有这四字的数据，报告明确列出。
 - scene visualKey 对应的画面、仿说模板占位符、移动尺子后的动态读数仍需消费端接线；按选字筛家长卡等运行约束与动态卡持久化不由导出包代替。
 - 原型题集 SETS 的手工课本题、额外读懂题，以及动态变式规则，与 output 题库并非同一集合；

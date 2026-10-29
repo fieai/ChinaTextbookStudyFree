@@ -187,7 +187,7 @@ function materializeMedia({ outputDir, mediaSources }) {
   }
   const seen = new Set();
   for (const item of mediaSources) {
-    const extension = item.bytes ? 'json' : 'png';
+    const extension = item.kind === 'audio' ? 'mp3' : item.bytes ? 'json' : 'png';
     if (!/^[a-f0-9]{64}$/.test(item.sha256) || item.mediaPath !== `media/${item.sha256}.${extension}`)
       throw new Error('Invalid content-addressed media path');
     if (seen.has(item.mediaPath)) continue;
@@ -199,7 +199,7 @@ function materializeMedia({ outputDir, mediaSources }) {
       continue;
     }
     if (item.bytes) {
-      if (sha256(item.bytes) !== item.sha256) throw new Error('Document changed after inventory');
+      if (sha256(item.bytes) !== item.sha256) throw new Error(item.kind === 'audio' ? 'Audio changed after inventory' : 'Document changed after inventory');
       fs.writeFileSync(target, item.bytes, { flag: 'wx' });
     } else {
       if (sha256(fs.readFileSync(item.sourcePath)) !== item.sha256) throw new Error(`Page changed after inventory: ${item.sourcePath}`);

@@ -56,6 +56,12 @@ function markdownReport(report) {
     '| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |',
   ]
   for (const book of report.books) lines.push(`| ${book.sourceBookId} | ${book.lessons} | ${book.studio} | ${book.textbookOnly} | ${book.questions} | ${book.knowledgePoints} | ${book.pageImages} | ${book.missingPrintedPages.length} |`)
+  if (report.audio) {
+    lines.push('', '## 音频覆盖', '', '| 课程 | 条目 | 有音频 | 缺音频 | props 已引用 | 契约缺字段 | 跳过 |', '| --- | ---: | ---: | ---: | ---: | ---: | ---: |')
+    for (const item of report.audio.lessons) lines.push(`| ${item.lessonId} | ${item.total} | ${item.withAudio} | ${item.missingAudio} | ${item.attached} | ${item.unsupported} | ${item.skipped} |`)
+    lines.push('', '有音频表示文件随包携带；字族词与整篇的契约缺字段条目未写 props，详见 report.json.audio.entries。当前 Thinky 仍需补齐音频导入、发布和下发支持。')
+    if (report.audio.listeningReview?.length) lines.push('', `请人工试听多音字：${report.audio.listeningReview.map(item => `${item.text}（${item.id}；${item.readings.join('/')}）`).join('、')}。`)
+  }
   lines.push('', '## 九处交互导出', '', '| 课程 | 关卡 | 交互 | 导出 |', '| --- | --- | --- | --- |')
   for (const item of report.interactions ?? []) lines.push(`| ${item.sourceLessonId} | ${item.stageKey} | ${item.title} | ${item.widget}${item.activity ? ` / ${item.activity}` : ''}${item.presentation ? ` / ${item.presentation}` : ''} |`)
   if (report.strokeData) lines.push('', '## 笔顺与私有作者文件', '',
