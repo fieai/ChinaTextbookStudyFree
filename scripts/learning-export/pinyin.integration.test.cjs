@@ -33,7 +33,8 @@ test('real annotated package keeps TTS texts and exports the confirmed pinyin wi
       }
     }
     const before = tts.prepareEntries(tts.collectAudioEntries({ ...studio, ...reading }),
-      tts.readOverrides(WORKTREE), tts.loadSettings({ root: WORKTREE }))
+      tts.readOverrides(WORKTREE), tts.loadSettings({ root: WORKTREE }),
+      require('./tts-listening-review.cjs').readListeningReview(WORKTREE))
     const after = new Map(result.report.audio.entries.map(entry => [entry.id, entry]))
     for (const entry of before) {
       assert.equal(after.get(entry.id)?.readingText, entry.readingText, entry.id)

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "description": "Round 1 original dry-run. Hashes cover stable ID, readingText and cacheKey, sorted by ID. No audio or credentials.",
+  "settingsFingerprint": "9092cc65456ab23d821a80d0cb70c0b98bcb0841b3ed98bc1a4599983d2759ec",
+  "books": [
+    "chinese-g3up-2026",
+    "chinese-g3down-2026"
+  ],
+  "groups": {
+    "all": {
+      "count": 3704,
+      "sha256": "35b2785d01136c3c1f0820971425819dffbde3e8dcde816bf8f466d7a65086f7"
+    },
+    "characters": {
+      "count": 1140,
+      "sha256": "e923f43c0f3342ee3a5b5ba375f2ff742180ffd8529122637f3dd75169d21e2a"
+    },
+    "other": {
+      "count": 2564,
+      "sha256": "11d1d5365bab54b5a47d0a7079574c9f96997cc0f828222d26e6aacd2937a33f"
+    }
+  },
+  "listening": {
+    "approved": {
+      "count": 211,
+      "sha256": "0f0d28fd4dab270b29b84dd5e369197768f7ed54ea4d7e7fb4ce2bdd2e86d1ac"
+    },
+    "rejected": {
+      "count": 97,
+      "sha256": "a80186739b7149d72a8432ed9dc0ae58979b8663136506ac6e8f17f917f666ae"
+    }
+  }
+}

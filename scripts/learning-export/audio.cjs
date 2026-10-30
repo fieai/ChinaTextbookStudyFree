@@ -3,6 +3,8 @@
 const path = require('node:path')
 const { collectAudioEntries, loadSettings, readOverrides, prepareEntries, readManifest, readCachedAudio } = require('./tts-common.cjs')
 const { contextSourceCounts } = require('./tts-context.cjs')
+const { readListeningReview } = require('./tts-listening-review.cjs')
+const { inputFile } = require('./common.cjs')
 
 const THINKY_AUDIO_GAPS = []
 // Keep the target bundle's media/mp3-validation.ts delivery limit. Cache files
@@ -16,12 +18,13 @@ function attachCachedAudio(studio, { root, env = process.env, contextCandidates,
   for (const patch of Object.values(studio.patches))
     for (const stage of [...(patch.basicStages || []), ...(patch.extension?.stages || [])]) stage.props = structuredClone(stage.props)
   const settings = loadSettings({ root, env })
-  const entries = prepareEntries(collectAudioEntries(studio.patches, { contextCandidates }), readOverrides(root), settings)
+  const inputs = []
+  const listeningReview = readListeningReview(root, (label, filename) => inputs.push(inputFile(label, filename)))
+  const entries = prepareEntries(collectAudioEntries(studio.patches, { contextCandidates }), readOverrides(root), settings, listeningReview)
   const manifest = readManifest(cacheDir)
   const sources = new Map()
   const lessons = Object.keys(studio.patches).map(lessonId => ({ lessonId, total: 0, withAudio: 0, missingAudio: 0, attached: 0, unsupported: 0, skipped: 0 }))
   const details = []
-  const inputs = []
   for (const entry of entries) {
     const counts = lessons.find(item => item.lessonId === entry.lessonId)
     counts.total++
@@ -57,11 +60,11 @@ function attachCachedAudio(studio, { root, env = process.env, contextCandidates,
       item.content.props = stage.props
     }
   }
-  const listeningReview = entries.filter(entry => entry.polyphonic).map(entry => ({
+  const polyphonicReview = entries.filter(entry => entry.polyphonic).map(entry => ({
     id: entry.id, text: entry.text, readingText: entry.readingText, readings: entry.polyphonic,
   }))
   return { sources: [...sources.values()], inputs,
-    coverage: { deliverySupported: true, lessons, entries: details, listeningReview,
+    coverage: { deliverySupported: true, lessons, entries: details, listeningReview: polyphonicReview,
       characterContextSources: contextSourceCounts(entries), singleReadings: details.filter(entry => entry.singleReading),
       rejectedMedia: details.filter(entry => entry.rejectionReason).map(({ id, text, byteLength, rejectionReason }) =>
         ({ id, text, byteLength, reason: rejectionReason })),

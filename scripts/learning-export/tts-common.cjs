@@ -12,6 +12,7 @@ const DEFAULT_SETTINGS = Object.freeze({
 // reminder, not an automatic pronunciation decision.
 const POLYPHONIC = { 晃: ['huǎng', 'huàng'], 读: ['dú', 'dòu'] }
 const { loadContextCandidates, selectCharacterContext } = require('./tts-context.cjs')
+const { indexListeningReview, decisionForEntry } = require('./tts-listening-review.cjs')
 
 function readEnvironment(root, env = process.env) {
   const result = {}
@@ -178,12 +179,16 @@ function readOverrides(root) {
   } catch { throw new Error('tts-overrides.json 格式无效') }
 }
 
-function prepareEntries(entries, overrides, settings) {
+function prepareEntries(entries, overrides, settings, listeningReview) {
   const configFingerprint = contentHash(settings)
+  const reviewed = indexListeningReview(listeningReview)
   return entries.map(entry => {
     const override = overrides.entries?.[entry.id] ?? overrides.texts?.[entry.text]
-    const contextWord = override?.word ?? entry.contextWord
-    const explicitText = typeof override === 'string' ? override : override?.text
+    const decision = decisionForEntry(entry, reviewed)
+    const contextWord = decision?.round3Rewrite?.contextWord ?? decision?.contextWord ?? override?.word ?? entry.contextWord
+    // Listening decisions pin the synthesis text, including approved recordings.
+    // Explicit skip and independent pronunciation blockers still apply.
+    const explicitText = decision?.readingText ?? (typeof override === 'string' ? override : override?.text)
     const explicitReading = (typeof explicitText === 'string' && explicitText.trim())
       || (typeof override?.word === 'string' && override.word.trim())
     // A reviewed text/word override can resolve this generator's context pause.
@@ -205,6 +210,13 @@ function prepareEntries(entries, overrides, settings) {
       delete prepared.contextEvidence
       delete prepared.singleReading
       delete prepared.readingNote
+    }
+    if (decision) {
+      const latest = decision.round5 ?? decision.round4 ?? decision.round3 ?? decision.round2 ?? decision
+      prepared.contextSource = `listening-review-${latest.status}`
+      prepared.listeningReview = { status: latest.status, originalCacheKey: decision.originalCacheKey, note: latest.note,
+        ...(decision.round2 ? { round: decision.round5 ? 5 : decision.round4 ? 4 : decision.round3 ? 3 : 2, firstRoundStatus: decision.status, reviewedCacheKey: latest.cacheKey } : {}) }
+      if (decision.pinyin) prepared.expectedPinyin = decision.pinyin
     }
     return prepared
   })

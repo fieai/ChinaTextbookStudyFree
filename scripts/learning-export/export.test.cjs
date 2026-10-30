@@ -34,6 +34,9 @@ function snapshotTts(base) {
   }
   fs.mkdirSync(path.join(ttsRoot, 'scripts/learning-export'), { recursive: true })
   fs.writeFileSync(path.join(ttsRoot, 'scripts/learning-export/tts-overrides.json'), JSON.stringify(tts.readOverrides(WORKTREE)))
+  fs.mkdirSync(path.join(ttsRoot, 'content/reading-prep'), { recursive: true })
+  fs.copyFileSync(path.join(WORKTREE, 'content/reading-prep/tts-listening-review.json'),
+    path.join(ttsRoot, 'content/reading-prep/tts-listening-review.json'))
   const liveCache = path.join(WORKTREE, '.local/tts-cache')
   const manifest = tts.readManifest(liveCache)
   fs.writeFileSync(path.join(cache, 'manifest.json'), JSON.stringify(manifest))
@@ -145,7 +148,8 @@ test('full real-source export is byte deterministic, retains decisions and block
       pronunciationRules: require('../../content/reading-prep/pronunciation-rules.json') }).patches
     const tts = require('./tts-common.cjs')
     const originalEntries = tts.prepareEntries(tts.collectAudioEntries({ ...originalStudio, ...legacyReading }),
-      tts.readOverrides(config.ttsRoot), tts.loadSettings({ root: config.ttsRoot, env: config.ttsEnv }))
+      tts.readOverrides(config.ttsRoot), tts.loadSettings({ root: config.ttsRoot, env: config.ttsEnv }),
+      require('./tts-listening-review.cjs').readListeningReview(config.ttsRoot))
     const exportedAudio = new Map(one.report.audio.entries.map(entry => [entry.id, entry]))
     for (const entry of originalEntries) {
       assert.equal(exportedAudio.get(entry.id)?.readingText, entry.readingText, `display pinyin changed TTS text: ${entry.id}`)
@@ -159,7 +163,8 @@ test('full real-source export is byte deterministic, retains decisions and block
       if (lesson.level === 'studio') assert.deepEqual(lesson.cards, originalStudio[lesson.sourceLessonId].cards)
       else assert.ok(lesson.cards.length === 0 || (lesson.cards.length >= 3 && lesson.cards.length <= 8))
     }
-    assert.equal(one.report.inputs.filter(file => file.label.startsWith('reading-prep/')).length, 12)
+    assert.equal(one.report.inputs.filter(file => file.label.startsWith('reading-prep/')).length, 13)
+    assert.ok(one.report.inputs.some(file => file.label === 'reading-prep/tts-listening-review.json'))
     assert.ok(one.report.inputs.some(file => file.label === 'reading-prep/tts-context-candidates.json'))
     assert.ok(one.report.inputs.some(file => file.label === 'tts-context/tts_context_candidates.py'))
     assert.ok(one.report.inputs.some(file => file.label === 'annotator/annotate_pinyin.py'))

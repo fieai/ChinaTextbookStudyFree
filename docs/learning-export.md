@@ -378,9 +378,18 @@ node scripts/learning-export/index.cjs --validate .local/learning-export/REVISIO
 
    `--only chinese-g3down-2026-u1-kp1` 可只生成绝句课，`--limit N` 按稳定条目顺序限制试生成范围。脚本与导出器共用 `--source-root`、`--site-dir`、`--thinky-root` 和 `--evidence-root` 输入选项。失败条目不阻塞其他条目，结果写 `result.json`，有失败时退出码为 1。429/5xx 使用指数退避，默认最多重试 3 次。同一缓存目录的真实生成通过 `.generation.lock` 互斥；重复启动会直接提示已有任务，避免重复计费和清单互相覆盖。正常结束或可捕获错误会释放锁；若进程被强制结束，先确认没有生成任务在运行，再手动删除 `.local/tts-cache/.generation.lock` 后重试。
 
+只为待选读法生成试听音频时，使用独立的候选模式：
+
+```bash
+node scripts/learning-export/tts-elevenlabs.cjs --candidates content/reading-prep/tts-candidates.json --dry-run
+node scripts/learning-export/tts-elevenlabs.cjs --candidates content/reading-prep/tts-candidates.json
+```
+
+候选文件格式为 `{ "schemaVersion": 1, "entries": { "正式条目 ID": ["候选 readingText", "另一候选 readingText"] } }`；每个 ID 必须存在，数组非空且不重复。候选模式不能与 `--sample`、`--only`、`--book`、`--limit` 同用。它沿用相同合成设置、缓存键规则和 `.local/tts-cache/`，按文本去重并复用已缓存音频；只增加按缓存键索引的候选音频记录，保留正式条目的 manifest 记录、readingText 和试听决定。用户选定候选前，rejected 仍然 rejected。候选 `candidates.json` 的每项包含正式 `id`、独立 `candidateId`、`readingText`、`cacheKey`；dry-run 报告在 `.local/tts-dry-run/`，真实生成报告在 `.local/tts-candidates/`。dry-run 不请求合成、不获取生成锁、不写音频缓存。
+
 可选变量见 `.env.local.example`：模型默认 `eleven_v4`，`ELEVENLABS_LANGUAGE_CODE` 默认 `zh`（普通话），可在 `.env.local` 覆盖或设为空以关闭语言指定。仅当模型不是 `eleven_multilingual_v2` 且语言代码非空时发送 `language_code`。`eleven_multilingual_v2` 不支持该参数；若保留旧模型配置并配置了语言代码，终端会提示“该模型不支持指定中文，建议改为 eleven_v4”。脚本不会修改用户的 `.env.local`，切换模型需自行编辑。格式默认 `mp3_44100_128`，语速 `ELEVENLABS_SPEED=0.85`、稳定度 `ELEVENLABS_STABILITY=0.65`、相似度 `ELEVENLABS_SIMILARITY_BOOST=0.75`，另可设置 `ELEVENLABS_STYLE`、`ELEVENLABS_USE_SPEAKER_BOOST`。这些是试听起点，可按声音调整。
 
-单字默认带词读，例如“扬，飘扬的扬”；`tts-overrides.json` 始终最高优先。新增语文基础关从 `tts-context-candidates.json` 取本课字音与候选，教材明确字音优先，其次取本课 `pinyin-annotations.json` 中的已核字音，绝不从另一课借字音。每个候选中该字的每次出现都必须与本课确认音（含声调）一致，来源依次为：
+单字默认带词读，例如“扬，飘扬的扬”。`content/reading-prep/tts-listening-review.json` 按稳定条目 ID、原字、期望拼音保存人工试听结论，优先锁定已审核条目的朗读文本；`approved` 保留原文，`rejected` 使用修订读法（修订音频仍待人工重听）。第二轮结论记录在 `round2`，通过条目与第一轮通过条目同等锁定，未标记条目保持待定；第一轮 `status` 保留为历史。readingText 只用于生成音频，孩子看到的字、词不变。显式 `skip` 与独立发音阻断仍生效。其他条目使用 `tts-overrides.json`，其优先级高于自动选词。新增语文基础关从 `tts-context-candidates.json` 取本课字音与候选，教材明确字音优先，其次取本课 `pinyin-annotations.json` 中的已核字音，绝不从另一课借字音。每个候选中该字的每次出现都必须与本课确认音（含声调）一致，来源依次为：
 
 1. 本课词语表，保持词表顺序。
 2. 课文正文中真实被 pypinyin 词组词典收录的 2–4 字词，优先二字词，其次正文位置。
@@ -388,6 +397,8 @@ node scripts/learning-export/index.cjs --validate .local/learning-export/REVISIO
 4. 非多音字仍无词时单读，报告标“单读”；多音字仅在字音为 `textbook` / `reviewed` 时继续找同音的常用词典词，无匹配才暂停。
 
 候选生成器只读九册原稿、拼音标注和发音规则，不重写数据或决定；产物携带输入和脚本 SHA-256，过期时导出/TTS 阻断并提示重生成。候选本身不进入课文、词语表或显示内容，只改变朗读文本与相应音频缓存键。当前 pypinyin 词组词典未收录“罚站”“斜阳”，不能把它们伪标成正文词典来源。原 studio 和卡片保持既有选词方式；单字覆写依旧适用。
+
+首轮人工试听决定覆盖 211 条通过读法和 97 条不通过读法，另补三下第八单元的“旋 xuàn”。不通过的多音字用经 pypinyin 全读音校验的常用同音字替换单念位置，例如“架，放假的架”；词中保留原字。轻声或无合格常用替身只读整词。55 条非多音单读字改成二字常用词带读。协调者批准原 17 条来源例外和全部替身字，另指定抚摸、歪斜、船舱、钟表；这些来源如实标为“人工审定”，保留原始词典片段或人工组合依据并逐字校验。第二轮 83 条 ok 已锁定，冲劲（冲 chòng）未标记待定。14 条 bad 的指定文本保存在 `round2Rewrite`，全部通过校验并生效，仍待重新试听；其中协调者将两条失败替身改为粘→“瞻，瞻贴的瞻”和爪→“沼，前沼的沼”，pypinyin 全读音分别只有 zhān、zhǎo。完整选择依据和指定文本见 [试听决定](../content/reading-prep/tts-listening-review.md)。生成器与导出器共用决定文件，导出输入清单记录其 SHA-256；修改决定后先重跑测试、导出和 dry-run。第三轮结果更正为 10 条 ok、乘 bad、缤/喵/汪三条未确认，累计 304 条锁定；此前依据未单列推断通过是错误的，今后未出现在结果文件中的条目一律未确认。第四轮乘（“剩，一剩轿子的剩”）、缤纷、汪汪由结果文件确认通过，冲劲由用户明确确认读 chòng、现有音频通过，分别在 `round4` 记录来源，共累计锁定 308 条。第四轮“喵喵”bad（应两个都是第一声）的记录保留为历史。第五轮用户原话“2 和 1 都行”，认可候选 1“小猫喵喵叫”和候选 2“喵喵叫”；协调者选定候选 1，正式 readingText 为“小猫喵喵叫”，round5 approved 并锁定，累计 309 条。tts-candidates.json 四条候选保留为试听历史，正式条目不再待选。正式条目按相同规则计算的 cacheKey 与候选 1 一致，为 `da511fa5c66f63640ed518068bf9f9d595ae76aab87150bbee89995e9913ca86`，直接复用已生成音频。乘 shèng 为三下《一幅名扬中外的画》的量词，词取自“一乘轿子”，替身剩的全部读音只有 shèng。第一、二轮决定及第三轮被否决的“剩，剩下的剩”保留为历史证据。保持模型、声音等合成设置相同时，通过条目的 cacheKey 保持不变；改变这些设置仍会正常产生新的缓存键。
 
 `plan.json.characterContextSources`、`singleReadings` 与导出报告的同名字段分别列出来源条目数和单读详情；暂停另列 `pronunciationIssue`。这些数量按关卡出现次数统计，识字/写字和组诗共用字表重复计算。
 

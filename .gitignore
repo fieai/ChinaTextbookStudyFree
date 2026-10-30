@@ -76,3 +76,5 @@ deploy-output/
 /.local/tts-dry-run/
 /.local/reading-prep/
 /.local/tools/
+/.local/tts-candidates/
+/.local/tts-round5-verification/

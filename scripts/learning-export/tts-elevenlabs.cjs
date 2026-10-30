@@ -9,6 +9,7 @@ const { sha256 } = require('./common.cjs')
 const { collectAudioEntries, loadSettings, loadCredentials, readOverrides,
   prepareEntries, readManifest, readCachedAudio } = require('./tts-common.cjs')
 const { contextSourceCounts } = require('./tts-context.cjs')
+const { readListeningReview } = require('./tts-listening-review.cjs')
 
 const ROOT = path.resolve(__dirname, '../..')
 
@@ -23,7 +24,7 @@ function atomicWrite(filename, bytes) {
 function cliOptions(argv = process.argv.slice(2), env = process.env) {
   const { values } = parseArgs({ args: argv, options: {
     'dry-run': { type: 'boolean' }, sample: { type: 'boolean' }, only: { type: 'string' }, limit: { type: 'string' },
-    book: { type: 'string', multiple: true },
+    book: { type: 'string', multiple: true }, candidates: { type: 'string' },
     concurrency: { type: 'string', default: '2' },
     'source-root': { type: 'string' }, 'site-dir': { type: 'string' },
     'thinky-root': { type: 'string' }, 'evidence-root': { type: 'string' },
@@ -36,8 +37,44 @@ function cliOptions(argv = process.argv.slice(2), env = process.env) {
   if (!Number.isSafeInteger(concurrency) || concurrency < 1 || concurrency > 16) throw new Error('并发数必须为 1 至 16')
   if (limit !== undefined && (!Number.isSafeInteger(limit) || limit < 1)) throw new Error('limit 必须为正整数')
   validateSampleOptions(values.sample, values.only, limit)
+  validateCandidateOptions(values.candidates, values)
   return { root: ROOT, config, dryRun: values['dry-run'] || false, sample: values.sample || false,
-    only: values.only, book: values.book, limit, concurrency, help: values.help }
+    only: values.only, book: values.book, candidates: values.candidates, limit, concurrency, help: values.help }
+}
+
+function validateCandidateOptions(candidates, { sample, only, book, limit }) {
+  if (candidates !== undefined && (sample || only !== undefined || book !== undefined || limit !== undefined))
+    throw new Error('--candidates 不能与 --sample、--only、--book 或 --limit 同时使用')
+}
+
+// This file is a listening queue, never an override or a listening approval.
+// Synthetic IDs keep candidate generation out of the formal entry manifest.
+function prepareCandidates(raw, filename, root, settings, formalOverrides) {
+  let definitions
+  try { definitions = JSON.parse(fs.readFileSync(path.resolve(root, filename), 'utf8')) } catch {
+    throw new Error('候选文件无法读取或 JSON 格式无效')
+  }
+  const object = value => value && typeof value === 'object' && !Array.isArray(value)
+  if (!object(definitions) || definitions.schemaVersion !== 1 || !object(definitions.entries)
+    || !Object.keys(definitions.entries).length
+    || Object.entries(definitions.entries).some(([id, texts]) => !id.trim() || !Array.isArray(texts) || !texts.length
+      || texts.some(text => typeof text !== 'string' || !text.trim()) || new Set(texts).size !== texts.length))
+    throw new Error('候选文件必须按条目 ID 提供非空且不重复的 readingText 数组')
+  const byId = new Map(raw.map(entry => [entry.id, entry]))
+  const candidates = [], overrides = { entries: {} }
+  for (const [id, texts] of Object.entries(definitions.entries)) {
+    const entry = byId.get(id)
+    if (!entry) throw new Error('候选文件包含不存在的条目 ID')
+    for (const [index, readingText] of texts.entries()) {
+      const candidateId = `${id}/tts-candidate/${index + 1}`
+      if (byId.has(candidateId)) throw new Error('候选条目 ID 与正式条目冲突')
+      const { target, ...source } = entry
+      candidates.push({ ...source, id: candidateId, originalEntryId: id })
+      const override = formalOverrides.entries?.[id] ?? formalOverrides.texts?.[entry.text]
+      overrides.entries[candidateId] = { text: readingText, ...(override?.skip === true ? { skip: true } : {}) }
+    }
+  }
+  return prepareEntries(candidates, overrides, settings)
 }
 
 function validateSampleOptions(sample, only, limit) {
@@ -93,9 +130,9 @@ function buildPlan(entries, cacheDir, manifest, settings = {}) {
       readings: entry.polyphonic, expectedPinyin: entry.expectedPinyin, contextWord: entry.contextWord })),
     missingWords: entries.filter(entry => entry.missingWord).map(entry => ({ id: entry.id, text: entry.text,
       reason: entry.pronunciationIssue || '无组词' })),
-    entries: entries.map(({ id, lessonId, sourceBookId, text, readingText, cacheKey, charCount, skipped, polyphonic, supportsAudio, kind,
+    entries: entries.map(({ id, originalEntryId, lessonId, sourceBookId, text, readingText, cacheKey, charCount, skipped, polyphonic, supportsAudio, kind,
       contextWord, missingWord, expectedPinyin, expectedPinyinSource, contextSource, contextEvidence, singleReading, readingNote, pronunciationIssue }) => ({
-      id, lessonId, sourceBookId, text, readingText, cacheKey, charCount, skipped, supportsAudio, kind, contextWord, missingWord,
+      id, ...(originalEntryId ? { originalEntryId } : {}), lessonId, sourceBookId, text, readingText, cacheKey, charCount, skipped, supportsAudio, kind, contextWord, missingWord,
       expectedPinyin, expectedPinyinSource, contextSource, contextEvidence, singleReading, readingNote, pronunciationIssue,
       cached: Boolean(!skipped && cachedKeys.has(cacheKey)), ...(polyphonic ? { polyphonic } : {}),
     })),
@@ -161,12 +198,13 @@ function acquireGenerationLock(cacheDir) {
 
 async function runTts({ root = ROOT, env = process.env, config, patches, rawEntries, entryOverrides, contextCandidates,
   planPath, resultPath,
-  dryRun = false, sample = false, only, book, limit, concurrency = 2, fetchImpl = globalThis.fetch,
+  dryRun = false, sample = false, only, book, limit, candidates, concurrency = 2, fetchImpl = globalThis.fetch,
   sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds)),
   maxRetries = 3, log = message => console.log(message), cacheDir = path.join(root, '.local/tts-cache') } = {}) {
   if (!Number.isSafeInteger(concurrency) || concurrency < 1 || concurrency > 16) throw new Error('并发数必须为 1 至 16')
   if (limit !== undefined && (!Number.isSafeInteger(limit) || limit < 1)) throw new Error('limit 必须为正整数')
   validateSampleOptions(sample, only, limit)
+  validateCandidateOptions(candidates, { sample, only, book, limit })
   const settings = loadSettings({ root, env })
   if (settings.modelId === 'eleven_multilingual_v2' && settings.languageCode)
     log('该模型不支持指定中文，建议改为 eleven_v4')
@@ -190,7 +228,8 @@ async function runTts({ root = ROOT, env = process.env, config, patches, rawEntr
   const fileOverrides = readOverrides(root)
   const overrides = { entries: { ...fileOverrides.entries, ...entryOverrides?.entries },
     texts: { ...fileOverrides.texts, ...entryOverrides?.texts } }
-  let entries = prepareEntries(raw, overrides, settings).map(entry => ({ ...entry,
+  let entries = (candidates === undefined ? prepareEntries(raw, overrides, settings, readListeningReview(root))
+    : prepareCandidates(raw, candidates, root, settings, overrides)).map(entry => ({ ...entry,
     skipped: entry.skipped || Boolean(entry.pronunciation?.blockers?.length) }))
   if (book !== undefined) {
     const books = Array.isArray(book) ? book : [book]
@@ -211,13 +250,25 @@ async function runTts({ root = ROOT, env = process.env, config, patches, rawEntr
     const plan = buildPlan(entries, cacheDir, manifest, settings)
     // Dry-runs may run alongside a paid generation. All their output lives
     // outside the cache, including sample listings; never acquire its lock.
-    const reportDir = dryRun ? path.join(root, '.local/tts-dry-run') : cacheDir
+    const reportDir = dryRun ? path.join(root, '.local/tts-dry-run')
+      : candidates === undefined ? cacheDir : path.join(root, '.local/tts-candidates')
     const planFilename = planPath || path.join(reportDir, 'plan.json')
     if (dryRun && (path.resolve(planFilename) === path.resolve(cacheDir)
       || path.resolve(planFilename).startsWith(`${path.resolve(cacheDir)}${path.sep}`)))
       throw new Error('dry-run 报告不能写入音频缓存目录')
     fs.mkdirSync(path.dirname(planFilename), { recursive: true, mode: 0o700 })
     atomicWrite(planFilename, `${JSON.stringify(plan, null, 2)}\n`)
+    const candidateReport = candidates === undefined ? undefined : {
+      schemaVersion: 1,
+      entries: entries.map(({ id, originalEntryId, readingText, cacheKey }) =>
+        ({ id: originalEntryId, candidateId: id, readingText, cacheKey })),
+    }
+    if (candidateReport) {
+      fs.mkdirSync(reportDir, { recursive: true, mode: 0o700 })
+      const filename = path.join(reportDir, 'candidates.json')
+      atomicWrite(filename, `${JSON.stringify(candidateReport, null, 2)}\n`)
+      log(`候选试听 JSON：${filename}`)
+    }
     log(`读音计划：${plan.totalEntries} 条，${plan.totalCharacters} 字符；已缓存 ${plan.cachedEntries} 条，需新生成 ${plan.newEntries} 条（去重请求 ${plan.uniqueNewRequests} 次）；预估计费 ${plan.estimatedBillableCharacters} 字符 / 约 ${plan.estimatedCredits} credits。`)
     log(`模型：${settings.modelId}；language_code：${settings.languageCode || '未指定'}（${plan.languageCodeEffective ? '生效' : '不生效'}）。`)
     for (const item of plan.books) log(`教材 ${item.sourceBookId}：${item.totalEntries} 条，${item.totalCharacters} 字符；已缓存 ${item.cachedEntries} 条，去重待生成 ${item.uniqueNewRequests} 次 / ${item.estimatedBillableCharacters} 字符。`)
@@ -238,7 +289,7 @@ async function runTts({ root = ROOT, env = process.env, config, patches, rawEntr
     }
     if (dryRun) {
       writeSample([])
-      return { plan, results: [], success: 0, failed: 0, cached: plan.cachedEntries, skipped: plan.skippedEntries }
+      return { plan, candidateReport, results: [], success: 0, failed: 0, cached: plan.cachedEntries, skipped: plan.skippedEntries }
     }
 
     const groups = new Map(), results = []
@@ -251,7 +302,7 @@ async function runTts({ root = ROOT, env = process.env, config, patches, rawEntr
     const saveRecord = (entry, hash) => {
       const record = { cacheKey: entry.cacheKey, sha256: hash, charCount: entry.charCount,
         readingText: entry.readingText, configFingerprint: entry.configFingerprint }
-      manifest.entries[entry.id] = record
+      if (candidates === undefined) manifest.entries[entry.id] = record
       manifest.cache[entry.cacheKey] = record
     }
     const persist = () => atomicWrite(path.join(cacheDir, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`)
@@ -289,10 +340,10 @@ async function runTts({ root = ROOT, env = process.env, config, patches, rawEntr
     const workers = await Promise.allSettled(Array.from({ length: Math.min(concurrency, jobs.length) }, () => worker()))
     const rejected = workers.find(item => item.status === 'rejected')
     if (rejected) throw rejected.reason
-    const summary = { plan, results, success: results.filter(item => item.status === 'success').length,
+    const summary = { plan, candidateReport, results, success: results.filter(item => item.status === 'success').length,
       cached: results.filter(item => item.status === 'cached').length, failed: results.filter(item => item.status === 'failed').length,
       skipped: plan.skippedEntries }
-    const resultFilename = resultPath || path.join(cacheDir, 'result.json')
+    const resultFilename = resultPath || path.join(reportDir, 'result.json')
     fs.mkdirSync(path.dirname(resultFilename), { recursive: true, mode: 0o700 })
     atomicWrite(resultFilename, `${JSON.stringify({ ...summary, plan: undefined }, null, 2)}\n`)
     writeSample(results)
@@ -304,7 +355,7 @@ async function runTts({ root = ROOT, env = process.env, config, patches, rawEntr
 async function main() {
   const options = cliOptions()
   if (options.help) {
-    console.log('node scripts/learning-export/tts-elevenlabs.cjs [--dry-run] [--book BOOK_ID (可重复)] [--only LESSON_ID] [--sample | --limit N] [--concurrency 2] [--source-root DIR] [--site-dir DIR] [--thinky-root DIR] [--evidence-root DIR]')
+    console.log('node scripts/learning-export/tts-elevenlabs.cjs [--dry-run] [--candidates FILE | --book BOOK_ID (可重复) | --only LESSON_ID] [--sample | --limit N] [--concurrency 2] [--source-root DIR] [--site-dir DIR] [--thinky-root DIR] [--evidence-root DIR]')
     return
   }
   const result = await runTts(options)
@@ -314,6 +365,9 @@ async function main() {
 if (require.main === module) main().catch(error => {
   // Only fixed messages from our own configuration validation are printable.
   const safe = new Set(['请配置 ELEVENLABS_API_KEY；未配置时仅允许 --dry-run', '请配置 ELEVENLABS_VOICE_ID',
+    '--candidates 不能与 --sample、--only、--book 或 --limit 同时使用',
+    '候选文件无法读取或 JSON 格式无效', '候选文件必须按条目 ID 提供非空且不重复的 readingText 数组',
+    '候选文件包含不存在的条目 ID', '候选条目 ID 与正式条目冲突',
     '已有读音生成任务持有缓存锁；确认没有生成进程后，可删除 .local/tts-cache/.generation.lock 再运行', '无法创建读音缓存锁',
     '并发数必须为 1 至 16', 'limit 必须为正整数', '未找到 --only 指定的课程 ID', '未找到 --book 指定的教材 ID', '.env.local 配置格式无效', 'tts-overrides.json 格式无效', 'dry-run 报告不能写入音频缓存目录',
     '--sample 必须配合 --only 指定课程', '--sample 不能与 --limit 同时使用', '--sample 指定课程不足 3 个单字、3 个词语和 2 个句子'])

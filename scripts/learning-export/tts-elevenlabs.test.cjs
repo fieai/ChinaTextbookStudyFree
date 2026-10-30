@@ -307,3 +307,123 @@ test('dry-run creates no cache directory when none exists', async t => {
     fetchImpl: () => assert.fail('dry-run must not fetch') })
   assert.equal(fs.existsSync(path.join(root, '.local/tts-cache')), false)
 })
+
+function candidateFile(root, entries) {
+  const filename = path.join(root, 'candidates.json')
+  fs.writeFileSync(filename, JSON.stringify({ schemaVersion: 1, entries }))
+  return filename
+}
+
+test('candidate dry-run preserves formal text and approval, reports exact shared cache keys and never touches cache', async t => {
+  const root = fixture(t), settings = loadSettings({ root, env: ENV })
+  const patches = { lesson: { basicStages: [stage('read', 'char-learn', {
+    characters: [{ id: 'cat', char: '喵', pinyin: 'miāo' }],
+  })] } }
+  const raw = collectAudioEntries(patches), id = raw[0].id
+  const texts = ['小猫喵喵叫', '喵喵叫', '喵！', '喵——']
+  const candidates = candidateFile(root, { [id]: texts })
+  const directory = path.join(root, 'content/reading-prep')
+  fs.mkdirSync(directory, { recursive: true })
+  const reviewPath = path.join(directory, 'tts-listening-review.json')
+  const review = { schemaVersion: 1, records: [{ text: '喵', pinyin: 'miāo', kind: 'single',
+    status: 'rejected', note: '应两个都是第一声', readingText: '喵喵', originalReadingText: '喵',
+    originalCacheKey: 'a'.repeat(64), entryIds: [id] }] }
+  fs.writeFileSync(reviewPath, JSON.stringify(review))
+  const formalBefore = prepareEntries(raw, {}, settings, review)
+  const cacheDir = path.join(root, '.local/tts-cache')
+  fs.mkdirSync(cacheDir, { recursive: true })
+  for (const name of ['.generation.lock', 'manifest.json', 'plan.json', 'result.json', 'audio.mp3'])
+    fs.writeFileSync(path.join(cacheDir, name), `existing-${name}`)
+  const cacheBefore = fs.readdirSync(cacheDir).map(name => [name, fs.readFileSync(path.join(cacheDir, name))])
+  const reviewBefore = fs.readFileSync(reviewPath), sourceBefore = structuredClone(patches)
+  const result = await runTts({ root, patches, candidates, env: ENV, dryRun: true, log: quiet,
+    fetchImpl: () => assert.fail('candidate dry-run must never fetch') })
+  assert.equal(result.plan.totalEntries, 4)
+  assert.equal(result.plan.uniqueNewRequests, 4)
+  assert.equal(result.plan.estimatedBillableCharacters, 13)
+  assert.deepEqual(result.candidateReport.entries.map(item => item.readingText), texts)
+  const expected = texts.map(text => prepareEntries(raw, { entries: { [id]: { text } } }, settings)[0].cacheKey)
+  assert.deepEqual(result.candidateReport.entries.map(item => item.cacheKey), expected)
+  assert.ok(result.candidateReport.entries.every(item => item.id === id && item.candidateId !== id))
+  assert.equal(new Set(result.candidateReport.entries.map(item => item.candidateId)).size, 4)
+  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(root, '.local/tts-dry-run/candidates.json'))), result.candidateReport)
+  assert.deepEqual(fs.readdirSync(cacheDir).map(name => [name, fs.readFileSync(path.join(cacheDir, name))]), cacheBefore)
+  assert.deepEqual(fs.readFileSync(reviewPath), reviewBefore)
+  assert.deepEqual(patches, sourceBefore)
+  assert.deepEqual(prepareEntries(raw, {}, settings, review), formalBefore)
+  assert.equal(formalBefore[0].readingText, '喵喵')
+  assert.equal(formalBefore[0].listeningReview.status, 'rejected')
+})
+
+test('mock candidate generation deduplicates, reuses formal cache, leaves entry records pinned, and promotes by shared key', async t => {
+  const root = fixture(t), raw = [
+    { id: 'lesson/one', lessonId: 'lesson', text: '喵', isCharacter: true },
+    { id: 'lesson/two', lessonId: 'lesson', text: '喵', isCharacter: true },
+  ]
+  const base = { root, rawEntries: raw, env: ENV, log: quiet }
+  // Pre-existing formal audio must be reused, including when a candidate is the same text.
+  await runTts({ ...base, entryOverrides: { texts: { 喵: '喵！' } }, fetchImpl: async () => ok() })
+  const cacheDir = path.join(root, '.local/tts-cache')
+  const before = structuredClone(readManifest(cacheDir).entries)
+  const candidates = candidateFile(root, { 'lesson/one': ['喵！', '喵——'], 'lesson/two': ['喵——'] })
+  let requests = 0
+  const result = await runTts({ ...base, candidates, fetchImpl: async (url, options) => {
+    requests++
+    assert.equal(JSON.parse(options.body).text, '喵——')
+    return ok()
+  } })
+  assert.equal(result.success, 2)
+  assert.equal(result.cached, 1)
+  assert.equal(requests, 1)
+  assert.equal(result.plan.uniqueNewRequests, 1)
+  assert.deepEqual(readManifest(cacheDir).entries, before)
+  const reports = path.join(root, '.local/tts-candidates')
+  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(reports, 'candidates.json'))), result.candidateReport)
+  assert.equal(JSON.parse(fs.readFileSync(path.join(reports, 'result.json'))).failed, 0)
+  const configFingerprint = require('./common.cjs').contentHash(loadSettings({ root, env: ENV }))
+  for (const item of result.plan.entries) assert.ok(readCachedAudio(cacheDir, { ...item, configFingerprint }))
+  const hit = await runTts({ ...base, candidates, fetchImpl: () => assert.fail('candidate rerun must reuse cache') })
+  assert.equal(hit.cached, 3)
+  // Selecting a candidate later uses the exact cached audio without another paid request.
+  const promoted = await runTts({ ...base, entryOverrides: { texts: { 喵: '喵——' } },
+    fetchImpl: () => assert.fail('formal entries must reuse selected candidate cache') })
+  assert.equal(promoted.cached, 2)
+})
+
+test('candidate input validation rejects unknown IDs, malformed or duplicate texts, and ambiguous selectors before requests', async t => {
+  const root = fixture(t), patches = basicPatches(), id = collectAudioEntries(patches)[0].id
+  const args = { root, patches, env: ENV, dryRun: true, log: quiet,
+    fetchImpl: () => assert.fail('invalid candidate input must never fetch') }
+  for (const entries of [{}, { [id]: [] }, { [id]: [''] }, { [id]: [null] },
+    { [id]: '喵！' }, { [id]: ['喵！', '喵！'] }, { unknown: ['喵！'] }]) {
+    await assert.rejects(runTts({ ...args, candidates: candidateFile(root, entries) }), /候选文件/u)
+  }
+  const filename = candidateFile(root, { [id]: ['喵！'] })
+  fs.writeFileSync(filename, '{invalid')
+  await assert.rejects(runTts({ ...args, candidates: filename }), /候选文件/u)
+  assert.equal(fs.existsSync(path.join(root, '.local/tts-cache')), false)
+  const candidates = candidateFile(root, { [id]: ['喵！'] })
+  for (const selector of [{ only: 'lesson' }, { book: 'book' }, { limit: 1 }, { sample: true, only: 'lesson' }])
+    await assert.rejects(runTts({ ...args, candidates, ...selector }), /--candidates/u)
+  assert.equal(cliOptions(['--candidates', candidates, '--dry-run'], {}).candidates, candidates)
+  for (const selector of [['--only', 'lesson'], ['--book', 'book'], ['--limit', '1']])
+    assert.throws(() => cliOptions(['--candidates', candidates, ...selector], {}), /--candidates/u)
+})
+
+test('candidate texts resolve context pauses while independent pronunciation blockers remain binding', async t => {
+  const root = fixture(t), id = 'lesson/lesson/read/characters/1'
+  const candidates = candidateFile(root, { [id]: ['喵！'] })
+  const entry = { id, lessonId: 'lesson', stageKey: 'lesson/read', text: '喵', isCharacter: true,
+    skipped: true, missingWord: true, pronunciationIssue: '待选词' }
+  const args = { root, candidates, rawEntries: [entry], env: {}, dryRun: true, log: quiet,
+    fetchImpl: () => assert.fail('candidate dry-run must never fetch') }
+  const result = await runTts(args)
+  assert.equal(result.plan.skippedEntries, 0)
+  assert.equal(result.plan.uniqueNewRequests, 1)
+  const blocked = await runTts({ ...args, rawEntries: [{ ...entry, pronunciation: { blockers: ['independent hold'] } }] })
+  assert.equal(blocked.plan.skippedEntries, 1)
+  assert.equal(blocked.plan.uniqueNewRequests, 0)
+  const skipped = await runTts({ ...args, entryOverrides: { entries: { [id]: { skip: true } } } })
+  assert.equal(skipped.plan.skippedEntries, 1)
+  assert.equal(skipped.plan.uniqueNewRequests, 0)
+})
