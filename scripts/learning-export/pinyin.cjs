@@ -73,7 +73,6 @@ function applyLessonPinyin(target, source, annotation = {}) {
       const complete = (props.words || []).every(word => clean(word.pinyin))
       props.mode = complete ? props.activity === 'dictation' ? 'pinyin-only' : 'word-and-pinyin' : 'word-only'
     }
-    if (props.words?.length) props.sourceNote = '拼音优先采用教材，其次人工核对，再次词典自动标注；待核对项暂不显示拼音。'
   }
 }
 

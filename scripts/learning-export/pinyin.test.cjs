@@ -25,6 +25,21 @@ test('exported pronunciation follows textbook > reviewed > dictionary and unreso
   assert.equal(target.basicStages[1].props.characters[0].pinyinSource, 'textbook')
   assert.equal(target.basicStages[2].props.characters[1].pinyinSource, 'reviewed')
   assert.equal(target.basicStages[0].props.mode, 'word-only')
+  assert.ok(target.basicStages.every(stage => !Object.hasOwn(stage.props, 'sourceNote')))
+})
+
+test('pinyin annotation preserves authored notes in basic and extension stages', () => {
+  const target = lesson()
+  target.basicStages[0].props.sourceNote = '读熟了，再试着写一写。'
+  target.basicStages.push({ widget: 'char-learn', props: { activity: 'dictation',
+    words: structuredClone(target.basicStages[0].props.words), sourceNote: '听一个，写一个。' } })
+  target.extension = { stages: [structuredClone(target.basicStages[0])] }
+  for (let pass = 0; pass < 2; pass++) {
+    applyLessonPinyin(target, source, annotation)
+    assert.equal(target.basicStages[0].props.sourceNote, '读熟了，再试着写一写。')
+    assert.equal(target.basicStages.at(-1).props.sourceNote, '听一个，写一个。')
+    assert.equal(target.extension.stages[0].props.sourceNote, '读熟了，再试着写一写。')
+  }
 })
 
 test('coverage counts exported occurrences and distinguishes word tables and dictation', () => {

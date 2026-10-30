@@ -18,6 +18,20 @@ test('real annotated package keeps TTS texts and exports the confirmed pinyin wi
     const readingBooks = ['up', 'down'].map(term => require(`../../content/reading-prep/chinese-g3${term}-2026.json`))
     const reading = buildReadingLessons({ books: result.content.books, readingBooks,
       pronunciationRules: require('../../content/reading-prep/pronunciation-rules.json') }).patches
+    for (const book of result.content.books) for (const { content: lesson } of book.lessons) {
+      const authored = studio[lesson.sourceLessonId]
+      const generated = reading[lesson.sourceLessonId]
+      for (const stage of [...(lesson.basicStages || []), ...(lesson.extension?.stages || [])]) {
+        if (authored) {
+          const original = [...(authored.basicStages || []), ...(authored.extension?.stages || [])].find(item => item.key === stage.key)
+          assert.equal(stage.props.sourceNote, original.props.sourceNote, stage.key)
+        } else if (generated) {
+          const original = generated.basicStages.find(item => item.key === stage.key)
+          assert.equal(Object.hasOwn(stage.props, 'sourceNote'), Object.hasOwn(original.props, 'sourceNote'), stage.key)
+          if (Object.hasOwn(stage.props, 'sourceNote')) assert.equal(stage.props.sourceNote, '这几首诗共用这张字表。', stage.key)
+        }
+      }
+    }
     const before = tts.prepareEntries(tts.collectAudioEntries({ ...studio, ...reading }),
       tts.readOverrides(WORKTREE), tts.loadSettings({ root: WORKTREE }))
     const after = new Map(result.report.audio.entries.map(entry => [entry.id, entry]))

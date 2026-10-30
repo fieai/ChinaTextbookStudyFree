@@ -93,19 +93,19 @@ function generateReadingStages({ sourceLessonId, entry, strokeDataByCharacter = 
         { id: 'fluent', title: '读通顺', goal: '按段连起来读，注意标点停顿。', presentation: { pinyin: false,
           pauses: converted.flatMap(sentence => sentence.segments.flatMap((segment, index) => segment.text.endsWith('，')
             ? [{ sentenceId: sentence.id, afterSegment: index }] : [])) } },
-      ], parentChecks: [], sourceNote: `教材已核正文${part ? `；本篇《${part.title}》` : ''}。注音仅据本课识字表及已核发音规则。` }))
+      ], parentChecks: [] }))
   } else {
     missing('reading', '无完整段落/逐句文本，或分篇归属、分句拼接不一致。')
     if (paragraphs.length || sentences.length) detail.dataIssues.push(detail.missing.at(-1).reason)
   }
-  const sharedNote = split ? '；字表为本编号课整组三诗共用，未按单首推断分配' : ''
+  const sharedNote = split ? { sourceNote: '这几首诗共用这张字表。' } : {}
   const recognition = source.recognitionCharacters || []
   const recognitionReading = tableReadings(recognition)
   const characters = recognition.map(item => ({ id: itemId(sourceLessonId, 'recognition', item.id || item.char), char: item.char,
     ...(recognitionReading(item.char) ? { pinyin: recognitionReading(item.char) } : {}) }))
   if (characters.length) {
     const widget = characterActivity(characters)
-    widget.props.sourceNote = `本课识字表${sharedNote}。`
+    Object.assign(widget.props, sharedNote)
     add('characters', widget)
   } else missing('characters', '教材无本课识字表。')
   const words = (source.words || []).map(word => {
@@ -114,9 +114,8 @@ function generateReadingStages({ sourceLessonId, entry, strokeDataByCharacter = 
     return { id: itemId(sourceLessonId, 'word', word.id || word.text), text: word.text,
       ...(pinyin ? { pinyin } : {}) }
   })
-  const sourceNote = `本课${unique((source.words || []).map(word => word.source || '词语表')).join('、') || '词语表'}；无可靠整词拼音的词不显示拼音。`
   if (words.length) add('words', wordsActivity(words, {
-    mode: words.every(word => word.pinyin) ? 'word-and-pinyin' : 'word-only', sourceNote,
+    mode: words.every(word => word.pinyin) ? 'word-and-pinyin' : 'word-only',
     instructions: '听一听，跟着读，再看词语读。' }))
   else missing('words', '教材词语表未列本课。')
   const writing = (source.writingCharacters || []).map(item => {
@@ -127,11 +126,11 @@ function generateReadingStages({ sourceLessonId, entry, strokeDataByCharacter = 
       ...(pinyin ? { pinyin } : {}), ...(strokeDataByCharacter[item.char] ? { strokeData: strokeDataByCharacter[item.char] } : {}) }
   })
   if (writing.length) add('writing', writingActivity(writing, {
-    sourceNote: `本课写字表${sharedNote}；缺笔顺时看字形、在纸上练写。无明确读音不显示拼音。`,
+    ...sharedNote,
     instructions: '有笔顺的字先看笔顺，再在纸上练写；其余字对照教材字形练写。' }))
   else missing('writing', '教材无本课写字表。')
   if (words.length >= 4) add('dictation', dictationActivity(structuredClone(words), {
-    mode: words.every(word => word.pinyin) ? 'pinyin-only' : 'word-only', sourceNote,
+    mode: words.every(word => word.pinyin) ? 'pinyin-only' : 'word-only',
     dictation: { count: Math.min(5, words.length), kinds: [
       { id: 'radical', label: '偏旁' }, { id: 'stroke-count', label: '多笔少笔' },
       { id: 'wrong-character', label: '写成别的字' }, { id: 'stroke-position', label: '笔画位置' },

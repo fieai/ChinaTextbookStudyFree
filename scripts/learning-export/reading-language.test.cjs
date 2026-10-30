@@ -33,6 +33,19 @@ test('generates the five validated activity shapes without inventing pinyin, gra
   assert.deepEqual(result.detail.missingStrokeCharacters, ['开'])
   assert.equal(dictation.props.dictation.count, 4)
   assert.ok(!Object.hasOwn(dictation, 'grading'))
+  assert.ok(result.stages.every(stage => !Object.hasOwn(stage.props, 'sourceNote')))
+})
+
+test('split poems keep only a child-friendly shared character table note', () => {
+  const source = lesson()
+  const result = generate(source, { entry: { lesson: source, split: true,
+    part: { title: '小诗', paragraphIds: ['p1'] } } })
+  assert.equal(result.detail.sharedCharacterTables, true)
+  for (const stage of result.stages) {
+    if (stage.props.activity === 'characters' || stage.widget === 'hanzi-write')
+      assert.equal(stage.props.sourceNote, '这几首诗共用这张字表。')
+    else assert.ok(!Object.hasOwn(stage.props, 'sourceNote'))
+  }
 })
 
 test('empty sources never produce empty stages; dictation requires at least four words', () => {
@@ -113,7 +126,8 @@ test('real reviewed books cover all 61 split lessons, preserve studio, and leave
       if (!patch) continue // frozen 绝句 studio
       const expected = source.sentences.filter(sentence => part.paragraphIds.includes(sentence.paragraphId)).map(sentence => sentence.text.trim())
       assert.deepEqual(patch.basicStages.find(stage => stage.widget === 'read-aloud').props.sentences.map(sentence => sentence.text), expected)
-      assert.match(patch.basicStages.find(stage => stage.props.activity === 'characters').props.sourceNote, /共用/u)
+      assert.equal(patch.basicStages.find(stage => stage.props.activity === 'characters').props.sourceNote, '这几首诗共用这张字表。')
+      assert.equal(patch.basicStages.find(stage => stage.widget === 'hanzi-write').props.sourceNote, '这几首诗共用这张字表。')
     }
   }
   const { LessonDefinitionSchema } = await import(require('node:path').join(config.thinkyRoot, 'packages/learning-contract/dist/index.js'))
