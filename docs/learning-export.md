@@ -2,19 +2,26 @@
 
 WP-10 第一部分，执行位置为 `ChinaTextbookStudyFree-wp-10` worktree。
 导出脚本、测试和配置示例位于本 worktree；生成物保存在被忽略的 `.local/` 子目录。
-不修改源题、原型、既有业务代码或 Thinky，不调用导入、数据库、发布接口，不提交。
+不修改源题、原型、既有业务代码或 Thinky；验收只运行 runner 的 validate-only，不写数据库、不发布、不提交。
 
 ## 命令
 
 需要 Node.js 22+、Python 3，以及已安装依赖且构建完成的 Thinky 契约包。
 生成有效 `package.json` 依赖 Thinky 契约 dist v1.6 第二部分，支持
-`calculation → calculation | numeric | measurement`、新增活动与 `LessonAuthoringSchema`；
+`calculation → calculation | numeric | measurement`、新增活动与 `LessonAuthoringSchema`，
+以及字、词、字族词的 `pinyinSource` 与可省略的字拼音；
 旧 dist 会如实阻断，不绕过校验，由协调者构建。
+默认 `/Users/my-project/AI-PROJECT/thinky` 仍为旧契约，当前完整测试和导出须指定已构建新契约的
+`/Users/my-project/AI-PROJECT/thinky-pinyin`。契约测试通过 `options([]).thinkyRoot` 读取 `THINKY_ROOT`；
+不设置时，依赖新契约的测试会失败，导出器会明确提示契约依赖，不能据此修改已确认的拼音数据。
 无需在本 worktree 安装 npm 依赖。
 
 ```bash
+export THINKY_ROOT=/Users/my-project/AI-PROJECT/thinky-pinyin
+.local/tools/pinyin-venv/bin/python -I scripts/reading-prep/tts_context_candidates.py
 node scripts/learning-export/index.cjs
-node --test scripts/learning-export/*.test.cjs
+node --test scripts/learning-export/*.test.cjs scripts/reading-prep/*.test.cjs
+.local/tools/pinyin-venv/bin/python -I -m unittest discover -s scripts/reading-prep -p 'test_*.py'
 ```
 
 默认只读输入位置：
@@ -24,6 +31,7 @@ node --test scripts/learning-export/*.test.cjs
 | 修订版题库、原型 | 当前 worktree 若有指定原型则用当前目录；否则只读相邻 `ChinaTextbookStudyFree` 主检出 |
 | Thinky 契约及包校验模块 | `/Users/my-project/AI-PROJECT/thinky`（只读） |
 | WP-10 证据与本地完整数据 | `/Users/my-project/AI-PROJECT/thinky` |
+| 已核语文正文、识写字与词语 | 当前 worktree `content/reading-prep/chinese-g3{up,down}-2026.json`；只读，不修改源稿 |
 
 当前基线 `f522eee` 未跟踪修订版题库和部署原型，因此实际读取主检出的指定文件。
 脚本不对该目录执行 git 操作或写入；只在当前 worktree 查询 HEAD。
@@ -31,10 +39,11 @@ node --test scripts/learning-export/*.test.cjs
 每张页图对照部署父目录 `checksums.json` 的冻结 SHA256 和字节数，并检查 PNG chunk CRC。
 来源漂移、缺文件或不完整元数据均阻断，不自动刷新研究证据。
 
-`--thinky-root` 与 `--evidence-root` 各自按命令行参数、环境变量 `THINKY_ROOT`、默认值的顺序取值。
-`THINKY_ROOT` 同时覆盖契约根目录和证据根目录；证据及完整数据分别读取该根目录下的
-`docs/learning/evidence/wp-10` 和 `.local/wp-10`。默认主检出使用集成分支 `feat/learn-v2`。
-`.local/wp-10` 是未跟踪的完整证据数据，切换检出时需要迁移或重建。
+契约根按 `--thinky-root`、`THINKY_ROOT`、默认值取值；证据根独立按
+`--evidence-root`、`THINKY_EVIDENCE_ROOT`、默认值取值。
+只设置 `THINKY_ROOT` 或 `--thinky-root` 不迁移证据根，WP-10 的已冻结证据仍从原 Thinky 根读取。
+证据及完整数据分别读取证据根下的 `docs/learning/evidence/wp-10` 和 `.local/wp-10`。
+`.local/wp-10` 是未跟踪的完整证据数据，显式切换证据根时须预先准备完整文件，脚本不会自动迁移或重建。
 
 不同目录可显式指定：
 
@@ -45,6 +54,16 @@ node scripts/learning-export/index.cjs \
   --thinky-root /path/to/thinky \
   --evidence-root /path/to/thinky
 ```
+
+导出通过后，在新契约 worktree 运行 runner 验收（`<包目录>` 取导出结果的 `outputDir`，使用绝对路径）：
+
+```bash
+cd /Users/my-project/AI-PROJECT/thinky-pinyin
+node -r ts-node/register/transpile-only -r tsconfig-paths/register \
+  scripts/learning-release/runner.ts import <包目录> --validate-only
+```
+
+此命令只校验包、清单和媒体，不执行真实导入或发布。
 
 `--output-root` 可改变输出父目录，但必须位于本 worktree `.local/learning-export/` 内。
 输出祖先、版本目录和媒体目录不能经软链指向其它目录。
@@ -122,7 +141,7 @@ Thinky 的方案仅作为只读契约与决策依据，课程定义在本仓库�
 
 | 内容 | 来源与处理 |
 | --- | --- |
-| 非样例 | Q1：全部 `textbook-only`，不写 opening、takeaways、basicStages，不生成通用课程文案 |
+| 非样例 | 保持 `textbook-only`，不写 opening、takeaways；三年级编号语文课按已核 reading-prep 生成 basicStages，其他非样例不新增基础关；卡片按下述已核数据生成，缺数据保留空数组 |
 | 数学课时 | D9 与 `math-lessons/lessons.csv`，108 课时，含原 8 项 needs-human；读取 `math-lessons/human-review.csv`，fix 使用 confirmedFrom/confirmedTo 覆盖草稿，approve 使用确认页段并核对草稿一致；未知课、未知 verdict 或 approve 不一致均阻断 |
 | 数学知识点 | `math-lessons/kp-map.csv` 的 86 项，逐课对照 CSV 双向映射；标题原样保留 |
 | 语文 | 原型目录 105 项；其中 103 个非样例取 `page-candidates.csv` 的 machine-verified confirmedFrom/To；中华传统节日固定 PDF 60 |
@@ -135,6 +154,118 @@ Thinky 的方案仅作为只读契约与决策依据，课程定义在本仓库�
 | 四个人工题 | 日期 count 号、周长 measurement dm、钟点 count 时、用电 measurement kWh，标为 explicit；不复算答案，不改原题干 |
 | calculation 源题 | 保留 `sourceType/sourceKind: calculation`，目标 kind 按推断输出 numeric/measurement，保留 countUnit/units；使用 Thinky v1.6 映射校验 |
 | 五课 | `five-lessons.md` 与 `lesson-studio.js` 原始数据；opening、三件事、卡片问答、字表、诗文、朗读目标逐字提取，不读取 Thinky 前端 mock 作内容源 |
+
+## 三年级语文基础关
+
+`reading-language.cjs` 只读 `chinese-g3up-2026` / `chinese-g3down-2026` 的 reviewed、无 issues 源稿，
+通过 `studio-language.cjs` 共用活动生成函数生成基础关。上册 26 个教材编号课拆为 30 个课时，
+下册 27 个拆为 31 个；大青树、绝句保留原有 studio 活动，字词显示拼音应用相同标注规则，其余 59 课只增 `basicStages`。
+园地、习作、口语交际、快乐读书吧等非编号课不变。
+
+- 朗读使用逐句文本及 paragraphId；组诗按明确 parts/paragraphIds 拆分，保留诗句。
+- 朗读正文注音仍采用本课识字表、明确上下文发音提示和 pronunciation-rules；多音字无对应上下文就不注。
+- 字词显示拼音只读独立 `pinyin-annotations.json`，优先教材明确拼音（`textbook`），其次核对确认（`reviewed`），再取词典（`dictionary`）。没有可靠拼音时同时省略 `pinyin` 和 `pinyinSource`，不写空串。词语或听写有未确认拼音就采用 `word-only`。
+- 词典使用 pypinyin `Style.TONE` 的词组读音，逐字对比九册教材字表和发音规则。实际词组分词命中的字不因多音进入清单；未收词仅检查内置 115 个常用多音字及九册字表/发音规则中确实出现至少两种读音的字。教材读音冲突始终保留。轻声仅认内置常见词、规则词表或两字叠词，后缀本身不作证据；词典已标轻声且与规则一致时直接采用。
+- 缺拼音字按同课、同册、九册字表借唯一读音；仍缺时非多音字采用词典，多音字通过本课词语读音判断，无法确定就隐藏。组诗整课识写字表共用并明确标注，不推断子诗归属。
+- 原型有笔顺就复用 strokeData；缺笔顺不补造，关内说明看字形、纸上练写，逐课缺字列入报告。
+- 词语不少于 4 个才有非计分听写，每轮最多 5 个；缺任何类别的数据都不出空关。
+- stage key 为 `<课时ID>/<活动名>`；条目采用固定 UUID v5，输入为课时 ID、类别、源句/段 id 或字词。
+  插入、重排其他条目不会重置旧条目身份，缓存仍按既有音频内容与声音设置复用。
+
+`report.json.chineseBasicStages.books` 和 report.md 的“三年级语文基础关覆盖”列出教材编号课数、
+拆篇课时数、各类关卡数量、逐课缺失原因、无注音字词、缺笔顺字以及源数据问题。
+源稿、发音规则、标注和生成脚本计入输入指纹；导出前逐项核对标注记录的九册原文件 SHA256，原稿变化会要求重跑标注。用户整理的原始文件始终只读。
+
+离线标注与核对流程（解释器已安装 pypinyin，无需联网）：
+
+```sh
+.local/tools/pinyin-venv/bin/python -I scripts/reading-prep/annotate_pinyin.py
+.local/tools/pinyin-venv/bin/python -I scripts/reading-prep/test_annotate_pinyin.py
+```
+
+阅读 `content/reading-prep/pinyin-review.md`：开头统计按首要原因计数，每条只计一次；按教材冲突、轻声、一不变调、多音未收词分节，节内按册、课排列。JSON 的 `reasonCategories` 保留同条全部原因，`category` 是统计及分节采用的首要原因。在对应条目的 `decision` 填完整拼音（例如 `rè nao`）或 `"hide"`，再重跑标注和导出。Markdown 勾选框仅方便查看，真正决定来自 JSON。未决定保持 `null`。决定绑定上下文指纹，源条目、课文、词语、教材读音或规则变化会把旧决定移入 `staleDecisions`，不会静默沿用。这三份标注文件与原稿分离。
+
+含“一/不”的词在 Markdown 合并为一节，JSON 顶层 `decision.yiBuToneStyle` 支持 `"original"`（本调 `yī` / `bù`）或 `"sandhi"`（按后字声调处理变调，另处理 A一A/A不A、第一和数字串），未决定时为 `null`。当前用户已确认 `"sandhi"`，63 条逐项决定全部完成，待核对及隐藏均为 0。每条 `yiBuSuggestions` 提供两种候选；逐条完整拼音或 `"hide"` 优先于全局设置。全局决定只解决一不原因，兼有教材冲突、轻声或未收词多音的条目仍须逐条确认。仅由全局决定解决的条目标记 `resolvedByGlobal: true`、输出 `pinyinSource: "reviewed"`；`summary.pendingReasonCounts` 记录剩余待核对数。不改变 TTS 文本。决定文件由协调者与用户维护，测试修复不重写这些文件。
+
+`report.json.pinyin` / report.md 分别记录原稿条目数和导出条目出现次数；后者含听写、字族词、组诗共用字表重复，不重复计算包内私有 authoring 镜像。`scripts/reading-prep/supplemental-pinyin-items.json` 单独记录冻结原型中的字族词及其 SHA256 来源，不加入用户整理的教材词表；这些词适用相同核对规则，与教材词表重合时共用核对决定。
+
+兼容要求：Thinky 契约需支持 `pinyin?`（缺省不显示）和 `pinyinSource?: 'textbook' | 'reviewed' | 'dictionary'`。可只读选择另一路 worktree：
+
+```sh
+THINKY_ROOT=/Users/my-project/AI-PROJECT/thinky-pinyin \
+THINKY_EVIDENCE_ROOT=/Users/my-project/AI-PROJECT/thinky \
+  node --test scripts/learning-export/*.test.cjs scripts/reading-prep/*.test.cjs
+node scripts/learning-export/index.cjs --thinky-root /Users/my-project/AI-PROJECT/thinky-pinyin
+node scripts/learning-export/index.cjs --thinky-root /Users/my-project/AI-PROJECT/thinky-pinyin --validate /absolute/path/to/bundle/package.json
+```
+
+`THINKY_EVIDENCE_ROOT` 允许显式选择证据根；主检出已是默认证据根，通常只需设置 `THINKY_ROOT`。显式 `--evidence-root` 优先。缺少 `PinyinSourceSchema` 的旧契约在导出前明确阻断；其他契约校验失败仍输出候选包与诊断，不填占位拼音、不删字词绕过。源代码已修改但 dist 未构建时也会阻断，本任务不构建或修改 Thinky。
+字族词 `CharacterFamily` 也输出同一来源字段；如果 Thinky 只更新 `Character` / `LanguageWord`、未更新 `CharacterFamily.pinyinSource`，报告将明确列出 `Unrecognized key: "pinyinSource"`，仍生成候选包。
+
+契约完整支持后，重新导出有效包，再在对应 worktree 运行只校验命令：
+
+```sh
+cd /Users/my-project/AI-PROJECT/thinky-pinyin
+NODE_ENV=learning-local node -r ts-node/register/transpile-only -r tsconfig-paths/register \
+  scripts/learning-release/runner.ts import /absolute/path/to/bundle --validate-only
+```
+
+runner 验收须使用通过新契约校验后生成的有效 `package.json`；候选包不能当成有效包使用。
+
+TTS 与导出器读取相同基础关和条目 ID，收集逐句、整篇、单字带词读、词语与卡片。导出器在 TTS 选择缓存之后应用显示注音，核对结果不改变原有带词读、朗读文本与缓存键。
+整篇 audio 位于 ReadAloud props，单句 audio 位于 sentences；现有契约没有独立整段音频槽，
+段落通过 paragraphId 分组。有有效缓存才附 audio，无则省略并回退设备朗读。
+只处理三年级两册：
+
+```sh
+node scripts/learning-export/tts-elevenlabs.cjs --dry-run \
+  --book chinese-g3up-2026 --book chinese-g3down-2026
+# 用户在可联网环境执行实际生成（本次未生成音频）
+node scripts/learning-export/tts-elevenlabs.cjs \
+  --book chinese-g3up-2026 --book chinese-g3down-2026
+```
+
+`--book` 可重复；dry-run 输出逐册条目数、实际朗读字符数、缓存数及去重后新请求字符数。
+卡片仍没有可下发 audio 的契约字段，准备缓存不代表卡片已具备音频引用。未挂载的卡片录音保留缓存命中及 `contract-unsupported` 报告，但不写入包内媒体；与支持的活动共享同一录音时，仍按该活动的实际引用打包。
+Thinky 单音频上限为 2 MiB（2,097,152 字节）。超过上限的缓存保持原样，导出时不挂载或打包，条目回退设备朗读；
+`report.json.audio.rejectedMedia` 与 Markdown 的“超限音频”列明条目、大小及原因。
+
+## textbook-only 卡片与来源覆盖
+
+`cards.cjs` 在原有课时、题目归属组装后提取卡片。每课有至少 3 个可靠候选才保留，最多 8 张；不足 3 张时保留 `cards: []`，不重复内容凑数。studio 五课的 15 张原卡不变。
+
+- 数学优先使用冻结 `textbook-data.js` 中明确映射到本课的 `knowledge.coreConcept/keyFormula/tips`，只为原文答案添加问句。它们是项目原创配套讲解，未经教师审定，不能称为教材原文。不足时才从已归属配套题库挑独立可读、无图示依赖且有唯一简短答案的题；保留原答案，不复算，不把错句当概念。知识点标题本身不作答案。
+- 语文先核对源稿教材 SHA256、总页数与冻结版一致，且本课为 `reviewed`、`issues: []`。优先写字表、其次识字表；单字必须同时有本课识字表唯一明确拼音和本课词语表组词。不跨课借读音，不猜组词。词语本身无明确整词拼音时不生成词音卡，不能用单字读音拼接而忽略轻声等差异。
+- 古诗只从 `parts.paragraphIds` 关联的原文诗行生成“接下一句”卡。分篇 ID 或同书同组内唯一精确标题必须对应；整组诗共用字表不能强分给子诗。三上每诗单段四行、三下每诗四段均按所属 `sentences` 提取。原有绝句 studio 卡不追加。
+- `key` 使用固定 UUID v5 命名空间，输入为课时 ID 加来源 ID：知识点 ID/字段、生字或词语的教材课号/文字、诗篇/上句、题库文件/section/源题 ID（缺 ID 才用内容哈希）。不使用候选次序、句序、题目数组下标，源数组插入或重排不会重置同一卡片身份。
+
+盘点范围与覆盖按导出课时计算，包含 studio，详见新包 `report.json.cards.sourceCoverage` 和 `report.md`。识字/写字表的整组三诗会计入各子诗的“有来源”覆盖，但实际提卡不将共享字表强分到单首。当前来源范围为：
+
+| 来源 | 覆盖与限制 |
+| --- | --- |
+| 冻结知识讲解 | 数学 86 知识点映射到 105/108 课；语文 105/105 目录项有配套讲解，但不代替本次字词或古诗依据 |
+| 已核语文正文 | 三上 26、三下 27 个教材编号课，对应 30/52、31/53 个导出目录项；12 首古诗有明确分篇 |
+| 识字表 | 三上 30/52、三下 31/53 个目录项有来源，共 494 条；含整组诗共用字表 |
+| 写字表 | 三上 23/52、三下 25/53 个目录项有来源，共 441 条；缺明确拼音的会写字不补音 |
+| 词语表 | 冻结原型三上 20/52、三下 22/53，共 521 词（含园地）；编号课源稿 470 词，不含园地；仅词形不足以生成读音/释义问答 |
+| 配套题库 | 数学 656、语文 790 道，全部有原答案与解释；有题引用覆盖及可独立短答覆盖逐册记录，不称教材课后原题 |
+| studio 与 companion guides | 五课 15 张原卡；guides 仅毫米、大青树两课各 2 个明确自编例子，不作全册教材例题来源 |
+| 日积月累、单元要点、教材例题/课后题 | 有教材扫描页，但没有新的已核逐课结构化原文，本次不靠 OCR 或目录摘要编造；不把已有配套讲解标为教材原结论 |
+| 旧版 `data/passages` | 无当前版本教材哈希，不作为本轮来源 |
+
+报告每册新增 `lessonsWithCards`、`cardCount`、`noCardLessons`（ID、标题、原因），逐卡来源保存在 `cards.provenance`。未核稿、没有字词原文、缺明确拼音/组词交集、少于 3 张候选分别解释。源稿与脚本均参与输入指纹，读取中发生变化会阻断。
+
+卡片文本接入现有 `tts-elevenlabs.cjs`，可用 `--dry-run --only <sourceLessonId>` 查看，稳定条目 ID 为 `<lesson>/cards/<card.key>/<field>`。生字沿用组词带读和覆写机制；本次不合成音频。当前 `CardDefinitionSchema` 无 `audio` 字段，收集条目标记 `supportsAudio: false`，不会向公开卡片增加契约外字段；缓存可准备，但下发播放仍需消费端另行接线。含拉丁变量/单位的数学文本不做删字合成。
+
+重新生成后可用 release runner 离线验包（参数为整个目录）：
+
+```bash
+cd /Users/my-project/AI-PROJECT/thinky
+node -r ts-node/register/transpile-only -r tsconfig-paths/register \
+  scripts/learning-release/runner.ts import /absolute/path/to/bundle --validate-only
+```
+
+该命令不连数据库、不写媒体、不导入或发布内容。
 
 `edition: "2026"` 保留原型的应用版本标识，不表示官方出版年份。
 publisher 使用已核四册的人民教育出版社；教材标题保持原型标题。
@@ -221,7 +352,7 @@ node scripts/learning-export/index.cjs --validate .local/learning-export/REVISIO
    node scripts/learning-export/tts-elevenlabs.cjs --only chinese-g3up-2026-u1-kp1 --sample
    ```
 
-   终端与 `.local/tts-cache/sample.txt` 列出每条样本的条目 ID、实际朗读文本，以及 `.local/tts-cache/` 下 MP3 文件的绝对路径和状态。可加 `--dry-run` 预览，此时 `planned` 表示尚未生成；`success` / `cached` 可直接试听，`failed` 需重试。`.local/tts-cache/plan.json` 也含条目 ID、实际朗读文本和缓存键；按路径打开音频试听。多音字会在终端及计划的 `needsListeningReview` 提醒。需要调整时，编辑入库的 `scripts/learning-export/tts-overrides.json`，重跑 dry-run 和 sample。例如：
+   终端与 `.local/tts-cache/sample.txt` 列出真实生成的每条样本的条目 ID、实际朗读文本，以及 `.local/tts-cache/` 下 MP3 文件的绝对路径和状态。可加 `--dry-run` 预览，报告写入独立的 `.local/tts-dry-run/plan.json`、`sample.txt`，不写入音频缓存目录，此时 `planned` 表示尚未生成；`success` / `cached` 可直接试听，`failed` 需重试。真实生成的 `.local/tts-cache/plan.json`（预览为 `.local/tts-dry-run/plan.json`）也含条目 ID、实际朗读文本和缓存键；按路径打开音频试听。多音字会在终端及计划的 `needsListeningReview` 提醒。需要调整时，编辑入库的 `scripts/learning-export/tts-overrides.json`，重跑 dry-run 和 sample。例如：
 
    ```json
    {
@@ -249,7 +380,16 @@ node scripts/learning-export/index.cjs --validate .local/learning-export/REVISIO
 
 可选变量见 `.env.local.example`：模型默认 `eleven_v4`，`ELEVENLABS_LANGUAGE_CODE` 默认 `zh`（普通话），可在 `.env.local` 覆盖或设为空以关闭语言指定。仅当模型不是 `eleven_multilingual_v2` 且语言代码非空时发送 `language_code`。`eleven_multilingual_v2` 不支持该参数；若保留旧模型配置并配置了语言代码，终端会提示“该模型不支持指定中文，建议改为 eleven_v4”。脚本不会修改用户的 `.env.local`，切换模型需自行编辑。格式默认 `mp3_44100_128`，语速 `ELEVENLABS_SPEED=0.85`、稳定度 `ELEVENLABS_STABILITY=0.65`、相似度 `ELEVENLABS_SIMILARITY_BOOST=0.75`，另可设置 `ELEVENLABS_STYLE`、`ELEVENLABS_USE_SPEAKER_BOOST`。这些是试听起点，可按声音调整。
 
-所有 `isCharacter` 单字条目（识字、写字、字族根字等）默认带词读，例如“扬，飘扬的扬”。组词优先取本课词语表 `words` 中含该字的第一个词，其次取写字字的 `family` / 组词、字族词，再取课文句子中含该字的二字词。找不到组词时只读单字，并在报告标出“无组词”。
+单字默认带词读，例如“扬，飘扬的扬”；`tts-overrides.json` 始终最高优先。新增语文基础关从 `tts-context-candidates.json` 取本课字音与候选，教材明确字音优先，其次取本课 `pinyin-annotations.json` 中的已核字音，绝不从另一课借字音。每个候选中该字的每次出现都必须与本课确认音（含声调）一致，来源依次为：
+
+1. 本课词语表，保持词表顺序。
+2. 课文正文中真实被 pypinyin 词组词典收录的 2–4 字词，优先二字词，其次正文位置。
+3. 同册其他课词语表，其次九册其他词语表。
+4. 非多音字仍无词时单读，报告标“单读”；多音字仅在字音为 `textbook` / `reviewed` 时继续找同音的常用词典词，无匹配才暂停。
+
+候选生成器只读九册原稿、拼音标注和发音规则，不重写数据或决定；产物携带输入和脚本 SHA-256，过期时导出/TTS 阻断并提示重生成。候选本身不进入课文、词语表或显示内容，只改变朗读文本与相应音频缓存键。当前 pypinyin 词组词典未收录“罚站”“斜阳”，不能把它们伪标成正文词典来源。原 studio 和卡片保持既有选词方式；单字覆写依旧适用。
+
+`plan.json.characterContextSources`、`singleReadings` 与导出报告的同名字段分别列出来源条目数和单读详情；暂停另列 `pronunciationIssue`。这些数量按关卡出现次数统计，识字/写字和组诗共用字表重复计算。
 
 ### 声调不准时怎么办
 

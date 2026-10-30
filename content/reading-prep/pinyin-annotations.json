@@ -1,0 +1,6392 @@
+{
+  "schemaVersion": 1,
+  "generator": {
+    "name": "annotate_pinyin.py",
+    "version": "1.2.0",
+    "pypinyinVersion": "0.55.0",
+    "supplementalProvenance": {
+      "path": "prototype/lesson-studio.js",
+      "sourcePath": "deploy-output/family-learning-share-20261027-button-stability/site/lesson-studio.js",
+      "sha256": "3dd76ec11c4954e483cd3d8ab00461a2e2013e3dd3ded78e84faa9de7de477e8",
+      "selector": "DQS.families + DQS.writeChars[].w",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 1
+    },
+    "inputs": {
+      "chinese-g1down-2026.json": "1a0232c8db84f2c9f299b4d0d8051fd70b08e88adecb36cadc6ad07099286360",
+      "chinese-g1up-2026.json": "9a13eeccc7ea45798277b854c7b2b3cebfcceafc7094169365fd3117047421c0",
+      "chinese-g2down-2026.json": "89faf83c16af4b137e365a2aa7d94b5cede0e6a8ac63604235c0c73c02a6d499",
+      "chinese-g2up-2026.json": "d83159d266e0edb3a972eb707a7238225537470d1a466204a8867e76a1045a9b",
+      "chinese-g3down-2026.json": "9110c7d034a226d8f4b50d3a2a778874b51633d1241174a163e929bf00a656bd",
+      "chinese-g3up-2026.json": "67ca872fba177a5d3b7b2a559203462a8a6d84c8f37b3a3b40b5640dd1db6bb5",
+      "chinese-g4up-2026.json": "d20695c9e361ea81c755cd7dc7d5da290646d0b9e0a1642fcdbb50904015f441",
+      "chinese-g5up-2026.json": "3a3e9e5d24fbc613825ad8f45fe61564479cccc2405d26d8e7707f5521156280",
+      "chinese-g6up-2026.json": "08d2e6623bfb93c7459f762ff46eb9a00c2e45f4f65fba4b3ebeb680e85f6d90",
+      "pronunciation-rules.json": "05f58e64068c8176d23054d3433b57055376f9e5fb40dbb0e57329a902e1c894",
+      "../../scripts/reading-prep/supplemental-pinyin-items.json": "9903ce18e19dd1db783bf45c2afc7d2ddf7320d7eac603f7c915c1a07d2c64a4"
+    }
+  },
+  "policies": {
+    "priority": "教材明确拼音 > 人工核对 reviewed > 词典 dictionary；未决条目省略 pinyin。",
+    "toneSandhi": "教材词语表的标调惯例尚未确认；含一/不的词合并核对，建议统一按本调 yī / bù 处理。顶层 decision.yiBuToneStyle 填 original（本调）或 sandhi（变调），未决定为 null；不改 TTS 朗读文本。",
+    "review": "编辑 pinyin-review.json：逐条 decision 填完整拼音（例如 rè nao）或 hide，可覆盖全局一/不决定；重跑本脚本并重新导出。Markdown 勾选框仅供阅读，JSON decision 才会生效。",
+    "fingerprint": "decision 绑定条目、课文/词语上下文、教材已知读音、规则和词典版本；指纹变化的旧决定进入 staleDecisions，不自动沿用。",
+    "polyphonicCharacter": "缺注音字优先借同课/同册/九册教材的唯一读音；有多个教材读音时用本课词语词典读音筛选；上下文冲突或无法判断则隐藏。",
+    "dictionary": "词组词典已匹配的字不因异读送审；未收词仅检查内置常用多音字和九册教材/规则中实际出现至少两种读音的字。轻声仅认常见词或叠词，词典已标轻声且与规则一致则直接采用。"
+  },
+  "books": {
+    "chinese-g3down-2026": {
+      "lessons": {
+        "1": {
+          "words": {},
+          "recognitionCharacters": {
+            "鸳": {
+              "pinyin": "yuān",
+              "pinyinSource": "textbook"
+            },
+            "鸯": {
+              "pinyin": "yāng",
+              "pinyinSource": "textbook"
+            },
+            "惠": {
+              "pinyin": "huì",
+              "pinyinSource": "textbook"
+            },
+            "崇": {
+              "pinyin": "chóng",
+              "pinyinSource": "textbook"
+            },
+            "豚": {
+              "pinyin": "tún",
+              "pinyinSource": "textbook"
+            },
+            "曾": {
+              "pinyin": "zēng",
+              "pinyinSource": "textbook"
+            },
+            "梅": {
+              "pinyin": "méi",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "融": {
+              "pinyin": "róng",
+              "pinyinSource": "textbook"
+            },
+            "燕": {
+              "pinyin": "yàn",
+              "pinyinSource": "textbook"
+            },
+            "鸳": {
+              "pinyin": "yuān",
+              "pinyinSource": "textbook"
+            },
+            "鸯": {
+              "pinyin": "yāng",
+              "pinyinSource": "textbook"
+            },
+            "惠": {
+              "pinyin": "huì",
+              "pinyinSource": "textbook"
+            },
+            "崇": {
+              "pinyin": "chóng",
+              "pinyinSource": "textbook"
+            },
+            "芽": {
+              "pinyin": "yá",
+              "pinyinSource": "textbook"
+            },
+            "梅": {
+              "pinyin": "méi",
+              "pinyinSource": "textbook"
+            },
+            "泛": {
+              "pinyin": "fàn",
+              "pinyinSource": "textbook"
+            },
+            "减": {
+              "pinyin": "jiǎn",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "2": {
+          "words": {
+            "燕子": {
+              "pinyin": "yàn zi",
+              "pinyinSource": "dictionary"
+            },
+            "乌黑": {
+              "pinyin": "wū hēi",
+              "pinyinSource": "dictionary"
+            },
+            "剪刀": {
+              "pinyin": "jiǎn dāo",
+              "pinyinSource": "dictionary"
+            },
+            "活泼": {
+              "pinyin": "huó po",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:2:words:活泼"
+            },
+            "轻风": {
+              "pinyin": "qīng fēng",
+              "pinyinSource": "dictionary"
+            },
+            "洒落": {
+              "pinyin": "sǎ luò",
+              "pinyinSource": "dictionary"
+            },
+            "赶集": {
+              "pinyin": "gǎn jí",
+              "pinyinSource": "dictionary"
+            },
+            "光彩夺目": {
+              "pinyin": "guāng cǎi duó mù",
+              "pinyinSource": "dictionary"
+            },
+            "春光": {
+              "pinyin": "chūn guāng",
+              "pinyinSource": "dictionary"
+            },
+            "偶尔": {
+              "pinyin": "ǒu ěr",
+              "pinyinSource": "dictionary"
+            },
+            "闲散": {
+              "pinyin": "xián sǎn",
+              "pinyinSource": "dictionary"
+            },
+            "纤细": {
+              "pinyin": "xiān xì",
+              "pinyinSource": "dictionary"
+            },
+            "电线": {
+              "pinyin": "diàn xiàn",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "凑": {
+              "pinyin": "còu",
+              "pinyinSource": "textbook"
+            },
+            "伶": {
+              "pinyin": "líng",
+              "pinyinSource": "textbook"
+            },
+            "俐": {
+              "pinyin": "lì",
+              "pinyinSource": "textbook"
+            },
+            "旷": {
+              "pinyin": "kuàng",
+              "pinyinSource": "textbook"
+            },
+            "横": {
+              "pinyin": "héng",
+              "pinyinSource": "textbook"
+            },
+            "翼": {
+              "pinyin": "yì",
+              "pinyinSource": "textbook"
+            },
+            "漾": {
+              "pinyin": "yàng",
+              "pinyinSource": "textbook"
+            },
+            "倦": {
+              "pinyin": "juàn",
+              "pinyinSource": "textbook"
+            },
+            "散": {
+              "pinyin": "sǎn",
+              "pinyinSource": "textbook"
+            },
+            "纤": {
+              "pinyin": "xiān",
+              "pinyinSource": "textbook"
+            },
+            "杆": {
+              "pinyin": "gān",
+              "pinyinSource": "textbook"
+            },
+            "痕": {
+              "pinyin": "hén",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "凑": {
+              "pinyin": "còu",
+              "pinyinSource": "textbook"
+            },
+            "泼": {
+              "pinyin": "pō",
+              "pinyinSource": "textbook"
+            },
+            "集": {
+              "pinyin": "jí",
+              "pinyinSource": "textbook"
+            },
+            "偶": {
+              "pinyin": "ǒu",
+              "pinyinSource": "textbook"
+            },
+            "尔": {
+              "pinyin": "ěr",
+              "pinyinSource": "textbook"
+            },
+            "沾": {
+              "pinyin": "zhān",
+              "pinyinSource": "textbook"
+            },
+            "闲": {
+              "pinyin": "xián",
+              "pinyinSource": "textbook"
+            },
+            "纤": {
+              "pinyin": "xiān",
+              "pinyinSource": "textbook"
+            },
+            "杆": {
+              "pinyin": "gān",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "3": {
+          "words": {
+            "荷花": {
+              "pinyin": "hé huā",
+              "pinyinSource": "dictionary"
+            },
+            "公园": {
+              "pinyin": "gōng yuán",
+              "pinyinSource": "dictionary"
+            },
+            "清香": {
+              "pinyin": "qīng xiāng",
+              "pinyinSource": "dictionary"
+            },
+            "赶紧": {
+              "pinyin": "gǎn jǐn",
+              "pinyinSource": "dictionary"
+            },
+            "荷叶": {
+              "pinyin": "hé yè",
+              "pinyinSource": "dictionary"
+            },
+            "莲蓬": {
+              "pinyin": "lián peng",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:3:words:莲蓬"
+            },
+            "破裂": {
+              "pinyin": "pò liè",
+              "pinyinSource": "dictionary"
+            },
+            "姿势": {
+              "pinyin": "zī shì",
+              "pinyinSource": "dictionary"
+            },
+            "画家": {
+              "pinyin": "huà jiā",
+              "pinyinSource": "dictionary"
+            },
+            "本领": {
+              "pinyin": "běn lǐng",
+              "pinyinSource": "dictionary"
+            },
+            "了不起": {
+              "pinyin": "liǎo bu qǐ",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:3:words:了不起"
+            },
+            "微风": {
+              "pinyin": "wēi fēng",
+              "pinyinSource": "dictionary"
+            },
+            "停止": {
+              "pinyin": "tíng zhǐ",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "挨": {
+              "pinyin": "āi",
+              "pinyinSource": "textbook"
+            },
+            "蓬": {
+              "pinyin": "péng",
+              "pinyinSource": "textbook"
+            },
+            "胀": {
+              "pinyin": "zhàng",
+              "pinyinSource": "textbook"
+            },
+            "裳": {
+              "pinyin": "shang",
+              "pinyinSource": "textbook"
+            },
+            "翩": {
+              "pinyin": "piān",
+              "pinyinSource": "textbook"
+            },
+            "蜻": {
+              "pinyin": "qīng",
+              "pinyinSource": "textbook"
+            },
+            "蜓": {
+              "pinyin": "tíng",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "荷": {
+              "pinyin": "hé",
+              "pinyinSource": "textbook"
+            },
+            "紧": {
+              "pinyin": "jǐn",
+              "pinyinSource": "textbook"
+            },
+            "挨": {
+              "pinyin": "āi",
+              "pinyinSource": "textbook"
+            },
+            "蓬": {
+              "pinyin": "péng",
+              "pinyinSource": "textbook"
+            },
+            "胀": {
+              "pinyin": "zhàng",
+              "pinyinSource": "textbook"
+            },
+            "裂": {
+              "pinyin": "liè",
+              "pinyinSource": "textbook"
+            },
+            "势": {
+              "pinyin": "shì",
+              "pinyinSource": "textbook"
+            },
+            "微": {
+              "pinyin": "wēi",
+              "pinyinSource": "textbook"
+            },
+            "记": {
+              "pinyin": "jì",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "4": {
+          "words": {},
+          "recognitionCharacters": {
+            "录": {
+              "pinyin": "lù",
+              "pinyinSource": "textbook"
+            },
+            "琢": {
+              "pinyin": "zuó",
+              "pinyinSource": "textbook"
+            },
+            "敏": {
+              "pinyin": "mǐn",
+              "pinyinSource": "textbook"
+            },
+            "款": {
+              "pinyin": "kuǎn",
+              "pinyinSource": "textbook"
+            },
+            "膜": {
+              "pinyin": "mó",
+              "pinyinSource": "textbook"
+            },
+            "瞎": {
+              "pinyin": "xiā",
+              "pinyinSource": "textbook"
+            },
+            "益": {
+              "pinyin": "yì",
+              "pinyinSource": "textbook"
+            },
+            "辆": {
+              "pinyin": "liàng",
+              "pinyinSource": "textbook"
+            },
+            "蚂": {
+              "pinyin": "mà",
+              "pinyinSource": "textbook"
+            },
+            "斑": {
+              "pinyin": "bān",
+              "pinyinSource": "textbook"
+            },
+            "褐": {
+              "pinyin": "hè",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {},
+          "supplementalWords": {}
+        },
+        "5": {
+          "words": {},
+          "recognitionCharacters": {
+            "耕": {
+              "pinyin": "gēng",
+              "pinyinSource": "textbook"
+            },
+            "释": {
+              "pinyin": "shì",
+              "pinyinSource": "textbook"
+            },
+            "冀": {
+              "pinyin": "jì",
+              "pinyinSource": "textbook"
+            },
+            "为": {
+              "pinyin": "wéi",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "守": {
+              "pinyin": "shǒu",
+              "pinyinSource": "textbook"
+            },
+            "株": {
+              "pinyin": "zhū",
+              "pinyinSource": "textbook"
+            },
+            "待": {
+              "pinyin": "dài",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:5:writingCharacters:待"
+            },
+            "宋": {
+              "pinyin": "sòng",
+              "pinyinSource": "textbook"
+            },
+            "耕": {
+              "pinyin": "gēng",
+              "pinyinSource": "textbook"
+            },
+            "折": {
+              "pinyin": "zhē",
+              "pinyinSource": "textbook"
+            },
+            "颈": {
+              "pinyin": "jǐng",
+              "pinyinSource": "textbook"
+            },
+            "释": {
+              "pinyin": "shì",
+              "pinyinSource": "textbook"
+            },
+            "其": {
+              "pinyin": "qí",
+              "pinyinSource": "textbook"
+            },
+            "复": {
+              "pinyin": "fù",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "6": {
+          "words": {
+            "友情": {
+              "pinyin": "yǒu qíng",
+              "pinyinSource": "dictionary"
+            },
+            "认识": {
+              "pinyin": "rèn shi",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:6:words:认识"
+            },
+            "忠诚": {
+              "pinyin": "zhōng chéng",
+              "pinyinSource": "dictionary"
+            },
+            "驯良": {
+              "pinyin": "xùn liáng",
+              "pinyinSource": "dictionary"
+            },
+            "善良": {
+              "pinyin": "shàn liáng",
+              "pinyinSource": "dictionary"
+            },
+            "温和": {
+              "pinyin": "wēn hé",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:6:words:温和"
+            },
+            "答谢": {
+              "pinyin": "dá xiè",
+              "pinyinSource": "dictionary"
+            },
+            "花言巧语": {
+              "pinyin": "huā yán qiǎo yǔ",
+              "pinyinSource": "dictionary"
+            },
+            "着急": {
+              "pinyin": "zháo jí",
+              "pinyinSource": "dictionary"
+            },
+            "相信": {
+              "pinyin": "xiāng xìn",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:6:words:相信"
+            },
+            "尘土": {
+              "pinyin": "chén tǔ",
+              "pinyinSource": "dictionary"
+            },
+            "凶恶": {
+              "pinyin": "xiōng è",
+              "pinyinSource": "dictionary"
+            },
+            "恶狠狠": {
+              "pinyin": "è hěn hěn",
+              "pinyinSource": "dictionary"
+            },
+            "猎人": {
+              "pinyin": "liè rén",
+              "pinyinSource": "dictionary"
+            },
+            "收拾": {
+              "pinyin": "shōu shi",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:6:words:收拾"
+            }
+          },
+          "recognitionCharacters": {
+            "模": {
+              "pinyin": "mú",
+              "pinyinSource": "textbook"
+            },
+            "驯": {
+              "pinyin": "xùn",
+              "pinyinSource": "textbook"
+            },
+            "良": {
+              "pinyin": "liáng",
+              "pinyinSource": "textbook"
+            },
+            "毫": {
+              "pinyin": "háo",
+              "pinyinSource": "textbook"
+            },
+            "犹": {
+              "pinyin": "yóu",
+              "pinyinSource": "textbook"
+            },
+            "豫": {
+              "pinyin": "yù",
+              "pinyinSource": "textbook"
+            },
+            "狡": {
+              "pinyin": "jiǎo",
+              "pinyinSource": "textbook"
+            },
+            "猾": {
+              "pinyin": "huá",
+              "pinyinSource": "textbook"
+            },
+            "凶": {
+              "pinyin": "xiōng",
+              "pinyinSource": "textbook"
+            },
+            "恶": {
+              "pinyin": "è",
+              "pinyinSource": "textbook"
+            },
+            "相": {
+              "pinyin": "xiàng",
+              "pinyinSource": "textbook"
+            },
+            "狠": {
+              "pinyin": "hěn",
+              "pinyinSource": "textbook"
+            },
+            "猎": {
+              "pinyin": "liè",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "装": {
+              "pinyin": "zhuāng",
+              "pinyinSource": "textbook"
+            },
+            "驯": {
+              "pinyin": "xùn",
+              "pinyinSource": "textbook"
+            },
+            "良": {
+              "pinyin": "liáng",
+              "pinyinSource": "textbook"
+            },
+            "善": {
+              "pinyin": "shàn",
+              "pinyinSource": "textbook"
+            },
+            "伸": {
+              "pinyin": "shēn",
+              "pinyinSource": "textbook"
+            },
+            "谢": {
+              "pinyin": "xiè",
+              "pinyinSource": "textbook"
+            },
+            "尘": {
+              "pinyin": "chén",
+              "pinyinSource": "textbook"
+            },
+            "凶": {
+              "pinyin": "xiōng",
+              "pinyinSource": "textbook"
+            },
+            "恶": {
+              "pinyin": "è",
+              "pinyinSource": "textbook"
+            },
+            "狠": {
+              "pinyin": "hěn",
+              "pinyinSource": "textbook"
+            },
+            "猎": {
+              "pinyin": "liè",
+              "pinyinSource": "textbook"
+            },
+            "拾": {
+              "pinyin": "shí",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "7": {
+          "words": {
+            "痛快": {
+              "pinyin": "tòng kuai",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:7:words:痛快"
+            },
+            "匀称": {
+              "pinyin": "yún chèn",
+              "pinyinSource": "dictionary"
+            },
+            "精美": {
+              "pinyin": "jīng měi",
+              "pinyinSource": "dictionary"
+            },
+            "别致": {
+              "pinyin": "bié zhì",
+              "pinyinSource": "dictionary"
+            },
+            "眉头": {
+              "pinyin": "méi tóu",
+              "pinyinSource": "dictionary"
+            },
+            "没精打采": {
+              "pinyin": "méi jīng dǎ cǎi",
+              "pinyinSource": "dictionary"
+            },
+            "机灵": {
+              "pinyin": "jī ling",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:7:words:机灵"
+            },
+            "灰心丧气": {
+              "pinyin": "huī xīn sàng qì",
+              "pinyinSource": "dictionary"
+            },
+            "机会": {
+              "pinyin": "jī huì",
+              "pinyinSource": "dictionary"
+            },
+            "叹气": {
+              "pinyin": "tàn qì",
+              "pinyinSource": "dictionary"
+            },
+            "逃生": {
+              "pinyin": "táo shēng",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "匀": {
+              "pinyin": "yún",
+              "pinyinSource": "textbook"
+            },
+            "称": {
+              "pinyin": "chèn",
+              "pinyinSource": "textbook"
+            },
+            "皱": {
+              "pinyin": "zhòu",
+              "pinyinSource": "textbook"
+            },
+            "配": {
+              "pinyin": "pèi",
+              "pinyinSource": "textbook"
+            },
+            "逼": {
+              "pinyin": "bī",
+              "pinyinSource": "textbook"
+            },
+            "撒": {
+              "pinyin": "sā",
+              "pinyinSource": "textbook"
+            },
+            "扯": {
+              "pinyin": "chě",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "渴": {
+              "pinyin": "kě",
+              "pinyinSource": "textbook"
+            },
+            "喝": {
+              "pinyin": "hē",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:7:writingCharacters:喝"
+            },
+            "匀": {
+              "pinyin": "yún",
+              "pinyinSource": "textbook"
+            },
+            "称": {
+              "pinyin": "chèn",
+              "pinyinSource": "textbook"
+            },
+            "致": {
+              "pinyin": "zhì",
+              "pinyinSource": "textbook"
+            },
+            "束": {
+              "pinyin": "shù",
+              "pinyinSource": "textbook"
+            },
+            "配": {
+              "pinyin": "pèi",
+              "pinyinSource": "textbook"
+            },
+            "甩": {
+              "pinyin": "shuǎi",
+              "pinyinSource": "textbook"
+            },
+            "丧": {
+              "pinyin": "sàng",
+              "pinyinSource": "textbook"
+            },
+            "追": {
+              "pinyin": "zhuī",
+              "pinyinSource": "textbook"
+            },
+            "扯": {
+              "pinyin": "chě",
+              "pinyinSource": "textbook"
+            },
+            "叹": {
+              "pinyin": "tàn",
+              "pinyinSource": "textbook"
+            },
+            "逃": {
+              "pinyin": "táo",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "8": {
+          "words": {},
+          "recognitionCharacters": {
+            "滔": {
+              "pinyin": "tāo",
+              "pinyinSource": "textbook"
+            },
+            "贯": {
+              "pinyin": "guàn",
+              "pinyinSource": "textbook"
+            },
+            "妇": {
+              "pinyin": "fù",
+              "pinyinSource": "textbook"
+            },
+            "垫": {
+              "pinyin": "diàn",
+              "pinyinSource": "textbook"
+            },
+            "忧": {
+              "pinyin": "yōu",
+              "pinyinSource": "textbook"
+            },
+            "虑": {
+              "pinyin": "lǜ",
+              "pinyinSource": "textbook"
+            },
+            "凭": {
+              "pinyin": "píng",
+              "pinyinSource": "textbook"
+            },
+            "哲": {
+              "pinyin": "zhé",
+              "pinyinSource": "textbook"
+            },
+            "遵": {
+              "pinyin": "zūn",
+              "pinyinSource": "textbook"
+            },
+            "循": {
+              "pinyin": "xún",
+              "pinyinSource": "textbook"
+            },
+            "逸": {
+              "pinyin": "yì",
+              "pinyinSource": "textbook"
+            },
+            "尊": {
+              "pinyin": "zūn",
+              "pinyinSource": "textbook"
+            },
+            "衰": {
+              "pinyin": "shuāi",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {},
+          "supplementalWords": {}
+        },
+        "9": {
+          "words": {
+            "宁静": {
+              "pinyin": "níng jìng",
+              "pinyinSource": "dictionary"
+            },
+            "器官": {
+              "pinyin": "qì guān",
+              "pinyinSource": "dictionary"
+            },
+            "是否": {
+              "pinyin": "shì fǒu",
+              "pinyinSource": "dictionary"
+            },
+            "窃窃私语": {
+              "pinyin": "qiè qiè sī yǔ",
+              "pinyinSource": "dictionary"
+            },
+            "危险": {
+              "pinyin": "wēi xiǎn",
+              "pinyinSource": "dictionary"
+            },
+            "方法": {
+              "pinyin": "fāng fǎ",
+              "pinyinSource": "dictionary"
+            },
+            "肌肉": {
+              "pinyin": "jī ròu",
+              "pinyinSource": "dictionary"
+            },
+            "攻击": {
+              "pinyin": "gōng jī",
+              "pinyinSource": "dictionary"
+            },
+            "利用": {
+              "pinyin": "lì yòng",
+              "pinyinSource": "dictionary"
+            },
+            "后退": {
+              "pinyin": "hòu tuì",
+              "pinyinSource": "dictionary"
+            },
+            "免费": {
+              "pinyin": "miǎn fèi",
+              "pinyinSource": "dictionary"
+            },
+            "差异": {
+              "pinyin": "chā yì",
+              "pinyinSource": "dictionary"
+            },
+            "清楚": {
+              "pinyin": "qīng chu",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:9:words:清楚"
+            },
+            "奇异": {
+              "pinyin": "qí yì",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "否": {
+              "pinyin": "fǒu",
+              "pinyinSource": "textbook"
+            },
+            "窃": {
+              "pinyin": "qiè",
+              "pinyinSource": "textbook"
+            },
+            "私": {
+              "pinyin": "sī",
+              "pinyinSource": "textbook"
+            },
+            "肌": {
+              "pinyin": "jī",
+              "pinyinSource": "textbook"
+            },
+            "缩": {
+              "pinyin": "suō",
+              "pinyinSource": "textbook"
+            },
+            "免": {
+              "pinyin": "miǎn",
+              "pinyinSource": "textbook"
+            },
+            "差": {
+              "pinyin": "chā",
+              "pinyinSource": "textbook"
+            },
+            "藻": {
+              "pinyin": "zǎo",
+              "pinyinSource": "textbook"
+            },
+            "达": {
+              "pinyin": "dá",
+              "pinyinSource": "textbook"
+            },
+            "胞": {
+              "pinyin": "bāo",
+              "pinyinSource": "textbook"
+            },
+            "煤": {
+              "pinyin": "méi",
+              "pinyinSource": "textbook"
+            },
+            "储": {
+              "pinyin": "chǔ",
+              "pinyinSource": "textbook"
+            },
+            "属": {
+              "pinyin": "shǔ",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "官": {
+              "pinyin": "guān",
+              "pinyinSource": "textbook"
+            },
+            "否": {
+              "pinyin": "fǒu",
+              "pinyinSource": "textbook"
+            },
+            "窃": {
+              "pinyin": "qiè",
+              "pinyinSource": "textbook"
+            },
+            "私": {
+              "pinyin": "sī",
+              "pinyinSource": "textbook"
+            },
+            "汪": {
+              "pinyin": "wāng",
+              "pinyinSource": "textbook"
+            },
+            "危": {
+              "pinyin": "wēi",
+              "pinyinSource": "textbook"
+            },
+            "险": {
+              "pinyin": "xiǎn",
+              "pinyinSource": "textbook"
+            },
+            "肌": {
+              "pinyin": "jī",
+              "pinyinSource": "textbook"
+            },
+            "攻": {
+              "pinyin": "gōng",
+              "pinyinSource": "textbook"
+            },
+            "免": {
+              "pinyin": "miǎn",
+              "pinyinSource": "textbook"
+            },
+            "费": {
+              "pinyin": "fèi",
+              "pinyinSource": "textbook"
+            },
+            "异": {
+              "pinyin": "yì",
+              "pinyinSource": "textbook"
+            },
+            "达": {
+              "pinyin": "dá",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "10": {
+          "words": {
+            "实验": {
+              "pinyin": "shí yàn",
+              "pinyinSource": "dictionary"
+            },
+            "验证": {
+              "pinyin": "yàn zhèng",
+              "pinyinSource": "dictionary"
+            },
+            "记号": {
+              "pinyin": "jì hao",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:10:words:记号"
+            },
+            "减少": {
+              "pinyin": "jiǎn shǎo",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:10:words:减少"
+            },
+            "阻力": {
+              "pinyin": "zǔ lì",
+              "pinyinSource": "dictionary"
+            },
+            "大约": {
+              "pinyin": "dà yuē",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:10:words:大约"
+            },
+            "包括": {
+              "pinyin": "bāo kuò",
+              "pinyinSource": "dictionary"
+            },
+            "检查": {
+              "pinyin": "jiǎn chá",
+              "pinyinSource": "dictionary"
+            },
+            "至少": {
+              "pinyin": "zhì shǎo",
+              "pinyinSource": "dictionary"
+            },
+            "迷失": {
+              "pinyin": "mí shī",
+              "pinyinSource": "dictionary"
+            },
+            "无误": {
+              "pinyin": "wú wù",
+              "pinyinSource": "dictionary"
+            },
+            "逆风": {
+              "pinyin": "nì fēng",
+              "pinyinSource": "dictionary"
+            },
+            "陌生": {
+              "pinyin": "mò shēng",
+              "pinyinSource": "dictionary"
+            },
+            "景物": {
+              "pinyin": "jǐng wù",
+              "pinyinSource": "dictionary"
+            },
+            "能力": {
+              "pinyin": "néng lì",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "证": {
+              "pinyin": "zhèng",
+              "pinyinSource": "textbook"
+            },
+            "概": {
+              "pinyin": "gài",
+              "pinyinSource": "textbook"
+            },
+            "阻": {
+              "pinyin": "zǔ",
+              "pinyinSource": "textbook"
+            },
+            "误": {
+              "pinyin": "wù",
+              "pinyinSource": "textbook"
+            },
+            "逆": {
+              "pinyin": "nì",
+              "pinyinSource": "textbook"
+            },
+            "殊": {
+              "pinyin": "shū",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "验": {
+              "pinyin": "yàn",
+              "pinyinSource": "textbook"
+            },
+            "证": {
+              "pinyin": "zhèng",
+              "pinyinSource": "textbook"
+            },
+            "阻": {
+              "pinyin": "zǔ",
+              "pinyinSource": "textbook"
+            },
+            "约": {
+              "pinyin": "yuē",
+              "pinyinSource": "textbook"
+            },
+            "括": {
+              "pinyin": "kuò",
+              "pinyinSource": "textbook"
+            },
+            "检": {
+              "pinyin": "jiǎn",
+              "pinyinSource": "textbook"
+            },
+            "查": {
+              "pinyin": "chá",
+              "pinyinSource": "textbook"
+            },
+            "迷": {
+              "pinyin": "mí",
+              "pinyinSource": "textbook"
+            },
+            "误": {
+              "pinyin": "wù",
+              "pinyinSource": "textbook"
+            },
+            "逆": {
+              "pinyin": "nì",
+              "pinyinSource": "textbook"
+            },
+            "陌": {
+              "pinyin": "mò",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "11": {
+          "words": {},
+          "recognitionCharacters": {
+            "隙": {
+              "pinyin": "xì",
+              "pinyinSource": "textbook"
+            },
+            "稍": {
+              "pinyin": "shāo",
+              "pinyinSource": "textbook"
+            },
+            "逐": {
+              "pinyin": "zhú",
+              "pinyinSource": "textbook"
+            },
+            "副": {
+              "pinyin": "fù",
+              "pinyinSource": "textbook"
+            },
+            "钳": {
+              "pinyin": "qián",
+              "pinyinSource": "textbook"
+            },
+            "翘": {
+              "pinyin": "qiào",
+              "pinyinSource": "textbook"
+            },
+            "搏": {
+              "pinyin": "bó",
+              "pinyinSource": "textbook"
+            },
+            "捡": {
+              "pinyin": "jiǎn",
+              "pinyinSource": "textbook"
+            },
+            "较": {
+              "pinyin": "jiào",
+              "pinyinSource": "textbook"
+            },
+            "腹": {
+              "pinyin": "fù",
+              "pinyinSource": "textbook"
+            },
+            "卵": {
+              "pinyin": "luǎn",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {},
+          "supplementalWords": {}
+        },
+        "12": {
+          "words": {},
+          "recognitionCharacters": {
+            "牧": {
+              "pinyin": "mù",
+              "pinyinSource": "textbook"
+            },
+            "魂": {
+              "pinyin": "hún",
+              "pinyinSource": "textbook"
+            },
+            "酒": {
+              "pinyin": "jiǔ",
+              "pinyinSource": "textbook"
+            },
+            "兄": {
+              "pinyin": "xiōng",
+              "pinyinSource": "textbook"
+            },
+            "佳": {
+              "pinyin": "jiā",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "旧": {
+              "pinyin": "jiù",
+              "pinyinSource": "textbook"
+            },
+            "符": {
+              "pinyin": "fú",
+              "pinyinSource": "textbook"
+            },
+            "牧": {
+              "pinyin": "mù",
+              "pinyinSource": "textbook"
+            },
+            "纷": {
+              "pinyin": "fēn",
+              "pinyinSource": "textbook"
+            },
+            "魂": {
+              "pinyin": "hún",
+              "pinyinSource": "textbook"
+            },
+            "借": {
+              "pinyin": "jiè",
+              "pinyinSource": "textbook"
+            },
+            "酒": {
+              "pinyin": "jiǔ",
+              "pinyinSource": "textbook"
+            },
+            "遥": {
+              "pinyin": "yáo",
+              "pinyinSource": "textbook"
+            },
+            "兄": {
+              "pinyin": "xiōng",
+              "pinyinSource": "textbook"
+            },
+            "逢": {
+              "pinyin": "féng",
+              "pinyinSource": "textbook"
+            },
+            "佳": {
+              "pinyin": "jiā",
+              "pinyinSource": "textbook"
+            },
+            "倍": {
+              "pinyin": "bèi",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "13": {
+          "words": {
+            "文明": {
+              "pinyin": "wén míng",
+              "pinyinSource": "dictionary"
+            },
+            "伟大": {
+              "pinyin": "wěi dà",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:13:words:伟大"
+            },
+            "贡献": {
+              "pinyin": "gòng xiàn",
+              "pinyinSource": "dictionary"
+            },
+            "祖先": {
+              "pinyin": "zǔ xiān",
+              "pinyinSource": "dictionary"
+            },
+            "创造": {
+              "pinyin": "chuàng zào",
+              "pinyinSource": "dictionary"
+            },
+            "材料": {
+              "pinyin": "cái liào",
+              "pinyinSource": "dictionary"
+            },
+            "尤其": {
+              "pinyin": "yóu qí",
+              "pinyinSource": "dictionary"
+            },
+            "保存": {
+              "pinyin": "bǎo cún",
+              "pinyinSource": "dictionary"
+            },
+            "吸收": {
+              "pinyin": "xī shōu",
+              "pinyinSource": "dictionary"
+            },
+            "积累": {
+              "pinyin": "jī lěi",
+              "pinyinSource": "dictionary"
+            },
+            "经验": {
+              "pinyin": "jīng yàn",
+              "pinyinSource": "dictionary"
+            },
+            "改进": {
+              "pinyin": "gǎi jìn",
+              "pinyinSource": "dictionary"
+            },
+            "价格": {
+              "pinyin": "jià gé",
+              "pinyinSource": "dictionary"
+            },
+            "便宜": {
+              "pinyin": "pián yi",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:13:words:便宜"
+            },
+            "满足": {
+              "pinyin": "mǎn zú",
+              "pinyinSource": "dictionary"
+            },
+            "促进": {
+              "pinyin": "cù jìn",
+              "pinyinSource": "dictionary"
+            },
+            "社会": {
+              "pinyin": "shè huì",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "贡": {
+              "pinyin": "gòng",
+              "pinyinSource": "textbook"
+            },
+            "尤": {
+              "pinyin": "yóu",
+              "pinyinSource": "textbook"
+            },
+            "笨": {
+              "pinyin": "bèn",
+              "pinyinSource": "textbook"
+            },
+            "阅": {
+              "pinyin": "yuè",
+              "pinyinSource": "textbook"
+            },
+            "存": {
+              "pinyin": "cún",
+              "pinyinSource": "textbook"
+            },
+            "蔡": {
+              "pinyin": "cài",
+              "pinyinSource": "textbook"
+            },
+            "伦": {
+              "pinyin": "lún",
+              "pinyinSource": "textbook"
+            },
+            "累": {
+              "pinyin": "lěi",
+              "pinyinSource": "textbook"
+            },
+            "切": {
+              "pinyin": "qiē",
+              "pinyinSource": "textbook"
+            },
+            "价": {
+              "pinyin": "jià",
+              "pinyinSource": "textbook"
+            },
+            "便": {
+              "pinyin": "pián",
+              "pinyinSource": "textbook"
+            },
+            "鲜": {
+              "pinyin": "xiǎn",
+              "pinyinSource": "textbook"
+            },
+            "社": {
+              "pinyin": "shè",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "伟": {
+              "pinyin": "wěi",
+              "pinyinSource": "textbook"
+            },
+            "贡": {
+              "pinyin": "gòng",
+              "pinyinSource": "textbook"
+            },
+            "献": {
+              "pinyin": "xiàn",
+              "pinyinSource": "textbook"
+            },
+            "创": {
+              "pinyin": "chuàng",
+              "pinyinSource": "textbook"
+            },
+            "尤": {
+              "pinyin": "yóu",
+              "pinyinSource": "textbook"
+            },
+            "存": {
+              "pinyin": "cún",
+              "pinyinSource": "textbook"
+            },
+            "累": {
+              "pinyin": "lěi",
+              "pinyinSource": "textbook"
+            },
+            "改": {
+              "pinyin": "gǎi",
+              "pinyinSource": "dictionary"
+            },
+            "价": {
+              "pinyin": "jià",
+              "pinyinSource": "textbook"
+            },
+            "促": {
+              "pinyin": "cù",
+              "pinyinSource": "textbook"
+            },
+            "社": {
+              "pinyin": "shè",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "14": {
+          "words": {
+            "闻名": {
+              "pinyin": "wén míng",
+              "pinyinSource": "dictionary"
+            },
+            "设计": {
+              "pinyin": "shè jì",
+              "pinyinSource": "dictionary"
+            },
+            "创举": {
+              "pinyin": "chuàng jǔ",
+              "pinyinSource": "dictionary"
+            },
+            "减轻": {
+              "pinyin": "jiǎn qīng",
+              "pinyinSource": "dictionary"
+            },
+            "不但": {
+              "pinyin": "bú dàn",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:14:words:不但"
+            },
+            "坚固": {
+              "pinyin": "jiān gù",
+              "pinyinSource": "dictionary"
+            },
+            "而且": {
+              "pinyin": "ér qiě",
+              "pinyinSource": "dictionary"
+            },
+            "美观": {
+              "pinyin": "měi guān",
+              "pinyinSource": "dictionary"
+            },
+            "体现": {
+              "pinyin": "tǐ xiàn",
+              "pinyinSource": "dictionary"
+            },
+            "才干": {
+              "pinyin": "cái gàn",
+              "pinyinSource": "dictionary"
+            },
+            "宝贵": {
+              "pinyin": "bǎo guì",
+              "pinyinSource": "dictionary"
+            },
+            "历史": {
+              "pinyin": "lì shǐ",
+              "pinyinSource": "dictionary"
+            },
+            "文化": {
+              "pinyin": "wén huà",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "县": {
+              "pinyin": "xiàn",
+              "pinyinSource": "textbook"
+            },
+            "拱": {
+              "pinyin": "gǒng",
+              "pinyinSource": "textbook"
+            },
+            "济": {
+              "pinyin": "jì",
+              "pinyinSource": "textbook"
+            },
+            "匠": {
+              "pinyin": "jiàng",
+              "pinyinSource": "textbook"
+            },
+            "砌": {
+              "pinyin": "qì",
+              "pinyinSource": "textbook"
+            },
+            "栏": {
+              "pinyin": "lán",
+              "pinyinSource": "textbook"
+            },
+            "爪": {
+              "pinyin": "zhǎo",
+              "pinyinSource": "textbook"
+            },
+            "抵": {
+              "pinyin": "dǐ",
+              "pinyinSource": "textbook"
+            },
+            "智": {
+              "pinyin": "zhì",
+              "pinyinSource": "textbook"
+            },
+            "慧": {
+              "pinyin": "huì",
+              "pinyinSource": "textbook"
+            },
+            "历": {
+              "pinyin": "lì",
+              "pinyinSource": "textbook"
+            },
+            "遗": {
+              "pinyin": "yí",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "赵": {
+              "pinyin": "zhào",
+              "pinyinSource": "textbook"
+            },
+            "桥": {
+              "pinyin": "qiáo",
+              "pinyinSource": "dictionary"
+            },
+            "拱": {
+              "pinyin": "gǒng",
+              "pinyinSource": "textbook"
+            },
+            "济": {
+              "pinyin": "jì",
+              "pinyinSource": "textbook"
+            },
+            "设": {
+              "pinyin": "shè",
+              "pinyinSource": "textbook"
+            },
+            "计": {
+              "pinyin": "jì",
+              "pinyinSource": "dictionary"
+            },
+            "史": {
+              "pinyin": "shǐ",
+              "pinyinSource": "textbook"
+            },
+            "坚": {
+              "pinyin": "jiān",
+              "pinyinSource": "textbook"
+            },
+            "固": {
+              "pinyin": "gù",
+              "pinyinSource": "textbook"
+            },
+            "且": {
+              "pinyin": "qiě",
+              "pinyinSource": "textbook"
+            },
+            "栏": {
+              "pinyin": "lán",
+              "pinyinSource": "textbook"
+            },
+            "贵": {
+              "pinyin": "guì",
+              "pinyinSource": "textbook"
+            },
+            "历": {
+              "pinyin": "lì",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "15": {
+          "words": {},
+          "recognitionCharacters": {
+            "择": {
+              "pinyin": "zé",
+              "pinyinSource": "textbook"
+            },
+            "摊": {
+              "pinyin": "tān",
+              "pinyinSource": "textbook"
+            },
+            "贩": {
+              "pinyin": "fàn",
+              "pinyinSource": "textbook"
+            },
+            "吏": {
+              "pinyin": "lì",
+              "pinyinSource": "textbook"
+            },
+            "驴": {
+              "pinyin": "lǘ",
+              "pinyinSource": "textbook"
+            },
+            "乘": {
+              "pinyin": "shèng",
+              "pinyinSource": "textbook"
+            },
+            "笼": {
+              "pinyin": "lóng",
+              "pinyinSource": "textbook"
+            },
+            "拽": {
+              "pinyin": "zhuài",
+              "pinyinSource": "textbook"
+            },
+            "扰": {
+              "pinyin": "rǎo",
+              "pinyinSource": "textbook"
+            },
+            "貌": {
+              "pinyin": "mào",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {},
+          "supplementalWords": {}
+        },
+        "16": {
+          "words": {
+            "胡萝卜": {
+              "pinyin": "hú luó bo",
+              "pinyinSource": "dictionary"
+            },
+            "胡子": {
+              "pinyin": "hú zi",
+              "pinyinSource": "dictionary"
+            },
+            "发愁": {
+              "pinyin": "fā chóu",
+              "pinyinSource": "dictionary"
+            },
+            "浓密": {
+              "pinyin": "nóng mì",
+              "pinyinSource": "dictionary"
+            },
+            "面包": {
+              "pinyin": "miàn bāo",
+              "pinyinSource": "dictionary"
+            },
+            "完全": {
+              "pinyin": "wán quán",
+              "pinyinSource": "dictionary"
+            },
+            "结实": {
+              "pinyin": "jiē shi",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:16:words:结实"
+            },
+            "确定": {
+              "pinyin": "què dìng",
+              "pinyinSource": "dictionary"
+            },
+            "足够": {
+              "pinyin": "zú gòu",
+              "pinyinSource": "dictionary"
+            },
+            "确实": {
+              "pinyin": "què shí",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "萝": {
+              "pinyin": "luó",
+              "pinyinSource": "textbook"
+            },
+            "卜": {
+              "pinyin": "bo",
+              "pinyinSource": "textbook"
+            },
+            "愁": {
+              "pinyin": "chóu",
+              "pinyinSource": "textbook"
+            },
+            "晾": {
+              "pinyin": "liàng",
+              "pinyinSource": "textbook"
+            },
+            "尿": {
+              "pinyin": "niào",
+              "pinyinSource": "textbook"
+            },
+            "肩": {
+              "pinyin": "jiān",
+              "pinyinSource": "textbook"
+            },
+            "掏": {
+              "pinyin": "tāo",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "萝": {
+              "pinyin": "luó",
+              "pinyinSource": "textbook"
+            },
+            "卜": {
+              "pinyin": "bo",
+              "pinyinSource": "textbook"
+            },
+            "愁": {
+              "pinyin": "chóu",
+              "pinyinSource": "textbook"
+            },
+            "浓": {
+              "pinyin": "nóng",
+              "pinyinSource": "textbook"
+            },
+            "够": {
+              "pinyin": "gòu",
+              "pinyinSource": "textbook"
+            },
+            "确": {
+              "pinyin": "què",
+              "pinyinSource": "textbook"
+            },
+            "段": {
+              "pinyin": "duàn",
+              "pinyinSource": "textbook"
+            },
+            "系": {
+              "pinyin": "jì",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:16:writingCharacters:系"
+            },
+            "姐": {
+              "pinyin": "jiě",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "17": {
+          "words": {
+            "希望": {
+              "pinyin": "xī wàng",
+              "pinyinSource": "dictionary"
+            },
+            "形状": {
+              "pinyin": "xíng zhuàng",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:17:words:形状"
+            },
+            "喜欢": {
+              "pinyin": "xǐ huan",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:17:words:喜欢"
+            },
+            "担心": {
+              "pinyin": "dān xīn",
+              "pinyinSource": "dictionary"
+            },
+            "容易": {
+              "pinyin": "róng yì",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:17:words:容易"
+            },
+            "丁零": {
+              "pinyin": "dīng líng",
+              "pinyinSource": "dictionary"
+            },
+            "失望": {
+              "pinyin": "shī wàng",
+              "pinyinSource": "dictionary"
+            },
+            "巧克力": {
+              "pinyin": "qiǎo kè lì",
+              "pinyinSource": "dictionary"
+            },
+            "香肠": {
+              "pinyin": "xiāng cháng",
+              "pinyinSource": "dictionary"
+            },
+            "花生": {
+              "pinyin": "huā shēng",
+              "pinyinSource": "dictionary"
+            },
+            "牛奶": {
+              "pinyin": "niú nǎi",
+              "pinyinSource": "dictionary"
+            },
+            "互相": {
+              "pinyin": "hù xiāng",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:17:words:互相"
+            },
+            "想念": {
+              "pinyin": "xiǎng niàn",
+              "pinyinSource": "dictionary"
+            },
+            "饭菜": {
+              "pinyin": "fàn cài",
+              "pinyinSource": "dictionary"
+            },
+            "可能": {
+              "pinyin": "kě néng",
+              "pinyinSource": "dictionary"
+            },
+            "麻烦": {
+              "pinyin": "má fan",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:17:words:麻烦"
+            },
+            "眼睛": {
+              "pinyin": "yǎn jing",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:17:words:眼睛"
+            },
+            "秘密": {
+              "pinyin": "mì mì",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "嗓": {
+              "pinyin": "sǎng",
+              "pinyinSource": "textbook"
+            },
+            "痒": {
+              "pinyin": "yǎng",
+              "pinyinSource": "textbook"
+            },
+            "椭": {
+              "pinyin": "tuǒ",
+              "pinyinSource": "textbook"
+            },
+            "菱": {
+              "pinyin": "líng",
+              "pinyinSource": "textbook"
+            },
+            "鳄": {
+              "pinyin": "è",
+              "pinyinSource": "textbook"
+            },
+            "震": {
+              "pinyin": "zhèn",
+              "pinyinSource": "textbook"
+            },
+            "零": {
+              "pinyin": "líng",
+              "pinyinSource": "textbook"
+            },
+            "肠": {
+              "pinyin": "cháng",
+              "pinyinSource": "textbook"
+            },
+            "啃": {
+              "pinyin": "kěn",
+              "pinyinSource": "textbook"
+            },
+            "醋": {
+              "pinyin": "cù",
+              "pinyinSource": "textbook"
+            },
+            "馋": {
+              "pinyin": "chán",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "希": {
+              "pinyin": "xī",
+              "pinyinSource": "textbook"
+            },
+            "担": {
+              "pinyin": "dān",
+              "pinyinSource": "dictionary"
+            },
+            "容": {
+              "pinyin": "róng",
+              "pinyinSource": "textbook"
+            },
+            "易": {
+              "pinyin": "yì",
+              "pinyinSource": "textbook"
+            },
+            "震": {
+              "pinyin": "zhèn",
+              "pinyinSource": "textbook"
+            },
+            "零": {
+              "pinyin": "líng",
+              "pinyinSource": "textbook"
+            },
+            "肠": {
+              "pinyin": "cháng",
+              "pinyinSource": "textbook"
+            },
+            "麻": {
+              "pinyin": "má",
+              "pinyinSource": "textbook"
+            },
+            "烦": {
+              "pinyin": "fán",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "18": {
+          "words": {
+            "童年": {
+              "pinyin": "tóng nián",
+              "pinyinSource": "dictionary"
+            },
+            "垂柳": {
+              "pinyin": "chuí liǔ",
+              "pinyinSource": "dictionary"
+            },
+            "平静": {
+              "pinyin": "píng jìng",
+              "pinyinSource": "dictionary"
+            },
+            "翅膀": {
+              "pinyin": "chì bǎng",
+              "pinyinSource": "dictionary"
+            },
+            "戏耍": {
+              "pinyin": "xì shuǎ",
+              "pinyinSource": "dictionary"
+            },
+            "葫芦": {
+              "pinyin": "hú lu",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:18:words:葫芦"
+            },
+            "松树": {
+              "pinyin": "sōng shù",
+              "pinyinSource": "dictionary"
+            },
+            "清爽": {
+              "pinyin": "qīng shuǎng",
+              "pinyinSource": "dictionary"
+            },
+            "泥土": {
+              "pinyin": "ní tǔ",
+              "pinyinSource": "dictionary"
+            },
+            "开放": {
+              "pinyin": "kāi fàng",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "墨": {
+              "pinyin": "mò",
+              "pinyinSource": "textbook"
+            },
+            "染": {
+              "pinyin": "rǎn",
+              "pinyinSource": "textbook"
+            },
+            "碎": {
+              "pinyin": "suì",
+              "pinyinSource": "textbook"
+            },
+            "溅": {
+              "pinyin": "jiàn",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "垂": {
+              "pinyin": "chuí",
+              "pinyinSource": "textbook"
+            },
+            "染": {
+              "pinyin": "rǎn",
+              "pinyinSource": "textbook"
+            },
+            "碎": {
+              "pinyin": "suì",
+              "pinyinSource": "textbook"
+            },
+            "翅": {
+              "pinyin": "chì",
+              "pinyinSource": "textbook"
+            },
+            "膀": {
+              "pinyin": "bǎng",
+              "pinyinSource": "textbook"
+            },
+            "拨": {
+              "pinyin": "bō",
+              "pinyinSource": "textbook"
+            },
+            "浪": {
+              "pinyin": "làng",
+              "pinyinSource": "textbook"
+            },
+            "抖": {
+              "pinyin": "dǒu",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "19": {
+          "words": {
+            "肥皂泡": {
+              "pinyin": "féi zào pào",
+              "pinyinSource": "dictionary"
+            },
+            "种类": {
+              "pinyin": "zhǒng lèi",
+              "pinyinSource": "dictionary"
+            },
+            "其中": {
+              "pinyin": "qí zhōng",
+              "pinyinSource": "dictionary"
+            },
+            "溶化": {
+              "pinyin": "róng huà",
+              "pinyinSource": "dictionary"
+            },
+            "网球": {
+              "pinyin": "wǎng qiú",
+              "pinyinSource": "dictionary"
+            },
+            "分裂": {
+              "pinyin": "fēn liè",
+              "pinyinSource": "dictionary"
+            },
+            "形式": {
+              "pinyin": "xíng shì",
+              "pinyinSource": "dictionary"
+            },
+            "圆满": {
+              "pinyin": "yuán mǎn",
+              "pinyinSource": "dictionary"
+            },
+            "夕阳": {
+              "pinyin": "xī yáng",
+              "pinyinSource": "dictionary"
+            },
+            "目送": {
+              "pinyin": "mù sòng",
+              "pinyinSource": "dictionary"
+            },
+            "骄傲": {
+              "pinyin": "jiāo ào",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "剩": {
+              "pinyin": "shèng",
+              "pinyinSource": "textbook"
+            },
+            "和": {
+              "pinyin": "huò",
+              "pinyinSource": "textbook"
+            },
+            "溶": {
+              "pinyin": "róng",
+              "pinyinSource": "textbook"
+            },
+            "套": {
+              "pinyin": "tào",
+              "pinyinSource": "textbook"
+            },
+            "若": {
+              "pinyin": "ruò",
+              "pinyinSource": "textbook"
+            },
+            "悬": {
+              "pinyin": "xuán",
+              "pinyinSource": "textbook"
+            },
+            "屏": {
+              "pinyin": "bǐng",
+              "pinyinSource": "textbook"
+            },
+            "颠": {
+              "pinyin": "diān",
+              "pinyinSource": "textbook"
+            },
+            "婴": {
+              "pinyin": "yīng",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "皂": {
+              "pinyin": "zào",
+              "pinyinSource": "dictionary"
+            },
+            "泡": {
+              "pinyin": "pào",
+              "pinyinSource": "dictionary"
+            },
+            "类": {
+              "pinyin": "lèi",
+              "pinyinSource": "textbook"
+            },
+            "弄": {
+              "pinyin": "nòng",
+              "pinyinSource": "textbook"
+            },
+            "溶": {
+              "pinyin": "róng",
+              "pinyinSource": "textbook"
+            },
+            "套": {
+              "pinyin": "tào",
+              "pinyinSource": "textbook"
+            },
+            "悠": {
+              "pinyin": "yōu",
+              "pinyinSource": "textbook"
+            },
+            "若": {
+              "pinyin": "ruò",
+              "pinyinSource": "textbook"
+            },
+            "骄": {
+              "pinyin": "jiāo",
+              "pinyinSource": "textbook"
+            },
+            "傲": {
+              "pinyin": "ào",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "20": {
+          "words": {
+            "养病": {
+              "pinyin": "yǎng bìng",
+              "pinyinSource": "dictionary"
+            },
+            "粉红": {
+              "pinyin": "fěn hóng",
+              "pinyinSource": "dictionary"
+            },
+            "仰望": {
+              "pinyin": "yǎng wàng",
+              "pinyinSource": "dictionary"
+            },
+            "或者": {
+              "pinyin": "huò zhě",
+              "pinyinSource": "dictionary"
+            },
+            "严寒": {
+              "pinyin": "yán hán",
+              "pinyinSource": "dictionary"
+            },
+            "本来": {
+              "pinyin": "běn lái",
+              "pinyinSource": "dictionary"
+            },
+            "可惜": {
+              "pinyin": "kě xī",
+              "pinyinSource": "dictionary"
+            },
+            "肯定": {
+              "pinyin": "kěn dìng",
+              "pinyinSource": "dictionary"
+            },
+            "微笑": {
+              "pinyin": "wēi xiào",
+              "pinyinSource": "dictionary"
+            },
+            "诚实": {
+              "pinyin": "chéng shí",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "胸": {
+              "pinyin": "xiōng",
+              "pinyinSource": "textbook"
+            },
+            "脯": {
+              "pinyin": "pú",
+              "pinyinSource": "textbook"
+            },
+            "婉": {
+              "pinyin": "wǎn",
+              "pinyinSource": "textbook"
+            },
+            "惹": {
+              "pinyin": "rě",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "雀": {
+              "pinyin": "què",
+              "pinyinSource": "textbook"
+            },
+            "养": {
+              "pinyin": "yǎng",
+              "pinyinSource": "dictionary"
+            },
+            "粉": {
+              "pinyin": "fěn",
+              "pinyinSource": "textbook"
+            },
+            "惹": {
+              "pinyin": "rě",
+              "pinyinSource": "textbook"
+            },
+            "仰": {
+              "pinyin": "yǎng",
+              "pinyinSource": "textbook"
+            },
+            "粒": {
+              "pinyin": "lì",
+              "pinyinSource": "textbook"
+            },
+            "遍": {
+              "pinyin": "biàn",
+              "pinyinSource": "textbook"
+            },
+            "者": {
+              "pinyin": "zhě",
+              "pinyinSource": "textbook"
+            },
+            "惜": {
+              "pinyin": "xī",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "21": {
+          "words": {},
+          "recognitionCharacters": {
+            "耀": {
+              "pinyin": "yào",
+              "pinyinSource": "textbook"
+            },
+            "示": {
+              "pinyin": "shì",
+              "pinyinSource": "textbook"
+            },
+            "歉": {
+              "pinyin": "qiàn",
+              "pinyinSource": "textbook"
+            },
+            "诺": {
+              "pinyin": "nuò",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {},
+          "supplementalWords": {}
+        },
+        "22": {
+          "words": {
+            "火烧云": {
+              "pinyin": "huǒ shāo yún",
+              "pinyinSource": "dictionary"
+            },
+            "笑盈盈": {
+              "pinyin": "xiào yíng yíng",
+              "pinyinSource": "dictionary"
+            },
+            "乘凉": {
+              "pinyin": "chéng liáng",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:22:words:乘凉"
+            },
+            "高寿": {
+              "pinyin": "gāo shòu",
+              "pinyinSource": "dictionary"
+            },
+            "红彤彤": {
+              "pinyin": "hóng tóng tóng",
+              "pinyinSource": "dictionary"
+            },
+            "变化": {
+              "pinyin": "biàn huà",
+              "pinyinSource": "dictionary"
+            },
+            "金灿灿": {
+              "pinyin": "jīn càn càn",
+              "pinyinSource": "dictionary"
+            },
+            "颜色": {
+              "pinyin": "yán sè",
+              "pinyinSource": "dictionary"
+            },
+            "似乎": {
+              "pinyin": "sì hū",
+              "pinyinSource": "dictionary"
+            },
+            "威武": {
+              "pinyin": "wēi wǔ",
+              "pinyinSource": "dictionary"
+            },
+            "镇静": {
+              "pinyin": "zhèn jìng",
+              "pinyinSource": "dictionary"
+            },
+            "其实": {
+              "pinyin": "qí shí",
+              "pinyinSource": "dictionary"
+            },
+            "沉静": {
+              "pinyin": "chén jìng",
+              "pinyinSource": "dictionary"
+            },
+            "偏偏": {
+              "pinyin": "piān piān",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:22:words:偏偏"
+            },
+            "等待": {
+              "pinyin": "děng dài",
+              "pinyinSource": "dictionary"
+            },
+            "爱好": {
+              "pinyin": "ài hào",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "檀": {
+              "pinyin": "tán",
+              "pinyinSource": "textbook"
+            },
+            "猪": {
+              "pinyin": "zhū",
+              "pinyinSource": "textbook"
+            },
+            "盈": {
+              "pinyin": "yíng",
+              "pinyinSource": "textbook"
+            },
+            "彤": {
+              "pinyin": "tóng",
+              "pinyinSource": "textbook"
+            },
+            "跪": {
+              "pinyin": "guì",
+              "pinyinSource": "textbook"
+            },
+            "庙": {
+              "pinyin": "miào",
+              "pinyinSource": "textbook"
+            },
+            "镇": {
+              "pinyin": "zhèn",
+              "pinyinSource": "textbook"
+            },
+            "揉": {
+              "pinyin": "róu",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "烧": {
+              "pinyin": "shāo",
+              "pinyinSource": "textbook"
+            },
+            "盈": {
+              "pinyin": "yíng",
+              "pinyinSource": "textbook"
+            },
+            "乘": {
+              "pinyin": "shèng",
+              "pinyinSource": "textbook"
+            },
+            "寿": {
+              "pinyin": "shòu",
+              "pinyinSource": "textbook"
+            },
+            "彤": {
+              "pinyin": "tóng",
+              "pinyinSource": "textbook"
+            },
+            "颜": {
+              "pinyin": "yán",
+              "pinyinSource": "textbook"
+            },
+            "钟": {
+              "pinyin": "zhōng",
+              "pinyinSource": "textbook"
+            },
+            "武": {
+              "pinyin": "wǔ",
+              "pinyinSource": "textbook"
+            },
+            "镇": {
+              "pinyin": "zhèn",
+              "pinyinSource": "textbook"
+            },
+            "偏": {
+              "pinyin": "piān",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "23": {
+          "words": {
+            "来临": {
+              "pinyin": "lái lín",
+              "pinyinSource": "dictionary"
+            },
+            "沉闷": {
+              "pinyin": "chén mèn",
+              "pinyinSource": "dictionary"
+            },
+            "奇形怪状": {
+              "pinyin": "qí xíng guài zhuàng",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:23:words:奇形怪状"
+            },
+            "昏暗": {
+              "pinyin": "hūn àn",
+              "pinyinSource": "dictionary"
+            },
+            "轻微": {
+              "pinyin": "qīng wēi",
+              "pinyinSource": "dictionary"
+            },
+            "情况": {
+              "pinyin": "qíng kuàng",
+              "pinyinSource": "dictionary"
+            },
+            "动静": {
+              "pinyin": "dòng jing",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:23:words:动静"
+            },
+            "赶路": {
+              "pinyin": "gǎn lù",
+              "pinyinSource": "dictionary"
+            },
+            "抖动": {
+              "pinyin": "dǒu dòng",
+              "pinyinSource": "dictionary"
+            },
+            "树梢": {
+              "pinyin": "shù shāo",
+              "pinyinSource": "dictionary"
+            },
+            "乱蓬蓬": {
+              "pinyin": "luàn péng péng",
+              "pinyinSource": "dictionary"
+            },
+            "轰隆隆": {
+              "pinyin": "hōng lōng lōng",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:23:words:轰隆隆"
+            }
+          },
+          "recognitionCharacters": {
+            "闷": {
+              "pinyin": "mèn",
+              "pinyinSource": "textbook"
+            },
+            "蔓": {
+              "pinyin": "màn",
+              "pinyinSource": "textbook"
+            },
+            "延": {
+              "pinyin": "yán",
+              "pinyinSource": "textbook"
+            },
+            "昏": {
+              "pinyin": "hūn",
+              "pinyinSource": "textbook"
+            },
+            "汹": {
+              "pinyin": "xiōng",
+              "pinyinSource": "textbook"
+            },
+            "况": {
+              "pinyin": "kuàng",
+              "pinyinSource": "textbook"
+            },
+            "报": {
+              "pinyin": "bào",
+              "pinyinSource": "textbook"
+            },
+            "隆": {
+              "pinyin": "lōng",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "临": {
+              "pinyin": "lín",
+              "pinyinSource": "textbook"
+            },
+            "越": {
+              "pinyin": "yuè",
+              "pinyinSource": "textbook"
+            },
+            "闷": {
+              "pinyin": "mèn",
+              "pinyinSource": "textbook"
+            },
+            "昏": {
+              "pinyin": "hūn",
+              "pinyinSource": "textbook"
+            },
+            "暗": {
+              "pinyin": "àn",
+              "pinyinSource": "textbook"
+            },
+            "况": {
+              "pinyin": "kuàng",
+              "pinyinSource": "textbook"
+            },
+            "报": {
+              "pinyin": "bào",
+              "pinyinSource": "textbook"
+            },
+            "梢": {
+              "pinyin": "shāo",
+              "pinyinSource": "textbook"
+            },
+            "隆": {
+              "pinyin": "lōng",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "24": {
+          "words": {
+            "奇妙": {
+              "pinyin": "qí miào",
+              "pinyinSource": "dictionary"
+            },
+            "生命": {
+              "pinyin": "shēng mìng",
+              "pinyinSource": "dictionary"
+            },
+            "呈现": {
+              "pinyin": "chéng xiàn",
+              "pinyinSource": "dictionary"
+            },
+            "变幻": {
+              "pinyin": "biàn huàn",
+              "pinyinSource": "dictionary"
+            },
+            "圆润": {
+              "pinyin": "yuán rùn",
+              "pinyinSource": "dictionary"
+            },
+            "李子": {
+              "pinyin": "lǐ zi",
+              "pinyinSource": "dictionary"
+            },
+            "夏日": {
+              "pinyin": "xià rì",
+              "pinyinSource": "dictionary"
+            },
+            "感叹": {
+              "pinyin": "gǎn tàn",
+              "pinyinSource": "dictionary"
+            },
+            "光辉": {
+              "pinyin": "guāng huī",
+              "pinyinSource": "dictionary"
+            },
+            "神奇": {
+              "pinyin": "shén qí",
+              "pinyinSource": "dictionary"
+            },
+            "光芒": {
+              "pinyin": "guāng máng",
+              "pinyinSource": "dictionary"
+            },
+            "建造": {
+              "pinyin": "jiàn zào",
+              "pinyinSource": "dictionary"
+            },
+            "冰柱": {
+              "pinyin": "bīng zhù",
+              "pinyinSource": "dictionary"
+            },
+            "锋利": {
+              "pinyin": "fēng lì",
+              "pinyinSource": "dictionary"
+            },
+            "刀剑": {
+              "pinyin": "dāo jiàn",
+              "pinyinSource": "dictionary"
+            },
+            "融化": {
+              "pinyin": "róng huà",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "呈": {
+              "pinyin": "chéng",
+              "pinyinSource": "textbook"
+            },
+            "蔚": {
+              "pinyin": "wèi",
+              "pinyinSource": "textbook"
+            },
+            "雕": {
+              "pinyin": "diāo",
+              "pinyinSource": "textbook"
+            },
+            "洼": {
+              "pinyin": "wā",
+              "pinyinSource": "textbook"
+            },
+            "烁": {
+              "pinyin": "shuò",
+              "pinyinSource": "textbook"
+            },
+            "蜡": {
+              "pinyin": "là",
+              "pinyinSource": "textbook"
+            },
+            "烛": {
+              "pinyin": "zhú",
+              "pinyinSource": "textbook"
+            },
+            "芒": {
+              "pinyin": "máng",
+              "pinyinSource": "textbook"
+            },
+            "略": {
+              "pinyin": "lüè",
+              "pinyinSource": "textbook"
+            },
+            "劲": {
+              "pinyin": "jìng",
+              "pinyinSource": "textbook"
+            },
+            "柱": {
+              "pinyin": "zhù",
+              "pinyinSource": "textbook"
+            },
+            "剑": {
+              "pinyin": "jiàn",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "呈": {
+              "pinyin": "chéng",
+              "pinyinSource": "textbook"
+            },
+            "幻": {
+              "pinyin": "huàn",
+              "pinyinSource": "textbook"
+            },
+            "李": {
+              "pinyin": "lǐ",
+              "pinyinSource": "textbook"
+            },
+            "夏": {
+              "pinyin": "xià",
+              "pinyinSource": "textbook"
+            },
+            "辉": {
+              "pinyin": "huī",
+              "pinyinSource": "textbook"
+            },
+            "芒": {
+              "pinyin": "máng",
+              "pinyinSource": "textbook"
+            },
+            "建": {
+              "pinyin": "jiàn",
+              "pinyinSource": "dictionary"
+            },
+            "柱": {
+              "pinyin": "zhù",
+              "pinyinSource": "textbook"
+            },
+            "剑": {
+              "pinyin": "jiàn",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "25": {
+          "words": {
+            "性子": {
+              "pinyin": "xìng zi",
+              "pinyinSource": "dictionary"
+            },
+            "顾客": {
+              "pinyin": "gù kè",
+              "pinyinSource": "dictionary"
+            },
+            "笑话": {
+              "pinyin": "xiào hua",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:25:words:笑话"
+            },
+            "大方": {
+              "pinyin": "dà fang",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:25:words:大方"
+            },
+            "夸奖": {
+              "pinyin": "kuā jiǎng",
+              "pinyinSource": "dictionary"
+            },
+            "承认": {
+              "pinyin": "chéng rèn",
+              "pinyinSource": "dictionary"
+            },
+            "提前": {
+              "pinyin": "tí qián",
+              "pinyinSource": "dictionary"
+            },
+            "服务": {
+              "pinyin": "fú wù",
+              "pinyinSource": "dictionary"
+            },
+            "满意": {
+              "pinyin": "mǎn yì",
+              "pinyinSource": "dictionary"
+            },
+            "袖子": {
+              "pinyin": "xiù zi",
+              "pinyinSource": "dictionary"
+            },
+            "衬衫": {
+              "pinyin": "chèn shān",
+              "pinyinSource": "dictionary"
+            },
+            "负责": {
+              "pinyin": "fù zé",
+              "pinyinSource": "dictionary"
+            },
+            "名声": {
+              "pinyin": "míng shēng",
+              "pinyinSource": "dictionary"
+            },
+            "泄气": {
+              "pinyin": "xiè qì",
+              "pinyinSource": "dictionary"
+            },
+            "放心": {
+              "pinyin": "fàng xīn",
+              "pinyinSource": "dictionary"
+            },
+            "手艺": {
+              "pinyin": "shǒu yì",
+              "pinyinSource": "dictionary"
+            },
+            "感动": {
+              "pinyin": "gǎn dòng",
+              "pinyinSource": "dictionary"
+            },
+            "恼怒": {
+              "pinyin": "nǎo nù",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "缝": {
+              "pinyin": "féng",
+              "pinyinSource": "textbook"
+            },
+            "箱": {
+              "pinyin": "xiāng",
+              "pinyinSource": "textbook"
+            },
+            "夸": {
+              "pinyin": "kuā",
+              "pinyinSource": "textbook"
+            },
+            "奖": {
+              "pinyin": "jiǎng",
+              "pinyinSource": "textbook"
+            },
+            "承": {
+              "pinyin": "chéng",
+              "pinyinSource": "textbook"
+            },
+            "夹": {
+              "pinyin": "jiá",
+              "pinyinSource": "textbook"
+            },
+            "袖": {
+              "pinyin": "xiù",
+              "pinyinSource": "textbook"
+            },
+            "衬": {
+              "pinyin": "chèn",
+              "pinyinSource": "textbook"
+            },
+            "衫": {
+              "pinyin": "shān",
+              "pinyinSource": "textbook"
+            },
+            "负": {
+              "pinyin": "fù",
+              "pinyinSource": "textbook"
+            },
+            "责": {
+              "pinyin": "zé",
+              "pinyinSource": "textbook"
+            },
+            "讶": {
+              "pinyin": "yà",
+              "pinyinSource": "textbook"
+            },
+            "恼": {
+              "pinyin": "nǎo",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "性": {
+              "pinyin": "xìng",
+              "pinyinSource": "textbook"
+            },
+            "顾": {
+              "pinyin": "gù",
+              "pinyinSource": "textbook"
+            },
+            "夸": {
+              "pinyin": "kuā",
+              "pinyinSource": "textbook"
+            },
+            "奖": {
+              "pinyin": "jiǎng",
+              "pinyinSource": "textbook"
+            },
+            "承": {
+              "pinyin": "chéng",
+              "pinyinSource": "textbook"
+            },
+            "袖": {
+              "pinyin": "xiù",
+              "pinyinSource": "textbook"
+            },
+            "衬": {
+              "pinyin": "chèn",
+              "pinyinSource": "textbook"
+            },
+            "衫": {
+              "pinyin": "shān",
+              "pinyinSource": "textbook"
+            },
+            "负": {
+              "pinyin": "fù",
+              "pinyinSource": "textbook"
+            },
+            "责": {
+              "pinyin": "zé",
+              "pinyinSource": "textbook"
+            },
+            "泄": {
+              "pinyin": "xiè",
+              "pinyinSource": "textbook"
+            },
+            "恼": {
+              "pinyin": "nǎo",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "26": {
+          "words": {
+            "莫非": {
+              "pinyin": "mò fēi",
+              "pinyinSource": "dictionary"
+            },
+            "厉害": {
+              "pinyin": "lì hai",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:26:words:厉害"
+            },
+            "走南闯北": {
+              "pinyin": "zǒu nán chuǎng běi",
+              "pinyinSource": "dictionary"
+            },
+            "听说": {
+              "pinyin": "tīng shuō",
+              "pinyinSource": "dictionary"
+            },
+            "发抖": {
+              "pinyin": "fā dǒu",
+              "pinyinSource": "dictionary"
+            },
+            "害怕": {
+              "pinyin": "hài pà",
+              "pinyinSource": "dictionary"
+            },
+            "松手": {
+              "pinyin": "sōng shǒu",
+              "pinyinSource": "dictionary"
+            },
+            "骨头": {
+              "pinyin": "gǔ tou",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3down-2026:26:words:骨头"
+            },
+            "逃命": {
+              "pinyin": "táo mìng",
+              "pinyinSource": "dictionary"
+            },
+            "甘心": {
+              "pinyin": "gān xīn",
+              "pinyinSource": "dictionary"
+            },
+            "逃跑": {
+              "pinyin": "táo pǎo",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "脊": {
+              "pinyin": "jǐ",
+              "pinyinSource": "textbook"
+            },
+            "贼": {
+              "pinyin": "zéi",
+              "pinyinSource": "textbook"
+            },
+            "莫": {
+              "pinyin": "mò",
+              "pinyinSource": "textbook"
+            },
+            "晕": {
+              "pinyin": "yūn",
+              "pinyinSource": "textbook"
+            },
+            "颠": {
+              "pinyin": "diān",
+              "pinyinSource": "textbook"
+            },
+            "歪": {
+              "pinyin": "wāi",
+              "pinyinSource": "textbook"
+            },
+            "胶": {
+              "pinyin": "jiāo",
+              "pinyinSource": "textbook"
+            },
+            "旋": {
+              "pinyin": "xuàn",
+              "pinyinSource": "textbook"
+            },
+            "纵": {
+              "pinyin": "zòng",
+              "pinyinSource": "textbook"
+            },
+            "嫌": {
+              "pinyin": "xián",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "漏": {
+              "pinyin": "lòu",
+              "pinyinSource": "textbook"
+            },
+            "胖": {
+              "pinyin": "pàng",
+              "pinyinSource": "dictionary"
+            },
+            "驴": {
+              "pinyin": "lǘ",
+              "pinyinSource": "textbook"
+            },
+            "爪": {
+              "pinyin": "zhǎo",
+              "pinyinSource": "textbook"
+            },
+            "莫": {
+              "pinyin": "mò",
+              "pinyinSource": "textbook"
+            },
+            "厉": {
+              "pinyin": "lì",
+              "pinyinSource": "textbook"
+            },
+            "害": {
+              "pinyin": "hài",
+              "pinyinSource": "textbook"
+            },
+            "闯": {
+              "pinyin": "chuǎng",
+              "pinyinSource": "textbook"
+            },
+            "摸": {
+              "pinyin": "mō",
+              "pinyinSource": "textbook"
+            },
+            "歪": {
+              "pinyin": "wāi",
+              "pinyinSource": "textbook"
+            },
+            "胶": {
+              "pinyin": "jiāo",
+              "pinyinSource": "textbook"
+            },
+            "纵": {
+              "pinyin": "zòng",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "27": {
+          "words": {},
+          "recognitionCharacters": {
+            "核": {
+              "pinyin": "hé",
+              "pinyinSource": "textbook"
+            },
+            "妻": {
+              "pinyin": "qī",
+              "pinyinSource": "textbook"
+            },
+            "爹": {
+              "pinyin": "diē",
+              "pinyinSource": "textbook"
+            },
+            "犁": {
+              "pinyin": "lí",
+              "pinyinSource": "textbook"
+            },
+            "聪": {
+              "pinyin": "cōng",
+              "pinyinSource": "textbook"
+            },
+            "旱": {
+              "pinyin": "hàn",
+              "pinyinSource": "textbook"
+            },
+            "纳": {
+              "pinyin": "nà",
+              "pinyinSource": "textbook"
+            },
+            "搜": {
+              "pinyin": "sōu",
+              "pinyinSource": "textbook"
+            },
+            "折": {
+              "pinyin": "zhē",
+              "pinyinSource": "textbook"
+            },
+            "困": {
+              "pinyin": "kùn",
+              "pinyinSource": "textbook"
+            },
+            "岂": {
+              "pinyin": "qǐ",
+              "pinyinSource": "textbook"
+            },
+            "涨": {
+              "pinyin": "zhàng",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {},
+          "supplementalWords": {}
+        }
+      }
+    },
+    "chinese-g3up-2026": {
+      "lessons": {
+        "1": {
+          "words": {
+            "山坡": {
+              "pinyin": "shān pō",
+              "pinyinSource": "dictionary"
+            },
+            "学校": {
+              "pinyin": "xué xiào",
+              "pinyinSource": "dictionary"
+            },
+            "飘扬": {
+              "pinyin": "piāo yáng",
+              "pinyinSource": "dictionary"
+            },
+            "课文": {
+              "pinyin": "kè wén",
+              "pinyinSource": "dictionary"
+            },
+            "声音": {
+              "pinyin": "shēng yīn",
+              "pinyinSource": "dictionary"
+            },
+            "招引": {
+              "pinyin": "zhāo yǐn",
+              "pinyinSource": "dictionary"
+            },
+            "热闹": {
+              "pinyin": "rè nao",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:1:words:热闹"
+            },
+            "古老": {
+              "pinyin": "gǔ lǎo",
+              "pinyinSource": "dictionary"
+            },
+            "粗壮": {
+              "pinyin": "cū zhuàng",
+              "pinyinSource": "dictionary"
+            },
+            "枝干": {
+              "pinyin": "zhī gàn",
+              "pinyinSource": "dictionary"
+            },
+            "洁白": {
+              "pinyin": "jié bái",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "绒": {
+              "pinyin": "róng",
+              "pinyinSource": "textbook"
+            },
+            "昂": {
+              "pinyin": "áng",
+              "pinyinSource": "textbook"
+            },
+            "扬": {
+              "pinyin": "yáng",
+              "pinyinSource": "textbook"
+            },
+            "凤": {
+              "pinyin": "fèng",
+              "pinyinSource": "textbook"
+            },
+            "墙": {
+              "pinyin": "qiáng",
+              "pinyinSource": "textbook"
+            },
+            "晃": {
+              "pinyin": "huàng",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "坡": {
+              "pinyin": "pō",
+              "pinyinSource": "textbook"
+            },
+            "球": {
+              "pinyin": "qiú",
+              "pinyinSource": "textbook"
+            },
+            "招": {
+              "pinyin": "zhāo",
+              "pinyinSource": "textbook"
+            },
+            "呼": {
+              "pinyin": "hū",
+              "pinyinSource": "textbook"
+            },
+            "飘": {
+              "pinyin": "piāo",
+              "pinyinSource": "textbook"
+            },
+            "扬": {
+              "pinyin": "yáng",
+              "pinyinSource": "textbook"
+            },
+            "读": {
+              "pinyin": "dú",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:1:writingCharacters:读"
+            },
+            "热": {
+              "pinyin": "rè",
+              "pinyinSource": "textbook"
+            },
+            "闹": {
+              "pinyin": "nào",
+              "pinyinSource": "textbook"
+            },
+            "粗": {
+              "pinyin": "cū",
+              "pinyinSource": "textbook"
+            },
+            "壮": {
+              "pinyin": "zhuàng",
+              "pinyinSource": "textbook"
+            },
+            "洁": {
+              "pinyin": "jié",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {
+            "昂扬": {
+              "pinyin": "áng yáng",
+              "pinyinSource": "dictionary"
+            },
+            "昂贵": {
+              "pinyin": "áng guì",
+              "pinyinSource": "dictionary"
+            },
+            "昂首挺胸": {
+              "pinyin": "áng shǒu tǐng xiōng",
+              "pinyinSource": "dictionary"
+            },
+            "飘扬": {
+              "pinyin": "piāo yáng",
+              "pinyinSource": "dictionary"
+            },
+            "表扬": {
+              "pinyin": "biǎo yáng",
+              "pinyinSource": "dictionary"
+            },
+            "神采飞扬": {
+              "pinyin": "shén cǎi fēi yáng",
+              "pinyinSource": "dictionary"
+            },
+            "墙壁": {
+              "pinyin": "qiáng bì",
+              "pinyinSource": "dictionary"
+            },
+            "城墙": {
+              "pinyin": "chéng qiáng",
+              "pinyinSource": "dictionary"
+            },
+            "铜墙铁壁": {
+              "pinyin": "tóng qiáng tiě bì",
+              "pinyinSource": "dictionary"
+            },
+            "摇晃": {
+              "pinyin": "yáo huàng",
+              "pinyinSource": "dictionary"
+            },
+            "晃动": {
+              "pinyin": "huàng dòng",
+              "pinyinSource": "dictionary"
+            },
+            "摇头晃脑": {
+              "pinyin": "yáo tóu huàng nǎo",
+              "pinyinSource": "dictionary"
+            },
+            "山坡": {
+              "pinyin": "shān pō",
+              "pinyinSource": "dictionary"
+            },
+            "坡地": {
+              "pinyin": "pō dì",
+              "pinyinSource": "dictionary"
+            },
+            "绒球花": {
+              "pinyin": "róng qiú huā",
+              "pinyinSource": "dictionary"
+            },
+            "皮球": {
+              "pinyin": "pí qiú",
+              "pinyinSource": "dictionary"
+            },
+            "招呼": {
+              "pinyin": "zhāo hu",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:1:supplementalWords:招呼"
+            },
+            "招引": {
+              "pinyin": "zhāo yǐn",
+              "pinyinSource": "dictionary"
+            },
+            "呼吸": {
+              "pinyin": "hū xī",
+              "pinyinSource": "dictionary"
+            },
+            "飘动": {
+              "pinyin": "piāo dòng",
+              "pinyinSource": "dictionary"
+            },
+            "朗读": {
+              "pinyin": "lǎng dú",
+              "pinyinSource": "dictionary"
+            },
+            "读书": {
+              "pinyin": "dú shū",
+              "pinyinSource": "dictionary"
+            },
+            "热闹": {
+              "pinyin": "rè nao",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:1:words:热闹"
+            },
+            "热情": {
+              "pinyin": "rè qíng",
+              "pinyinSource": "dictionary"
+            },
+            "闹钟": {
+              "pinyin": "nào zhōng",
+              "pinyinSource": "dictionary"
+            },
+            "粗壮": {
+              "pinyin": "cū zhuàng",
+              "pinyinSource": "dictionary"
+            },
+            "粗细": {
+              "pinyin": "cū xì",
+              "pinyinSource": "dictionary"
+            },
+            "强壮": {
+              "pinyin": "qiáng zhuàng",
+              "pinyinSource": "dictionary"
+            },
+            "洁白": {
+              "pinyin": "jié bái",
+              "pinyinSource": "dictionary"
+            },
+            "清洁": {
+              "pinyin": "qīng jié",
+              "pinyinSource": "dictionary"
+            }
+          }
+        },
+        "2": {
+          "words": {
+            "轰响": {
+              "pinyin": "hōng xiǎng",
+              "pinyinSource": "dictionary"
+            },
+            "阵雨": {
+              "pinyin": "zhèn yǔ",
+              "pinyinSource": "dictionary"
+            },
+            "湿润": {
+              "pinyin": "shī rùn",
+              "pinyinSource": "dictionary"
+            },
+            "风笛": {
+              "pinyin": "fēng dí",
+              "pinyinSource": "dictionary"
+            },
+            "狂欢": {
+              "pinyin": "kuáng huān",
+              "pinyinSource": "dictionary"
+            },
+            "觉得": {
+              "pinyin": "jué de",
+              "pinyinSource": "dictionary"
+            },
+            "功课": {
+              "pinyin": "gōng kè",
+              "pinyinSource": "dictionary"
+            },
+            "放学": {
+              "pinyin": "fàng xué",
+              "pinyinSource": "dictionary"
+            },
+            "老师": {
+              "pinyin": "lǎo shī",
+              "pinyinSource": "dictionary"
+            },
+            "急急忙忙": {
+              "pinyin": "jí jí máng máng",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "轰": {
+              "pinyin": "hōng",
+              "pinyinSource": "textbook"
+            },
+            "湿": {
+              "pinyin": "shī",
+              "pinyinSource": "textbook"
+            },
+            "荒": {
+              "pinyin": "huāng",
+              "pinyinSource": "textbook"
+            },
+            "笛": {
+              "pinyin": "dí",
+              "pinyinSource": "textbook"
+            },
+            "罚": {
+              "pinyin": "fá",
+              "pinyinSource": "textbook"
+            },
+            "假": {
+              "pinyin": "jià",
+              "pinyinSource": "textbook"
+            },
+            "臂": {
+              "pinyin": "bì",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "轰": {
+              "pinyin": "hōng",
+              "pinyinSource": "textbook"
+            },
+            "湿": {
+              "pinyin": "shī",
+              "pinyinSource": "textbook"
+            },
+            "润": {
+              "pinyin": "rùn",
+              "pinyinSource": "textbook"
+            },
+            "笛": {
+              "pinyin": "dí",
+              "pinyinSource": "textbook"
+            },
+            "狂": {
+              "pinyin": "kuáng",
+              "pinyinSource": "textbook"
+            },
+            "功": {
+              "pinyin": "gōng",
+              "pinyinSource": "textbook"
+            },
+            "罚": {
+              "pinyin": "fá",
+              "pinyinSource": "textbook"
+            },
+            "互": {
+              "pinyin": "hù",
+              "pinyinSource": "textbook"
+            },
+            "碰": {
+              "pinyin": "pèng",
+              "pinyinSource": "textbook"
+            },
+            "黄": {
+              "pinyin": "huáng",
+              "pinyinSource": "textbook"
+            },
+            "急": {
+              "pinyin": "jí",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "3": {
+          "words": {},
+          "recognitionCharacters": {
+            "诵": {
+              "pinyin": "sòng",
+              "pinyinSource": "textbook"
+            },
+            "例": {
+              "pinyin": "lì",
+              "pinyinSource": "textbook"
+            },
+            "糊": {
+              "pinyin": "hú",
+              "pinyinSource": "textbook"
+            },
+            "戒": {
+              "pinyin": "jiè",
+              "pinyinSource": "textbook"
+            },
+            "厉": {
+              "pinyin": "lì",
+              "pinyinSource": "textbook"
+            },
+            "详": {
+              "pinyin": "xiáng",
+              "pinyinSource": "textbook"
+            },
+            "挨": {
+              "pinyin": "ái",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {},
+          "supplementalWords": {}
+        },
+        "4": {
+          "words": {},
+          "recognitionCharacters": {
+            "庭": {
+              "pinyin": "tíng",
+              "pinyinSource": "textbook"
+            },
+            "未": {
+              "pinyin": "wèi",
+              "pinyinSource": "textbook"
+            },
+            "磨": {
+              "pinyin": "mó",
+              "pinyinSource": "textbook"
+            },
+            "斜": {
+              "pinyin": "xié",
+              "pinyinSource": "textbook"
+            },
+            "萧": {
+              "pinyin": "xiāo",
+              "pinyinSource": "textbook"
+            },
+            "挑": {
+              "pinyin": "tiǎo",
+              "pinyinSource": "textbook"
+            },
+            "促": {
+              "pinyin": "cù",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "庭": {
+              "pinyin": "tíng",
+              "pinyinSource": "textbook"
+            },
+            "相": {
+              "pinyin": "xiāng",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:4:writingCharacters:相"
+            },
+            "未": {
+              "pinyin": "wèi",
+              "pinyinSource": "textbook"
+            },
+            "寒": {
+              "pinyin": "hán",
+              "pinyinSource": "textbook"
+            },
+            "径": {
+              "pinyin": "jìng",
+              "pinyinSource": "textbook"
+            },
+            "斜": {
+              "pinyin": "xié",
+              "pinyinSource": "textbook"
+            },
+            "枫": {
+              "pinyin": "fēng",
+              "pinyinSource": "textbook"
+            },
+            "霜": {
+              "pinyin": "shuāng",
+              "pinyinSource": "textbook"
+            },
+            "挑": {
+              "pinyin": "tiǎo",
+              "pinyinSource": "textbook"
+            },
+            "深": {
+              "pinyin": "shēn",
+              "pinyinSource": "textbook"
+            },
+            "落": {
+              "pinyin": "luò",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:4:writingCharacters:落"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "5": {
+          "words": {
+            "秋风": {
+              "pinyin": "qiū fēng",
+              "pinyinSource": "dictionary"
+            },
+            "放晴": {
+              "pinyin": "fàng qíng",
+              "pinyinSource": "dictionary"
+            },
+            "明朗": {
+              "pinyin": "míng lǎng",
+              "pinyinSource": "dictionary"
+            },
+            "地面": {
+              "pinyin": "dì miàn",
+              "pinyinSource": "dictionary"
+            },
+            "亮晶晶": {
+              "pinyin": "liàng jīng jīng",
+              "pinyinSource": "dictionary"
+            },
+            "落叶": {
+              "pinyin": "luò yè",
+              "pinyinSource": "dictionary"
+            },
+            "图案": {
+              "pinyin": "tú àn",
+              "pinyinSource": "dictionary"
+            },
+            "闪闪发光": {
+              "pinyin": "shǎn shǎn fā guāng",
+              "pinyinSource": "dictionary"
+            },
+            "尽头": {
+              "pinyin": "jìn tóu",
+              "pinyinSource": "dictionary"
+            },
+            "排列": {
+              "pinyin": "pái liè",
+              "pinyinSource": "dictionary"
+            },
+            "规则": {
+              "pinyin": "guī zé",
+              "pinyinSource": "dictionary"
+            },
+            "凌乱": {
+              "pinyin": "líng luàn",
+              "pinyinSource": "dictionary"
+            },
+            "歌唱": {
+              "pinyin": "gē chàng",
+              "pinyinSource": "dictionary"
+            },
+            "迟到": {
+              "pinyin": "chí dào",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "粘": {
+              "pinyin": "zhān",
+              "pinyinSource": "textbook"
+            },
+            "印": {
+              "pinyin": "yìn",
+              "pinyinSource": "textbook"
+            },
+            "列": {
+              "pinyin": "liè",
+              "pinyinSource": "textbook"
+            },
+            "凌": {
+              "pinyin": "líng",
+              "pinyinSource": "textbook"
+            },
+            "增": {
+              "pinyin": "zēng",
+              "pinyinSource": "textbook"
+            },
+            "棕": {
+              "pinyin": "zōng",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "朗": {
+              "pinyin": "lǎng",
+              "pinyinSource": "dictionary"
+            },
+            "晶": {
+              "pinyin": "jīng",
+              "pinyinSource": "textbook"
+            },
+            "珠": {
+              "pinyin": "zhū",
+              "pinyinSource": "textbook"
+            },
+            "粘": {
+              "pinyin": "zhān",
+              "pinyinSource": "textbook"
+            },
+            "印": {
+              "pinyin": "yìn",
+              "pinyinSource": "textbook"
+            },
+            "案": {
+              "pinyin": "àn",
+              "pinyinSource": "textbook"
+            },
+            "展": {
+              "pinyin": "zhǎn",
+              "pinyinSource": "textbook"
+            },
+            "列": {
+              "pinyin": "liè",
+              "pinyinSource": "textbook"
+            },
+            "规": {
+              "pinyin": "guī",
+              "pinyinSource": "textbook"
+            },
+            "则": {
+              "pinyin": "zé",
+              "pinyinSource": "textbook"
+            },
+            "凌": {
+              "pinyin": "líng",
+              "pinyinSource": "textbook"
+            },
+            "乱": {
+              "pinyin": "luàn",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "6": {
+          "words": {
+            "秋天": {
+              "pinyin": "qiū tiān",
+              "pinyinSource": "dictionary"
+            },
+            "清凉": {
+              "pinyin": "qīng liáng",
+              "pinyinSource": "dictionary"
+            },
+            "炎热": {
+              "pinyin": "yán rè",
+              "pinyinSource": "dictionary"
+            },
+            "枫树": {
+              "pinyin": "fēng shù",
+              "pinyinSource": "dictionary"
+            },
+            "邮票": {
+              "pinyin": "yóu piào",
+              "pinyinSource": "dictionary"
+            },
+            "凉爽": {
+              "pinyin": "liáng shuǎng",
+              "pinyinSource": "dictionary"
+            },
+            "果树": {
+              "pinyin": "guǒ shù",
+              "pinyinSource": "dictionary"
+            },
+            "菊花": {
+              "pinyin": "jú huā",
+              "pinyinSource": "dictionary"
+            },
+            "仙子": {
+              "pinyin": "xiān zi",
+              "pinyinSource": "dictionary"
+            },
+            "频频": {
+              "pinyin": "pín pín",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:6:words:频频"
+            },
+            "气味": {
+              "pinyin": "qì wèi",
+              "pinyinSource": "dictionary"
+            },
+            "香甜": {
+              "pinyin": "xiāng tián",
+              "pinyinSource": "dictionary"
+            },
+            "松果": {
+              "pinyin": "sōng guǒ",
+              "pinyinSource": "dictionary"
+            },
+            "丰收": {
+              "pinyin": "fēng shōu",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "钥": {
+              "pinyin": "yào",
+              "pinyinSource": "textbook"
+            },
+            "匙": {
+              "pinyin": "shi",
+              "pinyinSource": "textbook"
+            },
+            "缤": {
+              "pinyin": "bīn",
+              "pinyinSource": "textbook"
+            },
+            "枚": {
+              "pinyin": "méi",
+              "pinyinSource": "textbook"
+            },
+            "邮": {
+              "pinyin": "yóu",
+              "pinyinSource": "textbook"
+            },
+            "爽": {
+              "pinyin": "shuǎng",
+              "pinyinSource": "textbook"
+            },
+            "橘": {
+              "pinyin": "jú",
+              "pinyinSource": "textbook"
+            },
+            "频": {
+              "pinyin": "pín",
+              "pinyinSource": "textbook"
+            },
+            "梨": {
+              "pinyin": "lí",
+              "pinyinSource": "textbook"
+            },
+            "勾": {
+              "pinyin": "gōu",
+              "pinyinSource": "textbook"
+            },
+            "喇": {
+              "pinyin": "lǎ",
+              "pinyinSource": "textbook"
+            },
+            "叭": {
+              "pinyin": "bā",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "凉": {
+              "pinyin": "liáng",
+              "pinyinSource": "textbook"
+            },
+            "杏": {
+              "pinyin": "xìng",
+              "pinyinSource": "textbook"
+            },
+            "枚": {
+              "pinyin": "méi",
+              "pinyinSource": "textbook"
+            },
+            "邮": {
+              "pinyin": "yóu",
+              "pinyinSource": "textbook"
+            },
+            "票": {
+              "pinyin": "piào",
+              "pinyinSource": "dictionary"
+            },
+            "爽": {
+              "pinyin": "shuǎng",
+              "pinyinSource": "textbook"
+            },
+            "挤": {
+              "pinyin": "jǐ",
+              "pinyinSource": "textbook"
+            },
+            "争": {
+              "pinyin": "zhēng",
+              "pinyinSource": "dictionary"
+            },
+            "菊": {
+              "pinyin": "jú",
+              "pinyinSource": "textbook"
+            },
+            "频": {
+              "pinyin": "pín",
+              "pinyinSource": "textbook"
+            },
+            "勾": {
+              "pinyin": "gōu",
+              "pinyinSource": "textbook"
+            },
+            "挖": {
+              "pinyin": "wā",
+              "pinyinSource": "textbook"
+            },
+            "油": {
+              "pinyin": "yóu",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "7": {
+          "words": {},
+          "recognitionCharacters": {
+            "抖": {
+              "pinyin": "dǒu",
+              "pinyinSource": "textbook"
+            },
+            "振": {
+              "pinyin": "zhèn",
+              "pinyinSource": "textbook"
+            },
+            "韵": {
+              "pinyin": "yùn",
+              "pinyinSource": "textbook"
+            },
+            "掠": {
+              "pinyin": "lüè",
+              "pinyinSource": "textbook"
+            },
+            "吟": {
+              "pinyin": "yín",
+              "pinyinSource": "textbook"
+            },
+            "辽": {
+              "pinyin": "liáo",
+              "pinyinSource": "textbook"
+            },
+            "阔": {
+              "pinyin": "kuò",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {},
+          "supplementalWords": {}
+        },
+        "8": {
+          "words": {
+            "门板": {
+              "pinyin": "mén bǎn",
+              "pinyinSource": "dictionary"
+            },
+            "准备": {
+              "pinyin": "zhǔn bèi",
+              "pinyinSource": "dictionary"
+            },
+            "旁边": {
+              "pinyin": "páng biān",
+              "pinyinSource": "dictionary"
+            },
+            "暴风雨": {
+              "pinyin": "bào fēng yǔ",
+              "pinyinSource": "dictionary"
+            },
+            "安心": {
+              "pinyin": "ān xīn",
+              "pinyinSource": "dictionary"
+            },
+            "低头": {
+              "pinyin": "dī tóu",
+              "pinyinSource": "dictionary"
+            },
+            "吃力": {
+              "pinyin": "chī lì",
+              "pinyinSource": "dictionary"
+            },
+            "再见": {
+              "pinyin": "zài jiàn",
+              "pinyinSource": "dictionary"
+            },
+            "母鸡": {
+              "pinyin": "mǔ jī",
+              "pinyinSource": "dictionary"
+            },
+            "注意": {
+              "pinyin": "zhù yì",
+              "pinyinSource": "dictionary"
+            },
+            "屋子": {
+              "pinyin": "wū zi",
+              "pinyinSource": "dictionary"
+            },
+            "漂亮": {
+              "pinyin": "piào liang",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:8:words:漂亮"
+            },
+            "意思": {
+              "pinyin": "yì si",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:8:words:意思"
+            },
+            "因此": {
+              "pinyin": "yīn cǐ",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "眯": {
+              "pinyin": "mī",
+              "pinyinSource": "textbook"
+            },
+            "哦": {
+              "pinyin": "ò",
+              "pinyinSource": "textbook"
+            },
+            "喵": {
+              "pinyin": "miāo",
+              "pinyinSource": "textbook"
+            },
+            "孵": {
+              "pinyin": "fū",
+              "pinyinSource": "textbook"
+            },
+            "叽": {
+              "pinyin": "jī",
+              "pinyinSource": "textbook"
+            },
+            "缝": {
+              "pinyin": "fèng",
+              "pinyinSource": "textbook"
+            },
+            "偶": {
+              "pinyin": "ǒu",
+              "pinyinSource": "textbook"
+            },
+            "尔": {
+              "pinyin": "ěr",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "屋": {
+              "pinyin": "wū",
+              "pinyinSource": "textbook"
+            },
+            "板": {
+              "pinyin": "bǎn",
+              "pinyinSource": "textbook"
+            },
+            "准": {
+              "pinyin": "zhǔn",
+              "pinyinSource": "textbook"
+            },
+            "备": {
+              "pinyin": "bèi",
+              "pinyinSource": "textbook"
+            },
+            "等": {
+              "pinyin": "děng",
+              "pinyinSource": "textbook"
+            },
+            "暴": {
+              "pinyin": "bào",
+              "pinyinSource": "dictionary"
+            },
+            "哦": {
+              "pinyin": "ò",
+              "pinyinSource": "textbook"
+            },
+            "钻": {
+              "pinyin": "zuān",
+              "pinyinSource": "textbook"
+            },
+            "爬": {
+              "pinyin": "pá",
+              "pinyinSource": "textbook"
+            },
+            "漂": {
+              "pinyin": "piào",
+              "pinyinSource": "dictionary"
+            },
+            "晒": {
+              "pinyin": "shài",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "9": {
+          "words": {},
+          "recognitionCharacters": {
+            "陶": {
+              "pinyin": "táo",
+              "pinyinSource": "textbook"
+            },
+            "适": {
+              "pinyin": "shì",
+              "pinyinSource": "textbook"
+            },
+            "谈": {
+              "pinyin": "tán",
+              "pinyinSource": "textbook"
+            },
+            "婚": {
+              "pinyin": "hūn",
+              "pinyinSource": "textbook"
+            },
+            "庆": {
+              "pinyin": "qìng",
+              "pinyinSource": "textbook"
+            },
+            "典": {
+              "pinyin": "diǎn",
+              "pinyinSource": "textbook"
+            },
+            "途": {
+              "pinyin": "tú",
+              "pinyinSource": "textbook"
+            },
+            "括": {
+              "pinyin": "kuò",
+              "pinyinSource": "textbook"
+            },
+            "史": {
+              "pinyin": "shǐ",
+              "pinyinSource": "textbook"
+            },
+            "倍": {
+              "pinyin": "bèi",
+              "pinyinSource": "textbook"
+            },
+            "几": {
+              "pinyin": "jǐ",
+              "pinyinSource": "textbook"
+            },
+            "持": {
+              "pinyin": "chí",
+              "pinyinSource": "textbook"
+            },
+            "官": {
+              "pinyin": "guān",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {},
+          "supplementalWords": {}
+        },
+        "10": {
+          "words": {},
+          "recognitionCharacters": {
+            "陌": {
+              "pinyin": "mò",
+              "pinyinSource": "textbook"
+            },
+            "吗": {
+              "pinyin": "má",
+              "pinyinSource": "textbook"
+            },
+            "讨": {
+              "pinyin": "tǎo",
+              "pinyinSource": "textbook"
+            },
+            "厌": {
+              "pinyin": "yàn",
+              "pinyinSource": "textbook"
+            },
+            "访": {
+              "pinyin": "fǎng",
+              "pinyinSource": "textbook"
+            },
+            "记": {
+              "pinyin": "jì",
+              "pinyinSource": "textbook"
+            },
+            "忍": {
+              "pinyin": "rěn",
+              "pinyinSource": "textbook"
+            },
+            "委": {
+              "pinyin": "wěi",
+              "pinyinSource": "textbook"
+            },
+            "屈": {
+              "pinyin": "qū",
+              "pinyinSource": "textbook"
+            },
+            "中": {
+              "pinyin": "zhòng",
+              "pinyinSource": "textbook"
+            },
+            "弹": {
+              "pinyin": "dàn",
+              "pinyinSource": "textbook"
+            },
+            "疯": {
+              "pinyin": "fēng",
+              "pinyinSource": "textbook"
+            },
+            "局": {
+              "pinyin": "jú",
+              "pinyinSource": "textbook"
+            },
+            "汪": {
+              "pinyin": "wāng",
+              "pinyinSource": "textbook"
+            },
+            "搞": {
+              "pinyin": "gǎo",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {},
+          "supplementalWords": {}
+        },
+        "11": {
+          "words": {
+            "葫芦": {
+              "pinyin": "hú lu",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:11:words:葫芦"
+            },
+            "声明": {
+              "pinyin": "shēng míng",
+              "pinyinSource": "dictionary"
+            },
+            "神仙": {
+              "pinyin": "shén xiān",
+              "pinyinSource": "dictionary"
+            },
+            "普通": {
+              "pinyin": "pǔ tōng",
+              "pinyinSource": "dictionary"
+            },
+            "让步": {
+              "pinyin": "ràng bù",
+              "pinyinSource": "dictionary"
+            },
+            "条件": {
+              "pinyin": "tiáo jiàn",
+              "pinyinSource": "dictionary"
+            },
+            "指甲": {
+              "pinyin": "zhǐ jia",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:11:words:指甲"
+            },
+            "得到": {
+              "pinyin": "dé dào",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:11:words:得到"
+            },
+            "衣服": {
+              "pinyin": "yī fu",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:11:words:衣服"
+            },
+            "所以": {
+              "pinyin": "suǒ yǐ",
+              "pinyinSource": "dictionary"
+            },
+            "要是": {
+              "pinyin": "yào shi",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:11:words:要是"
+            },
+            "可怜": {
+              "pinyin": "kě lián",
+              "pinyinSource": "dictionary"
+            },
+            "最好": {
+              "pinyin": "zuì hǎo",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:11:words:最好"
+            },
+            "科学": {
+              "pinyin": "kē xué",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "普": {
+              "pinyin": "pǔ",
+              "pinyinSource": "textbook"
+            },
+            "少": {
+              "pinyin": "shào",
+              "pinyinSource": "textbook"
+            },
+            "矩": {
+              "pinyin": "jǔ",
+              "pinyinSource": "textbook"
+            },
+            "丫": {
+              "pinyin": "yā",
+              "pinyinSource": "textbook"
+            },
+            "宫": {
+              "pinyin": "gōng",
+              "pinyinSource": "textbook"
+            },
+            "掘": {
+              "pinyin": "jué",
+              "pinyinSource": "textbook"
+            },
+            "希": {
+              "pinyin": "xī",
+              "pinyinSource": "textbook"
+            },
+            "冲": {
+              "pinyin": "chòng",
+              "pinyinSource": "textbook"
+            },
+            "联": {
+              "pinyin": "lián",
+              "pinyinSource": "textbook"
+            },
+            "系": {
+              "pinyin": "xì",
+              "pinyinSource": "textbook"
+            },
+            "葵": {
+              "pinyin": "kuí",
+              "pinyinSource": "textbook"
+            },
+            "瘦": {
+              "pinyin": "shòu",
+              "pinyinSource": "textbook"
+            },
+            "罢": {
+              "pinyin": "bà",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "葫": {
+              "pinyin": "hú",
+              "pinyinSource": "textbook"
+            },
+            "芦": {
+              "pinyin": "lú",
+              "pinyinSource": "textbook"
+            },
+            "错": {
+              "pinyin": "cuò",
+              "pinyinSource": "textbook"
+            },
+            "普": {
+              "pinyin": "pǔ",
+              "pinyinSource": "textbook"
+            },
+            "宫": {
+              "pinyin": "gōng",
+              "pinyinSource": "textbook"
+            },
+            "肯": {
+              "pinyin": "kěn",
+              "pinyinSource": "textbook"
+            },
+            "冒": {
+              "pinyin": "mào",
+              "pinyinSource": "textbook"
+            },
+            "式": {
+              "pinyin": "shì",
+              "pinyinSource": "dictionary"
+            },
+            "怜": {
+              "pinyin": "lián",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "12": {
+          "words": {
+            "旅行": {
+              "pinyin": "lǚ xíng",
+              "pinyinSource": "dictionary"
+            },
+            "要好": {
+              "pinyin": "yào hǎo",
+              "pinyinSource": "dictionary"
+            },
+            "答应": {
+              "pinyin": "dā ying",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:12:words:答应"
+            },
+            "做梦": {
+              "pinyin": "zuò mèng",
+              "pinyinSource": "dictionary"
+            },
+            "来得及": {
+              "pinyin": "lái de jí",
+              "pinyinSource": "dictionary"
+            },
+            "救命": {
+              "pinyin": "jiù mìng",
+              "pinyinSource": "dictionary"
+            },
+            "大吃一惊": {
+              "pinyin": "dà chī yì jīng",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:12:words:大吃一惊"
+            },
+            "尾巴": {
+              "pinyin": "wěi ba",
+              "pinyinSource": "dictionary"
+            },
+            "牙齿": {
+              "pinyin": "yá chǐ",
+              "pinyinSource": "dictionary"
+            },
+            "肚皮": {
+              "pinyin": "dù pí",
+              "pinyinSource": "dictionary"
+            },
+            "食物": {
+              "pinyin": "shí wù",
+              "pinyinSource": "dictionary"
+            },
+            "消化": {
+              "pinyin": "xiāo huà",
+              "pinyinSource": "dictionary"
+            },
+            "当然": {
+              "pinyin": "dāng rán",
+              "pinyinSource": "dictionary"
+            },
+            "刚才": {
+              "pinyin": "gāng cái",
+              "pinyinSource": "dictionary"
+            },
+            "知觉": {
+              "pinyin": "zhī jué",
+              "pinyinSource": "dictionary"
+            },
+            "光亮": {
+              "pinyin": "guāng liàng",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "答": {
+              "pinyin": "dā",
+              "pinyinSource": "textbook"
+            },
+            "应": {
+              "pinyin": "yìng",
+              "pinyinSource": "textbook"
+            },
+            "及": {
+              "pinyin": "jí",
+              "pinyinSource": "textbook"
+            },
+            "卷": {
+              "pinyin": "juǎn",
+              "pinyinSource": "textbook"
+            },
+            "骨": {
+              "pinyin": "gū",
+              "pinyinSource": "textbook"
+            },
+            "碌": {
+              "pinyin": "lu",
+              "pinyinSource": "textbook"
+            },
+            "齿": {
+              "pinyin": "chǐ",
+              "pinyinSource": "textbook"
+            },
+            "嚼": {
+              "pinyin": "jiáo",
+              "pinyinSource": "textbook"
+            },
+            "吞": {
+              "pinyin": "tūn",
+              "pinyinSource": "textbook"
+            },
+            "胃": {
+              "pinyin": "wèi",
+              "pinyinSource": "textbook"
+            },
+            "咽": {
+              "pinyin": "yàn",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "旅": {
+              "pinyin": "lǚ",
+              "pinyinSource": "textbook"
+            },
+            "另": {
+              "pinyin": "lìng",
+              "pinyinSource": "textbook"
+            },
+            "晴": {
+              "pinyin": "qíng",
+              "pinyinSource": "textbook"
+            },
+            "及": {
+              "pinyin": "jí",
+              "pinyinSource": "textbook"
+            },
+            "卷": {
+              "pinyin": "juǎn",
+              "pinyinSource": "textbook"
+            },
+            "救": {
+              "pinyin": "jiù",
+              "pinyinSource": "dictionary"
+            },
+            "命": {
+              "pinyin": "mìng",
+              "pinyinSource": "textbook"
+            },
+            "尾": {
+              "pinyin": "wěi",
+              "pinyinSource": "textbook"
+            },
+            "齿": {
+              "pinyin": "chǐ",
+              "pinyinSource": "textbook"
+            },
+            "胃": {
+              "pinyin": "wèi",
+              "pinyinSource": "textbook"
+            },
+            "管": {
+              "pinyin": "guǎn",
+              "pinyinSource": "textbook"
+            },
+            "刚": {
+              "pinyin": "gāng",
+              "pinyinSource": "textbook"
+            },
+            "咬": {
+              "pinyin": "yǎo",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "13": {
+          "words": {},
+          "recognitionCharacters": {
+            "宣": {
+              "pinyin": "xuān",
+              "pinyinSource": "textbook"
+            },
+            "处": {
+              "pinyin": "chǔ",
+              "pinyinSource": "textbook"
+            },
+            "恐": {
+              "pinyin": "kǒng",
+              "pinyinSource": "textbook"
+            },
+            "诱": {
+              "pinyin": "yòu",
+              "pinyinSource": "textbook"
+            },
+            "毅": {
+              "pinyin": "yì",
+              "pinyinSource": "textbook"
+            },
+            "强": {
+              "pinyin": "qiáng",
+              "pinyinSource": "textbook"
+            },
+            "纪": {
+              "pinyin": "jì",
+              "pinyinSource": "textbook"
+            },
+            "性": {
+              "pinyin": "xìng",
+              "pinyinSource": "textbook"
+            },
+            "渣": {
+              "pinyin": "zhā",
+              "pinyinSource": "textbook"
+            },
+            "犯": {
+              "pinyin": "fàn",
+              "pinyinSource": "textbook"
+            },
+            "禁": {
+              "pinyin": "jìn",
+              "pinyinSource": "textbook"
+            },
+            "旧": {
+              "pinyin": "jiù",
+              "pinyinSource": "textbook"
+            },
+            "聚": {
+              "pinyin": "jù",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {},
+          "supplementalWords": {}
+        },
+        "14": {
+          "words": {
+            "母亲": {
+              "pinyin": "mǔ qīn",
+              "pinyinSource": "dictionary"
+            },
+            "外祖父": {
+              "pinyin": "wài zǔ fù",
+              "pinyinSource": "dictionary"
+            },
+            "船夫": {
+              "pinyin": "chuán fū",
+              "pinyinSource": "dictionary"
+            },
+            "羽毛": {
+              "pinyin": "yǔ máo",
+              "pinyinSource": "dictionary"
+            },
+            "翠绿": {
+              "pinyin": "cuì lǜ",
+              "pinyinSource": "dictionary"
+            },
+            "静悄悄": {
+              "pinyin": "jìng qiāo qiāo",
+              "pinyinSource": "dictionary"
+            },
+            "翠鸟": {
+              "pinyin": "cuì niǎo",
+              "pinyinSource": "dictionary"
+            },
+            "捕鱼": {
+              "pinyin": "bǔ yú",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "舱": {
+              "pinyin": "cāng",
+              "pinyinSource": "textbook"
+            },
+            "啦": {
+              "pinyin": "lā",
+              "pinyinSource": "textbook"
+            },
+            "鹦": {
+              "pinyin": "yīng",
+              "pinyinSource": "textbook"
+            },
+            "鹉": {
+              "pinyin": "wǔ",
+              "pinyinSource": "textbook"
+            },
+            "衔": {
+              "pinyin": "xián",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "搭": {
+              "pinyin": "dā",
+              "pinyinSource": "textbook"
+            },
+            "亲": {
+              "pinyin": "qīn",
+              "pinyinSource": "textbook"
+            },
+            "祖": {
+              "pinyin": "zǔ",
+              "pinyinSource": "textbook"
+            },
+            "拔": {
+              "pinyin": "bá",
+              "pinyinSource": "textbook"
+            },
+            "摇": {
+              "pinyin": "yáo",
+              "pinyinSource": "textbook"
+            },
+            "停": {
+              "pinyin": "tíng",
+              "pinyinSource": "textbook"
+            },
+            "羽": {
+              "pinyin": "yǔ",
+              "pinyinSource": "textbook"
+            },
+            "翠": {
+              "pinyin": "cuì",
+              "pinyinSource": "textbook"
+            },
+            "蓝": {
+              "pinyin": "lán",
+              "pinyinSource": "dictionary"
+            },
+            "静": {
+              "pinyin": "jìng",
+              "pinyinSource": "textbook"
+            },
+            "悄": {
+              "pinyin": "qiāo",
+              "pinyinSource": "textbook"
+            },
+            "吞": {
+              "pinyin": "tūn",
+              "pinyinSource": "textbook"
+            },
+            "捕": {
+              "pinyin": "bǔ",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "15": {
+          "words": {
+            "草地": {
+              "pinyin": "cǎo dì",
+              "pinyinSource": "dictionary"
+            },
+            "蒲公英": {
+              "pinyin": "pú gōng yīng",
+              "pinyinSource": "dictionary"
+            },
+            "盛开": {
+              "pinyin": "shèng kāi",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:15:words:盛开"
+            },
+            "玩耍": {
+              "pinyin": "wán shuǎ",
+              "pinyinSource": "dictionary"
+            },
+            "一本正经": {
+              "pinyin": "yì běn zhèng jīng",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:15:words:一本正经"
+            },
+            "使劲": {
+              "pinyin": "shǐ jìn",
+              "pinyinSource": "dictionary"
+            },
+            "钓鱼": {
+              "pinyin": "diào yú",
+              "pinyinSource": "dictionary"
+            },
+            "观察": {
+              "pinyin": "guān chá",
+              "pinyinSource": "dictionary"
+            },
+            "合拢": {
+              "pinyin": "hé lǒng",
+              "pinyinSource": "dictionary"
+            },
+            "张开": {
+              "pinyin": "zhāng kāi",
+              "pinyinSource": "dictionary"
+            },
+            "喜爱": {
+              "pinyin": "xǐ ài",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "蒲": {
+              "pinyin": "pú",
+              "pinyinSource": "textbook"
+            },
+            "英": {
+              "pinyin": "yīng",
+              "pinyinSource": "textbook"
+            },
+            "耍": {
+              "pinyin": "shuǎ",
+              "pinyinSource": "textbook"
+            },
+            "茸": {
+              "pinyin": "róng",
+              "pinyinSource": "textbook"
+            },
+            "欠": {
+              "pinyin": "qiàn",
+              "pinyinSource": "textbook"
+            },
+            "拢": {
+              "pinyin": "lǒng",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "蒲": {
+              "pinyin": "pú",
+              "pinyinSource": "textbook"
+            },
+            "英": {
+              "pinyin": "yīng",
+              "pinyinSource": "textbook"
+            },
+            "盛": {
+              "pinyin": "shèng",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:15:writingCharacters:盛"
+            },
+            "耍": {
+              "pinyin": "shuǎ",
+              "pinyinSource": "textbook"
+            },
+            "使": {
+              "pinyin": "shǐ",
+              "pinyinSource": "textbook"
+            },
+            "劲": {
+              "pinyin": "jìn",
+              "pinyinSource": "dictionary"
+            },
+            "脸": {
+              "pinyin": "liǎn",
+              "pinyinSource": "dictionary"
+            },
+            "欠": {
+              "pinyin": "qiàn",
+              "pinyinSource": "textbook"
+            },
+            "朝": {
+              "pinyin": "cháo",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:15:writingCharacters:朝"
+            },
+            "钓": {
+              "pinyin": "diào",
+              "pinyinSource": "textbook"
+            },
+            "察": {
+              "pinyin": "chá",
+              "pinyinSource": "dictionary"
+            },
+            "拢": {
+              "pinyin": "lǒng",
+              "pinyinSource": "textbook"
+            },
+            "喜": {
+              "pinyin": "xǐ",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "16": {
+          "words": {
+            "风景": {
+              "pinyin": "fēng jǐng",
+              "pinyinSource": "dictionary"
+            },
+            "优美": {
+              "pinyin": "yōu měi",
+              "pinyinSource": "dictionary"
+            },
+            "物产": {
+              "pinyin": "wù chǎn",
+              "pinyinSource": "dictionary"
+            },
+            "交错": {
+              "pinyin": "jiāo cuò",
+              "pinyinSource": "dictionary"
+            },
+            "岩石": {
+              "pinyin": "yán shí",
+              "pinyinSource": "dictionary"
+            },
+            "鹿角": {
+              "pinyin": "lù jiǎo",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:16:words:鹿角"
+            },
+            "成群结队": {
+              "pinyin": "chéng qún jié duì",
+              "pinyinSource": "dictionary"
+            },
+            "布满": {
+              "pinyin": "bù mǎn",
+              "pinyinSource": "dictionary"
+            },
+            "条纹": {
+              "pinyin": "tiáo wén",
+              "pinyinSource": "dictionary"
+            },
+            "周身": {
+              "pinyin": "zhōu shēn",
+              "pinyinSource": "dictionary"
+            },
+            "皮球": {
+              "pinyin": "pí qiú",
+              "pinyinSource": "dictionary"
+            },
+            "茂密": {
+              "pinyin": "mào mì",
+              "pinyinSource": "dictionary"
+            },
+            "肥料": {
+              "pinyin": "féi liào",
+              "pinyinSource": "dictionary"
+            },
+            "祖国": {
+              "pinyin": "zǔ guó",
+              "pinyinSource": "dictionary"
+            },
+            "事业": {
+              "pinyin": "shì yè",
+              "pinyinSource": "dictionary"
+            },
+            "发展": {
+              "pinyin": "fā zhǎn",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "饶": {
+              "pinyin": "ráo",
+              "pinyinSource": "textbook"
+            },
+            "优": {
+              "pinyin": "yōu",
+              "pinyinSource": "textbook"
+            },
+            "崖": {
+              "pinyin": "yá",
+              "pinyinSource": "textbook"
+            },
+            "参": {
+              "pinyin": "shēn",
+              "pinyinSource": "textbook"
+            },
+            "懒": {
+              "pinyin": "lǎn",
+              "pinyinSource": "textbook"
+            },
+            "划": {
+              "pinyin": "huá",
+              "pinyinSource": "textbook"
+            },
+            "威": {
+              "pinyin": "wēi",
+              "pinyinSource": "textbook"
+            },
+            "武": {
+              "pinyin": "wǔ",
+              "pinyinSource": "textbook"
+            },
+            "插": {
+              "pinyin": "chā",
+              "pinyinSource": "textbook"
+            },
+            "栖": {
+              "pinyin": "qī",
+              "pinyinSource": "textbook"
+            },
+            "厚": {
+              "pinyin": "hòu",
+              "pinyinSource": "textbook"
+            },
+            "粪": {
+              "pinyin": "fèn",
+              "pinyinSource": "textbook"
+            },
+            "辈": {
+              "pinyin": "bèi",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "景": {
+              "pinyin": "jǐng",
+              "pinyinSource": "textbook"
+            },
+            "优": {
+              "pinyin": "yōu",
+              "pinyinSource": "textbook"
+            },
+            "淡": {
+              "pinyin": "dàn",
+              "pinyinSource": "textbook"
+            },
+            "浅": {
+              "pinyin": "qiǎn",
+              "pinyinSource": "textbook"
+            },
+            "底": {
+              "pinyin": "dǐ",
+              "pinyinSource": "textbook"
+            },
+            "岩": {
+              "pinyin": "yán",
+              "pinyinSource": "textbook"
+            },
+            "鹿": {
+              "pinyin": "lù",
+              "pinyinSource": "textbook"
+            },
+            "划": {
+              "pinyin": "huá",
+              "pinyinSource": "textbook"
+            },
+            "布": {
+              "pinyin": "bù",
+              "pinyinSource": "textbook"
+            },
+            "茂": {
+              "pinyin": "mào",
+              "pinyinSource": "textbook"
+            },
+            "密": {
+              "pinyin": "mì",
+              "pinyinSource": "textbook"
+            },
+            "厚": {
+              "pinyin": "hòu",
+              "pinyinSource": "textbook"
+            },
+            "料": {
+              "pinyin": "liào",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "17": {
+          "words": {
+            "海滨": {
+              "pinyin": "hǎi bīn",
+              "pinyinSource": "dictionary"
+            },
+            "街道": {
+              "pinyin": "jiē dào",
+              "pinyinSource": "dictionary"
+            },
+            "交界": {
+              "pinyin": "jiāo jiè",
+              "pinyinSource": "dictionary"
+            },
+            "水平线": {
+              "pinyin": "shuǐ píng xiàn",
+              "pinyinSource": "dictionary"
+            },
+            "机帆船": {
+              "pinyin": "jī fān chuán",
+              "pinyinSource": "dictionary"
+            },
+            "来来往往": {
+              "pinyin": "lái lái wǎng wǎng",
+              "pinyinSource": "dictionary"
+            },
+            "朝阳": {
+              "pinyin": "zhāo yáng",
+              "pinyinSource": "dictionary"
+            },
+            "渔民": {
+              "pinyin": "yú mín",
+              "pinyinSource": "dictionary"
+            },
+            "贝壳": {
+              "pinyin": "bèi ké",
+              "pinyinSource": "dictionary"
+            },
+            "理睬": {
+              "pinyin": "lǐ cǎi",
+              "pinyinSource": "dictionary"
+            },
+            "汽笛": {
+              "pinyin": "qì dí",
+              "pinyinSource": "dictionary"
+            },
+            "出海": {
+              "pinyin": "chū hǎi",
+              "pinyinSource": "dictionary"
+            },
+            "银光闪闪": {
+              "pinyin": "yín guāng shǎn shǎn",
+              "pinyinSource": "dictionary"
+            },
+            "庭院": {
+              "pinyin": "tíng yuàn",
+              "pinyinSource": "dictionary"
+            },
+            "散发": {
+              "pinyin": "sàn fā",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:17:words:散发"
+            },
+            "打扫": {
+              "pinyin": "dǎ sǎo",
+              "pinyinSource": "dictionary"
+            },
+            "干净": {
+              "pinyin": "gān jìng",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "滨": {
+              "pinyin": "bīn",
+              "pinyinSource": "textbook"
+            },
+            "胳": {
+              "pinyin": "gē",
+              "pinyinSource": "textbook"
+            },
+            "臂": {
+              "pinyin": "bei",
+              "pinyinSource": "textbook"
+            },
+            "滩": {
+              "pinyin": "tān",
+              "pinyinSource": "textbook"
+            },
+            "睬": {
+              "pinyin": "cǎi",
+              "pinyinSource": "textbook"
+            },
+            "载": {
+              "pinyin": "zài",
+              "pinyinSource": "textbook"
+            },
+            "逢": {
+              "pinyin": "féng",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "滨": {
+              "pinyin": "bīn",
+              "pinyinSource": "textbook"
+            },
+            "棕": {
+              "pinyin": "zōng",
+              "pinyinSource": "textbook"
+            },
+            "帆": {
+              "pinyin": "fān",
+              "pinyinSource": "textbook"
+            },
+            "灰": {
+              "pinyin": "huī",
+              "pinyinSource": "textbook"
+            },
+            "跟": {
+              "pinyin": "gēn",
+              "pinyinSource": "textbook"
+            },
+            "渔": {
+              "pinyin": "yú",
+              "pinyinSource": "dictionary"
+            },
+            "壳": {
+              "pinyin": "ké",
+              "pinyinSource": "textbook"
+            },
+            "睬": {
+              "pinyin": "cǎi",
+              "pinyinSource": "textbook"
+            },
+            "院": {
+              "pinyin": "yuàn",
+              "pinyinSource": "dictionary"
+            },
+            "透": {
+              "pinyin": "tòu",
+              "pinyinSource": "textbook"
+            },
+            "除": {
+              "pinyin": "chú",
+              "pinyinSource": "textbook"
+            },
+            "踩": {
+              "pinyin": "cǎi",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "18": {
+          "words": {
+            "东北": {
+              "pinyin": "dōng běi",
+              "pinyinSource": "dictionary"
+            },
+            "密密层层": {
+              "pinyin": "mì mì céng céng",
+              "pinyinSource": "dictionary"
+            },
+            "严严实实": {
+              "pinyin": "yán yán shí shí",
+              "pinyinSource": "dictionary"
+            },
+            "视线": {
+              "pinyin": "shì xiàn",
+              "pinyinSource": "dictionary"
+            },
+            "山谷": {
+              "pinyin": "shān gǔ",
+              "pinyinSource": "dictionary"
+            },
+            "起来": {
+              "pinyin": "qǐ lai",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:18:words:起来"
+            },
+            "照射": {
+              "pinyin": "zhào shè",
+              "pinyinSource": "dictionary"
+            },
+            "各种各样": {
+              "pinyin": "gè zhǒng gè yàng",
+              "pinyinSource": "dictionary"
+            },
+            "花坛": {
+              "pinyin": "huā tán",
+              "pinyinSource": "dictionary"
+            },
+            "显得": {
+              "pinyin": "xiǎn de",
+              "pinyinSource": "dictionary"
+            },
+            "苍翠": {
+              "pinyin": "cāng cuì",
+              "pinyinSource": "dictionary"
+            },
+            "药材": {
+              "pinyin": "yào cái",
+              "pinyinSource": "dictionary"
+            },
+            "捕捉": {
+              "pinyin": "bǔ zhuō",
+              "pinyinSource": "dictionary"
+            },
+            "野兔": {
+              "pinyin": "yě tù",
+              "pinyinSource": "dictionary"
+            },
+            "景色": {
+              "pinyin": "jǐng sè",
+              "pinyinSource": "dictionary"
+            },
+            "宝库": {
+              "pinyin": "bǎo kù",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "兴": {
+              "pinyin": "xīng",
+              "pinyinSource": "textbook"
+            },
+            "融": {
+              "pinyin": "róng",
+              "pinyinSource": "textbook"
+            },
+            "侧": {
+              "pinyin": "cè",
+              "pinyinSource": "textbook"
+            },
+            "欣": {
+              "pinyin": "xīn",
+              "pinyinSource": "textbook"
+            },
+            "封": {
+              "pinyin": "fēng",
+              "pinyinSource": "textbook"
+            },
+            "浸": {
+              "pinyin": "jìn",
+              "pinyinSource": "textbook"
+            },
+            "乳": {
+              "pinyin": "rǔ",
+              "pinyinSource": "textbook"
+            },
+            "梢": {
+              "pinyin": "shāo",
+              "pinyinSource": "textbook"
+            },
+            "宿": {
+              "pinyin": "sù",
+              "pinyinSource": "textbook"
+            },
+            "舍": {
+              "pinyin": "shè",
+              "pinyinSource": "textbook"
+            },
+            "药": {
+              "pinyin": "yào",
+              "pinyinSource": "textbook"
+            },
+            "眠": {
+              "pinyin": "mián",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "抽": {
+              "pinyin": "chōu",
+              "pinyinSource": "textbook"
+            },
+            "封": {
+              "pinyin": "fēng",
+              "pinyinSource": "textbook"
+            },
+            "严": {
+              "pinyin": "yán",
+              "pinyinSource": "textbook"
+            },
+            "挡": {
+              "pinyin": "dǎng",
+              "pinyinSource": "textbook"
+            },
+            "坛": {
+              "pinyin": "tán",
+              "pinyinSource": "textbook"
+            },
+            "显": {
+              "pinyin": "xiǎn",
+              "pinyinSource": "textbook"
+            },
+            "苍": {
+              "pinyin": "cāng",
+              "pinyinSource": "textbook"
+            },
+            "药": {
+              "pinyin": "yào",
+              "pinyinSource": "textbook"
+            },
+            "材": {
+              "pinyin": "cái",
+              "pinyinSource": "textbook"
+            },
+            "软": {
+              "pinyin": "ruǎn",
+              "pinyinSource": "textbook"
+            },
+            "刮": {
+              "pinyin": "guā",
+              "pinyinSource": "textbook"
+            },
+            "捉": {
+              "pinyin": "zhuō",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "19": {
+          "words": {},
+          "recognitionCharacters": {
+            "贸": {
+              "pinyin": "mào",
+              "pinyinSource": "textbook"
+            },
+            "愧": {
+              "pinyin": "kuì",
+              "pinyinSource": "textbook"
+            },
+            "仅": {
+              "pinyin": "jǐn",
+              "pinyinSource": "textbook"
+            },
+            "议": {
+              "pinyin": "yì",
+              "pinyinSource": "textbook"
+            },
+            "政": {
+              "pinyin": "zhèng",
+              "pinyinSource": "textbook"
+            },
+            "府": {
+              "pinyin": "fǔ",
+              "pinyinSource": "textbook"
+            },
+            "赠": {
+              "pinyin": "zèng",
+              "pinyinSource": "textbook"
+            },
+            "幻": {
+              "pinyin": "huàn",
+              "pinyinSource": "textbook"
+            },
+            "焰": {
+              "pinyin": "yàn",
+              "pinyinSource": "textbook"
+            },
+            "澳": {
+              "pinyin": "ào",
+              "pinyinSource": "textbook"
+            },
+            "扮": {
+              "pinyin": "bàn",
+              "pinyinSource": "textbook"
+            },
+            "角": {
+              "pinyin": "jué",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {},
+          "supplementalWords": {}
+        },
+        "20": {
+          "words": {},
+          "recognitionCharacters": {
+            "返": {
+              "pinyin": "fǎn",
+              "pinyinSource": "textbook"
+            },
+            "苔": {
+              "pinyin": "tái",
+              "pinyinSource": "textbook"
+            },
+            "亦": {
+              "pinyin": "yì",
+              "pinyinSource": "textbook"
+            },
+            "抹": {
+              "pinyin": "mǒ",
+              "pinyinSource": "textbook"
+            },
+            "宜": {
+              "pinyin": "yí",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "返": {
+              "pinyin": "fǎn",
+              "pinyinSource": "textbook"
+            },
+            "望": {
+              "pinyin": "wàng",
+              "pinyinSource": "textbook"
+            },
+            "断": {
+              "pinyin": "duàn",
+              "pinyinSource": "textbook"
+            },
+            "楚": {
+              "pinyin": "chǔ",
+              "pinyinSource": "textbook"
+            },
+            "至": {
+              "pinyin": "zhì",
+              "pinyinSource": "textbook"
+            },
+            "岸": {
+              "pinyin": "àn",
+              "pinyinSource": "textbook"
+            },
+            "孤": {
+              "pinyin": "gū",
+              "pinyinSource": "textbook"
+            },
+            "饮": {
+              "pinyin": "yǐn",
+              "pinyinSource": "textbook"
+            },
+            "亦": {
+              "pinyin": "yì",
+              "pinyinSource": "textbook"
+            },
+            "欲": {
+              "pinyin": "yù",
+              "pinyinSource": "textbook"
+            },
+            "抹": {
+              "pinyin": "mǒ",
+              "pinyinSource": "textbook"
+            },
+            "宜": {
+              "pinyin": "yí",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "21": {
+          "words": {
+            "大自然": {
+              "pinyin": "dà zì rán",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:21:words:大自然"
+            },
+            "美妙": {
+              "pinyin": "měi miào",
+              "pinyinSource": "dictionary"
+            },
+            "音乐家": {
+              "pinyin": "yīn yuè jiā",
+              "pinyinSource": "dictionary"
+            },
+            "手风琴": {
+              "pinyin": "shǒu fēng qín",
+              "pinyinSource": "dictionary"
+            },
+            "歌手": {
+              "pinyin": "gē shǒu",
+              "pinyinSource": "dictionary"
+            },
+            "感受": {
+              "pinyin": "gǎn shòu",
+              "pinyinSource": "dictionary"
+            },
+            "温柔": {
+              "pinyin": "wēn róu",
+              "pinyinSource": "dictionary"
+            },
+            "合奏": {
+              "pinyin": "hé zòu",
+              "pinyinSource": "dictionary"
+            },
+            "充满": {
+              "pinyin": "chōng mǎn",
+              "pinyinSource": "dictionary"
+            },
+            "威力": {
+              "pinyin": "wēi lì",
+              "pinyinSource": "dictionary"
+            },
+            "乐器": {
+              "pinyin": "yuè qì",
+              "pinyinSource": "dictionary"
+            },
+            "屋顶": {
+              "pinyin": "wū dǐng",
+              "pinyinSource": "dictionary"
+            },
+            "河流": {
+              "pinyin": "hé liú",
+              "pinyinSource": "dictionary"
+            },
+            "轻快": {
+              "pinyin": "qīng kuài",
+              "pinyinSource": "dictionary"
+            },
+            "合唱": {
+              "pinyin": "hé chàng",
+              "pinyinSource": "dictionary"
+            },
+            "水塘": {
+              "pinyin": "shuǐ táng",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "妙": {
+              "pinyin": "miào",
+              "pinyinSource": "textbook"
+            },
+            "奏": {
+              "pinyin": "zòu",
+              "pinyinSource": "textbook"
+            },
+            "呢": {
+              "pinyin": "ní",
+              "pinyinSource": "textbook"
+            },
+            "喃": {
+              "pinyin": "nán",
+              "pinyinSource": "textbook"
+            },
+            "激": {
+              "pinyin": "jī",
+              "pinyinSource": "textbook"
+            },
+            "伟": {
+              "pinyin": "wěi",
+              "pinyinSource": "textbook"
+            },
+            "充": {
+              "pinyin": "chōng",
+              "pinyinSource": "textbook"
+            },
+            "击": {
+              "pinyin": "jī",
+              "pinyinSource": "textbook"
+            },
+            "器": {
+              "pinyin": "qì",
+              "pinyinSource": "textbook"
+            },
+            "汇": {
+              "pinyin": "huì",
+              "pinyinSource": "textbook"
+            },
+            "哩": {
+              "pinyin": "lī",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "妙": {
+              "pinyin": "miào",
+              "pinyinSource": "textbook"
+            },
+            "奏": {
+              "pinyin": "zòu",
+              "pinyinSource": "textbook"
+            },
+            "琴": {
+              "pinyin": "qín",
+              "pinyinSource": "dictionary"
+            },
+            "柔": {
+              "pinyin": "róu",
+              "pinyinSource": "textbook"
+            },
+            "感": {
+              "pinyin": "gǎn",
+              "pinyinSource": "textbook"
+            },
+            "充": {
+              "pinyin": "chōng",
+              "pinyinSource": "textbook"
+            },
+            "威": {
+              "pinyin": "wēi",
+              "pinyinSource": "textbook"
+            },
+            "器": {
+              "pinyin": "qì",
+              "pinyinSource": "textbook"
+            },
+            "汇": {
+              "pinyin": "huì",
+              "pinyinSource": "textbook"
+            },
+            "鸣": {
+              "pinyin": "míng",
+              "pinyinSource": "textbook"
+            },
+            "塘": {
+              "pinyin": "táng",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "22": {
+          "words": {
+            "昆虫": {
+              "pinyin": "kūn chóng",
+              "pinyinSource": "dictionary"
+            },
+            "万物": {
+              "pinyin": "wàn wù",
+              "pinyinSource": "dictionary"
+            },
+            "沉思": {
+              "pinyin": "chén sī",
+              "pinyinSource": "dictionary"
+            },
+            "搬家": {
+              "pinyin": "bān jiā",
+              "pinyinSource": "dictionary"
+            },
+            "井然有序": {
+              "pinyin": "jǐng rán yǒu xù",
+              "pinyinSource": "dictionary"
+            },
+            "精神": {
+              "pinyin": "jīng shén",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:22:words:精神"
+            },
+            "植物": {
+              "pinyin": "zhí wù",
+              "pinyinSource": "dictionary"
+            },
+            "千姿百态": {
+              "pinyin": "qiān zī bǎi tài",
+              "pinyinSource": "dictionary"
+            },
+            "鲜美": {
+              "pinyin": "xiān měi",
+              "pinyinSource": "dictionary"
+            },
+            "池塘": {
+              "pinyin": "chí táng",
+              "pinyinSource": "dictionary"
+            },
+            "秋高气爽": {
+              "pinyin": "qiū gāo qì shuǎng",
+              "pinyinSource": "dictionary"
+            },
+            "倒映": {
+              "pinyin": "dào yìng",
+              "pinyinSource": "dictionary"
+            },
+            "游玩": {
+              "pinyin": "yóu wán",
+              "pinyinSource": "dictionary"
+            },
+            "画册": {
+              "pinyin": "huà cè",
+              "pinyinSource": "dictionary"
+            },
+            "无穷": {
+              "pinyin": "wú qióng",
+              "pinyinSource": "dictionary"
+            },
+            "奥秘": {
+              "pinyin": "ào mì",
+              "pinyinSource": "dictionary"
+            },
+            "无尽": {
+              "pinyin": "wú jìn",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "麻": {
+              "pinyin": "má",
+              "pinyinSource": "textbook"
+            },
+            "旋": {
+              "pinyin": "xuán",
+              "pinyinSource": "textbook"
+            },
+            "序": {
+              "pinyin": "xù",
+              "pinyinSource": "textbook"
+            },
+            "贞": {
+              "pinyin": "zhēn",
+              "pinyinSource": "textbook"
+            },
+            "姿": {
+              "pinyin": "zī",
+              "pinyinSource": "textbook"
+            },
+            "笋": {
+              "pinyin": "sǔn",
+              "pinyinSource": "textbook"
+            },
+            "超": {
+              "pinyin": "chāo",
+              "pinyinSource": "textbook"
+            },
+            "凡": {
+              "pinyin": "fán",
+              "pinyinSource": "textbook"
+            },
+            "俗": {
+              "pinyin": "sú",
+              "pinyinSource": "textbook"
+            },
+            "奥": {
+              "pinyin": "ào",
+              "pinyinSource": "textbook"
+            },
+            "秘": {
+              "pinyin": "mì",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "虾": {
+              "pinyin": "xiā",
+              "pinyinSource": "textbook"
+            },
+            "昆": {
+              "pinyin": "kūn",
+              "pinyinSource": "textbook"
+            },
+            "仅": {
+              "pinyin": "jǐn",
+              "pinyinSource": "textbook"
+            },
+            "序": {
+              "pinyin": "xù",
+              "pinyinSource": "textbook"
+            },
+            "荣": {
+              "pinyin": "róng",
+              "pinyinSource": "textbook"
+            },
+            "枯": {
+              "pinyin": "kū",
+              "pinyinSource": "textbook"
+            },
+            "姿": {
+              "pinyin": "zī",
+              "pinyinSource": "textbook"
+            },
+            "态": {
+              "pinyin": "tài",
+              "pinyinSource": "textbook"
+            },
+            "刺": {
+              "pinyin": "cì",
+              "pinyinSource": "textbook"
+            },
+            "梨": {
+              "pinyin": "lí",
+              "pinyinSource": "textbook"
+            },
+            "部": {
+              "pinyin": "bù",
+              "pinyinSource": "dictionary"
+            },
+            "奥": {
+              "pinyin": "ào",
+              "pinyinSource": "textbook"
+            },
+            "秘": {
+              "pinyin": "mì",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "23": {
+          "words": {},
+          "recognitionCharacters": {
+            "司": {
+              "pinyin": "sī",
+              "pinyinSource": "textbook"
+            },
+            "皆": {
+              "pinyin": "jiē",
+              "pinyinSource": "textbook"
+            },
+            "弃": {
+              "pinyin": "qì",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "司": {
+              "pinyin": "sī",
+              "pinyinSource": "textbook"
+            },
+            "登": {
+              "pinyin": "dēng",
+              "pinyinSource": "textbook"
+            },
+            "跌": {
+              "pinyin": "diē",
+              "pinyinSource": "textbook"
+            },
+            "皆": {
+              "pinyin": "jiē",
+              "pinyinSource": "textbook"
+            },
+            "弃": {
+              "pinyin": "qì",
+              "pinyinSource": "textbook"
+            },
+            "持": {
+              "pinyin": "chí",
+              "pinyinSource": "textbook"
+            },
+            "击": {
+              "pinyin": "jī",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "24": {
+          "words": {
+            "生物": {
+              "pinyin": "shēng wù",
+              "pinyinSource": "dictionary"
+            },
+            "从事": {
+              "pinyin": "cóng shì",
+              "pinyinSource": "dictionary"
+            },
+            "成就": {
+              "pinyin": "chéng jiù",
+              "pinyinSource": "dictionary"
+            },
+            "学期": {
+              "pinyin": "xué qī",
+              "pinyinSource": "dictionary"
+            },
+            "考试": {
+              "pinyin": "kǎo shì",
+              "pinyinSource": "dictionary"
+            },
+            "平均": {
+              "pinyin": "píng jūn",
+              "pinyinSource": "dictionary"
+            },
+            "再三": {
+              "pinyin": "zài sān",
+              "pinyinSource": "dictionary"
+            },
+            "同意": {
+              "pinyin": "tóng yì",
+              "pinyinSource": "dictionary"
+            },
+            "难得": {
+              "pinyin": "nán dé",
+              "pinyinSource": "dictionary"
+            },
+            "值班": {
+              "pinyin": "zhí bān",
+              "pinyinSource": "dictionary"
+            },
+            "努力": {
+              "pinyin": "nǔ lì",
+              "pinyinSource": "dictionary"
+            },
+            "满分": {
+              "pinyin": "mǎn fēn",
+              "pinyinSource": "dictionary"
+            },
+            "国家": {
+              "pinyin": "guó jiā",
+              "pinyinSource": "dictionary"
+            },
+            "地位": {
+              "pinyin": "dì wèi",
+              "pinyinSource": "dictionary"
+            },
+            "环节": {
+              "pinyin": "huán jié",
+              "pinyinSource": "dictionary"
+            },
+            "难度": {
+              "pinyin": "nán dù",
+              "pinyinSource": "dictionary"
+            },
+            "刻苦": {
+              "pinyin": "kè kǔ",
+              "pinyinSource": "dictionary"
+            },
+            "兴奋": {
+              "pinyin": "xīng fèn",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "裕": {
+              "pinyin": "yù",
+              "pinyinSource": "textbook"
+            },
+            "差": {
+              "pinyin": "chà",
+              "pinyinSource": "textbook"
+            },
+            "均": {
+              "pinyin": "jūn",
+              "pinyinSource": "textbook"
+            },
+            "资": {
+              "pinyin": "zī",
+              "pinyinSource": "textbook"
+            },
+            "欧": {
+              "pinyin": "ōu",
+              "pinyinSource": "textbook"
+            },
+            "洲": {
+              "pinyin": "zhōu",
+              "pinyinSource": "textbook"
+            },
+            "授": {
+              "pinyin": "shòu",
+              "pinyinSource": "textbook"
+            },
+            "项": {
+              "pinyin": "xiàng",
+              "pinyinSource": "textbook"
+            },
+            "验": {
+              "pinyin": "yàn",
+              "pinyinSource": "textbook"
+            },
+            "构": {
+              "pinyin": "gòu",
+              "pinyinSource": "textbook"
+            },
+            "耐": {
+              "pinyin": "nài",
+              "pinyinSource": "textbook"
+            },
+            "励": {
+              "pinyin": "lì",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "念": {
+              "pinyin": "niàn",
+              "pinyinSource": "textbook"
+            },
+            "差": {
+              "pinyin": "chà",
+              "pinyinSource": "textbook"
+            },
+            "考": {
+              "pinyin": "kǎo",
+              "pinyinSource": "dictionary"
+            },
+            "试": {
+              "pinyin": "shì",
+              "pinyinSource": "dictionary"
+            },
+            "均": {
+              "pinyin": "jūn",
+              "pinyinSource": "textbook"
+            },
+            "退": {
+              "pinyin": "tuì",
+              "pinyinSource": "dictionary"
+            },
+            "努": {
+              "pinyin": "nǔ",
+              "pinyinSource": "textbook"
+            },
+            "单": {
+              "pinyin": "dān",
+              "pinyinSource": "textbook"
+            },
+            "留": {
+              "pinyin": "liú",
+              "pinyinSource": "textbook"
+            },
+            "度": {
+              "pinyin": "dù",
+              "pinyinSource": "dictionary"
+            },
+            "奋": {
+              "pinyin": "fèn",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "25": {
+          "words": {
+            "手术台": {
+              "pinyin": "shǒu shù tái",
+              "pinyinSource": "dictionary"
+            },
+            "阵地": {
+              "pinyin": "zhèn dì",
+              "pinyinSource": "dictionary"
+            },
+            "战斗": {
+              "pinyin": "zhàn dòu",
+              "pinyinSource": "dictionary"
+            },
+            "打响": {
+              "pinyin": "dǎ xiǎng",
+              "pinyinSource": "dictionary"
+            },
+            "当头一棒": {
+              "pinyin": "dāng tóu yí bàng",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:25:words:当头一棒"
+            },
+            "伤员": {
+              "pinyin": "shāng yuán",
+              "pinyinSource": "dictionary"
+            },
+            "陆续": {
+              "pinyin": "lù xù",
+              "pinyinSource": "dictionary"
+            },
+            "血丝": {
+              "pinyin": "xuè sī",
+              "pinyinSource": "dictionary"
+            },
+            "匆匆": {
+              "pinyin": "cōng cōng",
+              "pinyinSource": "reviewed",
+              "reviewId": "chinese-g3up-2026:25:words:匆匆"
+            },
+            "医生": {
+              "pinyin": "yī shēng",
+              "pinyinSource": "dictionary"
+            },
+            "转告": {
+              "pinyin": "zhuǎn gào",
+              "pinyinSource": "dictionary"
+            },
+            "赶忙": {
+              "pinyin": "gǎn máng",
+              "pinyinSource": "dictionary"
+            },
+            "迅速": {
+              "pinyin": "xùn sù",
+              "pinyinSource": "dictionary"
+            },
+            "争分夺秒": {
+              "pinyin": "zhēng fēn duó miǎo",
+              "pinyinSource": "dictionary"
+            },
+            "连续": {
+              "pinyin": "lián xù",
+              "pinyinSource": "dictionary"
+            }
+          },
+          "recognitionCharacters": {
+            "棒": {
+              "pinyin": "bàng",
+              "pinyinSource": "textbook"
+            },
+            "大": {
+              "pinyin": "dài",
+              "pinyinSource": "textbook"
+            },
+            "血": {
+              "pinyin": "xuè",
+              "pinyinSource": "textbook"
+            },
+            "硝": {
+              "pinyin": "xiāo",
+              "pinyinSource": "textbook"
+            },
+            "危": {
+              "pinyin": "wēi",
+              "pinyinSource": "textbook"
+            },
+            "险": {
+              "pinyin": "xiǎn",
+              "pinyinSource": "textbook"
+            },
+            "势": {
+              "pinyin": "shì",
+              "pinyinSource": "textbook"
+            },
+            "瓦": {
+              "pinyin": "wǎ",
+              "pinyinSource": "textbook"
+            },
+            "帘": {
+              "pinyin": "lián",
+              "pinyinSource": "textbook"
+            },
+            "担": {
+              "pinyin": "dān",
+              "pinyinSource": "textbook"
+            },
+            "迅": {
+              "pinyin": "xùn",
+              "pinyinSource": "textbook"
+            },
+            "速": {
+              "pinyin": "sù",
+              "pinyinSource": "textbook"
+            },
+            "夺": {
+              "pinyin": "duó",
+              "pinyinSource": "textbook"
+            },
+            "秒": {
+              "pinyin": "miǎo",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {
+            "棒": {
+              "pinyin": "bàng",
+              "pinyinSource": "textbook"
+            },
+            "伤": {
+              "pinyin": "shāng",
+              "pinyinSource": "textbook"
+            },
+            "陆": {
+              "pinyin": "lù",
+              "pinyinSource": "textbook"
+            },
+            "血": {
+              "pinyin": "xuè",
+              "pinyinSource": "textbook"
+            },
+            "取": {
+              "pinyin": "qǔ",
+              "pinyinSource": "textbook"
+            },
+            "盘": {
+              "pinyin": "pán",
+              "pinyinSource": "textbook"
+            },
+            "匆": {
+              "pinyin": "cōng",
+              "pinyinSource": "textbook"
+            },
+            "医": {
+              "pinyin": "yī",
+              "pinyinSource": "dictionary"
+            },
+            "迅": {
+              "pinyin": "xùn",
+              "pinyinSource": "textbook"
+            },
+            "速": {
+              "pinyin": "sù",
+              "pinyinSource": "textbook"
+            },
+            "夺": {
+              "pinyin": "duó",
+              "pinyinSource": "textbook"
+            },
+            "秒": {
+              "pinyin": "miǎo",
+              "pinyinSource": "textbook"
+            }
+          },
+          "supplementalWords": {}
+        },
+        "26": {
+          "words": {},
+          "recognitionCharacters": {
+            "瓷": {
+              "pinyin": "cí",
+              "pinyinSource": "textbook"
+            },
+            "赵": {
+              "pinyin": "zhào",
+              "pinyinSource": "textbook"
+            },
+            "抗": {
+              "pinyin": "kàng",
+              "pinyinSource": "textbook"
+            },
+            "束": {
+              "pinyin": "shù",
+              "pinyinSource": "textbook"
+            },
+            "缸": {
+              "pinyin": "gāng",
+              "pinyinSource": "textbook"
+            },
+            "还": {
+              "pinyin": "huán",
+              "pinyinSource": "textbook"
+            },
+            "顿": {
+              "pinyin": "dùn",
+              "pinyinSource": "textbook"
+            },
+            "灶": {
+              "pinyin": "zào",
+              "pinyinSource": "textbook"
+            },
+            "沾": {
+              "pinyin": "zhān",
+              "pinyinSource": "textbook"
+            },
+            "禁": {
+              "pinyin": "jīn",
+              "pinyinSource": "textbook"
+            },
+            "锅": {
+              "pinyin": "guō",
+              "pinyinSource": "textbook"
+            },
+            "侦": {
+              "pinyin": "zhēn",
+              "pinyinSource": "textbook"
+            }
+          },
+          "writingCharacters": {},
+          "supplementalWords": {}
+        }
+      }
+    }
+  },
+  "statistics": {
+    "chinese-g3down-2026": {
+      "words": {
+        "textbook": 0,
+        "reviewed": 33,
+        "dictionary": 210,
+        "pendingHidden": 0,
+        "total": 243
+      },
+      "recognitionCharacters": {
+        "textbook": 246,
+        "reviewed": 0,
+        "dictionary": 0,
+        "pendingHidden": 0,
+        "total": 246
+      },
+      "writingCharacters": {
+        "textbook": 205,
+        "reviewed": 3,
+        "dictionary": 12,
+        "pendingHidden": 0,
+        "total": 220
+      },
+      "supplementalWords": {
+        "textbook": 0,
+        "reviewed": 0,
+        "dictionary": 0,
+        "pendingHidden": 0,
+        "total": 0
+      },
+      "characters": {
+        "textbook": 451,
+        "reviewed": 3,
+        "dictionary": 12,
+        "pendingHidden": 0,
+        "total": 466
+      }
+    },
+    "chinese-g3up-2026": {
+      "words": {
+        "textbook": 0,
+        "reviewed": 21,
+        "dictionary": 206,
+        "pendingHidden": 0,
+        "total": 227
+      },
+      "recognitionCharacters": {
+        "textbook": 248,
+        "reviewed": 0,
+        "dictionary": 0,
+        "pendingHidden": 0,
+        "total": 248
+      },
+      "writingCharacters": {
+        "textbook": 196,
+        "reviewed": 5,
+        "dictionary": 20,
+        "pendingHidden": 0,
+        "total": 221
+      },
+      "supplementalWords": {
+        "textbook": 0,
+        "reviewed": 2,
+        "dictionary": 28,
+        "pendingHidden": 0,
+        "total": 30
+      },
+      "characters": {
+        "textbook": 444,
+        "reviewed": 5,
+        "dictionary": 20,
+        "pendingHidden": 0,
+        "total": 469
+      }
+    }
+  },
+  "reviewSummary": {
+    "total": 63,
+    "pending": 0,
+    "confirmed": 63,
+    "hide": 0,
+    "staleDecisions": 0,
+    "reasonCounts": {
+      "textbookConflict": 16,
+      "neutralTone": 30,
+      "yiBuTone": 4,
+      "polyphonicUnlisted": 13
+    },
+    "pendingReasonCounts": {
+      "textbookConflict": 0,
+      "neutralTone": 0,
+      "yiBuTone": 0,
+      "polyphonicUnlisted": 0
+    }
+  }
+}

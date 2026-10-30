@@ -11,6 +11,7 @@ const DEFAULT_SETTINGS = Object.freeze({
 // Small review list for the characters in the current lessons. This is a listening
 // reminder, not an automatic pronunciation decision.
 const POLYPHONIC = { 晃: ['huǎng', 'huàng'], 读: ['dú', 'dòu'] }
+const { loadContextCandidates, selectCharacterContext } = require('./tts-context.cjs')
 
 function readEnvironment(root, env = process.env) {
   const result = {}
@@ -68,15 +69,47 @@ function loadCredentials({ root, env = process.env }) {
   return (readEnvironment(root, env).ELEVENLABS_API_KEY || '').trim()
 }
 
-function collectAudioEntries(patches) {
+function collectAudioEntries(patches, { contextCandidates } = {}) {
   const entries = []
   const add = (lessonId, stageKey, suffix, text, target, extra = {}) => {
     if (typeof text !== 'string' || !text.trim()) return
-    entries.push({ id: `${lessonId}/${stageKey}/${suffix}`, lessonId, stageKey, text, target,
+    const sourceBookId = patches[lessonId].sourceBookId ?? lessonId.match(/^(.+-g\d+(?:up|down)-\d{4})(?:-|$)/u)?.[1]
+    entries.push({ id: `${lessonId}/${stageKey}/${suffix}`, lessonId, ...(sourceBookId ? { sourceBookId } : {}), stageKey, text, target,
       isCharacter: false, supportsAudio: true, ...extra })
   }
   const lineText = value => typeof value === 'string' ? value : (value || []).map(span => span.text).join('')
+  // Cards have no audio reference in the contract. They can still be prepared
+  // for listening review and cached without modifying the published definition.
+  const chineseText = value => {
+    if (typeof value !== 'string' || !/\p{Script=Han}/u.test(value)) return ''
+    return value.replace(/\p{Script=Latin}[\p{Script=Latin}\p{Mark}\d]*/gu, '')
+      .replace(/[（(]\s*[)）]/gu, '').replace(/[ \t]+/gu, ' ')
+      .replace(/^[\s,，;；:：]+|[\s,，;；:：]+$/gu, '')
+  }
   for (const [lessonId, lesson] of Object.entries(patches)) {
+    if (lesson.level === 'textbook-only') {
+      for (const card of lesson.cards || []) {
+        const key = card.key
+        if (typeof key !== 'string' || !key) throw new Error('读音卡片缺少稳定 key')
+        // Removing Latin letters from a formula would change its meaning. Only
+        // pronunciation cards may discard them as pinyin; skip such concepts.
+        const reading = value => card.kind === 'concept' && /\p{Script=Latin}/u.test(value || '') ? '' : chineseText(value)
+        const answer = reading(card.answer)
+        const character = card.kind === 'character' ? card.label?.match(/\p{Script=Han}/gu)?.join('') : undefined
+        if (character && [...character].length === 1) {
+          const rawAnswer = String(card.answer || '')
+          const wordText = rawAnswer.match(/(?:本课)?组词[：:]\s*(.*)/su)?.[1]
+            ?? rawAnswer.replace(/(?:拼音|组词)[：:]?/gu, '')
+          const contextWord = (wordText.match(/\p{Script=Han}{2,}/gu) || [])
+            .find(word => word.includes(character))
+          add(lessonId, 'cards', `${key}/character`, character, card,
+            { isCharacter: true, kind: 'character', contextWord, supportsAudio: false })
+        }
+        for (const field of ['prompt', 'answer']) add(lessonId, 'cards', `${key}/${field}`,
+          field === 'answer' ? answer : reading(card[field]), card,
+          { kind: 'sentence', supportsAudio: false })
+      }
+    }
     const stages = [...(lesson.basicStages || []), ...(lesson.extension?.stages || [])]
     // Collect the whole lesson before choosing context, so recognition and writing
     // use the same first vocabulary-table match even when it appears in a later stage.
@@ -90,8 +123,9 @@ function collectAudioEntries(patches) {
       }
       if (['read-aloud', 'recite-ladder'].includes(widget)) {
         for (const sentence of props.sentences || []) {
-          for (const part of segmenter.segment(sentence.text || ''))
+          for (const part of segmenter.segment(sentence.text || '')) {
             if (part.isWordLike && /^[\p{Script=Han}]{2}$/u.test(part.segment)) sentenceWords.push(part.segment)
+          }
         }
       }
     }
@@ -101,8 +135,11 @@ function collectAudioEntries(patches) {
       const props = stage.props || {}, key = stage.key
       if (['char-learn', 'hanzi-write'].includes(stage.widget)) {
         for (const character of props.characters || []) {
+          const generated = key.startsWith(`${lessonId}/`)
           add(lessonId, key, `characters/${character.id}`, character.char, character,
-            { isCharacter: true, kind: 'character', contextWord: contextWord(character.char) })
+            { isCharacter: true, kind: 'character', ...(generated
+              ? selectCharacterContext(character, (contextCandidates ??= loadContextCandidates()).lessons[lessonId]?.characters?.[character.char])
+              : { contextWord: contextWord(character.char) }) })
           for (const word of character.family || []) add(lessonId, key,
             `characters/${character.id}/family/${word.id}`, word.text ?? word.word, word, { kind: 'word' })
         }
@@ -147,15 +184,29 @@ function prepareEntries(entries, overrides, settings) {
     const override = overrides.entries?.[entry.id] ?? overrides.texts?.[entry.text]
     const contextWord = override?.word ?? entry.contextWord
     const explicitText = typeof override === 'string' ? override : override?.text
+    const explicitReading = (typeof explicitText === 'string' && explicitText.trim())
+      || (typeof override?.word === 'string' && override.word.trim())
+    // A reviewed text/word override can resolve this generator's context pause.
+    // Other callers' skipped flags and pronunciation blockers remain binding.
+    const resolvedRule = Boolean(entry.pronunciationIssue && entry.stageKey?.startsWith(`${entry.lessonId}/`)
+      && explicitReading && override?.skip !== true)
     const readingText = explicitText ?? (entry.isCharacter && contextWord
       ? `${entry.text}，${contextWord}的${entry.text}` : entry.text)
-    const skipped = override?.skip === true
-    const missingWord = Boolean(entry.isCharacter && !contextWord && !explicitText && !skipped)
-    return { ...entry, contextWord, missingWord, readingText, charCount: [...readingText].length, skipped, configFingerprint,
+    const skipped = (entry.skipped === true && !resolvedRule) || override?.skip === true
+    const missingWord = resolvedRule ? false : entry.missingWord || Boolean(entry.isCharacter && !contextWord && !explicitText && !skipped && !entry.singleReading)
+    const prepared = { ...entry, contextWord, missingWord, readingText, charCount: [...readingText].length, skipped, configFingerprint,
       cacheKey: contentHash({ text: readingText, voiceId: settings.voiceId, modelId: settings.modelId,
         language_code: settings.languageCode,
         voice_settings: settings.voiceSettings, outputFormat: settings.outputFormat }),
-      ...(entry.isCharacter && POLYPHONIC[entry.text] ? { polyphonic: POLYPHONIC[entry.text] } : {}) }
+      ...(entry.isCharacter && !entry.polyphonic && POLYPHONIC[entry.text] ? { polyphonic: POLYPHONIC[entry.text] } : {}) }
+    if (resolvedRule) delete prepared.pronunciationIssue
+    if (entry.isCharacter && explicitReading) {
+      prepared.contextSource = 'reviewed-entry-override'
+      delete prepared.contextEvidence
+      delete prepared.singleReading
+      delete prepared.readingNote
+    }
+    return prepared
   })
 }
 

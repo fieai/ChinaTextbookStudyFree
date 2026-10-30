@@ -4,7 +4,7 @@ const test = require('node:test')
 const assert = require('node:assert/strict')
 const fs = require('node:fs')
 const path = require('node:path')
-const { execFileSync } = require('node:child_process')
+const { execFileSync, spawnSync } = require('node:child_process')
 const { randomUUID } = require('node:crypto')
 const { options, exportContent, WORKTREE, guardedOutput } = require('./index.cjs')
 const { loadAuthority } = require('./authority.cjs')
@@ -13,6 +13,39 @@ const { inputFingerprint } = require('./pages.cjs')
 const { validateExport } = require('./validate.cjs')
 
 const authority = loadAuthority(options([]).thinkyRoot)
+
+function snapshotTts(base) {
+  const tts = require('./tts-common.cjs')
+  const ttsRoot = path.join(base, 'tts-input')
+  const cache = path.join(ttsRoot, '.local/tts-cache')
+  fs.mkdirSync(cache, { recursive: true })
+  // A separate generator may append to the live cache during the two exports.
+  // Snapshot one manifest and its immutable recordings, while retaining the real
+  // non-secret settings and editorial overrides for both runs.
+  const settings = tts.loadSettings({ root: WORKTREE })
+  const ttsEnv = {
+    ELEVENLABS_VOICE_ID: settings.voiceId, ELEVENLABS_MODEL_ID: settings.modelId,
+    ELEVENLABS_LANGUAGE_CODE: settings.languageCode, ELEVENLABS_OUTPUT_FORMAT: settings.outputFormat,
+    ELEVENLABS_STABILITY: String(settings.voiceSettings.stability),
+    ELEVENLABS_SIMILARITY_BOOST: String(settings.voiceSettings.similarity_boost),
+    ELEVENLABS_STYLE: String(settings.voiceSettings.style),
+    ELEVENLABS_USE_SPEAKER_BOOST: String(settings.voiceSettings.use_speaker_boost),
+    ELEVENLABS_SPEED: String(settings.voiceSettings.speed),
+  }
+  fs.mkdirSync(path.join(ttsRoot, 'scripts/learning-export'), { recursive: true })
+  fs.writeFileSync(path.join(ttsRoot, 'scripts/learning-export/tts-overrides.json'), JSON.stringify(tts.readOverrides(WORKTREE)))
+  const liveCache = path.join(WORKTREE, '.local/tts-cache')
+  const manifest = tts.readManifest(liveCache)
+  fs.writeFileSync(path.join(cache, 'manifest.json'), JSON.stringify(manifest))
+  const keys = new Set([...Object.values(manifest.entries), ...Object.values(manifest.cache)].map(item => item?.cacheKey)
+    .filter(key => /^[a-f0-9]{64}$/u.test(key)))
+  for (const key of keys) {
+    try { fs.copyFileSync(path.join(liveCache, `${key}.mp3`), path.join(cache, `${key}.mp3`)) }
+    catch (error) { if (error.code !== 'ENOENT') throw error }
+  }
+  assert.deepEqual(tts.loadSettings({ root: ttsRoot, env: ttsEnv }), settings)
+  return { ttsRoot, ttsEnv }
+}
 
 test('canonical content and collection hashing exactly match the Thinky implementation', () => {
   const cases = [null, [], { z: '中文𠮷', a: 1.25, b: [-0, { z: true, a: 'e\u0301' }] },
@@ -58,6 +91,7 @@ test('full real-source export is byte deterministic, retains decisions and block
   const config = options([])
   let one, two
   try {
+    Object.assign(config, snapshotTts(base))
     one = exportContent({ ...config, outputRoot: path.join(base, 'one') })
     two = exportContent({ ...config, outputRoot: path.join(base, 'two') })
     assert.equal(one.content.sourceRevision, two.content.sourceRevision)
@@ -103,6 +137,66 @@ test('full real-source export is byte deterministic, retains decisions and block
     assert.equal(one.report.issues.some(issue => /overlap lesson g3down-2026-u101-l02/u.test(issue.message)), false)
     assert.equal(one.report.checks.validateLessonCatalog.valid, true)
     const lessons = one.content.books.flatMap(book => book.lessons.map(lesson => lesson.content))
+    assert.ok(lessons.filter(lesson => lesson.level === 'textbook-only' && lesson.cards.length).length > 100,
+      'the real catalog must populate textbook-only cards for collection and warmup')
+    const originalStudio = require('./studio.cjs').buildStudioLessons(config).patches
+    const readingSources = ['up', 'down'].map(term => require(`../../content/reading-prep/chinese-g3${term}-2026.json`))
+    const legacyReading = require('./reading-language.cjs').buildReadingLessons({ books: one.content.books, readingBooks: readingSources,
+      pronunciationRules: require('../../content/reading-prep/pronunciation-rules.json') }).patches
+    const tts = require('./tts-common.cjs')
+    const originalEntries = tts.prepareEntries(tts.collectAudioEntries({ ...originalStudio, ...legacyReading }),
+      tts.readOverrides(config.ttsRoot), tts.loadSettings({ root: config.ttsRoot, env: config.ttsEnv }))
+    const exportedAudio = new Map(one.report.audio.entries.map(entry => [entry.id, entry]))
+    for (const entry of originalEntries) {
+      assert.equal(exportedAudio.get(entry.id)?.readingText, entry.readingText, `display pinyin changed TTS text: ${entry.id}`)
+      assert.equal(exportedAudio.get(entry.id)?.status === 'skipped', Boolean(entry.skipped), `display pinyin changed TTS skip: ${entry.id}`)
+    }
+    const supplemental = require('../reading-prep/supplemental-pinyin-items.json')
+    const familyWords = [...new Set(Object.values(originalStudio).flatMap(lesson => [...(lesson.basicStages || []), ...(lesson.extension?.stages || [])])
+      .flatMap(stage => (stage.props.characters || []).flatMap(item => (item.family || []).map(word => word.text || word.word))))].sort()
+    assert.deepEqual(supplemental.items.map(item => item.text).sort(), familyWords)
+    for (const lesson of lessons) {
+      if (lesson.level === 'studio') assert.deepEqual(lesson.cards, originalStudio[lesson.sourceLessonId].cards)
+      else assert.ok(lesson.cards.length === 0 || (lesson.cards.length >= 3 && lesson.cards.length <= 8))
+    }
+    assert.equal(one.report.inputs.filter(file => file.label.startsWith('reading-prep/')).length, 12)
+    assert.ok(one.report.inputs.some(file => file.label === 'reading-prep/tts-context-candidates.json'))
+    assert.ok(one.report.inputs.some(file => file.label === 'tts-context/tts_context_candidates.py'))
+    assert.ok(one.report.inputs.some(file => file.label === 'annotator/annotate_pinyin.py'))
+    assert.ok(one.report.inputs.some(file => file.label === 'annotator/supplemental-pinyin-items.json'))
+    for (const book of one.report.pinyin.books) for (const kind of ['words', 'characters']) {
+      const c = book[kind]
+      assert.equal(c.total, c.textbook + c.reviewed + c.dictionary + c.pendingHidden)
+      assert.ok(c.dictionary > 0)
+      assert.equal(c.pendingHidden, 0, `${book.sourceBookId}/${kind}: all pronunciation decisions are confirmed`)
+    }
+    assert.deepEqual(one.report.pinyin.reviewSummary, {
+      total: 63, pending: 0, confirmed: 63, hide: 0, staleDecisions: 0,
+      reasonCounts: { textbookConflict: 16, neutralTone: 30, yiBuTone: 4, polyphonicUnlisted: 13 },
+      pendingReasonCounts: { textbookConflict: 0, neutralTone: 0, yiBuTone: 0, polyphonicUnlisted: 0 },
+    })
+    assert.deepEqual(one.report.pinyin.books.map(({ sourceBookId, words, characters }) => ({ sourceBookId, words, characters })), [
+      { sourceBookId: 'chinese-g3up-2026',
+        words: { total: 490, textbook: 0, reviewed: 46, dictionary: 444, pendingHidden: 0 },
+        characters: { total: 549, textbook: 520, reviewed: 9, dictionary: 20, pendingHidden: 0 } },
+      { sourceBookId: 'chinese-g3down-2026',
+        words: { total: 486, textbook: 0, reviewed: 66, dictionary: 420, pendingHidden: 0 },
+        characters: { total: 517, textbook: 501, reviewed: 3, dictionary: 13, pendingHidden: 0 } },
+    ])
+    for (const lesson of lessons) for (const stage of [...(lesson.basicStages || []), ...(lesson.extension?.stages || [])]) {
+      for (const item of [...(stage.props.words || []), ...(stage.props.characters || []).flatMap(item => [item, ...(item.family || [])])]) {
+        assert.equal(Object.hasOwn(item, 'pinyin'), Object.hasOwn(item, 'pinyinSource'))
+        if (item.pinyin) assert.ok(['textbook', 'reviewed', 'dictionary'].includes(item.pinyinSource))
+      }
+    }
+    for (const book of one.report.books) {
+      const items = lessons.filter(lesson => one.content.books.find(b => b.sourceBookId === book.sourceBookId).lessons.some(l => l.content.sourceLessonId === lesson.sourceLessonId))
+      assert.equal(book.lessonsWithCards, items.filter(lesson => lesson.cards.length).length)
+      assert.equal(book.cardCount, items.reduce((sum, lesson) => sum + lesson.cards.length, 0))
+      assert.equal(book.noCardLessons.length, book.lessons - book.lessonsWithCards)
+      assert.ok(book.noCardLessons.every(lesson => lesson.reasons.length > 0))
+    }
+    assert.equal(one.report.cards.provenance.length, lessons.filter(lesson => lesson.level === 'textbook-only').reduce((sum, lesson) => sum + lesson.cards.length, 0))
     for (const lesson of lessons) {
       assert.doesNotMatch(lesson.bookPageLabel, /PDF/u, lesson.sourceLessonId)
       const range = lesson.bookPageLabel.match(/第\s*(\d+)\s*–\s*(\d+)\s*页/u)
@@ -111,7 +205,13 @@ test('full real-source export is byte deterministic, retains decisions and block
     assert.deepEqual(lessons.find(lesson => lesson.sourceLessonId === 'g3down-2026-u101-l02').textbookPages, { from: 86, to: 88 })
     assert.deepEqual(lessons.find(lesson => lesson.sourceLessonId === 'g3down-2026-u101-l03').textbookPages, { from: 88, to: 91 })
     assert.deepEqual(lessons.find(lesson => lesson.sourceLessonId === 'chinese-g3down-2026-u4-kp7').textbookPages, { from: 60, to: 60 })
-    assert.equal(lessons.filter(lesson => lesson.level === 'textbook-only').every(lesson => !lesson.opening && !lesson.takeaways && !lesson.basicStages), true)
+    assert.equal(lessons.filter(lesson => lesson.level === 'textbook-only').every(lesson => !lesson.opening && !lesson.takeaways), true)
+    assert.equal(lessons.filter(lesson => lesson.level === 'textbook-only' && lesson.basicStages).length, 59)
+    assert.ok(lessons.filter(lesson => lesson.lessonKind === 'activity' || lesson.subject === 'math')
+      .filter(lesson => lesson.level !== 'studio').every(lesson => !lesson.basicStages))
+    assert.deepEqual(one.report.chineseBasicStages.books.map(book => [book.numberedSourceLessons, book.numberedLessons, book.lessonsWithBasicStages]),
+      [[26, 30, 30], [27, 31, 31]])
+    assert.match(fs.readFileSync(path.join(one.outputDir, 'report.md'), 'utf8'), /三年级语文基础关覆盖/u)
     assert.equal(one.content.manifestSha256, packageHash(one.content))
     assert.equal(inputFingerprint(one.report.inputs), inputFingerprint([...one.report.inputs].reverse()))
     assert.notEqual(inputFingerprint(one.report.inputs), inputFingerprint(one.report.inputs.map((file, i) => i === 0 ? { ...file, sha256: 'f'.repeat(64) } : file)))
@@ -128,7 +228,9 @@ test('full real-source export is byte deterministic, retains decisions and block
     assert.equal(one.report.checks.LessonAuthoringSchema.valid, true)
     assert.equal(one.report.checks.MediaManifestSchema.valid, true)
     assert.equal(one.report.strokeData.covered.length, 12)
-    assert.deepEqual(one.report.strokeData.missing, [])
+    assert.ok(one.report.strokeData.missing.length > 200)
+    for (const book of one.report.chineseBasicStages.books)
+      assert.ok(book.missingStrokeCharacters.every(char => one.report.strokeData.missing.includes(char)))
     assert.equal(one.report.assets.strokeDocuments, 12)
     assert.equal(one.media.media.filter(item => item.kind === 'document').length, 12)
     assert.deepEqual(one.content.media, one.media.media.filter(item => ['document', 'audio'].includes(item.kind))
@@ -177,10 +279,12 @@ test('full real-source export is byte deterministic, retains decisions and block
     const changedPrivate = structuredClone(one.content)
     changedPrivate.books[0].lessons[11].authoring.widgetGradings[0].content.grading.items[0].explanation += ' changed'
     assert.notEqual(authority.packageHash(changedPrivate), one.content.manifestSha256)
-    const cliOutput = execFileSync(process.execPath, ['-r', 'ts-node/register/transpile-only',
+    const cli = spawnSync(process.execPath, ['-r', 'ts-node/register/transpile-only',
       '-r', 'tsconfig-paths/register', 'scripts/content-sync/cli.ts', 'validate', one.outputDir], {
       cwd: config.thinkyRoot, env: { ...process.env, NODE_ENV: 'learning-local' }, encoding: 'utf8',
     })
+    assert.equal(cli.status, 0, `${cli.stdout}\n${cli.stderr}`)
+    const cliOutput = cli.stdout
     assert.match(cliOutput, /VALID: package accepted/)
     assert.doesNotMatch(cliOutput, /ERROR /)
     assert.equal(one.media.media.filter(item => item.kind === 'image').length,
@@ -289,7 +393,7 @@ test('extra manifest fields block a valid package and are written to both report
     return safeParse(manifest)
   })
   try {
-    const result = exportContent({ ...options([]), outputRoot: base })
+    const result = exportContent({ ...options([]), ...snapshotTts(base), outputRoot: base })
     assert.equal(result.report.valid, false)
     assert.equal(result.report.checks.validateContentPackage.valid, true)
     assert.equal(result.report.checks.PagesManifestSchema.valid, false)

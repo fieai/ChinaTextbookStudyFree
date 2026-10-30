@@ -73,3 +73,6 @@ release-assets/
 deploy-output/
 /.local/learning-export/
 /.local/tts-cache/
+/.local/tts-dry-run/
+/.local/reading-prep/
+/.local/tools/

@@ -1,0 +1,1671 @@
+{
+  "schemaVersion": 1,
+  "bookId": "chinese-g1up-2026",
+  "lessons": [
+    {
+      "lessonKey": "literacy-01",
+      "lessonNumber": 1,
+      "recognitionCharacters": [
+        {
+          "char": "天",
+          "pinyin": null,
+          "pdfPage": 14
+        },
+        {
+          "char": "地",
+          "pinyin": null,
+          "pdfPage": 14
+        },
+        {
+          "char": "人",
+          "pinyin": null,
+          "pdfPage": 14
+        },
+        {
+          "char": "你",
+          "pinyin": null,
+          "pdfPage": 14
+        },
+        {
+          "char": "我",
+          "pinyin": null,
+          "pdfPage": 14
+        },
+        {
+          "char": "他",
+          "pinyin": null,
+          "pdfPage": 14
+        }
+      ],
+      "writingCharacters": [],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "field": "words",
+          "resolved": true,
+          "reason": "本册无词语表且课后未列读记词语。"
+        },
+        {
+          "field": "writingCharacters",
+          "resolved": true,
+          "reason": "本课未列写字。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "literacy-02",
+      "lessonNumber": 2,
+      "recognitionCharacters": [
+        {
+          "char": "一",
+          "pinyin": null,
+          "pdfPage": 16
+        },
+        {
+          "char": "二",
+          "pinyin": null,
+          "pdfPage": 16
+        },
+        {
+          "char": "三",
+          "pinyin": null,
+          "pdfPage": 16
+        },
+        {
+          "char": "四",
+          "pinyin": null,
+          "pdfPage": 16
+        },
+        {
+          "char": "五",
+          "pinyin": null,
+          "pdfPage": 16
+        },
+        {
+          "char": "上",
+          "pinyin": null,
+          "pdfPage": 16
+        },
+        {
+          "char": "下",
+          "pinyin": null,
+          "pdfPage": 16
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "一",
+          "pinyin": null,
+          "pdfPage": 16
+        },
+        {
+          "char": "二",
+          "pinyin": null,
+          "pdfPage": 16
+        },
+        {
+          "char": "三",
+          "pinyin": null,
+          "pdfPage": 16
+        },
+        {
+          "char": "上",
+          "pinyin": null,
+          "pdfPage": 16
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "field": "words",
+          "resolved": true,
+          "reason": "本册无词语表且课后未列读记词语。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "literacy-03",
+      "lessonNumber": 3,
+      "recognitionCharacters": [
+        {
+          "char": "口",
+          "pinyin": null,
+          "pdfPage": 18
+        },
+        {
+          "char": "耳",
+          "pinyin": null,
+          "pdfPage": 18
+        },
+        {
+          "char": "目",
+          "pinyin": null,
+          "pdfPage": 18
+        },
+        {
+          "char": "手",
+          "pinyin": null,
+          "pdfPage": 18
+        },
+        {
+          "char": "足",
+          "pinyin": null,
+          "pdfPage": 18
+        },
+        {
+          "char": "站",
+          "pinyin": null,
+          "pdfPage": 18
+        },
+        {
+          "char": "坐",
+          "pinyin": null,
+          "pdfPage": 18
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "口",
+          "pinyin": null,
+          "pdfPage": 18
+        },
+        {
+          "char": "耳",
+          "pinyin": null,
+          "pdfPage": 18
+        },
+        {
+          "char": "目",
+          "pinyin": null,
+          "pdfPage": 18
+        },
+        {
+          "char": "手",
+          "pinyin": null,
+          "pdfPage": 18
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "field": "words",
+          "resolved": true,
+          "reason": "本册无词语表且课后未列读记词语。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "literacy-04",
+      "lessonNumber": 4,
+      "recognitionCharacters": [
+        {
+          "char": "日",
+          "pinyin": null,
+          "pdfPage": 20
+        },
+        {
+          "char": "月",
+          "pinyin": null,
+          "pdfPage": 20
+        },
+        {
+          "char": "山",
+          "pinyin": null,
+          "pdfPage": 20
+        },
+        {
+          "char": "川",
+          "pinyin": null,
+          "pdfPage": 20
+        },
+        {
+          "char": "水",
+          "pinyin": null,
+          "pdfPage": 20
+        },
+        {
+          "char": "火",
+          "pinyin": null,
+          "pdfPage": 20
+        },
+        {
+          "char": "田",
+          "pinyin": null,
+          "pdfPage": 20
+        },
+        {
+          "char": "禾",
+          "pinyin": null,
+          "pdfPage": 20
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "日",
+          "pinyin": null,
+          "pdfPage": 20
+        },
+        {
+          "char": "火",
+          "pinyin": null,
+          "pdfPage": 20
+        },
+        {
+          "char": "田",
+          "pinyin": null,
+          "pdfPage": 20
+        },
+        {
+          "char": "禾",
+          "pinyin": null,
+          "pdfPage": 20
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "field": "words",
+          "resolved": true,
+          "reason": "本册无词语表且课后未列读记词语。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "reading-01",
+      "lessonNumber": 1,
+      "recognitionCharacters": [
+        {
+          "char": "秋",
+          "pinyin": "qiū",
+          "pdfPage": 67
+        },
+        {
+          "char": "气",
+          "pinyin": "qì",
+          "pdfPage": 67
+        },
+        {
+          "char": "了",
+          "pinyin": "le",
+          "pdfPage": 67
+        },
+        {
+          "char": "树",
+          "pinyin": "shù",
+          "pdfPage": 67
+        },
+        {
+          "char": "叶",
+          "pinyin": "yè",
+          "pdfPage": 67
+        },
+        {
+          "char": "黄",
+          "pinyin": "huáng",
+          "pdfPage": 67
+        },
+        {
+          "char": "片",
+          "pinyin": "piàn",
+          "pdfPage": 67
+        },
+        {
+          "char": "从",
+          "pinyin": "cóng",
+          "pdfPage": 67
+        },
+        {
+          "char": "来",
+          "pinyin": "lái",
+          "pdfPage": 67
+        },
+        {
+          "char": "飞",
+          "pinyin": "fēi",
+          "pdfPage": 67
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "了",
+          "pinyin": null,
+          "pdfPage": 67
+        },
+        {
+          "char": "子",
+          "pinyin": null,
+          "pdfPage": 67
+        },
+        {
+          "char": "大",
+          "pinyin": null,
+          "pdfPage": 67
+        },
+        {
+          "char": "人",
+          "pinyin": null,
+          "pdfPage": 67
+        }
+      ],
+      "words": [
+        {
+          "text": "一",
+          "source": "课后读记",
+          "pdfPage": 67
+        },
+        {
+          "text": "一片片",
+          "source": "课后读记",
+          "pdfPage": 67
+        },
+        {
+          "text": "一会儿",
+          "source": "课后读记",
+          "pdfPage": 67
+        },
+        {
+          "text": "一群",
+          "source": "课后读记",
+          "pdfPage": 67
+        }
+      ],
+      "sourceAbsence": [],
+      "issues": []
+    },
+    {
+      "lessonKey": "reading-02",
+      "lessonNumber": 2,
+      "recognitionCharacters": [
+        {
+          "char": "江",
+          "pinyin": "jiāng",
+          "pdfPage": 69
+        },
+        {
+          "char": "南",
+          "pinyin": "nán",
+          "pdfPage": 69
+        },
+        {
+          "char": "可",
+          "pinyin": "kě",
+          "pdfPage": 69
+        },
+        {
+          "char": "采",
+          "pinyin": "cǎi",
+          "pdfPage": 69
+        },
+        {
+          "char": "莲",
+          "pinyin": "lián",
+          "pdfPage": 69
+        },
+        {
+          "char": "戏",
+          "pinyin": "xì",
+          "pdfPage": 69
+        },
+        {
+          "char": "间",
+          "pinyin": "jiān",
+          "pdfPage": 69
+        },
+        {
+          "char": "东",
+          "pinyin": "dōng",
+          "pdfPage": 69
+        },
+        {
+          "char": "北",
+          "pinyin": "běi",
+          "pdfPage": 69
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "可",
+          "pinyin": null,
+          "pdfPage": 69
+        },
+        {
+          "char": "叶",
+          "pinyin": null,
+          "pdfPage": 69
+        },
+        {
+          "char": "东",
+          "pinyin": null,
+          "pdfPage": 69
+        },
+        {
+          "char": "西",
+          "pinyin": null,
+          "pdfPage": 69
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "field": "words",
+          "resolved": true,
+          "reason": "本册无词语表且课后未列读记词语。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "reading-03",
+      "lessonNumber": 3,
+      "recognitionCharacters": [
+        {
+          "char": "的",
+          "pinyin": "de",
+          "pdfPage": 71
+        },
+        {
+          "char": "家",
+          "pinyin": "jiā",
+          "pdfPage": 71
+        },
+        {
+          "char": "鸡",
+          "pinyin": "jī",
+          "pdfPage": 71
+        },
+        {
+          "char": "竹",
+          "pinyin": "zhú",
+          "pdfPage": 71
+        },
+        {
+          "char": "牙",
+          "pinyin": "yá",
+          "pdfPage": 71
+        },
+        {
+          "char": "用",
+          "pinyin": "yòng",
+          "pdfPage": 71
+        },
+        {
+          "char": "几",
+          "pinyin": "jǐ",
+          "pdfPage": 71
+        },
+        {
+          "char": "步",
+          "pinyin": "bù",
+          "pdfPage": 71
+        },
+        {
+          "char": "没",
+          "pinyin": "méi",
+          "pdfPage": 71
+        },
+        {
+          "char": "参",
+          "pinyin": "cān",
+          "pdfPage": 71
+        },
+        {
+          "char": "加",
+          "pinyin": "jiā",
+          "pdfPage": 71
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "竹",
+          "pinyin": null,
+          "pdfPage": 71
+        },
+        {
+          "char": "马",
+          "pinyin": null,
+          "pdfPage": 71
+        },
+        {
+          "char": "牙",
+          "pinyin": null,
+          "pdfPage": 71
+        },
+        {
+          "char": "用",
+          "pinyin": null,
+          "pdfPage": 71
+        },
+        {
+          "char": "几",
+          "pinyin": null,
+          "pdfPage": 71
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "field": "words",
+          "resolved": true,
+          "reason": "本册无词语表且课后未列读记词语。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "reading-04",
+      "lessonNumber": 4,
+      "recognitionCharacters": [
+        {
+          "char": "鸟",
+          "pinyin": "niǎo",
+          "pdfPage": 73
+        },
+        {
+          "char": "说",
+          "pinyin": "shuō",
+          "pdfPage": 73
+        },
+        {
+          "char": "是",
+          "pinyin": "shì",
+          "pdfPage": 73
+        },
+        {
+          "char": "春",
+          "pinyin": "chūn",
+          "pdfPage": 73
+        },
+        {
+          "char": "青",
+          "pinyin": "qīng",
+          "pdfPage": 73
+        },
+        {
+          "char": "蛙",
+          "pinyin": "wā",
+          "pdfPage": 73
+        },
+        {
+          "char": "夏",
+          "pinyin": "xià",
+          "pdfPage": 73
+        },
+        {
+          "char": "着",
+          "pinyin": "zhe",
+          "pdfPage": 73
+        },
+        {
+          "char": "皮",
+          "pinyin": "pí",
+          "pdfPage": 73
+        },
+        {
+          "char": "地",
+          "pinyin": "de",
+          "pdfPage": 73
+        },
+        {
+          "char": "就",
+          "pinyin": "jiù",
+          "pdfPage": 73
+        },
+        {
+          "char": "冬",
+          "pinyin": "dōng",
+          "pdfPage": 73
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "四",
+          "pinyin": null,
+          "pdfPage": 73
+        },
+        {
+          "char": "小",
+          "pinyin": null,
+          "pdfPage": 73
+        },
+        {
+          "char": "鸟",
+          "pinyin": null,
+          "pdfPage": 73
+        },
+        {
+          "char": "是",
+          "pinyin": null,
+          "pdfPage": 73
+        },
+        {
+          "char": "天",
+          "pinyin": null,
+          "pdfPage": 73
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "field": "words",
+          "resolved": true,
+          "reason": "本册无词语表且课后未列读记词语。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "literacy-05",
+      "lessonNumber": 5,
+      "recognitionCharacters": [
+        {
+          "char": "对",
+          "pinyin": "duì",
+          "pdfPage": 79
+        },
+        {
+          "char": "歌",
+          "pinyin": "gē",
+          "pdfPage": 79
+        },
+        {
+          "char": "雨",
+          "pinyin": "yǔ",
+          "pdfPage": 79
+        },
+        {
+          "char": "风",
+          "pinyin": "fēng",
+          "pdfPage": 79
+        },
+        {
+          "char": "虫",
+          "pinyin": "chóng",
+          "pdfPage": 79
+        },
+        {
+          "char": "清",
+          "pinyin": "qīng",
+          "pdfPage": 79
+        },
+        {
+          "char": "绿",
+          "pinyin": "lǜ",
+          "pdfPage": 79
+        },
+        {
+          "char": "桃",
+          "pinyin": "táo",
+          "pdfPage": 79
+        },
+        {
+          "char": "红",
+          "pinyin": "hóng",
+          "pdfPage": 79
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "云",
+          "pinyin": null,
+          "pdfPage": 79
+        },
+        {
+          "char": "雨",
+          "pinyin": null,
+          "pdfPage": 79
+        },
+        {
+          "char": "虫",
+          "pinyin": null,
+          "pdfPage": 79
+        },
+        {
+          "char": "山",
+          "pinyin": null,
+          "pdfPage": 79
+        },
+        {
+          "char": "水",
+          "pinyin": null,
+          "pdfPage": 79
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "field": "words",
+          "resolved": true,
+          "reason": "本册无词语表且课后未列读记词语。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "literacy-06",
+      "lessonNumber": 6,
+      "recognitionCharacters": [
+        {
+          "char": "力",
+          "pinyin": "lì",
+          "pdfPage": 81
+        },
+        {
+          "char": "尖",
+          "pinyin": "jiān",
+          "pdfPage": 81
+        },
+        {
+          "char": "尘",
+          "pinyin": "chén",
+          "pdfPage": 81
+        },
+        {
+          "char": "众",
+          "pinyin": "zhòng",
+          "pdfPage": 81
+        },
+        {
+          "char": "双",
+          "pinyin": "shuāng",
+          "pdfPage": 81
+        },
+        {
+          "char": "林",
+          "pinyin": "lín",
+          "pdfPage": 81
+        },
+        {
+          "char": "森",
+          "pinyin": "sēn",
+          "pdfPage": 81
+        },
+        {
+          "char": "不",
+          "pinyin": "bù",
+          "pdfPage": 81
+        },
+        {
+          "char": "条",
+          "pinyin": "tiáo",
+          "pdfPage": 81
+        },
+        {
+          "char": "心",
+          "pinyin": "xīn",
+          "pdfPage": 81
+        },
+        {
+          "char": "金",
+          "pinyin": "jīn",
+          "pdfPage": 81
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "力",
+          "pinyin": null,
+          "pdfPage": 81
+        },
+        {
+          "char": "男",
+          "pinyin": null,
+          "pdfPage": 81
+        },
+        {
+          "char": "土",
+          "pinyin": null,
+          "pdfPage": 81
+        },
+        {
+          "char": "木",
+          "pinyin": null,
+          "pdfPage": 81
+        },
+        {
+          "char": "心",
+          "pinyin": null,
+          "pdfPage": 81
+        }
+      ],
+      "words": [
+        {
+          "text": "力气",
+          "source": "课后读一读",
+          "pdfPage": 81
+        },
+        {
+          "text": "尘土",
+          "source": "课后读一读",
+          "pdfPage": 81
+        },
+        {
+          "text": "双手",
+          "source": "课后读一读",
+          "pdfPage": 81
+        },
+        {
+          "text": "金黄",
+          "source": "课后读一读",
+          "pdfPage": 81
+        },
+        {
+          "text": "树林",
+          "source": "课后读一读",
+          "pdfPage": 81
+        },
+        {
+          "text": "森林",
+          "source": "课后读一读",
+          "pdfPage": 81
+        },
+        {
+          "text": "关心",
+          "source": "课后读一读",
+          "pdfPage": 81
+        },
+        {
+          "text": "开心",
+          "source": "课后读一读",
+          "pdfPage": 81
+        }
+      ],
+      "sourceAbsence": [],
+      "issues": []
+    },
+    {
+      "lessonKey": "literacy-07",
+      "lessonNumber": 7,
+      "recognitionCharacters": [
+        {
+          "char": "包",
+          "pinyin": "bāo",
+          "pdfPage": 83
+        },
+        {
+          "char": "尺",
+          "pinyin": "chǐ",
+          "pdfPage": 83
+        },
+        {
+          "char": "作",
+          "pinyin": "zuò",
+          "pdfPage": 83
+        },
+        {
+          "char": "业",
+          "pinyin": "yè",
+          "pdfPage": 83
+        },
+        {
+          "char": "笔",
+          "pinyin": "bǐ",
+          "pdfPage": 83
+        },
+        {
+          "char": "刀",
+          "pinyin": "dāo",
+          "pdfPage": 83
+        },
+        {
+          "char": "宝",
+          "pinyin": "bǎo",
+          "pdfPage": 83
+        },
+        {
+          "char": "贝",
+          "pinyin": "bèi",
+          "pdfPage": 83
+        },
+        {
+          "char": "少",
+          "pinyin": "shǎo",
+          "pdfPage": 83
+        },
+        {
+          "char": "课",
+          "pinyin": "kè",
+          "pdfPage": 83
+        },
+        {
+          "char": "早",
+          "pinyin": "zǎo",
+          "pdfPage": 83
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "尺",
+          "pinyin": null,
+          "pdfPage": 83
+        },
+        {
+          "char": "本",
+          "pinyin": null,
+          "pdfPage": 83
+        },
+        {
+          "char": "刀",
+          "pinyin": null,
+          "pdfPage": 83
+        },
+        {
+          "char": "不",
+          "pinyin": null,
+          "pdfPage": 83
+        },
+        {
+          "char": "少",
+          "pinyin": null,
+          "pdfPage": 83
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "field": "words",
+          "resolved": true,
+          "reason": "本册无词语表且课后未列读记词语。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "literacy-08",
+      "lessonNumber": 8,
+      "recognitionCharacters": [
+        {
+          "char": "升",
+          "pinyin": "shēng",
+          "pdfPage": 85
+        },
+        {
+          "char": "国",
+          "pinyin": "guó",
+          "pdfPage": 85
+        },
+        {
+          "char": "旗",
+          "pinyin": "qí",
+          "pdfPage": 85
+        },
+        {
+          "char": "中",
+          "pinyin": "zhōng",
+          "pdfPage": 85
+        },
+        {
+          "char": "们",
+          "pinyin": "men",
+          "pdfPage": 85
+        },
+        {
+          "char": "声",
+          "pinyin": "shēng",
+          "pdfPage": 85
+        },
+        {
+          "char": "起",
+          "pinyin": "qǐ",
+          "pdfPage": 85
+        },
+        {
+          "char": "多",
+          "pinyin": "duō",
+          "pdfPage": 85
+        },
+        {
+          "char": "么",
+          "pinyin": "me",
+          "pdfPage": 85
+        },
+        {
+          "char": "向",
+          "pinyin": "xiàng",
+          "pdfPage": 85
+        },
+        {
+          "char": "立",
+          "pinyin": "lì",
+          "pdfPage": 85
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "中",
+          "pinyin": null,
+          "pdfPage": 85
+        },
+        {
+          "char": "五",
+          "pinyin": null,
+          "pdfPage": 85
+        },
+        {
+          "char": "风",
+          "pinyin": null,
+          "pdfPage": 85
+        },
+        {
+          "char": "立",
+          "pinyin": null,
+          "pdfPage": 85
+        },
+        {
+          "char": "正",
+          "pinyin": null,
+          "pdfPage": 85
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "field": "words",
+          "resolved": true,
+          "reason": "本册无词语表且课后未列读记词语。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "reading-05",
+      "lessonNumber": 5,
+      "recognitionCharacters": [
+        {
+          "char": "船",
+          "pinyin": "chuán",
+          "pdfPage": 90
+        },
+        {
+          "char": "弯",
+          "pinyin": "wān",
+          "pdfPage": 90
+        },
+        {
+          "char": "儿",
+          "pinyin": "ér",
+          "pdfPage": 90
+        },
+        {
+          "char": "两",
+          "pinyin": "liǎng",
+          "pdfPage": 90
+        },
+        {
+          "char": "头",
+          "pinyin": "tóu",
+          "pdfPage": 90
+        },
+        {
+          "char": "在",
+          "pinyin": "zài",
+          "pdfPage": 90
+        },
+        {
+          "char": "里",
+          "pinyin": "lǐ",
+          "pdfPage": 90
+        },
+        {
+          "char": "看",
+          "pinyin": "kàn",
+          "pdfPage": 90
+        },
+        {
+          "char": "见",
+          "pinyin": "jiàn",
+          "pdfPage": 90
+        },
+        {
+          "char": "闪",
+          "pinyin": "shǎn",
+          "pdfPage": 90
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "月",
+          "pinyin": null,
+          "pdfPage": 90
+        },
+        {
+          "char": "儿",
+          "pinyin": null,
+          "pdfPage": 90
+        },
+        {
+          "char": "头",
+          "pinyin": null,
+          "pdfPage": 90
+        },
+        {
+          "char": "里",
+          "pinyin": null,
+          "pdfPage": 90
+        },
+        {
+          "char": "见",
+          "pinyin": null,
+          "pdfPage": 90
+        }
+      ],
+      "words": [
+        {
+          "text": "小小的船",
+          "source": "课后读一读",
+          "pdfPage": 90
+        },
+        {
+          "text": "弯弯的月儿",
+          "source": "课后读一读",
+          "pdfPage": 90
+        },
+        {
+          "text": "闪闪的星星",
+          "source": "课后读一读",
+          "pdfPage": 90
+        },
+        {
+          "text": "蓝蓝的天",
+          "source": "课后读一读",
+          "pdfPage": 90
+        }
+      ],
+      "sourceAbsence": [],
+      "issues": []
+    },
+    {
+      "lessonKey": "reading-06",
+      "lessonNumber": 6,
+      "recognitionCharacters": [
+        {
+          "char": "影",
+          "pinyin": "yǐng",
+          "pdfPage": 93
+        },
+        {
+          "char": "前",
+          "pinyin": "qián",
+          "pdfPage": 93
+        },
+        {
+          "char": "常",
+          "pinyin": "cháng",
+          "pdfPage": 93
+        },
+        {
+          "char": "黑",
+          "pinyin": "hēi",
+          "pdfPage": 93
+        },
+        {
+          "char": "狗",
+          "pinyin": "gǒu",
+          "pdfPage": 93
+        },
+        {
+          "char": "左",
+          "pinyin": "zuǒ",
+          "pdfPage": 93
+        },
+        {
+          "char": "右",
+          "pinyin": "yòu",
+          "pdfPage": 93
+        },
+        {
+          "char": "它",
+          "pinyin": "tā",
+          "pdfPage": 93
+        },
+        {
+          "char": "好",
+          "pinyin": "hǎo",
+          "pdfPage": 93
+        },
+        {
+          "char": "朋",
+          "pinyin": "péng",
+          "pdfPage": 93
+        },
+        {
+          "char": "友",
+          "pinyin": "yǒu",
+          "pdfPage": 93
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "在",
+          "pinyin": null,
+          "pdfPage": 93
+        },
+        {
+          "char": "我",
+          "pinyin": null,
+          "pdfPage": 93
+        },
+        {
+          "char": "左",
+          "pinyin": null,
+          "pdfPage": 93
+        },
+        {
+          "char": "右",
+          "pinyin": null,
+          "pdfPage": 93
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "field": "words",
+          "resolved": true,
+          "reason": "本册无词语表且课后未列读记词语。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "reading-07",
+      "lessonNumber": 7,
+      "recognitionCharacters": [
+        {
+          "char": "件",
+          "pinyin": "jiàn",
+          "pdfPage": 95
+        },
+        {
+          "char": "有",
+          "pinyin": "yǒu",
+          "pdfPage": 95
+        },
+        {
+          "char": "和",
+          "pinyin": "hé",
+          "pdfPage": 95
+        },
+        {
+          "char": "做",
+          "pinyin": "zuò",
+          "pdfPage": 95
+        },
+        {
+          "char": "也",
+          "pinyin": "yě",
+          "pdfPage": 95
+        },
+        {
+          "char": "办",
+          "pinyin": "bàn",
+          "pdfPage": 95
+        },
+        {
+          "char": "到",
+          "pinyin": "dào",
+          "pdfPage": 95
+        },
+        {
+          "char": "又",
+          "pinyin": "yòu",
+          "pdfPage": 95
+        },
+        {
+          "char": "才",
+          "pinyin": "cái",
+          "pdfPage": 95
+        },
+        {
+          "char": "能",
+          "pinyin": "néng",
+          "pdfPage": 95
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "和",
+          "pinyin": null,
+          "pdfPage": 95
+        },
+        {
+          "char": "也",
+          "pinyin": null,
+          "pdfPage": 95
+        },
+        {
+          "char": "又",
+          "pinyin": null,
+          "pdfPage": 95
+        },
+        {
+          "char": "才",
+          "pinyin": null,
+          "pdfPage": 95
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "field": "words",
+          "resolved": true,
+          "reason": "本册无词语表且课后未列读记词语。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "reading-08",
+      "lessonNumber": 8,
+      "recognitionCharacters": [
+        {
+          "char": "比",
+          "pinyin": "bǐ",
+          "pdfPage": 102
+        },
+        {
+          "char": "尾",
+          "pinyin": "wěi",
+          "pdfPage": 102
+        },
+        {
+          "char": "巴",
+          "pinyin": "ba",
+          "pdfPage": 102
+        },
+        {
+          "char": "谁",
+          "pinyin": "shuí",
+          "pdfPage": 102
+        },
+        {
+          "char": "长",
+          "pinyin": "cháng",
+          "pdfPage": 102
+        },
+        {
+          "char": "短",
+          "pinyin": "duǎn",
+          "pdfPage": 102
+        },
+        {
+          "char": "把",
+          "pinyin": "bǎ",
+          "pdfPage": 102
+        },
+        {
+          "char": "伞",
+          "pinyin": "sǎn",
+          "pdfPage": 102
+        },
+        {
+          "char": "兔",
+          "pinyin": "tù",
+          "pdfPage": 102
+        },
+        {
+          "char": "最",
+          "pinyin": "zuì",
+          "pdfPage": 102
+        },
+        {
+          "char": "公",
+          "pinyin": "gōng",
+          "pdfPage": 102
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "比",
+          "pinyin": null,
+          "pdfPage": 102
+        },
+        {
+          "char": "巴",
+          "pinyin": null,
+          "pdfPage": 102
+        },
+        {
+          "char": "长",
+          "pinyin": null,
+          "pdfPage": 102
+        },
+        {
+          "char": "公",
+          "pinyin": null,
+          "pdfPage": 102
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "field": "words",
+          "resolved": true,
+          "reason": "本册无词语表且课后未列读记词语。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "reading-09",
+      "lessonNumber": 9,
+      "recognitionCharacters": [
+        {
+          "char": "喝",
+          "pinyin": "hē",
+          "pdfPage": 104
+        },
+        {
+          "char": "只",
+          "pinyin": "zhī",
+          "pdfPage": 104
+        },
+        {
+          "char": "处",
+          "pinyin": "chù",
+          "pdfPage": 104
+        },
+        {
+          "char": "找",
+          "pinyin": "zhǎo",
+          "pdfPage": 104
+        },
+        {
+          "char": "着",
+          "pinyin": "zháo",
+          "pdfPage": 104
+        },
+        {
+          "char": "许",
+          "pinyin": "xǔ",
+          "pdfPage": 104
+        },
+        {
+          "char": "石",
+          "pinyin": "shí",
+          "pdfPage": 104
+        },
+        {
+          "char": "出",
+          "pinyin": "chū",
+          "pdfPage": 104
+        },
+        {
+          "char": "法",
+          "pinyin": "fǎ",
+          "pdfPage": 104
+        },
+        {
+          "char": "放",
+          "pinyin": "fàng",
+          "pdfPage": 104
+        },
+        {
+          "char": "进",
+          "pinyin": "jìn",
+          "pdfPage": 104
+        },
+        {
+          "char": "高",
+          "pinyin": "gāo",
+          "pdfPage": 104
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "只",
+          "pinyin": null,
+          "pdfPage": 104
+        },
+        {
+          "char": "多",
+          "pinyin": null,
+          "pdfPage": 104
+        },
+        {
+          "char": "办",
+          "pinyin": null,
+          "pdfPage": 104
+        },
+        {
+          "char": "石",
+          "pinyin": null,
+          "pdfPage": 104
+        },
+        {
+          "char": "出",
+          "pinyin": null,
+          "pdfPage": 104
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "field": "words",
+          "resolved": true,
+          "reason": "本册无词语表且课后未列读记词语。"
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "reading-10",
+      "lessonNumber": 10,
+      "recognitionCharacters": [
+        {
+          "char": "点",
+          "pinyin": "diǎn",
+          "pdfPage": 106
+        },
+        {
+          "char": "数",
+          "pinyin": "shǔ",
+          "pdfPage": 106
+        },
+        {
+          "char": "彩",
+          "pinyin": "cǎi",
+          "pdfPage": 106
+        },
+        {
+          "char": "半",
+          "pinyin": "bàn",
+          "pdfPage": 106
+        },
+        {
+          "char": "空",
+          "pinyin": "kōng",
+          "pdfPage": 106
+        },
+        {
+          "char": "问",
+          "pinyin": "wèn",
+          "pdfPage": 106
+        },
+        {
+          "char": "回",
+          "pinyin": "huí",
+          "pdfPage": 106
+        },
+        {
+          "char": "答",
+          "pinyin": "dá",
+          "pdfPage": 106
+        },
+        {
+          "char": "方",
+          "pinyin": "fāng",
+          "pdfPage": 106
+        },
+        {
+          "char": "久",
+          "pinyin": "jiǔ",
+          "pdfPage": 106
+        },
+        {
+          "char": "更",
+          "pinyin": "gèng",
+          "pdfPage": 106
+        },
+        {
+          "char": "长",
+          "pinyin": "zhǎng",
+          "pdfPage": 106
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "来",
+          "pinyin": null,
+          "pdfPage": 106
+        },
+        {
+          "char": "半",
+          "pinyin": null,
+          "pdfPage": 106
+        },
+        {
+          "char": "你",
+          "pinyin": null,
+          "pdfPage": 106
+        },
+        {
+          "char": "有",
+          "pinyin": null,
+          "pdfPage": 106
+        }
+      ],
+      "words": [
+        {
+          "text": "不多",
+          "source": "课后读一读",
+          "pdfPage": 106
+        },
+        {
+          "text": "不行",
+          "source": "课后读一读",
+          "pdfPage": 106
+        },
+        {
+          "text": "不久",
+          "source": "课后读一读",
+          "pdfPage": 106
+        },
+        {
+          "text": "不用",
+          "source": "课后读一读",
+          "pdfPage": 106
+        },
+        {
+          "text": "不去",
+          "source": "课后读一读",
+          "pdfPage": 106
+        }
+      ],
+      "sourceAbsence": [],
+      "issues": []
+    }
+  ]
+}

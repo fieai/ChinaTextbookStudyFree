@@ -72,7 +72,7 @@ test('dry-run requires no key, never calls fetch, writes estimates and polyphoni
   assert.equal(result.plan.uniqueNewRequests, 1)
   assert.equal(result.plan.estimatedBillableCharacters, 1)
   assert.equal(result.plan.needsListeningReview[0].text, '晃')
-  assert.equal(JSON.parse(fs.readFileSync(path.join(root, '.local/tts-cache/plan.json'))).totalEntries, 2)
+  assert.equal(JSON.parse(fs.readFileSync(path.join(root, '.local/tts-dry-run/plan.json'))).totalEntries, 2)
   assert(logs[0].includes('2 条'))
   await assert.rejects(runTts({ root, patches, env: {}, log: quiet }), /ELEVENLABS_API_KEY/u)
   await assert.rejects(runTts({ root, patches, env: { ELEVENLABS_API_KEY: SECRET }, log: quiet }), /ELEVENLABS_VOICE_ID/u)
@@ -96,6 +96,32 @@ test('keyless dry-run plans supported family words and whole readings in sentenc
   assert.equal(whole.length, 2)
   assert.ok(whole.every(item => item.text === '第一句。\n第二句。'))
   assert.ok([...families, ...whole].every(item => item.supportsAudio === true))
+})
+
+test('book filters precede limits and dry-run reports both volumes without fetching', async t => {
+  const root = fixture(t), up = 'chinese-g3up-2026', down = 'chinese-g3down-2026'
+  const make = text => ({ basicStages: [stage('read', 'read-aloud', { sentences: [{ id: 'sentence-1', text }] })] })
+  const patches = { [`${up}-u1-kp2`]: make('早上好。'), [`${down}-u1-kp2`]: make('春天来了。'),
+    explicitId: { ...make('另一册。'), sourceBookId: 'explicit-book' } }
+  const logs = [], args = { root, patches, env: {}, dryRun: true, log: line => logs.push(line),
+    fetchImpl: () => assert.fail('dry-run must not fetch') }
+  const { plan } = await runTts({ ...args, book: [up, down] })
+  assert.equal(plan.totalEntries, 4)
+  assert.deepEqual(plan.books.map(({ sourceBookId, totalEntries, totalCharacters }) => ({ sourceBookId, totalEntries, totalCharacters })), [
+    { sourceBookId: down, totalEntries: 2, totalCharacters: 10 },
+    { sourceBookId: up, totalEntries: 2, totalCharacters: 8 },
+  ])
+  assert(logs.some(line => line.includes(`${up}：2 条，8 字符`)))
+  assert(logs.some(line => line.includes(`${down}：2 条，10 字符`)))
+  const filtered = await runTts({ ...args, book: down, limit: 1 })
+  assert.equal(filtered.plan.totalEntries, 1)
+  assert.equal(filtered.plan.entries[0].lessonId, `${down}-u1-kp2`)
+  assert.equal((await runTts({ ...args, book: 'explicit-book' })).plan.totalEntries, 2)
+  await assert.rejects(runTts({ ...args, book: 'missing' }), /教材 ID/u)
+  await assert.rejects(runTts({ ...args, book: up, only: `${down}-u1-kp2` }), /课程 ID/u)
+  assert.deepEqual(cliOptions(['--dry-run', '--book', up, '--book', down], {}).book, [up, down])
+  const before = collectAudioEntries(patches).map(({ id }) => id)
+  assert.deepEqual(collectAudioEntries(structuredClone(patches)).map(({ id }) => id), before)
 })
 
 test('successful generation uses native fetch contract, cache hit and voice A/B/A avoid duplicate billing', async t => {
@@ -265,8 +291,19 @@ test('dry-run needs no generation lock and does not remove another run lock', as
   fs.mkdirSync(dir, { recursive: true })
   const lock = path.join(dir, '.generation.lock')
   fs.writeFileSync(lock, 'existing-generation')
-  const result = await runTts({ root, patches: basicPatches(), env: {}, dryRun: true, log: quiet,
-    fetchImpl: () => assert.fail('dry-run must not fetch') })
+  for (const name of ['plan.json', 'sample.txt', 'manifest.json', 'record.json', 'audio.mp3']) fs.writeFileSync(path.join(dir, name), `existing-${name}`)
+  const before = fs.readdirSync(dir).map(name => [name, fs.readFileSync(path.join(dir, name), 'utf8')])
+  const args = { root, patches: basicPatches(), env: {}, dryRun: true, log: quiet,
+    fetchImpl: () => assert.fail('dry-run must not fetch') }
+  const result = await runTts(args)
   assert.equal(result.plan.totalEntries, 1)
-  assert.equal(fs.readFileSync(lock, 'utf8'), 'existing-generation')
+  assert.deepEqual(fs.readdirSync(dir).map(name => [name, fs.readFileSync(path.join(dir, name), 'utf8')]), before)
+  await assert.rejects(runTts({ ...args, planPath: path.join(dir, 'plan.json') }), /不能写入音频缓存/u)
+})
+
+test('dry-run creates no cache directory when none exists', async t => {
+  const root = fixture(t)
+  await runTts({ root, patches: basicPatches(), env: {}, dryRun: true, log: quiet,
+    fetchImpl: () => assert.fail('dry-run must not fetch') })
+  assert.equal(fs.existsSync(path.join(root, '.local/tts-cache')), false)
 })

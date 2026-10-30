@@ -1,5 +1,13 @@
 'use strict';
 
+// Shared authoring constructors: source selection and pronunciation decisions
+// belong to callers; these preserve the validated studio widget shapes.
+const readingActivity = props => ({ widget: 'read-aloud', props });
+const characterActivity = characters => ({ widget: 'char-learn', props: { activity: 'characters', characters } });
+const wordsActivity = (words, options = {}) => ({ widget: 'char-learn', props: { activity: 'words', characters: [], words, ...options } });
+const writingActivity = (characters, options = {}) => ({ widget: 'hanzi-write', props: { characters, mode: 'watch', ...options } });
+const dictationActivity = (words, options) => ({ widget: 'char-learn', props: { activity: 'dictation', characters: [], words, ...options } });
+
 // Convert author data only. Cached provider audio is attached after conversion;
 // runtime device TTS, recording and child state are not media.
 function createLanguageConverter(data, source, strokeDataByCharacter = {}) {
@@ -40,7 +48,7 @@ function createLanguageConverter(data, source, strokeDataByCharacter = {}) {
   }
   function read(id) {
     const cfg = READ[id], sentences = readingSentences(id);
-    return { widget: 'read-aloud', props: {
+    return readingActivity({
       presentation: 'reading', sentences,
       passes: cfg.passes.map(pass => ({
         id: pass.key, title: pass.title, goal: pass.goal,
@@ -55,16 +63,16 @@ function createLanguageConverter(data, source, strokeDataByCharacter = {}) {
       parentChecks: cfg.parentChecks.map(([id, label]) => ({ id, label })),
       parentTitle: cfg.parentTitle, parentAsk: cfg.parentAsk,
       understanding: { question: cfg.understandQ, hints: cfg.hints, more: cfg.understandMore },
-    } };
+    });
   }
   const poemSentences = () => readingSentences(JJ.id);
   function convert(prototypeId, index, extension) {
     if (prototypeId === DQS.id) {
-      if (!extension && index === 0) return { widget: 'char-learn', props: { activity: 'characters', characters: DQS.readChars.map(([char, pinyin], i) => ({ id: `read-${i + 1}`, char, pinyin })) } };
+      if (!extension && index === 0) return characterActivity(DQS.readChars.map(([char, pinyin], i) => ({ id: `read-${i + 1}`, char, pinyin })));
       if (!extension && index === 1) return read(prototypeId);
-      if (!extension && index === 3) return { widget: 'char-learn', props: { activity: 'words', characters: [], words, mode: 'word-and-pinyin', sourceNote: literal('词语来自本课词语表；词语拼音按《现代汉语词典》标注，“热闹”的“闹”读轻声。'), instructions: literal('点小喇叭听一听，跟着读。读熟了换成“只看拼音·写”。') } };
-      if (!extension && index === 4) return { widget: 'hanzi-write', props: { characters, mode: 'watch', initialCharacterId: 'write-飘' } };
-      if (!extension && index === 5) return { widget: 'char-learn', props: { activity: 'dictation', characters: [], words, mode: 'pinyin-only', dictation: { count: 5, kinds: DQS.wrongKinds.map((label, i) => ({ id: `kind-${i + 1}`, label })) }, instructions: literal('听一个，在纸上写一个') } };
+      if (!extension && index === 3) return wordsActivity(words, { mode: 'word-and-pinyin', sourceNote: literal('词语来自本课词语表；词语拼音按《现代汉语词典》标注，“热闹”的“闹”读轻声。'), instructions: literal('点小喇叭听一听，跟着读。读熟了换成“只看拼音·写”。') });
+      if (!extension && index === 4) return writingActivity(characters, { initialCharacterId: 'write-飘' });
+      if (!extension && index === 5) return dictationActivity(words, { mode: 'pinyin-only', dictation: { count: 5, kinds: DQS.wrongKinds.map((label, i) => ({ id: `kind-${i + 1}`, label })) }, instructions: literal('听一个，在纸上写一个') });
       if (extension && index === 0) return { widget: 'char-learn', props: { activity: 'family', characters: DQS.families.map((family, i) => ({
         id: `family-${i + 1}`, char: family.head, pinyin: DQS.readChars.find(([char]) => char === family.head)[1],
         family: family.words.map(([text, pinyin, meaning], j) => ({ id: `word-${j + 1}`, text, pinyin, meaning })),
@@ -122,4 +130,4 @@ function createLanguageConverter(data, source, strokeDataByCharacter = {}) {
   return { convert, teachBack, poemSentences };
 }
 
-module.exports = { createLanguageConverter };
+module.exports = { createLanguageConverter, readingActivity, characterActivity, wordsActivity, writingActivity, dictationActivity };

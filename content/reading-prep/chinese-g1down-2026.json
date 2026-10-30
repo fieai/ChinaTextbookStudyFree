@@ -1,0 +1,6576 @@
+{
+  "schemaVersion": 1,
+  "bookId": "chinese-g1down-2026",
+  "source": {
+    "pdfPath": "/Users/shouzongchang/Documents/ZCTD/ChinaTextbookStudyFree/apps/web/public/textbooks/chinese-g1down-2026/book.pdf",
+    "sha256": "610b101c9e79146749e47a950dadbda35885b75d185bb6c8bd26b79926c02fae",
+    "pageCount": 127,
+    "editionClaim": "local-current-asset; 2026 is an asset ID, not publication year",
+    "adjacentFiles": []
+  },
+  "lessons": [
+    {
+      "lessonKey": "literacy-01",
+      "lessonNumber": 1,
+      "lessonType": "literacy",
+      "title": "春夏秋冬",
+      "sourceLessonId": null,
+      "pdfPages": [
+        7,
+        8
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "春风\n夏雨\n秋霜\n冬雪",
+          "pdfPages": [
+            7
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "春风吹\n夏雨落\n秋霜降\n冬雪飘",
+          "pdfPages": [
+            7
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "青草\n红花\n游鱼\n飞鸟",
+          "pdfPages": [
+            8
+          ]
+        },
+        {
+          "id": "paragraph-4",
+          "text": "池草青\n山花红\n鱼出水\n鸟入林",
+          "pdfPages": [
+            8
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "春风\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "夏雨\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "秋霜\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-4",
+          "text": "冬雪",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-5",
+          "text": "春风吹\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-6",
+          "text": "夏雨落\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-7",
+          "text": "秋霜降\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-8",
+          "text": "冬雪飘",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-9",
+          "text": "青草\n",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-10",
+          "text": "红花\n",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-11",
+          "text": "游鱼\n",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-12",
+          "text": "飞鸟",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-13",
+          "text": "池草青\n",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-14",
+          "text": "山花红\n",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-15",
+          "text": "鱼出水\n",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-16",
+          "text": "鸟入林",
+          "paragraphId": "paragraph-4"
+        }
+      ],
+      "recognitionCharacters": [
+        {
+          "char": "霜",
+          "pinyin": "shuāng",
+          "pdfPage": 8
+        },
+        {
+          "char": "吹",
+          "pinyin": "chuī",
+          "pdfPage": 8
+        },
+        {
+          "char": "落",
+          "pinyin": "luò",
+          "pdfPage": 8
+        },
+        {
+          "char": "降",
+          "pinyin": "jiàng",
+          "pdfPage": 8
+        },
+        {
+          "char": "飘",
+          "pinyin": "piāo",
+          "pdfPage": 8
+        },
+        {
+          "char": "游",
+          "pinyin": "yóu",
+          "pdfPage": 8
+        },
+        {
+          "char": "池",
+          "pinyin": "chí",
+          "pdfPage": 8
+        },
+        {
+          "char": "入",
+          "pinyin": "rù",
+          "pdfPage": 8
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "春",
+          "pinyin": null,
+          "pdfPage": 8
+        },
+        {
+          "char": "冬",
+          "pinyin": null,
+          "pdfPage": 8
+        },
+        {
+          "char": "吹",
+          "pinyin": null,
+          "pdfPage": 8
+        },
+        {
+          "char": "花",
+          "pinyin": null,
+          "pdfPage": 8
+        },
+        {
+          "char": "飞",
+          "pinyin": null,
+          "pdfPage": 8
+        },
+        {
+          "char": "入",
+          "pinyin": null,
+          "pdfPage": 8
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            7,
+            8
+          ],
+          "message": "本册未设词语表；本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "literacy-02",
+      "lessonNumber": 2,
+      "lessonType": "literacy",
+      "title": "姓氏歌",
+      "sourceLessonId": null,
+      "pdfPages": [
+        9
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "你姓什么？我姓李。\n什么李？木子李。\n他姓什么？他姓张。\n什么张？弓长张。\n古月胡，口天吴，\n双人徐，言午许。",
+          "pdfPages": [
+            9
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "中国姓氏有很多，\n赵、钱、孙、李，\n周、吴、郑、王，\n诸葛、东方，\n上官、欧阳……",
+          "pdfPages": [
+            9
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "你姓什么？我姓李。\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "什么李？木子李。\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "他姓什么？他姓张。\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-4",
+          "text": "什么张？弓长张。\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-5",
+          "text": "古月胡，口天吴，\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-6",
+          "text": "双人徐，言午许。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-7",
+          "text": "中国姓氏有很多，\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-8",
+          "text": "赵、钱、孙、李，\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-9",
+          "text": "周、吴、郑、王，\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-10",
+          "text": "诸葛、东方，\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-11",
+          "text": "上官、欧阳……",
+          "paragraphId": "paragraph-2"
+        }
+      ],
+      "recognitionCharacters": [
+        {
+          "char": "氏",
+          "pinyin": "shì",
+          "pdfPage": 10
+        },
+        {
+          "char": "什",
+          "pinyin": "shén",
+          "pdfPage": 10
+        },
+        {
+          "char": "李",
+          "pinyin": "lǐ",
+          "pdfPage": 10
+        },
+        {
+          "char": "张",
+          "pinyin": "zhāng",
+          "pdfPage": 10
+        },
+        {
+          "char": "弓",
+          "pinyin": "gōng",
+          "pdfPage": 10
+        },
+        {
+          "char": "古",
+          "pinyin": "gǔ",
+          "pdfPage": 10
+        },
+        {
+          "char": "胡",
+          "pinyin": "hú",
+          "pdfPage": 10
+        },
+        {
+          "char": "吴",
+          "pinyin": "wú",
+          "pdfPage": 10
+        },
+        {
+          "char": "言",
+          "pinyin": "yán",
+          "pdfPage": 10
+        },
+        {
+          "char": "孙",
+          "pinyin": "sūn",
+          "pdfPage": 10
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "什",
+          "pinyin": null,
+          "pdfPage": 10
+        },
+        {
+          "char": "么",
+          "pinyin": null,
+          "pdfPage": 10
+        },
+        {
+          "char": "古",
+          "pinyin": null,
+          "pdfPage": 10
+        },
+        {
+          "char": "胡",
+          "pinyin": null,
+          "pdfPage": 10
+        },
+        {
+          "char": "双",
+          "pinyin": null,
+          "pdfPage": 10
+        },
+        {
+          "char": "言",
+          "pinyin": null,
+          "pdfPage": 10
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            9
+          ],
+          "message": "本册未设词语表；本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "literacy-03",
+      "lessonNumber": 3,
+      "lessonType": "literacy",
+      "title": "小青蛙",
+      "sourceLessonId": null,
+      "pdfPages": [
+        11
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "河水清清天气晴，\n小小青蛙大眼睛。\n保护禾苗吃害虫，\n做了不少好事情。\n请你爱护小青蛙，\n好让禾苗不生病。",
+          "pdfPages": [
+            11
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "河水清清天气晴，\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "小小青蛙大眼睛。\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "保护禾苗吃害虫，\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-4",
+          "text": "做了不少好事情。\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-5",
+          "text": "请你爱护小青蛙，\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-6",
+          "text": "好让禾苗不生病。",
+          "paragraphId": "paragraph-1"
+        }
+      ],
+      "recognitionCharacters": [
+        {
+          "char": "河",
+          "pinyin": "hé",
+          "pdfPage": 12
+        },
+        {
+          "char": "晴",
+          "pinyin": "qíng",
+          "pdfPage": 12
+        },
+        {
+          "char": "眼",
+          "pinyin": "yǎn",
+          "pdfPage": 12
+        },
+        {
+          "char": "睛",
+          "pinyin": "jīng",
+          "pdfPage": 12
+        },
+        {
+          "char": "保",
+          "pinyin": "bǎo",
+          "pdfPage": 12
+        },
+        {
+          "char": "护",
+          "pinyin": "hù",
+          "pdfPage": 12
+        },
+        {
+          "char": "苗",
+          "pinyin": "miáo",
+          "pdfPage": 12
+        },
+        {
+          "char": "吃",
+          "pinyin": "chī",
+          "pdfPage": 12
+        },
+        {
+          "char": "事",
+          "pinyin": "shì",
+          "pdfPage": 12
+        },
+        {
+          "char": "情",
+          "pinyin": "qíng",
+          "pdfPage": 12
+        },
+        {
+          "char": "请",
+          "pinyin": "qǐng",
+          "pdfPage": 12
+        },
+        {
+          "char": "让",
+          "pinyin": "ràng",
+          "pdfPage": 12
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "青",
+          "pinyin": null,
+          "pdfPage": 12
+        },
+        {
+          "char": "清",
+          "pinyin": null,
+          "pdfPage": 12
+        },
+        {
+          "char": "晴",
+          "pinyin": null,
+          "pdfPage": 12
+        },
+        {
+          "char": "苗",
+          "pinyin": null,
+          "pdfPage": 12
+        },
+        {
+          "char": "请",
+          "pinyin": null,
+          "pdfPage": 12
+        },
+        {
+          "char": "生",
+          "pinyin": null,
+          "pdfPage": 12
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            11
+          ],
+          "message": "本册未设词语表；本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "literacy-04",
+      "lessonNumber": 4,
+      "lessonType": "literacy",
+      "title": "猜字谜",
+      "sourceLessonId": null,
+      "pdfPages": [
+        13,
+        14
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "左边绿，右边红，\n左右相遇起凉风。\n绿的喜欢及时雨，\n红的最怕水来攻。",
+          "pdfPages": [
+            13
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "“言”来互相尊重，\n“心”至令人感动，\n“日”出万里无云，\n“水”到纯净透明。",
+          "pdfPages": [
+            14
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "左边绿，右边红，\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "左右相遇起凉风。\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "绿的喜欢及时雨，\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-4",
+          "text": "红的最怕水来攻。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-5",
+          "text": "“言”来互相尊重，\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-6",
+          "text": "“心”至令人感动，\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-7",
+          "text": "“日”出万里无云，\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-8",
+          "text": "“水”到纯净透明。",
+          "paragraphId": "paragraph-2"
+        }
+      ],
+      "recognitionCharacters": [
+        {
+          "char": "猜",
+          "pinyin": "cāi",
+          "pdfPage": 14
+        },
+        {
+          "char": "边",
+          "pinyin": "biān",
+          "pdfPage": 14
+        },
+        {
+          "char": "凉",
+          "pinyin": "liáng",
+          "pdfPage": 14
+        },
+        {
+          "char": "喜",
+          "pinyin": "xǐ",
+          "pdfPage": 14
+        },
+        {
+          "char": "欢",
+          "pinyin": "huān",
+          "pdfPage": 14
+        },
+        {
+          "char": "时",
+          "pinyin": "shí",
+          "pdfPage": 14
+        },
+        {
+          "char": "怕",
+          "pinyin": "pà",
+          "pdfPage": 14
+        },
+        {
+          "char": "攻",
+          "pinyin": "gōng",
+          "pdfPage": 14
+        },
+        {
+          "char": "令",
+          "pinyin": "lìng",
+          "pdfPage": 14
+        },
+        {
+          "char": "感",
+          "pinyin": "gǎn",
+          "pdfPage": 14
+        },
+        {
+          "char": "动",
+          "pinyin": "dòng",
+          "pdfPage": 14
+        },
+        {
+          "char": "万",
+          "pinyin": "wàn",
+          "pdfPage": 14
+        },
+        {
+          "char": "无",
+          "pinyin": "wú",
+          "pdfPage": 14
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "字",
+          "pinyin": null,
+          "pdfPage": 14
+        },
+        {
+          "char": "红",
+          "pinyin": null,
+          "pdfPage": 14
+        },
+        {
+          "char": "动",
+          "pinyin": null,
+          "pdfPage": 14
+        },
+        {
+          "char": "万",
+          "pinyin": null,
+          "pdfPage": 14
+        },
+        {
+          "char": "无",
+          "pinyin": null,
+          "pdfPage": 14
+        },
+        {
+          "char": "明",
+          "pinyin": null,
+          "pdfPage": 14
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            13,
+            14
+          ],
+          "message": "本册未设词语表；本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonKey": "reading-01",
+      "lessonNumber": 1,
+      "recognitionCharacters": [
+        {
+          "char": "热",
+          "pinyin": "rè",
+          "pdfPage": 22
+        },
+        {
+          "char": "爱",
+          "pinyin": "ài",
+          "pdfPage": 22
+        },
+        {
+          "char": "共",
+          "pinyin": "gòng",
+          "pdfPage": 22
+        },
+        {
+          "char": "产",
+          "pinyin": "chǎn",
+          "pdfPage": 22
+        },
+        {
+          "char": "党",
+          "pinyin": "dǎng",
+          "pdfPage": 22
+        },
+        {
+          "char": "太",
+          "pinyin": "tài",
+          "pdfPage": 22
+        },
+        {
+          "char": "阳",
+          "pinyin": "yáng",
+          "pdfPage": 22
+        },
+        {
+          "char": "光",
+          "pinyin": "guāng",
+          "pdfPage": 22
+        },
+        {
+          "char": "怀",
+          "pinyin": "huái",
+          "pdfPage": 22
+        },
+        {
+          "char": "抱",
+          "pinyin": "bào",
+          "pdfPage": 22
+        },
+        {
+          "char": "幸",
+          "pinyin": "xìng",
+          "pdfPage": 22
+        },
+        {
+          "char": "福",
+          "pinyin": "fú",
+          "pdfPage": 22
+        },
+        {
+          "char": "成",
+          "pinyin": "chéng",
+          "pdfPage": 22
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "共",
+          "pinyin": null,
+          "pdfPage": 22
+        },
+        {
+          "char": "产",
+          "pinyin": null,
+          "pdfPage": 22
+        },
+        {
+          "char": "党",
+          "pinyin": null,
+          "pdfPage": 22
+        },
+        {
+          "char": "太",
+          "pinyin": null,
+          "pdfPage": 22
+        },
+        {
+          "char": "阳",
+          "pinyin": null,
+          "pdfPage": 22
+        },
+        {
+          "char": "光",
+          "pinyin": null,
+          "pdfPage": 22
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            21
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            21
+          ],
+          "message": "本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "热爱中国共产党",
+      "sourceLessonId": null,
+      "pdfPages": [
+        21
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "花儿喜欢太阳，\n花儿在阳光下开放。\n鸟儿喜欢蓝天，\n鸟儿在天空中飞翔。\n我们热爱中国共产党，\n我们在党的怀抱里幸福成长。",
+          "pdfPages": [
+            21
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "花儿喜欢太阳，\n花儿在阳光下开放。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "\n鸟儿喜欢蓝天，\n鸟儿在天空中飞翔。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "\n我们热爱中国共产党，\n我们在党的怀抱里幸福成长。",
+          "paragraphId": "paragraph-1"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-02",
+      "lessonNumber": 2,
+      "recognitionCharacters": [
+        {
+          "char": "井",
+          "pinyin": "jǐng",
+          "pdfPage": 24
+        },
+        {
+          "char": "城",
+          "pinyin": "chéng",
+          "pdfPage": 24
+        },
+        {
+          "char": "村",
+          "pinyin": "cūn",
+          "pdfPage": 24
+        },
+        {
+          "char": "毛",
+          "pinyin": "máo",
+          "pdfPage": 24
+        },
+        {
+          "char": "主",
+          "pinyin": "zhǔ",
+          "pdfPage": 24
+        },
+        {
+          "char": "席",
+          "pinyin": "xí",
+          "pdfPage": 24
+        },
+        {
+          "char": "住",
+          "pinyin": "zhù",
+          "pdfPage": 24
+        },
+        {
+          "char": "乡",
+          "pinyin": "xiāng",
+          "pdfPage": 24
+        },
+        {
+          "char": "亲",
+          "pinyin": "qīn",
+          "pdfPage": 24
+        },
+        {
+          "char": "战",
+          "pinyin": "zhàn",
+          "pdfPage": 24
+        },
+        {
+          "char": "士",
+          "pinyin": "shì",
+          "pdfPage": 24
+        },
+        {
+          "char": "想",
+          "pinyin": "xiǎng",
+          "pdfPage": 24
+        },
+        {
+          "char": "念",
+          "pinyin": "niàn",
+          "pdfPage": 24
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "井",
+          "pinyin": null,
+          "pdfPage": 24
+        },
+        {
+          "char": "主",
+          "pinyin": null,
+          "pdfPage": 24
+        },
+        {
+          "char": "江",
+          "pinyin": null,
+          "pdfPage": 24
+        },
+        {
+          "char": "住",
+          "pinyin": null,
+          "pdfPage": 24
+        },
+        {
+          "char": "方",
+          "pinyin": null,
+          "pdfPage": 24
+        },
+        {
+          "char": "后",
+          "pinyin": null,
+          "pdfPage": 24
+        }
+      ],
+      "words": [
+        {
+          "text": "水井",
+          "source": "课后读记",
+          "pdfPage": 24
+        },
+        {
+          "text": "井口",
+          "source": "课后读记",
+          "pdfPage": 24
+        },
+        {
+          "text": "主席",
+          "source": "课后读记",
+          "pdfPage": 24
+        },
+        {
+          "text": "主动",
+          "source": "课后读记",
+          "pdfPage": 24
+        },
+        {
+          "text": "乡村",
+          "source": "课后读记",
+          "pdfPage": 24
+        },
+        {
+          "text": "村子",
+          "source": "课后读记",
+          "pdfPage": 24
+        },
+        {
+          "text": "乡亲",
+          "source": "课后读记",
+          "pdfPage": 24
+        },
+        {
+          "text": "亲人",
+          "source": "课后读记",
+          "pdfPage": 24
+        },
+        {
+          "text": "想念",
+          "source": "课后读记",
+          "pdfPage": 24
+        },
+        {
+          "text": "念书",
+          "source": "课后读记",
+          "pdfPage": 24
+        },
+        {
+          "text": "战士",
+          "source": "课后读记",
+          "pdfPage": 24
+        },
+        {
+          "text": "战友",
+          "source": "课后读记",
+          "pdfPage": 24
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            23
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "吃水不忘挖井人",
+      "sourceLessonId": null,
+      "pdfPages": [
+        23
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "瑞金城外有个村子叫沙洲坝，毛主席在江西领导革命的时候，在那儿住过。",
+          "pdfPages": [
+            23
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "村子里没有水井，乡亲们吃水要到很远的地方去挑。毛主席就带领战士和乡亲们挖了一口井。",
+          "pdfPages": [
+            23
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "解放以后，乡亲们在井旁边立了一块石碑，上面刻着：“吃水不忘挖井人，时刻想念毛主席。”",
+          "pdfPages": [
+            23
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "瑞金城外有个村子叫沙洲坝，毛主席在江西领导革命的时候，在那儿住过。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "村子里没有水井，乡亲们吃水要到很远的地方去挑。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-3",
+          "text": "毛主席就带领战士和乡亲们挖了一口井。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-4",
+          "text": "解放以后，乡亲们在井旁边立了一块石碑，上面刻着：“吃水不忘挖井人，时刻想念毛主席。”",
+          "paragraphId": "paragraph-3"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-03",
+      "lessonNumber": 3,
+      "recognitionCharacters": [
+        {
+          "char": "告",
+          "pinyin": "gào",
+          "pdfPage": 26
+        },
+        {
+          "char": "诉",
+          "pinyin": "sù",
+          "pdfPage": 26
+        },
+        {
+          "char": "走",
+          "pinyin": "zǒu",
+          "pdfPage": 26
+        },
+        {
+          "char": "京",
+          "pinyin": "jīng",
+          "pdfPage": 26
+        },
+        {
+          "char": "座",
+          "pinyin": "zuò",
+          "pdfPage": 26
+        },
+        {
+          "char": "安",
+          "pinyin": "ān",
+          "pdfPage": 26
+        },
+        {
+          "char": "广",
+          "pinyin": "guǎng",
+          "pdfPage": 26
+        },
+        {
+          "char": "场",
+          "pinyin": "chǎng",
+          "pdfPage": 26
+        },
+        {
+          "char": "非",
+          "pinyin": "fēi",
+          "pdfPage": 26
+        },
+        {
+          "char": "宽",
+          "pinyin": "kuān",
+          "pdfPage": 26
+        },
+        {
+          "char": "丽",
+          "pinyin": "lì",
+          "pdfPage": 26
+        },
+        {
+          "char": "洁",
+          "pinyin": "jié",
+          "pdfPage": 26
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "告",
+          "pinyin": null,
+          "pdfPage": 26
+        },
+        {
+          "char": "的",
+          "pinyin": null,
+          "pdfPage": 26
+        },
+        {
+          "char": "会",
+          "pinyin": null,
+          "pdfPage": 26
+        },
+        {
+          "char": "北",
+          "pinyin": null,
+          "pdfPage": 26
+        },
+        {
+          "char": "京",
+          "pinyin": null,
+          "pdfPage": 26
+        },
+        {
+          "char": "广",
+          "pinyin": null,
+          "pdfPage": 26
+        }
+      ],
+      "words": [
+        {
+          "text": "弯弯的小路",
+          "source": "课后读记",
+          "pdfPage": 26
+        },
+        {
+          "text": "宽宽的公路",
+          "source": "课后读记",
+          "pdfPage": 26
+        },
+        {
+          "text": "美丽的天山",
+          "source": "课后读记",
+          "pdfPage": 26
+        },
+        {
+          "text": "洁白的雪莲",
+          "source": "课后读记",
+          "pdfPage": 26
+        },
+        {
+          "text": "雄伟的天安门",
+          "source": "课后读记",
+          "pdfPage": 26
+        },
+        {
+          "text": "壮观的升旗仪式",
+          "source": "课后读记",
+          "pdfPage": 26
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            25
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "我多想去看看",
+      "sourceLessonId": null,
+      "pdfPages": [
+        25
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "妈妈告诉我，沿着弯弯的小路，就会走出天山。遥远的北京，有一座雄伟的天安门，广场上的升旗仪式非常壮观。我对妈妈说，我多想去看看，我多想去看看！",
+          "pdfPages": [
+            25
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "爸爸告诉我，沿着宽宽的公路，就会走出北京。遥远的新疆，有美丽的天山，雪山上盛开着洁白的雪莲。我对爸爸说，我多想去看看，我多想去看看！",
+          "pdfPages": [
+            25
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "妈妈告诉我，沿着弯弯的小路，就会走出天山。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "遥远的北京，有一座雄伟的天安门，广场上的升旗仪式非常壮观。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "我对妈妈说，我多想去看看，我多想去看看！",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-4",
+          "text": "爸爸告诉我，沿着宽宽的公路，就会走出北京。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-5",
+          "text": "遥远的新疆，有美丽的天山，雪山上盛开着洁白的雪莲。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-6",
+          "text": "我对爸爸说，我多想去看看，我多想去看看！",
+          "paragraphId": "paragraph-2"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-04",
+      "lessonNumber": 4,
+      "recognitionCharacters": [
+        {
+          "char": "玩",
+          "pinyin": "wán",
+          "pdfPage": 33
+        },
+        {
+          "char": "得",
+          "pinyin": "de",
+          "pdfPage": 33
+        },
+        {
+          "char": "急",
+          "pinyin": "jí",
+          "pdfPage": 33
+        },
+        {
+          "char": "直",
+          "pinyin": "zhí",
+          "pdfPage": 33
+        },
+        {
+          "char": "哭",
+          "pinyin": "kū",
+          "pdfPage": 33
+        },
+        {
+          "char": "跟",
+          "pinyin": "gēn",
+          "pdfPage": 33
+        },
+        {
+          "char": "忽",
+          "pinyin": "hū",
+          "pdfPage": 33
+        },
+        {
+          "char": "然",
+          "pinyin": "rán",
+          "pdfPage": 33
+        },
+        {
+          "char": "听",
+          "pinyin": "tīng",
+          "pdfPage": 33
+        },
+        {
+          "char": "喊",
+          "pinyin": "hǎn",
+          "pdfPage": 33
+        },
+        {
+          "char": "快",
+          "pinyin": "kuài",
+          "pdfPage": 33
+        },
+        {
+          "char": "己",
+          "pinyin": "jǐ",
+          "pdfPage": 33
+        },
+        {
+          "char": "背",
+          "pinyin": "bèi",
+          "pdfPage": 33
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "走",
+          "pinyin": null,
+          "pdfPage": 33
+        },
+        {
+          "char": "河",
+          "pinyin": null,
+          "pdfPage": 33
+        },
+        {
+          "char": "说",
+          "pinyin": null,
+          "pdfPage": 33
+        },
+        {
+          "char": "让",
+          "pinyin": null,
+          "pdfPage": 33
+        },
+        {
+          "char": "自",
+          "pinyin": null,
+          "pdfPage": 33
+        },
+        {
+          "char": "己",
+          "pinyin": null,
+          "pdfPage": 33
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            31,
+            32
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            31,
+            32
+          ],
+          "message": "本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "小公鸡和小鸭子",
+      "sourceLessonId": null,
+      "pdfPages": [
+        31,
+        32
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "小公鸡和小鸭子一块儿出去玩。",
+          "pdfPages": [
+            31
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "他们走进草地里。小公鸡找到了许多虫子，吃得很欢。小鸭子捉不到虫子，急得直哭。小公鸡看见了，捉到虫子就给小鸭子吃。",
+          "pdfPages": [
+            31
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "他们走到小河边。小鸭子说：“公鸡弟弟，我到河里捉鱼给你吃。”小公鸡说：“我也去。”小鸭子说：“不行，不行，你不会游泳，会淹死的！”小公鸡不信，偷偷地跟在小鸭子后面，也下了水。",
+          "pdfPages": [
+            32
+          ]
+        },
+        {
+          "id": "paragraph-4",
+          "text": "小鸭子正在水里捉鱼，忽然听见小公鸡喊救命。他飞快地游到小公鸡身边，让小公鸡坐在自己的背上。小公鸡上了岸，笑着对小鸭子说：“鸭子哥哥，谢谢你。”",
+          "pdfPages": [
+            32
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "小公鸡和小鸭子一块儿出去玩。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "他们走进草地里。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-3",
+          "text": "小公鸡找到了许多虫子，吃得很欢。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-4",
+          "text": "小鸭子捉不到虫子，急得直哭。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-5",
+          "text": "小公鸡看见了，捉到虫子就给小鸭子吃。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-6",
+          "text": "他们走到小河边。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-7",
+          "text": "小鸭子说：“公鸡弟弟，我到河里捉鱼给你吃。”",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-8",
+          "text": "小公鸡说：“我也去。”",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-9",
+          "text": "小鸭子说：“不行，不行，你不会游泳，会淹死的！”",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-10",
+          "text": "小公鸡不信，偷偷地跟在小鸭子后面，也下了水。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-11",
+          "text": "小鸭子正在水里捉鱼，忽然听见小公鸡喊救命。",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-12",
+          "text": "他飞快地游到小公鸡身边，让小公鸡坐在自己的背上。",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-13",
+          "text": "小公鸡上了岸，笑着对小鸭子说：“鸭子哥哥，谢谢你。”",
+          "paragraphId": "paragraph-4"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-05",
+      "lessonNumber": 5,
+      "recognitionCharacters": [
+        {
+          "char": "只",
+          "pinyin": "zhī",
+          "pdfPage": 35
+        },
+        {
+          "char": "很",
+          "pinyin": "hěn",
+          "pdfPage": 35
+        },
+        {
+          "char": "孤",
+          "pinyin": "gū",
+          "pdfPage": 35
+        },
+        {
+          "char": "单",
+          "pinyin": "dān",
+          "pdfPage": 35
+        },
+        {
+          "char": "种",
+          "pinyin": "zhòng",
+          "pdfPage": 35
+        },
+        {
+          "char": "每",
+          "pinyin": "měi",
+          "pdfPage": 35
+        },
+        {
+          "char": "都",
+          "pinyin": "dōu",
+          "pdfPage": 35
+        },
+        {
+          "char": "邻",
+          "pinyin": "lín",
+          "pdfPage": 35
+        },
+        {
+          "char": "居",
+          "pinyin": "jū",
+          "pdfPage": 35
+        },
+        {
+          "char": "叫",
+          "pinyin": "jiào",
+          "pdfPage": 35
+        },
+        {
+          "char": "招",
+          "pinyin": "zhāo",
+          "pdfPage": 35
+        },
+        {
+          "char": "呼",
+          "pinyin": "hū",
+          "pdfPage": 35
+        },
+        {
+          "char": "乐",
+          "pinyin": "lè",
+          "pdfPage": 35
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "从",
+          "pinyin": null,
+          "pdfPage": 35
+        },
+        {
+          "char": "好",
+          "pinyin": null,
+          "pdfPage": 35
+        },
+        {
+          "char": "们",
+          "pinyin": null,
+          "pdfPage": 35
+        },
+        {
+          "char": "叫",
+          "pinyin": null,
+          "pdfPage": 35
+        },
+        {
+          "char": "他",
+          "pinyin": null,
+          "pdfPage": 35
+        },
+        {
+          "char": "回",
+          "pinyin": null,
+          "pdfPage": 35
+        }
+      ],
+      "words": [
+        {
+          "text": "从前",
+          "source": "课后读记",
+          "pdfPage": 35
+        },
+        {
+          "text": "喜鹊",
+          "source": "课后读记",
+          "pdfPage": 35
+        },
+        {
+          "text": "孤单",
+          "source": "课后读记",
+          "pdfPage": 35
+        },
+        {
+          "text": "叽叽喳喳",
+          "source": "课后读记",
+          "pdfPage": 35
+        },
+        {
+          "text": "后来",
+          "source": "课后读记",
+          "pdfPage": 35
+        },
+        {
+          "text": "邻居",
+          "source": "课后读记",
+          "pdfPage": 35
+        },
+        {
+          "text": "快乐",
+          "source": "课后读记",
+          "pdfPage": 35
+        },
+        {
+          "text": "安安静静",
+          "source": "课后读记",
+          "pdfPage": 35
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            34,
+            35
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "树和喜鹊",
+      "sourceLessonId": null,
+      "pdfPages": [
+        34,
+        35
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "从前，这里只有一棵树，树上只有一个鸟窝，鸟窝里只有一只喜鹊。",
+          "pdfPages": [
+            34
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "树很孤单，喜鹊也很孤单。",
+          "pdfPages": [
+            34
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "后来，这里种了好多好多树，每棵树上都有鸟窝，每个鸟窝里都有喜鹊。",
+          "pdfPages": [
+            34
+          ]
+        },
+        {
+          "id": "paragraph-4",
+          "text": "树有了邻居，喜鹊也有了邻居。",
+          "pdfPages": [
+            34
+          ]
+        },
+        {
+          "id": "paragraph-5",
+          "text": "每天天一亮，喜鹊们叽叽喳喳叫几声，打着招呼一起飞出去了。天一黑，他们又叽叽喳喳地一起飞回窝里，安安静静地睡觉了。",
+          "pdfPages": [
+            34,
+            35
+          ]
+        },
+        {
+          "id": "paragraph-6",
+          "text": "树很快乐，喜鹊也很快乐。",
+          "pdfPages": [
+            35
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "从前，这里只有一棵树，树上只有一个鸟窝，鸟窝里只有一只喜鹊。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "树很孤单，喜鹊也很孤单。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-3",
+          "text": "后来，这里种了好多好多树，每棵树上都有鸟窝，每个鸟窝里都有喜鹊。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-4",
+          "text": "树有了邻居，喜鹊也有了邻居。",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-5",
+          "text": "每天天一亮，喜鹊们叽叽喳喳叫几声，打着招呼一起飞出去了。",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-6",
+          "text": "天一黑，他们又叽叽喳喳地一起飞回窝里，安安静静地睡觉了。",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-7",
+          "text": "树很快乐，喜鹊也很快乐。",
+          "paragraphId": "paragraph-6"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-06",
+      "lessonNumber": 6,
+      "recognitionCharacters": [
+        {
+          "char": "怎",
+          "pinyin": "zěn",
+          "pdfPage": 38
+        },
+        {
+          "char": "独",
+          "pinyin": "dú",
+          "pdfPage": 38
+        },
+        {
+          "char": "跳",
+          "pinyin": "tiào",
+          "pdfPage": 38
+        },
+        {
+          "char": "绳",
+          "pinyin": "shéng",
+          "pdfPage": 38
+        },
+        {
+          "char": "当",
+          "pinyin": "dāng",
+          "pdfPage": 38
+        },
+        {
+          "char": "还",
+          "pinyin": "hái",
+          "pdfPage": 38
+        },
+        {
+          "char": "乐",
+          "pinyin": "yuè",
+          "pdfPage": 38
+        },
+        {
+          "char": "得",
+          "pinyin": "děi",
+          "pdfPage": 38
+        },
+        {
+          "char": "羽",
+          "pinyin": "yǔ",
+          "pdfPage": 38
+        },
+        {
+          "char": "球",
+          "pinyin": "qiú",
+          "pdfPage": 38
+        },
+        {
+          "char": "劲",
+          "pinyin": "jìn",
+          "pdfPage": 38
+        },
+        {
+          "char": "轮",
+          "pinyin": "lún",
+          "pdfPage": 38
+        },
+        {
+          "char": "排",
+          "pinyin": "pái",
+          "pdfPage": 38
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "快",
+          "pinyin": null,
+          "pdfPage": 38
+        },
+        {
+          "char": "乐",
+          "pinyin": null,
+          "pdfPage": 38
+        },
+        {
+          "char": "当",
+          "pinyin": null,
+          "pdfPage": 38
+        },
+        {
+          "char": "书",
+          "pinyin": null,
+          "pdfPage": 38
+        },
+        {
+          "char": "画",
+          "pinyin": null,
+          "pdfPage": 38
+        },
+        {
+          "char": "毛",
+          "pinyin": null,
+          "pdfPage": 38
+        }
+      ],
+      "words": [
+        {
+          "text": "跳绳",
+          "source": "课后读记",
+          "pdfPage": 38
+        },
+        {
+          "text": "踢足球",
+          "source": "课后读记",
+          "pdfPage": 38
+        },
+        {
+          "text": "听音乐",
+          "source": "课后读记",
+          "pdfPage": 38
+        },
+        {
+          "text": "看书",
+          "source": "课后读记",
+          "pdfPage": 38
+        },
+        {
+          "text": "打排球",
+          "source": "课后读记",
+          "pdfPage": 38
+        },
+        {
+          "text": "玩游戏",
+          "source": "课后读记",
+          "pdfPage": 38
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            36,
+            37
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "怎么都快乐",
+      "sourceLessonId": null,
+      "pdfPages": [
+        36,
+        37
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "一个人玩，很好！\n独自一人，静悄悄的，\n正好用纸折船，折马……\n踢毽子，跳绳，搭积木，\n当然还有看书，画画，听音乐……",
+          "pdfPages": [
+            36
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "两个人玩，很好！\n讲故事得有人听才行，\n你讲我听，我讲你听。\n还有下象棋，打羽毛球，坐跷跷板……",
+          "pdfPages": [
+            36
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "三个人玩，很好！\n讲故事多个人听更有劲，\n你讲我们听，我讲你们听。\n两个人甩绳子，\n你跳，我跳，轮流跳。",
+          "pdfPages": [
+            37
+          ]
+        },
+        {
+          "id": "paragraph-4",
+          "text": "四个人玩，很好！\n五个人玩，很好！\n许多人玩，更好！\n人多，什么游戏都能玩，\n拔河，老鹰捉小鸡，\n打排球，打篮球，踢足球……\n连开运动会也可以。",
+          "pdfPages": [
+            37
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "一个人玩，很好！",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "\n独自一人，静悄悄的，\n正好用纸折船，折马……\n踢毽子，跳绳，搭积木，\n当然还有看书，画画，听音乐……",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "两个人玩，很好！",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-4",
+          "text": "\n讲故事得有人听才行，\n你讲我听，我讲你听。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-5",
+          "text": "\n还有下象棋，打羽毛球，坐跷跷板……",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-6",
+          "text": "三个人玩，很好！",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-7",
+          "text": "\n讲故事多个人听更有劲，\n你讲我们听，我讲你们听。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-8",
+          "text": "\n两个人甩绳子，\n你跳，我跳，轮流跳。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-9",
+          "text": "四个人玩，很好！",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-10",
+          "text": "\n五个人玩，很好！",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-11",
+          "text": "\n许多人玩，更好！",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-12",
+          "text": "\n人多，什么游戏都能玩，\n拔河，老鹰捉小鸡，\n打排球，打篮球，踢足球……\n连开运动会也可以。",
+          "paragraphId": "paragraph-4"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-07",
+      "lessonNumber": 7,
+      "recognitionCharacters": [
+        {
+          "char": "静",
+          "pinyin": "jìng",
+          "pdfPage": 44
+        },
+        {
+          "char": "思",
+          "pinyin": "sī",
+          "pdfPage": 44
+        },
+        {
+          "char": "床",
+          "pinyin": "chuáng",
+          "pdfPage": 44
+        },
+        {
+          "char": "疑",
+          "pinyin": "yí",
+          "pdfPage": 44
+        },
+        {
+          "char": "举",
+          "pinyin": "jǔ",
+          "pdfPage": 44
+        },
+        {
+          "char": "望",
+          "pinyin": "wàng",
+          "pdfPage": 44
+        },
+        {
+          "char": "低",
+          "pinyin": "dī",
+          "pdfPage": 44
+        },
+        {
+          "char": "故",
+          "pinyin": "gù",
+          "pdfPage": 44
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "思",
+          "pinyin": null,
+          "pdfPage": 44
+        },
+        {
+          "char": "床",
+          "pinyin": null,
+          "pdfPage": 44
+        },
+        {
+          "char": "前",
+          "pinyin": null,
+          "pdfPage": 44
+        },
+        {
+          "char": "地",
+          "pinyin": null,
+          "pdfPage": 44
+        },
+        {
+          "char": "故",
+          "pinyin": null,
+          "pdfPage": 44
+        },
+        {
+          "char": "乡",
+          "pinyin": null,
+          "pdfPage": 44
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            44
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            44
+          ],
+          "message": "本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "静夜思",
+      "sourceLessonId": null,
+      "pdfPages": [
+        44
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "床前明月光，\n疑是地上霜。\n举头望明月，\n低头思故乡。",
+          "pdfPages": [
+            44
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "床前明月光，\n疑是地上霜。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "\n举头望明月，\n低头思故乡。",
+          "paragraphId": "paragraph-1"
+        }
+      ],
+      "parts": [
+        {
+          "title": "静夜思",
+          "author": "李白",
+          "dynasty": "唐",
+          "paragraphIds": [
+            "paragraph-1"
+          ]
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-08",
+      "lessonNumber": 8,
+      "recognitionCharacters": [
+        {
+          "char": "胆",
+          "pinyin": "dǎn",
+          "pdfPage": 46
+        },
+        {
+          "char": "敢",
+          "pinyin": "gǎn",
+          "pdfPage": 46
+        },
+        {
+          "char": "勇",
+          "pinyin": "yǒng",
+          "pdfPage": 46
+        },
+        {
+          "char": "讲",
+          "pinyin": "jiǎng",
+          "pdfPage": 46
+        },
+        {
+          "char": "窗",
+          "pinyin": "chuāng",
+          "pdfPage": 46
+        },
+        {
+          "char": "乱",
+          "pinyin": "luàn",
+          "pdfPage": 46
+        },
+        {
+          "char": "拉",
+          "pinyin": "lā",
+          "pdfPage": 46
+        },
+        {
+          "char": "样",
+          "pinyin": "yàng",
+          "pdfPage": 46
+        },
+        {
+          "char": "笑",
+          "pinyin": "xiào",
+          "pdfPage": 46
+        },
+        {
+          "char": "再",
+          "pinyin": "zài",
+          "pdfPage": 46
+        },
+        {
+          "char": "睡",
+          "pinyin": "shuì",
+          "pdfPage": 46
+        },
+        {
+          "char": "觉",
+          "pinyin": "jiào",
+          "pdfPage": 46
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "色",
+          "pinyin": null,
+          "pdfPage": 46
+        },
+        {
+          "char": "把",
+          "pinyin": null,
+          "pdfPage": 46
+        },
+        {
+          "char": "讲",
+          "pinyin": null,
+          "pdfPage": 46
+        },
+        {
+          "char": "样",
+          "pinyin": null,
+          "pdfPage": 46
+        },
+        {
+          "char": "笑",
+          "pinyin": null,
+          "pdfPage": 46
+        },
+        {
+          "char": "再",
+          "pinyin": null,
+          "pdfPage": 46
+        }
+      ],
+      "words": [
+        {
+          "text": "胆子",
+          "source": "课后读记",
+          "pdfPage": 46
+        },
+        {
+          "text": "胆量",
+          "source": "课后读记",
+          "pdfPage": 46
+        },
+        {
+          "text": "大胆",
+          "source": "课后读记",
+          "pdfPage": 46
+        },
+        {
+          "text": "勇敢",
+          "source": "课后读记",
+          "pdfPage": 46
+        },
+        {
+          "text": "勇气",
+          "source": "课后读记",
+          "pdfPage": 46
+        },
+        {
+          "text": "勇士",
+          "source": "课后读记",
+          "pdfPage": 46
+        },
+        {
+          "text": "样子",
+          "source": "课后读记",
+          "pdfPage": 46
+        },
+        {
+          "text": "一样",
+          "source": "课后读记",
+          "pdfPage": 46
+        },
+        {
+          "text": "花样",
+          "source": "课后读记",
+          "pdfPage": 46
+        },
+        {
+          "text": "再见",
+          "source": "课后读记",
+          "pdfPage": 46
+        },
+        {
+          "text": "再三",
+          "source": "课后读记",
+          "pdfPage": 46
+        },
+        {
+          "text": "再次",
+          "source": "课后读记",
+          "pdfPage": 46
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            45
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "夜色",
+      "sourceLessonId": null,
+      "pdfPages": [
+        45
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "我从前胆子很小很小，\n天一黑就不敢往外瞧。\n妈妈把勇敢的故事讲了又讲，\n可我一看窗外心就乱跳……",
+          "pdfPages": [
+            45
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "爸爸晚上偏要拉我去散步，\n原来花草都像白天一样微笑。\n从此再黑再黑的夜晚，\n我也能看见小鸟怎样在月光下睡觉……",
+          "pdfPages": [
+            45
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "我从前胆子很小很小，\n天一黑就不敢往外瞧。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "\n妈妈把勇敢的故事讲了又讲，\n可我一看窗外心就乱跳……",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "爸爸晚上偏要拉我去散步，\n原来花草都像白天一样微笑。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-4",
+          "text": "\n从此再黑再黑的夜晚，\n我也能看见小鸟怎样在月光下睡觉……",
+          "paragraphId": "paragraph-2"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-09",
+      "lessonNumber": 9,
+      "recognitionCharacters": [
+        {
+          "char": "端",
+          "pinyin": "duān",
+          "pdfPage": 48
+        },
+        {
+          "char": "粽",
+          "pinyin": "zòng",
+          "pdfPage": 48
+        },
+        {
+          "char": "节",
+          "pinyin": "jié",
+          "pdfPage": 48
+        },
+        {
+          "char": "总",
+          "pinyin": "zǒng",
+          "pdfPage": 48
+        },
+        {
+          "char": "煮",
+          "pinyin": "zhǔ",
+          "pdfPage": 48
+        },
+        {
+          "char": "盼",
+          "pinyin": "pàn",
+          "pdfPage": 48
+        },
+        {
+          "char": "米",
+          "pinyin": "mǐ",
+          "pdfPage": 48
+        },
+        {
+          "char": "枣",
+          "pinyin": "zǎo",
+          "pdfPage": 48
+        },
+        {
+          "char": "甜",
+          "pinyin": "tián",
+          "pdfPage": 48
+        },
+        {
+          "char": "分",
+          "pinyin": "fēn",
+          "pdfPage": 48
+        },
+        {
+          "char": "鲜",
+          "pinyin": "xiān",
+          "pdfPage": 48
+        },
+        {
+          "char": "肉",
+          "pinyin": "ròu",
+          "pdfPage": 48
+        },
+        {
+          "char": "了",
+          "pinyin": "liǎo",
+          "pdfPage": 48
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "节",
+          "pinyin": null,
+          "pdfPage": 48
+        },
+        {
+          "char": "米",
+          "pinyin": null,
+          "pdfPage": 48
+        },
+        {
+          "char": "间",
+          "pinyin": null,
+          "pdfPage": 48
+        },
+        {
+          "char": "分",
+          "pinyin": null,
+          "pdfPage": 48
+        },
+        {
+          "char": "吃",
+          "pinyin": null,
+          "pdfPage": 48
+        },
+        {
+          "char": "肉",
+          "pinyin": null,
+          "pdfPage": 48
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            47,
+            48
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            47,
+            48
+          ],
+          "message": "本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "端午粽",
+      "sourceLessonId": null,
+      "pdfPages": [
+        47,
+        48
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "一到端午节，外婆总会煮好一锅粽子，盼着我们回去。",
+          "pdfPages": [
+            47
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "粽子是用青青的箬竹叶包的，里面裹着白白的糯米，中间有一颗红红的枣。外婆一掀开锅盖，煮熟的粽子就飘出一股清香来。剥开粽叶，咬一口粽子，真是又黏又甜。",
+          "pdfPages": [
+            47
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "外婆包的粽子十分好吃，花样也多。除了红枣粽，还有红豆粽和鲜肉粽。我们在外婆家美滋滋地吃了之后，外婆还会装一小篮粽子要我们带回去，分给邻居吃。",
+          "pdfPages": [
+            47,
+            48
+          ]
+        },
+        {
+          "id": "paragraph-4",
+          "text": "长大后我了解到，人们端午节吃粽子，传说是为了纪念爱国诗人屈原。",
+          "pdfPages": [
+            48
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "一到端午节，外婆总会煮好一锅粽子，盼着我们回去。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "粽子是用青青的箬竹叶包的，里面裹着白白的糯米，中间有一颗红红的枣。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-3",
+          "text": "外婆一掀开锅盖，煮熟的粽子就飘出一股清香来。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-4",
+          "text": "剥开粽叶，咬一口粽子，真是又黏又甜。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-5",
+          "text": "外婆包的粽子十分好吃，花样也多。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-6",
+          "text": "除了红枣粽，还有红豆粽和鲜肉粽。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-7",
+          "text": "我们在外婆家美滋滋地吃了之后，外婆还会装一小篮粽子要我们带回去，分给邻居吃。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-8",
+          "text": "长大后我了解到，人们端午节吃粽子，传说是为了纪念爱国诗人屈原。",
+          "paragraphId": "paragraph-4"
+        }
+      ]
+    },
+    {
+      "lessonKey": "literacy-05",
+      "lessonNumber": 5,
+      "recognitionCharacters": [
+        {
+          "char": "物",
+          "pinyin": "wù",
+          "pdfPage": 54
+        },
+        {
+          "char": "捉",
+          "pinyin": "zhuō",
+          "pdfPage": 54
+        },
+        {
+          "char": "迷",
+          "pinyin": "mí",
+          "pdfPage": 54
+        },
+        {
+          "char": "藏",
+          "pinyin": "cáng",
+          "pdfPage": 54
+        },
+        {
+          "char": "造",
+          "pinyin": "zào",
+          "pdfPage": 54
+        },
+        {
+          "char": "蚂",
+          "pinyin": "mǎ",
+          "pdfPage": 54
+        },
+        {
+          "char": "蚁",
+          "pinyin": "yǐ",
+          "pdfPage": 54
+        },
+        {
+          "char": "运",
+          "pinyin": "yùn",
+          "pdfPage": 54
+        },
+        {
+          "char": "食",
+          "pinyin": "shí",
+          "pdfPage": 54
+        },
+        {
+          "char": "粮",
+          "pinyin": "liáng",
+          "pdfPage": 54
+        },
+        {
+          "char": "房",
+          "pinyin": "fáng",
+          "pdfPage": 54
+        },
+        {
+          "char": "结",
+          "pinyin": "jié",
+          "pdfPage": 54
+        },
+        {
+          "char": "网",
+          "pinyin": "wǎng",
+          "pdfPage": 54
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "物",
+          "pinyin": null,
+          "pdfPage": 54
+        },
+        {
+          "char": "造",
+          "pinyin": null,
+          "pdfPage": 54
+        },
+        {
+          "char": "运",
+          "pinyin": null,
+          "pdfPage": 54
+        },
+        {
+          "char": "欢",
+          "pinyin": null,
+          "pdfPage": 54
+        },
+        {
+          "char": "房",
+          "pinyin": null,
+          "pdfPage": 54
+        },
+        {
+          "char": "网",
+          "pinyin": null,
+          "pdfPage": 54
+        }
+      ],
+      "words": [
+        {
+          "text": "蜻蜓展翅",
+          "source": "课后读记",
+          "pdfPage": 54
+        },
+        {
+          "text": "蝴蝶飞舞",
+          "source": "课后读记",
+          "pdfPage": 54
+        },
+        {
+          "text": "蚯蚓松土",
+          "source": "课后读记",
+          "pdfPage": 54
+        },
+        {
+          "text": "蚂蚁搬家",
+          "source": "课后读记",
+          "pdfPage": 54
+        },
+        {
+          "text": "蝌蚪游泳",
+          "source": "课后读记",
+          "pdfPage": 54
+        },
+        {
+          "text": "蜘蛛结网",
+          "source": "课后读记",
+          "pdfPage": 54
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            53
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "literacy",
+      "title": "动物儿歌",
+      "sourceLessonId": null,
+      "pdfPages": [
+        53
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "蜻蜓半空展翅飞，\n蝴蝶花间捉迷藏。\n蚯蚓土里造宫殿，\n蚂蚁地上运食粮。\n蝌蚪池中游得欢，\n蜘蛛房前结网忙。",
+          "pdfPages": [
+            53
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "蜻蜓半空展翅飞，\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "蝴蝶花间捉迷藏。\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "蚯蚓土里造宫殿，\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-4",
+          "text": "蚂蚁地上运食粮。\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-5",
+          "text": "蝌蚪池中游得欢，\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-6",
+          "text": "蜘蛛房前结网忙。",
+          "paragraphId": "paragraph-1"
+        }
+      ]
+    },
+    {
+      "lessonKey": "literacy-06",
+      "lessonNumber": 6,
+      "recognitionCharacters": [
+        {
+          "char": "圆",
+          "pinyin": "yuán",
+          "pdfPage": 56
+        },
+        {
+          "char": "严",
+          "pinyin": "yán",
+          "pdfPage": 56
+        },
+        {
+          "char": "寒",
+          "pinyin": "hán",
+          "pdfPage": 56
+        },
+        {
+          "char": "酷",
+          "pinyin": "kù",
+          "pdfPage": 56
+        },
+        {
+          "char": "暑",
+          "pinyin": "shǔ",
+          "pdfPage": 56
+        },
+        {
+          "char": "暖",
+          "pinyin": "nuǎn",
+          "pdfPage": 56
+        },
+        {
+          "char": "晨",
+          "pinyin": "chén",
+          "pdfPage": 56
+        },
+        {
+          "char": "细",
+          "pinyin": "xì",
+          "pdfPage": 56
+        },
+        {
+          "char": "朝",
+          "pinyin": "zhāo",
+          "pdfPage": 56
+        },
+        {
+          "char": "霞",
+          "pinyin": "xiá",
+          "pdfPage": 56
+        },
+        {
+          "char": "夕",
+          "pinyin": "xī",
+          "pdfPage": 56
+        },
+        {
+          "char": "杨",
+          "pinyin": "yáng",
+          "pdfPage": 56
+        },
+        {
+          "char": "香",
+          "pinyin": "xiāng",
+          "pdfPage": 56
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "对",
+          "pinyin": null,
+          "pdfPage": 56
+        },
+        {
+          "char": "今",
+          "pinyin": null,
+          "pdfPage": 56
+        },
+        {
+          "char": "雪",
+          "pinyin": null,
+          "pdfPage": 56
+        },
+        {
+          "char": "细",
+          "pinyin": null,
+          "pdfPage": 56
+        },
+        {
+          "char": "夕",
+          "pinyin": null,
+          "pdfPage": 56
+        },
+        {
+          "char": "语",
+          "pinyin": null,
+          "pdfPage": 56
+        }
+      ],
+      "words": [
+        {
+          "text": "和风细雨",
+          "source": "课后读记",
+          "pdfPage": 56
+        },
+        {
+          "text": "夕阳",
+          "source": "课后读记",
+          "pdfPage": 56
+        },
+        {
+          "text": "严寒",
+          "source": "课后读记",
+          "pdfPage": 56
+        },
+        {
+          "text": "鸟语花香",
+          "source": "课后读记",
+          "pdfPage": 56
+        },
+        {
+          "text": "朝霞",
+          "source": "课后读记",
+          "pdfPage": 56
+        },
+        {
+          "text": "方圆",
+          "source": "课后读记",
+          "pdfPage": 56
+        },
+        {
+          "text": "酷暑",
+          "source": "课后读记",
+          "pdfPage": 56
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            55
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "literacy",
+      "title": "古对今",
+      "sourceLessonId": null,
+      "pdfPages": [
+        55
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "古对今，\n圆对方。\n严寒对酷暑，\n春暖对秋凉。",
+          "pdfPages": [
+            55
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "晨对暮，\n雪对霜。\n和风对细雨，\n朝霞对夕阳。",
+          "pdfPages": [
+            55
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "桃对李，\n柳对杨。\n莺歌对燕舞，\n鸟语对花香。",
+          "pdfPages": [
+            55
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "古对今，\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "圆对方。\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "严寒对酷暑，\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-4",
+          "text": "春暖对秋凉。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-5",
+          "text": "晨对暮，\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-6",
+          "text": "雪对霜。\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-7",
+          "text": "和风对细雨，\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-8",
+          "text": "朝霞对夕阳。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-9",
+          "text": "桃对李，\n",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-10",
+          "text": "柳对杨。\n",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-11",
+          "text": "莺歌对燕舞，\n",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-12",
+          "text": "鸟语对花香。",
+          "paragraphId": "paragraph-3"
+        }
+      ]
+    },
+    {
+      "lessonKey": "literacy-07",
+      "lessonNumber": 7,
+      "recognitionCharacters": [
+        {
+          "char": "操",
+          "pinyin": "cāo",
+          "pdfPage": 58
+        },
+        {
+          "char": "拔",
+          "pinyin": "bá",
+          "pdfPage": 58
+        },
+        {
+          "char": "拍",
+          "pinyin": "pāi",
+          "pdfPage": 58
+        },
+        {
+          "char": "跑",
+          "pinyin": "pǎo",
+          "pdfPage": 58
+        },
+        {
+          "char": "踢",
+          "pinyin": "tī",
+          "pdfPage": 58
+        },
+        {
+          "char": "铃",
+          "pinyin": "líng",
+          "pdfPage": 58
+        },
+        {
+          "char": "真",
+          "pinyin": "zhēn",
+          "pdfPage": 58
+        },
+        {
+          "char": "闹",
+          "pinyin": "nào",
+          "pdfPage": 58
+        },
+        {
+          "char": "丢",
+          "pinyin": "diū",
+          "pdfPage": 58
+        },
+        {
+          "char": "沙",
+          "pinyin": "shā",
+          "pdfPage": 58
+        },
+        {
+          "char": "身",
+          "pinyin": "shēn",
+          "pdfPage": 58
+        },
+        {
+          "char": "体",
+          "pinyin": "tǐ",
+          "pdfPage": 58
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "打",
+          "pinyin": null,
+          "pdfPage": 58
+        },
+        {
+          "char": "皮",
+          "pinyin": null,
+          "pdfPage": 58
+        },
+        {
+          "char": "跑",
+          "pinyin": null,
+          "pdfPage": 58
+        },
+        {
+          "char": "足",
+          "pinyin": null,
+          "pdfPage": 58
+        },
+        {
+          "char": "沙",
+          "pinyin": null,
+          "pdfPage": 58
+        },
+        {
+          "char": "包",
+          "pinyin": null,
+          "pdfPage": 58
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            57
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            57
+          ],
+          "message": "本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "literacy",
+      "title": "操场上",
+      "sourceLessonId": null,
+      "pdfPages": [
+        57
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "打球\n拔河\n拍皮球\n跳高\n跑步\n踢足球",
+          "pdfPages": [
+            57
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "铃声响，下课了。\n操场上，真热闹。\n跳绳踢毽丢沙包，\n天天锻炼身体好。",
+          "pdfPages": [
+            57
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "打球\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "拔河\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "拍皮球\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-4",
+          "text": "跳高\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-5",
+          "text": "跑步\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-6",
+          "text": "踢足球",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-7",
+          "text": "铃声响，下课了。\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-8",
+          "text": "操场上，真热闹。\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-9",
+          "text": "跳绳踢毽丢沙包，\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-10",
+          "text": "天天锻炼身体好。",
+          "paragraphId": "paragraph-2"
+        }
+      ]
+    },
+    {
+      "lessonKey": "literacy-08",
+      "lessonNumber": 8,
+      "recognitionCharacters": [
+        {
+          "char": "之",
+          "pinyin": "zhī",
+          "pdfPage": 60
+        },
+        {
+          "char": "初",
+          "pinyin": "chū",
+          "pdfPage": 60
+        },
+        {
+          "char": "相",
+          "pinyin": "xiāng",
+          "pdfPage": 60
+        },
+        {
+          "char": "近",
+          "pinyin": "jìn",
+          "pdfPage": 60
+        },
+        {
+          "char": "习",
+          "pinyin": "xí",
+          "pdfPage": 60
+        },
+        {
+          "char": "远",
+          "pinyin": "yuǎn",
+          "pdfPage": 60
+        },
+        {
+          "char": "教",
+          "pinyin": "jiào",
+          "pdfPage": 60
+        },
+        {
+          "char": "道",
+          "pinyin": "dào",
+          "pdfPage": 60
+        },
+        {
+          "char": "专",
+          "pinyin": "zhuān",
+          "pdfPage": 60
+        },
+        {
+          "char": "幼",
+          "pinyin": "yòu",
+          "pdfPage": 60
+        },
+        {
+          "char": "玉",
+          "pinyin": "yù",
+          "pdfPage": 60
+        },
+        {
+          "char": "知",
+          "pinyin": "zhī",
+          "pdfPage": 60
+        },
+        {
+          "char": "义",
+          "pinyin": "yì",
+          "pdfPage": 60
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "近",
+          "pinyin": null,
+          "pdfPage": 60
+        },
+        {
+          "char": "习",
+          "pinyin": null,
+          "pdfPage": 60
+        },
+        {
+          "char": "远",
+          "pinyin": null,
+          "pdfPage": 60
+        },
+        {
+          "char": "学",
+          "pinyin": null,
+          "pdfPage": 60
+        },
+        {
+          "char": "玉",
+          "pinyin": null,
+          "pdfPage": 60
+        },
+        {
+          "char": "义",
+          "pinyin": null,
+          "pdfPage": 60
+        }
+      ],
+      "words": [
+        {
+          "text": "相近",
+          "source": "课后读记",
+          "pdfPage": 60
+        },
+        {
+          "text": "相反",
+          "source": "课后读记",
+          "pdfPage": 60
+        },
+        {
+          "text": "学习",
+          "source": "课后读记",
+          "pdfPage": 60
+        },
+        {
+          "text": "练习",
+          "source": "课后读记",
+          "pdfPage": 60
+        },
+        {
+          "text": "知道",
+          "source": "课后读记",
+          "pdfPage": 60
+        },
+        {
+          "text": "道路",
+          "source": "课后读记",
+          "pdfPage": 60
+        },
+        {
+          "text": "专心",
+          "source": "课后读记",
+          "pdfPage": 60
+        },
+        {
+          "text": "专门",
+          "source": "课后读记",
+          "pdfPage": 60
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            59
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "literacy",
+      "title": "人之初",
+      "sourceLessonId": null,
+      "pdfPages": [
+        59
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "人之初，性本善，\n性相近，习相远。\n苟不教，性乃迁，\n教之道，贵以专。",
+          "pdfPages": [
+            59
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "子不学，非所宜，\n幼不学，老何为？\n玉不琢，不成器，\n人不学，不知义。",
+          "pdfPages": [
+            59
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "人之初，性本善，\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "性相近，习相远。\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "苟不教，性乃迁，\n",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-4",
+          "text": "教之道，贵以专。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-5",
+          "text": "子不学，非所宜，\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-6",
+          "text": "幼不学，老何为？\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-7",
+          "text": "玉不琢，不成器，\n",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-8",
+          "text": "人不学，不知义。",
+          "paragraphId": "paragraph-2"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-10",
+      "lessonNumber": 10,
+      "recognitionCharacters": [
+        {
+          "char": "诗",
+          "pinyin": "shī",
+          "pdfPage": 68
+        },
+        {
+          "char": "首",
+          "pinyin": "shǒu",
+          "pdfPage": 68
+        },
+        {
+          "char": "偷",
+          "pinyin": "tōu",
+          "pdfPage": 68
+        },
+        {
+          "char": "浮",
+          "pinyin": "fú",
+          "pdfPage": 68
+        },
+        {
+          "char": "萍",
+          "pinyin": "píng",
+          "pdfPage": 68
+        },
+        {
+          "char": "泉",
+          "pinyin": "quán",
+          "pdfPage": 68
+        },
+        {
+          "char": "惜",
+          "pinyin": "xī",
+          "pdfPage": 68
+        },
+        {
+          "char": "照",
+          "pinyin": "zhào",
+          "pdfPage": 68
+        },
+        {
+          "char": "柔",
+          "pinyin": "róu",
+          "pdfPage": 68
+        },
+        {
+          "char": "荷",
+          "pinyin": "hé",
+          "pdfPage": 68
+        },
+        {
+          "char": "露",
+          "pinyin": "lù",
+          "pdfPage": 68
+        },
+        {
+          "char": "角",
+          "pinyin": "jiǎo",
+          "pdfPage": 68
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "首",
+          "pinyin": null,
+          "pdfPage": 68
+        },
+        {
+          "char": "池",
+          "pinyin": null,
+          "pdfPage": 68
+        },
+        {
+          "char": "采",
+          "pinyin": null,
+          "pdfPage": 68
+        },
+        {
+          "char": "尖",
+          "pinyin": null,
+          "pdfPage": 68
+        },
+        {
+          "char": "角",
+          "pinyin": null,
+          "pdfPage": 68
+        },
+        {
+          "char": "早",
+          "pinyin": null,
+          "pdfPage": 68
+        }
+      ],
+      "words": [
+        {
+          "text": "浮萍",
+          "source": "课后读记",
+          "pdfPage": 68
+        },
+        {
+          "text": "漂浮",
+          "source": "课后读记",
+          "pdfPage": 68
+        },
+        {
+          "text": "爱惜",
+          "source": "课后读记",
+          "pdfPage": 68
+        },
+        {
+          "text": "可惜",
+          "source": "课后读记",
+          "pdfPage": 68
+        },
+        {
+          "text": "泉水",
+          "source": "课后读记",
+          "pdfPage": 68
+        },
+        {
+          "text": "清泉",
+          "source": "课后读记",
+          "pdfPage": 68
+        },
+        {
+          "text": "照样",
+          "source": "课后读记",
+          "pdfPage": 68
+        },
+        {
+          "text": "照片",
+          "source": "课后读记",
+          "pdfPage": 68
+        },
+        {
+          "text": "柔美",
+          "source": "课后读记",
+          "pdfPage": 68
+        },
+        {
+          "text": "轻柔",
+          "source": "课后读记",
+          "pdfPage": 68
+        },
+        {
+          "text": "荷花",
+          "source": "课后读记",
+          "pdfPage": 68
+        },
+        {
+          "text": "荷叶",
+          "source": "课后读记",
+          "pdfPage": 68
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            66,
+            67
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "古诗二首",
+      "sourceLessonId": null,
+      "pdfPages": [
+        66,
+        67
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "小娃撑小艇，\n偷采白莲回。\n不解藏踪迹，\n浮萍一道开。",
+          "pdfPages": [
+            66
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "泉眼无声惜细流，\n树阴照水爱晴柔。\n小荷才露尖尖角，\n早有蜻蜓立上头。",
+          "pdfPages": [
+            67
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "小娃撑小艇，\n偷采白莲回。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "\n不解藏踪迹，\n浮萍一道开。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "泉眼无声惜细流，\n树阴照水爱晴柔。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-4",
+          "text": "\n小荷才露尖尖角，\n早有蜻蜓立上头。",
+          "paragraphId": "paragraph-2"
+        }
+      ],
+      "parts": [
+        {
+          "title": "池上",
+          "author": "白居易",
+          "dynasty": "唐",
+          "paragraphIds": [
+            "paragraph-1"
+          ]
+        },
+        {
+          "title": "小池",
+          "author": "杨万里",
+          "dynasty": "宋",
+          "paragraphIds": [
+            "paragraph-2"
+          ]
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-11",
+      "lessonNumber": 11,
+      "recognitionCharacters": [
+        {
+          "char": "浪",
+          "pinyin": "làng",
+          "pdfPage": 70
+        },
+        {
+          "char": "迈",
+          "pinyin": "mài",
+          "pdfPage": 70
+        },
+        {
+          "char": "悄",
+          "pinyin": "qiāo",
+          "pdfPage": 70
+        },
+        {
+          "char": "泪",
+          "pinyin": "lèi",
+          "pdfPage": 70
+        },
+        {
+          "char": "次",
+          "pinyin": "cì",
+          "pdfPage": 70
+        },
+        {
+          "char": "给",
+          "pinyin": "gěi",
+          "pdfPage": 70
+        },
+        {
+          "char": "壳",
+          "pinyin": "ké",
+          "pdfPage": 70
+        },
+        {
+          "char": "虾",
+          "pinyin": "xiā",
+          "pdfPage": 70
+        },
+        {
+          "char": "装",
+          "pinyin": "zhuāng",
+          "pdfPage": 70
+        },
+        {
+          "char": "像",
+          "pinyin": "xiàng",
+          "pdfPage": 70
+        },
+        {
+          "char": "淘",
+          "pinyin": "táo",
+          "pdfPage": 70
+        },
+        {
+          "char": "娃",
+          "pinyin": "wá",
+          "pdfPage": 70
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "玩",
+          "pinyin": null,
+          "pdfPage": 70
+        },
+        {
+          "char": "眼",
+          "pinyin": null,
+          "pdfPage": 70
+        },
+        {
+          "char": "泪",
+          "pinyin": null,
+          "pdfPage": 70
+        },
+        {
+          "char": "它",
+          "pinyin": null,
+          "pdfPage": 70
+        },
+        {
+          "char": "贝",
+          "pinyin": null,
+          "pdfPage": 70
+        },
+        {
+          "char": "气",
+          "pinyin": null,
+          "pdfPage": 70
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            69,
+            70
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            69,
+            70
+          ],
+          "message": "本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "浪花",
+      "sourceLessonId": null,
+      "pdfPages": [
+        69,
+        70
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "我在沙滩上玩耍。浪花看见了，迈着轻轻的步子走来，悄悄地挠我的小脚丫。好痒啊！笑得我眼泪都流出来了，它才哗哗哗地笑着跑回家。",
+          "pdfPages": [
+            69
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "一会儿，浪花又唱着笑着跑来了。这次，它给我捧来雪白的贝壳、青青的小虾。我的小篮子都装不下啦！",
+          "pdfPages": [
+            69
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "哗哗哗，浪花跑去又跑来，就像淘气的小娃娃。",
+          "pdfPages": [
+            70
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "我在沙滩上玩耍。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "浪花看见了，迈着轻轻的步子走来，悄悄地挠我的小脚丫。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "好痒啊！",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-4",
+          "text": "笑得我眼泪都流出来了，它才哗哗哗地笑着跑回家。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-5",
+          "text": "一会儿，浪花又唱着笑着跑来了。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-6",
+          "text": "这次，它给我捧来雪白的贝壳、青青的小虾。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-7",
+          "text": "我的小篮子都装不下啦！",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-8",
+          "text": "哗哗哗，浪花跑去又跑来，就像淘气的小娃娃。",
+          "paragraphId": "paragraph-3"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-12",
+      "lessonNumber": 12,
+      "recognitionCharacters": [
+        {
+          "char": "珠",
+          "pinyin": "zhū",
+          "pdfPage": 73
+        },
+        {
+          "char": "摇",
+          "pinyin": "yáo",
+          "pdfPage": 73
+        },
+        {
+          "char": "篮",
+          "pinyin": "lán",
+          "pdfPage": 73
+        },
+        {
+          "char": "亮",
+          "pinyin": "liàng",
+          "pdfPage": 73
+        },
+        {
+          "char": "晶",
+          "pinyin": "jīng",
+          "pdfPage": 73
+        },
+        {
+          "char": "停",
+          "pinyin": "tíng",
+          "pdfPage": 73
+        },
+        {
+          "char": "坪",
+          "pinyin": "píng",
+          "pdfPage": 73
+        },
+        {
+          "char": "展",
+          "pinyin": "zhǎn",
+          "pdfPage": 73
+        },
+        {
+          "char": "透",
+          "pinyin": "tòu",
+          "pdfPage": 73
+        },
+        {
+          "char": "翅",
+          "pinyin": "chì",
+          "pdfPage": 73
+        },
+        {
+          "char": "膀",
+          "pinyin": "bǎng",
+          "pdfPage": 73
+        },
+        {
+          "char": "朵",
+          "pinyin": "duǒ",
+          "pdfPage": 73
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "机",
+          "pinyin": null,
+          "pdfPage": 73
+        },
+        {
+          "char": "台",
+          "pinyin": null,
+          "pdfPage": 73
+        },
+        {
+          "char": "唱",
+          "pinyin": null,
+          "pdfPage": 73
+        },
+        {
+          "char": "伞",
+          "pinyin": null,
+          "pdfPage": 73
+        },
+        {
+          "char": "朵",
+          "pinyin": null,
+          "pdfPage": 73
+        },
+        {
+          "char": "美",
+          "pinyin": null,
+          "pdfPage": 73
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            71,
+            72
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            71,
+            72
+          ],
+          "message": "本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "荷叶圆圆",
+      "sourceLessonId": null,
+      "pdfPages": [
+        71,
+        72
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "荷叶圆圆的，绿绿的。",
+          "pdfPages": [
+            71
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "小水珠说：“荷叶是我的摇篮。”小水珠躺在荷叶上，眨着亮晶晶的眼睛。",
+          "pdfPages": [
+            71
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "小蜻蜓说：“荷叶是我的停机坪。”小蜻蜓立在荷叶上，展开透明的翅膀。",
+          "pdfPages": [
+            71
+          ]
+        },
+        {
+          "id": "paragraph-4",
+          "text": "小青蛙说：“荷叶是我的歌台。”小青蛙蹲在荷叶上，呱呱地放声歌唱。",
+          "pdfPages": [
+            72
+          ]
+        },
+        {
+          "id": "paragraph-5",
+          "text": "小鱼儿说：“荷叶是我的凉伞。”小鱼儿在荷叶下笑嘻嘻地游来游去，捧起一朵朵很美很美的水花。",
+          "pdfPages": [
+            72
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "荷叶圆圆的，绿绿的。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "小水珠说：“荷叶是我的摇篮。”",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-3",
+          "text": "小水珠躺在荷叶上，眨着亮晶晶的眼睛。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-4",
+          "text": "小蜻蜓说：“荷叶是我的停机坪。”",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-5",
+          "text": "小蜻蜓立在荷叶上，展开透明的翅膀。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-6",
+          "text": "小青蛙说：“荷叶是我的歌台。”",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-7",
+          "text": "小青蛙蹲在荷叶上，呱呱地放声歌唱。",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-8",
+          "text": "小鱼儿说：“荷叶是我的凉伞。”",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-9",
+          "text": "小鱼儿在荷叶下笑嘻嘻地游来游去，捧起一朵朵很美很美的水花。",
+          "paragraphId": "paragraph-5"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-13",
+      "lessonNumber": 13,
+      "recognitionCharacters": [
+        {
+          "char": "要",
+          "pinyin": "yào",
+          "pdfPage": 77
+        },
+        {
+          "char": "腰",
+          "pinyin": "yāo",
+          "pdfPage": 77
+        },
+        {
+          "char": "阴",
+          "pinyin": "yīn",
+          "pdfPage": 77
+        },
+        {
+          "char": "沉",
+          "pinyin": "chén",
+          "pdfPage": 77
+        },
+        {
+          "char": "呀",
+          "pinyin": "ya",
+          "pdfPage": 77
+        },
+        {
+          "char": "忙",
+          "pinyin": "máng",
+          "pdfPage": 77
+        },
+        {
+          "char": "呢",
+          "pinyin": "ne",
+          "pdfPage": 77
+        },
+        {
+          "char": "吗",
+          "pinyin": "ma",
+          "pdfPage": 77
+        },
+        {
+          "char": "面",
+          "pinyin": "miàn",
+          "pdfPage": 77
+        },
+        {
+          "char": "空",
+          "pinyin": "kòng",
+          "pdfPage": 77
+        },
+        {
+          "char": "闷",
+          "pinyin": "mēn",
+          "pdfPage": 77
+        },
+        {
+          "char": "吧",
+          "pinyin": "ba",
+          "pdfPage": 77
+        },
+        {
+          "char": "消",
+          "pinyin": "xiāo",
+          "pdfPage": 77
+        },
+        {
+          "char": "息",
+          "pinyin": "xi",
+          "pdfPage": 77
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "这",
+          "pinyin": null,
+          "pdfPage": 77
+        },
+        {
+          "char": "看",
+          "pinyin": null,
+          "pdfPage": 77
+        },
+        {
+          "char": "鱼",
+          "pinyin": null,
+          "pdfPage": 77
+        },
+        {
+          "char": "面",
+          "pinyin": null,
+          "pdfPage": 77
+        },
+        {
+          "char": "问",
+          "pinyin": null,
+          "pdfPage": 77
+        },
+        {
+          "char": "加",
+          "pinyin": null,
+          "pdfPage": 77
+        }
+      ],
+      "words": [
+        {
+          "text": "弯腰",
+          "source": "课后读记",
+          "pdfPage": 77
+        },
+        {
+          "text": "阴沉沉",
+          "source": "课后读记",
+          "pdfPage": 77
+        },
+        {
+          "text": "水面",
+          "source": "课后读记",
+          "pdfPage": 77
+        },
+        {
+          "text": "有空",
+          "source": "课后读记",
+          "pdfPage": 77
+        },
+        {
+          "text": "闷热",
+          "source": "课后读记",
+          "pdfPage": 77
+        },
+        {
+          "text": "连忙",
+          "source": "课后读记",
+          "pdfPage": 77
+        },
+        {
+          "text": "消息",
+          "source": "课后读记",
+          "pdfPage": 77
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            74,
+            75,
+            76
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "要下雨了",
+      "sourceLessonId": null,
+      "pdfPages": [
+        74,
+        75,
+        76
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "小白兔弯着腰在山坡上割草。天阴沉沉的，小白兔直起身子，伸了伸腰。",
+          "pdfPages": [
+            74
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "小燕子从他头上飞过。小白兔大声喊：“燕子，燕子，你为什么飞得这么低呀？”",
+          "pdfPages": [
+            74
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "燕子边飞边说：“要下雨了，空气很潮湿，虫子的翅膀沾了小水珠，飞不高。我正忙着捉虫子呢！”",
+          "pdfPages": [
+            74
+          ]
+        },
+        {
+          "id": "paragraph-4",
+          "text": "是要下雨了吗？小白兔往前边池子里一看，小鱼都游到水面上来了。",
+          "pdfPages": [
+            75
+          ]
+        },
+        {
+          "id": "paragraph-5",
+          "text": "小白兔跑过去，问：“小鱼，小鱼，今天怎么有空出来呀？”",
+          "pdfPages": [
+            75
+          ]
+        },
+        {
+          "id": "paragraph-6",
+          "text": "小鱼说：“要下雨了，水里闷得很，我们到水面上来透透气。小白兔，你快回家吧，小心淋着雨。”",
+          "pdfPages": [
+            75
+          ]
+        },
+        {
+          "id": "paragraph-7",
+          "text": "小白兔连忙挎起篮子往家跑。他看见路边有一大群蚂蚁，就把要下雨的消息告诉了蚂蚁。一只大蚂蚁说：“是要下雨了，我们正忙着搬东西呢！”",
+          "pdfPages": [
+            76
+          ]
+        },
+        {
+          "id": "paragraph-8",
+          "text": "小白兔加快步子往家跑。他一边跑一边喊：“妈妈，妈妈，要下雨了！”",
+          "pdfPages": [
+            76
+          ]
+        },
+        {
+          "id": "paragraph-9",
+          "text": "轰隆隆，天空响起了一阵雷声。哗，哗，哗，大雨真的下起来了！",
+          "pdfPages": [
+            76
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "小白兔弯着腰在山坡上割草。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "天阴沉沉的，小白兔直起身子，伸了伸腰。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "小燕子从他头上飞过。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-4",
+          "text": "小白兔大声喊：“燕子，燕子，你为什么飞得这么低呀？”",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-5",
+          "text": "燕子边飞边说：“要下雨了，空气很潮湿，虫子的翅膀沾了小水珠，飞不高。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-6",
+          "text": "我正忙着捉虫子呢！”",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-7",
+          "text": "是要下雨了吗？",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-8",
+          "text": "小白兔往前边池子里一看，小鱼都游到水面上来了。",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-9",
+          "text": "小白兔跑过去，问：“小鱼，小鱼，今天怎么有空出来呀？”",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-10",
+          "text": "小鱼说：“要下雨了，水里闷得很，我们到水面上来透透气。",
+          "paragraphId": "paragraph-6"
+        },
+        {
+          "id": "sentence-11",
+          "text": "小白兔，你快回家吧，小心淋着雨。”",
+          "paragraphId": "paragraph-6"
+        },
+        {
+          "id": "sentence-12",
+          "text": "小白兔连忙挎起篮子往家跑。",
+          "paragraphId": "paragraph-7"
+        },
+        {
+          "id": "sentence-13",
+          "text": "他看见路边有一大群蚂蚁，就把要下雨的消息告诉了蚂蚁。",
+          "paragraphId": "paragraph-7"
+        },
+        {
+          "id": "sentence-14",
+          "text": "一只大蚂蚁说：“是要下雨了，我们正忙着搬东西呢！”",
+          "paragraphId": "paragraph-7"
+        },
+        {
+          "id": "sentence-15",
+          "text": "小白兔加快步子往家跑。",
+          "paragraphId": "paragraph-8"
+        },
+        {
+          "id": "sentence-16",
+          "text": "他一边跑一边喊：“妈妈，妈妈，要下雨了！”",
+          "paragraphId": "paragraph-8"
+        },
+        {
+          "id": "sentence-17",
+          "text": "轰隆隆，天空响起了一阵雷声。",
+          "paragraphId": "paragraph-9"
+        },
+        {
+          "id": "sentence-18",
+          "text": "哗，哗，哗，大雨真的下起来了！",
+          "paragraphId": "paragraph-9"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-14",
+      "lessonNumber": 14,
+      "recognitionCharacters": [
+        {
+          "char": "具",
+          "pinyin": "jù",
+          "pdfPage": 84
+        },
+        {
+          "char": "铅",
+          "pinyin": "qiān",
+          "pdfPage": 84
+        },
+        {
+          "char": "新",
+          "pinyin": "xīn",
+          "pdfPage": 84
+        },
+        {
+          "char": "平",
+          "pinyin": "píng",
+          "pdfPage": 84
+        },
+        {
+          "char": "盒",
+          "pinyin": "hé",
+          "pdfPage": 84
+        },
+        {
+          "char": "些",
+          "pinyin": "xiē",
+          "pdfPage": 84
+        },
+        {
+          "char": "此",
+          "pinyin": "cǐ",
+          "pdfPage": 84
+        },
+        {
+          "char": "仔",
+          "pinyin": "zǐ",
+          "pdfPage": 84
+        },
+        {
+          "char": "检",
+          "pinyin": "jiǎn",
+          "pdfPage": 84
+        },
+        {
+          "char": "查",
+          "pinyin": "chá",
+          "pdfPage": 84
+        },
+        {
+          "char": "所",
+          "pinyin": "suǒ",
+          "pdfPage": 84
+        },
+        {
+          "char": "伙",
+          "pinyin": "huǒ",
+          "pdfPage": 84
+        },
+        {
+          "char": "伴",
+          "pinyin": "bàn",
+          "pdfPage": 84
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "笔",
+          "pinyin": null,
+          "pdfPage": 85
+        },
+        {
+          "char": "知",
+          "pinyin": null,
+          "pdfPage": 85
+        },
+        {
+          "char": "道",
+          "pinyin": null,
+          "pdfPage": 85
+        },
+        {
+          "char": "放",
+          "pinyin": null,
+          "pdfPage": 85
+        },
+        {
+          "char": "平",
+          "pinyin": null,
+          "pdfPage": 85
+        },
+        {
+          "char": "安",
+          "pinyin": null,
+          "pdfPage": 85
+        }
+      ],
+      "words": [
+        {
+          "text": "新书",
+          "source": "课后读记",
+          "pdfPage": 85
+        },
+        {
+          "text": "新年",
+          "source": "课后读记",
+          "pdfPage": 85
+        },
+        {
+          "text": "新手",
+          "source": "课后读记",
+          "pdfPage": 85
+        },
+        {
+          "text": "清新",
+          "source": "课后读记",
+          "pdfPage": 85
+        },
+        {
+          "text": "平安",
+          "source": "课后读记",
+          "pdfPage": 85
+        },
+        {
+          "text": "平时",
+          "source": "课后读记",
+          "pdfPage": 85
+        },
+        {
+          "text": "平常",
+          "source": "课后读记",
+          "pdfPage": 85
+        },
+        {
+          "text": "平地",
+          "source": "课后读记",
+          "pdfPage": 85
+        },
+        {
+          "text": "伙伴",
+          "source": "课后读记",
+          "pdfPage": 85
+        },
+        {
+          "text": "做伴",
+          "source": "课后读记",
+          "pdfPage": 85
+        },
+        {
+          "text": "相伴",
+          "source": "课后读记",
+          "pdfPage": 85
+        },
+        {
+          "text": "结伴",
+          "source": "课后读记",
+          "pdfPage": 85
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            83,
+            84
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "文具的家",
+      "sourceLessonId": null,
+      "pdfPages": [
+        83,
+        84
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "铅笔，只用了一次，就不知丢到哪里去了。",
+          "pdfPages": [
+            83
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "橡皮，只擦了一回，再想擦，就找不着了。",
+          "pdfPages": [
+            83
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "贝贝一回到家，就向妈妈要新的铅笔、新的橡皮。妈妈说：“你怎么天天丢东西呢？”贝贝眨着一双大眼睛，对妈妈说：“我也不知道。”",
+          "pdfPages": [
+            83
+          ]
+        },
+        {
+          "id": "paragraph-4",
+          "text": "妈妈说：“贝贝，你有一个家，每天放学后，你都平平安安地回家。你要想想办法，让你的铅笔、橡皮和转笔刀也有自己的家呀！”",
+          "pdfPages": [
+            84
+          ]
+        },
+        {
+          "id": "paragraph-5",
+          "text": "贝贝想起来了，她书包里的文具盒，就是这些文具的家。",
+          "pdfPages": [
+            84
+          ]
+        },
+        {
+          "id": "paragraph-6",
+          "text": "从此，每天放学的时候，贝贝都要仔细检查，铅笔呀，橡皮呀，转笔刀哇，所有的小伙伴是不是都回家了。",
+          "pdfPages": [
+            84
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "铅笔，只用了一次，就不知丢到哪里去了。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "橡皮，只擦了一回，再想擦，就找不着了。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-3",
+          "text": "贝贝一回到家，就向妈妈要新的铅笔、新的橡皮。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-4",
+          "text": "妈妈说：“你怎么天天丢东西呢？”",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-5",
+          "text": "贝贝眨着一双大眼睛，对妈妈说：“我也不知道。”",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-6",
+          "text": "妈妈说：“贝贝，你有一个家，每天放学后，你都平平安安地回家。",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-7",
+          "text": "你要想想办法，让你的铅笔、橡皮和转笔刀也有自己的家呀！”",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-8",
+          "text": "贝贝想起来了，她书包里的文具盒，就是这些文具的家。",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-9",
+          "text": "从此，每天放学的时候，贝贝都要仔细检查，铅笔呀，橡皮呀，转笔刀哇，所有的小伙伴是不是都回家了。",
+          "paragraphId": "paragraph-6"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-15",
+      "lessonNumber": 15,
+      "recognitionCharacters": [
+        {
+          "char": "钟",
+          "pinyin": "zhōng",
+          "pdfPage": 88
+        },
+        {
+          "char": "迟",
+          "pinyin": "chí",
+          "pdfPage": 88
+        },
+        {
+          "char": "背",
+          "pinyin": "bēi",
+          "pdfPage": 88
+        },
+        {
+          "char": "灯",
+          "pinyin": "dēng",
+          "pdfPage": 88
+        },
+        {
+          "char": "等",
+          "pinyin": "děng",
+          "pdfPage": 88
+        },
+        {
+          "char": "啊",
+          "pinyin": "a",
+          "pdfPage": 88
+        },
+        {
+          "char": "决",
+          "pinyin": "jué",
+          "pdfPage": 88
+        },
+        {
+          "char": "定",
+          "pinyin": "dìng",
+          "pdfPage": 88
+        },
+        {
+          "char": "已",
+          "pinyin": "yǐ",
+          "pdfPage": 88
+        },
+        {
+          "char": "经",
+          "pinyin": "jīng",
+          "pdfPage": 88
+        },
+        {
+          "char": "位",
+          "pinyin": "wèi",
+          "pdfPage": 88
+        },
+        {
+          "char": "表",
+          "pinyin": "biǎo",
+          "pdfPage": 88
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "灯",
+          "pinyin": null,
+          "pdfPage": 88
+        },
+        {
+          "char": "车",
+          "pinyin": null,
+          "pdfPage": 88
+        },
+        {
+          "char": "站",
+          "pinyin": null,
+          "pdfPage": 88
+        },
+        {
+          "char": "课",
+          "pinyin": null,
+          "pdfPage": 88
+        },
+        {
+          "char": "坐",
+          "pinyin": null,
+          "pdfPage": 88
+        },
+        {
+          "char": "老",
+          "pinyin": null,
+          "pdfPage": 88
+        },
+        {
+          "char": "师",
+          "pinyin": null,
+          "pdfPage": 88
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            86,
+            87
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            86,
+            87
+          ],
+          "message": "本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "一分钟",
+      "sourceLessonId": null,
+      "pdfPages": [
+        86,
+        87
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "丁零零，闹钟响了。元元打了个哈欠，翻了个身，心想：再睡一分钟吧，就睡一分钟，不会迟到的。",
+          "pdfPages": [
+            86
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "过了一分钟，元元起来了。他很快地洗了脸，吃了早饭，就背着书包上学去了。到了十字路口，他看见前面是绿灯，刚想走过去，红灯亮了。他叹了口气，说：“要是早一分钟就好了。”",
+          "pdfPages": [
+            86
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "他等了一会儿，才走过十字路口。他向停在车站的公共汽车跑去，眼看就要到了，车子开了。他又叹了口气，说：“要是早一分钟就好了。”",
+          "pdfPages": [
+            87
+          ]
+        },
+        {
+          "id": "paragraph-4",
+          "text": "他等啊等，一直不见公共汽车的影子，元元决定走到学校去。",
+          "pdfPages": [
+            87
+          ]
+        },
+        {
+          "id": "paragraph-5",
+          "text": "到了学校，已经上课了。元元红着脸，低着头，坐到了自己的座位上。李老师看了看手表，说：“元元，今天你迟到了二十分钟。”",
+          "pdfPages": [
+            87
+          ]
+        },
+        {
+          "id": "paragraph-6",
+          "text": "元元非常后悔。",
+          "pdfPages": [
+            87
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "丁零零，闹钟响了。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "元元打了个哈欠，翻了个身，心想：再睡一分钟吧，就睡一分钟，不会迟到的。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "过了一分钟，元元起来了。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-4",
+          "text": "他很快地洗了脸，吃了早饭，就背着书包上学去了。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-5",
+          "text": "到了十字路口，他看见前面是绿灯，刚想走过去，红灯亮了。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-6",
+          "text": "他叹了口气，说：“要是早一分钟就好了。”",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-7",
+          "text": "他等了一会儿，才走过十字路口。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-8",
+          "text": "他向停在车站的公共汽车跑去，眼看就要到了，车子开了。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-9",
+          "text": "他又叹了口气，说：“要是早一分钟就好了。”",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-10",
+          "text": "他等啊等，一直不见公共汽车的影子，元元决定走到学校去。",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-11",
+          "text": "到了学校，已经上课了。",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-12",
+          "text": "元元红着脸，低着头，坐到了自己的座位上。",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-13",
+          "text": "李老师看了看手表，说：“元元，今天你迟到了二十分钟。”",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-14",
+          "text": "元元非常后悔。",
+          "paragraphId": "paragraph-6"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-16",
+      "lessonNumber": 16,
+      "recognitionCharacters": [
+        {
+          "char": "虎",
+          "pinyin": "hǔ",
+          "pdfPage": 94
+        },
+        {
+          "char": "熊",
+          "pinyin": "xióng",
+          "pdfPage": 94
+        },
+        {
+          "char": "通",
+          "pinyin": "tōng",
+          "pdfPage": 94
+        },
+        {
+          "char": "注",
+          "pinyin": "zhù",
+          "pdfPage": 94
+        },
+        {
+          "char": "意",
+          "pinyin": "yì",
+          "pdfPage": 94
+        },
+        {
+          "char": "遍",
+          "pinyin": "biàn",
+          "pdfPage": 94
+        },
+        {
+          "char": "百",
+          "pinyin": "bǎi",
+          "pdfPage": 94
+        },
+        {
+          "char": "为",
+          "pinyin": "wèi",
+          "pdfPage": 94
+        },
+        {
+          "char": "因",
+          "pinyin": "yīn",
+          "pdfPage": 94
+        },
+        {
+          "char": "舌",
+          "pinyin": "shé",
+          "pdfPage": 94
+        },
+        {
+          "char": "理",
+          "pinyin": "lǐ",
+          "pdfPage": 94
+        },
+        {
+          "char": "呀",
+          "pinyin": "ya",
+          "pdfPage": 94
+        },
+        {
+          "char": "忘",
+          "pinyin": "wàng",
+          "pdfPage": 94
+        },
+        {
+          "char": "第",
+          "pinyin": "dì",
+          "pdfPage": 94
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "国",
+          "pinyin": null,
+          "pdfPage": 94
+        },
+        {
+          "char": "都",
+          "pinyin": null,
+          "pdfPage": 94
+        },
+        {
+          "char": "百",
+          "pinyin": null,
+          "pdfPage": 94
+        },
+        {
+          "char": "听",
+          "pinyin": null,
+          "pdfPage": 94
+        },
+        {
+          "char": "时",
+          "pinyin": null,
+          "pdfPage": 94
+        },
+        {
+          "char": "点",
+          "pinyin": null,
+          "pdfPage": 94
+        },
+        {
+          "char": "林",
+          "pinyin": null,
+          "pdfPage": 94
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            89,
+            90,
+            91,
+            92,
+            93,
+            94
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            89,
+            90,
+            91,
+            92,
+            93,
+            94
+          ],
+          "message": "本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "动物王国开大会",
+      "sourceLessonId": null,
+      "pdfPages": [
+        89,
+        90,
+        91,
+        92,
+        93,
+        94
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "动物王国要开大会，老虎让狗熊通知大家。狗熊用喇叭大声喊：“大家注意，动物王国要开大会，请你们都参加！”一连喊了十遍。",
+          "pdfPages": [
+            89
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "狐狸跑来了，对狗熊说：“你喊一百遍，大会也开不起来。”",
+          "pdfPages": [
+            89
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "“为什么？”狗熊问。",
+          "pdfPages": [
+            89
+          ]
+        },
+        {
+          "id": "paragraph-4",
+          "text": "“因为你没告诉大家，大会在哪一天开，是今天，还是明天，还是……”",
+          "pdfPages": [
+            89,
+            90
+          ]
+        },
+        {
+          "id": "paragraph-5",
+          "text": "狗熊一听，伸了伸舌头，做了个鬼脸，连忙说：“对，对，对！”于是就去问老虎。",
+          "pdfPages": [
+            90
+          ]
+        },
+        {
+          "id": "paragraph-6",
+          "text": "老虎说：“大会就在明天开，你快去通知大家吧！”",
+          "pdfPages": [
+            90
+          ]
+        },
+        {
+          "id": "paragraph-7",
+          "text": "狗熊又用喇叭大声喊：“大家注意，动物王国要在明天开大会，请你们都参加！”一连喊了十遍。",
+          "pdfPages": [
+            90
+          ]
+        },
+        {
+          "id": "paragraph-8",
+          "text": "大灰狼跑来对狗熊说：“你喊一百遍，大会也开不起来。”",
+          "pdfPages": [
+            90
+          ]
+        },
+        {
+          "id": "paragraph-9",
+          "text": "“为什么？”狗熊问。",
+          "pdfPages": [
+            91
+          ]
+        },
+        {
+          "id": "paragraph-10",
+          "text": "“因为你没告诉大家，在明天什么时候开，上午还是下午，几点钟开。”",
+          "pdfPages": [
+            91
+          ]
+        },
+        {
+          "id": "paragraph-11",
+          "text": "狗熊一听，说：“有道理，有道理！”于是又去问老虎。",
+          "pdfPages": [
+            91
+          ]
+        },
+        {
+          "id": "paragraph-12",
+          "text": "老虎说：“大会就在明天上午八点开，你再去通知大家吧！”",
+          "pdfPages": [
+            91
+          ]
+        },
+        {
+          "id": "paragraph-13",
+          "text": "狗熊又用喇叭大声喊：“大家注意，动物王国要在明天上午八点开大会，请你们都参加！”一连喊了十遍。",
+          "pdfPages": [
+            92
+          ]
+        },
+        {
+          "id": "paragraph-14",
+          "text": "梅花鹿跑来问狗熊：“大会在哪儿开呀？你得说清楚。”",
+          "pdfPages": [
+            92
+          ]
+        },
+        {
+          "id": "paragraph-15",
+          "text": "狗熊捶捶自己的脑袋，说：“我怎么没问清楚呢？”于是又去问老虎。",
+          "pdfPages": [
+            92
+          ]
+        },
+        {
+          "id": "paragraph-16",
+          "text": "“哎呀！忘了说地点。大会在森林广场开，你再去通知大家吧！”老虎对狗熊说。",
+          "pdfPages": [
+            92
+          ]
+        },
+        {
+          "id": "paragraph-17",
+          "text": "“请注意啦！”狗熊又用喇叭大声喊，“明天上午八点，在森林广场开大会，请大家准时参加！”一连喊了十遍。",
+          "pdfPages": [
+            93
+          ]
+        },
+        {
+          "id": "paragraph-18",
+          "text": "这一次，大家都明白了。第二天上午，动物们都来到森林广场，准时参加了大会。",
+          "pdfPages": [
+            94
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "动物王国要开大会，老虎让狗熊通知大家。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "狗熊用喇叭大声喊：“大家注意，动物王国要开大会，请你们都参加！”",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "一连喊了十遍。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-4",
+          "text": "狐狸跑来了，对狗熊说：“你喊一百遍，大会也开不起来。”",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-5",
+          "text": "“为什么？”",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-6",
+          "text": "狗熊问。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-7",
+          "text": "“因为你没告诉大家，大会在哪一天开，是今天，还是明天，还是……”",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-8",
+          "text": "狗熊一听，伸了伸舌头，做了个鬼脸，连忙说：“对，对，对！”",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-9",
+          "text": "于是就去问老虎。",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-10",
+          "text": "老虎说：“大会就在明天开，你快去通知大家吧！”",
+          "paragraphId": "paragraph-6"
+        },
+        {
+          "id": "sentence-11",
+          "text": "狗熊又用喇叭大声喊：“大家注意，动物王国要在明天开大会，请你们都参加！”",
+          "paragraphId": "paragraph-7"
+        },
+        {
+          "id": "sentence-12",
+          "text": "一连喊了十遍。",
+          "paragraphId": "paragraph-7"
+        },
+        {
+          "id": "sentence-13",
+          "text": "大灰狼跑来对狗熊说：“你喊一百遍，大会也开不起来。”",
+          "paragraphId": "paragraph-8"
+        },
+        {
+          "id": "sentence-14",
+          "text": "“为什么？”",
+          "paragraphId": "paragraph-9"
+        },
+        {
+          "id": "sentence-15",
+          "text": "狗熊问。",
+          "paragraphId": "paragraph-9"
+        },
+        {
+          "id": "sentence-16",
+          "text": "“因为你没告诉大家，在明天什么时候开，上午还是下午，几点钟开。”",
+          "paragraphId": "paragraph-10"
+        },
+        {
+          "id": "sentence-17",
+          "text": "狗熊一听，说：“有道理，有道理！”",
+          "paragraphId": "paragraph-11"
+        },
+        {
+          "id": "sentence-18",
+          "text": "于是又去问老虎。",
+          "paragraphId": "paragraph-11"
+        },
+        {
+          "id": "sentence-19",
+          "text": "老虎说：“大会就在明天上午八点开，你再去通知大家吧！”",
+          "paragraphId": "paragraph-12"
+        },
+        {
+          "id": "sentence-20",
+          "text": "狗熊又用喇叭大声喊：“大家注意，动物王国要在明天上午八点开大会，请你们都参加！”",
+          "paragraphId": "paragraph-13"
+        },
+        {
+          "id": "sentence-21",
+          "text": "一连喊了十遍。",
+          "paragraphId": "paragraph-13"
+        },
+        {
+          "id": "sentence-22",
+          "text": "梅花鹿跑来问狗熊：“大会在哪儿开呀？",
+          "paragraphId": "paragraph-14"
+        },
+        {
+          "id": "sentence-23",
+          "text": "你得说清楚。”",
+          "paragraphId": "paragraph-14"
+        },
+        {
+          "id": "sentence-24",
+          "text": "狗熊捶捶自己的脑袋，说：“我怎么没问清楚呢？”",
+          "paragraphId": "paragraph-15"
+        },
+        {
+          "id": "sentence-25",
+          "text": "于是又去问老虎。",
+          "paragraphId": "paragraph-15"
+        },
+        {
+          "id": "sentence-26",
+          "text": "“哎呀！",
+          "paragraphId": "paragraph-16"
+        },
+        {
+          "id": "sentence-27",
+          "text": "忘了说地点。",
+          "paragraphId": "paragraph-16"
+        },
+        {
+          "id": "sentence-28",
+          "text": "大会在森林广场开，你再去通知大家吧！”",
+          "paragraphId": "paragraph-16"
+        },
+        {
+          "id": "sentence-29",
+          "text": "老虎对狗熊说。",
+          "paragraphId": "paragraph-16"
+        },
+        {
+          "id": "sentence-30",
+          "text": "“请注意啦！”",
+          "paragraphId": "paragraph-17"
+        },
+        {
+          "id": "sentence-31",
+          "text": "狗熊又用喇叭大声喊，“明天上午八点，在森林广场开大会，请大家准时参加！”",
+          "paragraphId": "paragraph-17"
+        },
+        {
+          "id": "sentence-32",
+          "text": "一连喊了十遍。",
+          "paragraphId": "paragraph-17"
+        },
+        {
+          "id": "sentence-33",
+          "text": "这一次，大家都明白了。",
+          "paragraphId": "paragraph-18"
+        },
+        {
+          "id": "sentence-34",
+          "text": "第二天上午，动物们都来到森林广场，准时参加了大会。",
+          "paragraphId": "paragraph-18"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-17",
+      "lessonNumber": 17,
+      "recognitionCharacters": [
+        {
+          "char": "猴",
+          "pinyin": "hóu",
+          "pdfPage": 97
+        },
+        {
+          "char": "块",
+          "pinyin": "kuài",
+          "pdfPage": 97
+        },
+        {
+          "char": "结",
+          "pinyin": "jiē",
+          "pdfPage": 97
+        },
+        {
+          "char": "兴",
+          "pinyin": "xìng",
+          "pdfPage": 97
+        },
+        {
+          "char": "掰",
+          "pinyin": "bāi",
+          "pdfPage": 97
+        },
+        {
+          "char": "扛",
+          "pinyin": "káng",
+          "pdfPage": 97
+        },
+        {
+          "char": "往",
+          "pinyin": "wǎng",
+          "pdfPage": 97
+        },
+        {
+          "char": "棵",
+          "pinyin": "kē",
+          "pdfPage": 97
+        },
+        {
+          "char": "满",
+          "pinyin": "mǎn",
+          "pdfPage": 97
+        },
+        {
+          "char": "扔",
+          "pinyin": "rēng",
+          "pdfPage": 97
+        },
+        {
+          "char": "摘",
+          "pinyin": "zhāi",
+          "pdfPage": 97
+        },
+        {
+          "char": "捧",
+          "pinyin": "pěng",
+          "pdfPage": 97
+        },
+        {
+          "char": "追",
+          "pinyin": "zhuī",
+          "pdfPage": 97
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "高",
+          "pinyin": null,
+          "pdfPage": 97
+        },
+        {
+          "char": "兴",
+          "pinyin": null,
+          "pdfPage": 97
+        },
+        {
+          "char": "着",
+          "pinyin": null,
+          "pdfPage": 97
+        },
+        {
+          "char": "往",
+          "pinyin": null,
+          "pdfPage": 97
+        },
+        {
+          "char": "瓜",
+          "pinyin": null,
+          "pdfPage": 97
+        },
+        {
+          "char": "兔",
+          "pinyin": null,
+          "pdfPage": 97
+        },
+        {
+          "char": "进",
+          "pinyin": null,
+          "pdfPage": 97
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            95,
+            96
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            95,
+            96
+          ],
+          "message": "本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "小猴子下山",
+      "sourceLessonId": null,
+      "pdfPages": [
+        95,
+        96
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "有一天，小猴子下山来，走到一块玉米地里。他看见玉米结得又大又多，非常高兴，就掰了一个，扛着往前走。",
+          "pdfPages": [
+            95
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "小猴子扛着玉米，走到一棵桃树下。他看见满树的桃子又大又红，非常高兴，就扔了玉米，去摘桃子。",
+          "pdfPages": [
+            95
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "小猴子捧着几个桃子，走到一片瓜地里。他看见满地的西瓜又大又圆，非常高兴，就扔了桃子，去摘西瓜。",
+          "pdfPages": [
+            96
+          ]
+        },
+        {
+          "id": "paragraph-4",
+          "text": "小猴子抱着一个大西瓜往回走。走着走着，他看见一只小兔子蹦蹦跳跳的，真可爱，就扔了西瓜，去追小兔子。",
+          "pdfPages": [
+            96
+          ]
+        },
+        {
+          "id": "paragraph-5",
+          "text": "小兔子跑进树林里，不见了。小猴子只好空着手回家去。",
+          "pdfPages": [
+            96
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "有一天，小猴子下山来，走到一块玉米地里。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "他看见玉米结得又大又多，非常高兴，就掰了一个，扛着往前走。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "小猴子扛着玉米，走到一棵桃树下。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-4",
+          "text": "他看见满树的桃子又大又红，非常高兴，就扔了玉米，去摘桃子。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-5",
+          "text": "小猴子捧着几个桃子，走到一片瓜地里。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-6",
+          "text": "他看见满地的西瓜又大又圆，非常高兴，就扔了桃子，去摘西瓜。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-7",
+          "text": "小猴子抱着一个大西瓜往回走。",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-8",
+          "text": "走着走着，他看见一只小兔子蹦蹦跳跳的，真可爱，就扔了西瓜，去追小兔子。",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-9",
+          "text": "小兔子跑进树林里，不见了。",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-10",
+          "text": "小猴子只好空着手回家去。",
+          "paragraphId": "paragraph-5"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-18",
+      "lessonNumber": 18,
+      "recognitionCharacters": [
+        {
+          "char": "棉",
+          "pinyin": "mián",
+          "pdfPage": 105
+        },
+        {
+          "char": "姑",
+          "pinyin": "gū",
+          "pdfPage": 105
+        },
+        {
+          "char": "娘",
+          "pinyin": "niáng",
+          "pdfPage": 105
+        },
+        {
+          "char": "病",
+          "pinyin": "bìng",
+          "pdfPage": 105
+        },
+        {
+          "char": "她",
+          "pinyin": "tā",
+          "pdfPage": 105
+        },
+        {
+          "char": "治",
+          "pinyin": "zhì",
+          "pdfPage": 105
+        },
+        {
+          "char": "燕",
+          "pinyin": "yàn",
+          "pdfPage": 105
+        },
+        {
+          "char": "帮",
+          "pinyin": "bāng",
+          "pdfPage": 105
+        },
+        {
+          "char": "害",
+          "pinyin": "hài",
+          "pdfPage": 105
+        },
+        {
+          "char": "别",
+          "pinyin": "bié",
+          "pdfPage": 105
+        },
+        {
+          "char": "干",
+          "pinyin": "gàn",
+          "pdfPage": 105
+        },
+        {
+          "char": "惊",
+          "pinyin": "jīng",
+          "pdfPage": 105
+        },
+        {
+          "char": "奇",
+          "pinyin": "qí",
+          "pdfPage": 105
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "她",
+          "pinyin": null,
+          "pdfPage": 105
+        },
+        {
+          "char": "空",
+          "pinyin": null,
+          "pdfPage": 105
+        },
+        {
+          "char": "还",
+          "pinyin": null,
+          "pdfPage": 105
+        },
+        {
+          "char": "干",
+          "pinyin": null,
+          "pdfPage": 105
+        },
+        {
+          "char": "身",
+          "pinyin": null,
+          "pdfPage": 105
+        },
+        {
+          "char": "星",
+          "pinyin": null,
+          "pdfPage": 105
+        },
+        {
+          "char": "久",
+          "pinyin": null,
+          "pdfPage": 105
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            103,
+            104,
+            105
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            103,
+            104,
+            105
+          ],
+          "message": "本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "棉花姑娘",
+      "sourceLessonId": null,
+      "pdfPages": [
+        103,
+        104,
+        105
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "棉花姑娘生病了，叶子上有许多可恶的蚜虫。她多么盼望有医生来给她治病啊！",
+          "pdfPages": [
+            103
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "燕子飞来了。棉花姑娘说：“请你帮我捉害虫吧！”燕子说：“对不起，我只会捉空中飞的害虫，你还是请别人帮忙吧！”",
+          "pdfPages": [
+            103
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "啄木鸟飞来了。棉花姑娘说：“请你帮我捉害虫吧！”啄木鸟说：“对不起，我只会捉树干里的害虫，你还是请别人帮忙吧！”",
+          "pdfPages": [
+            104
+          ]
+        },
+        {
+          "id": "paragraph-4",
+          "text": "青蛙跳来了。棉花姑娘高兴地说：“请你帮我捉害虫吧！”青蛙说：“对不起，我只会捉水田里的害虫，你还是请别人帮忙吧！”",
+          "pdfPages": [
+            104
+          ]
+        },
+        {
+          "id": "paragraph-5",
+          "text": "忽然，一群圆圆的小虫子飞来了，很快就把蚜虫吃光了。棉花姑娘惊奇地问：“你们是谁呀？”小虫子说：“我们身上有七个斑点，就像七颗星星，大家叫我们七星瓢虫。”",
+          "pdfPages": [
+            104,
+            105
+          ]
+        },
+        {
+          "id": "paragraph-6",
+          "text": "不久，棉花姑娘的病好了，长出了碧绿碧绿的叶子，吐出了雪白雪白的棉花。她咧开嘴笑啦！",
+          "pdfPages": [
+            105
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "棉花姑娘生病了，叶子上有许多可恶的蚜虫。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "她多么盼望有医生来给她治病啊！",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "燕子飞来了。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-4",
+          "text": "棉花姑娘说：“请你帮我捉害虫吧！”",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-5",
+          "text": "燕子说：“对不起，我只会捉空中飞的害虫，你还是请别人帮忙吧！”",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-6",
+          "text": "啄木鸟飞来了。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-7",
+          "text": "棉花姑娘说：“请你帮我捉害虫吧！”",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-8",
+          "text": "啄木鸟说：“对不起，我只会捉树干里的害虫，你还是请别人帮忙吧！”",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-9",
+          "text": "青蛙跳来了。",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-10",
+          "text": "棉花姑娘高兴地说：“请你帮我捉害虫吧！”",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-11",
+          "text": "青蛙说：“对不起，我只会捉水田里的害虫，你还是请别人帮忙吧！”",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-12",
+          "text": "忽然，一群圆圆的小虫子飞来了，很快就把蚜虫吃光了。",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-13",
+          "text": "棉花姑娘惊奇地问：“你们是谁呀？”",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-14",
+          "text": "小虫子说：“我们身上有七个斑点，就像七颗星星，大家叫我们七星瓢虫。”",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-15",
+          "text": "不久，棉花姑娘的病好了，长出了碧绿碧绿的叶子，吐出了雪白雪白的棉花。",
+          "paragraphId": "paragraph-6"
+        },
+        {
+          "id": "sentence-16",
+          "text": "她咧开嘴笑啦！",
+          "paragraphId": "paragraph-6"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-19",
+      "lessonNumber": 19,
+      "recognitionCharacters": [
+        {
+          "char": "咕",
+          "pinyin": "gū",
+          "pdfPage": 121
+        },
+        {
+          "char": "咚",
+          "pinyin": "dōng",
+          "pdfPage": 121
+        },
+        {
+          "char": "熟",
+          "pinyin": "shú",
+          "pdfPage": 121
+        },
+        {
+          "char": "掉",
+          "pinyin": "diào",
+          "pdfPage": 121
+        },
+        {
+          "char": "湖",
+          "pinyin": "hú",
+          "pdfPage": 121
+        },
+        {
+          "char": "吓",
+          "pinyin": "xià",
+          "pdfPage": 121
+        },
+        {
+          "char": "啦",
+          "pinyin": "la",
+          "pdfPage": 121
+        },
+        {
+          "char": "鹿",
+          "pinyin": "lù",
+          "pdfPage": 121
+        },
+        {
+          "char": "象",
+          "pinyin": "xiàng",
+          "pdfPage": 121
+        },
+        {
+          "char": "野",
+          "pinyin": "yě",
+          "pdfPage": 121
+        },
+        {
+          "char": "拦",
+          "pinyin": "lán",
+          "pdfPage": 121
+        },
+        {
+          "char": "哪",
+          "pinyin": "nǎ",
+          "pdfPage": 121
+        },
+        {
+          "char": "那",
+          "pinyin": "nà",
+          "pdfPage": 121
+        },
+        {
+          "char": "领",
+          "pinyin": "lǐng",
+          "pdfPage": 121
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "吓",
+          "pinyin": null,
+          "pdfPage": 109
+        },
+        {
+          "char": "为",
+          "pinyin": null,
+          "pdfPage": 109
+        },
+        {
+          "char": "怕",
+          "pinyin": null,
+          "pdfPage": 109
+        },
+        {
+          "char": "家",
+          "pinyin": null,
+          "pdfPage": 109
+        },
+        {
+          "char": "象",
+          "pinyin": null,
+          "pdfPage": 109
+        },
+        {
+          "char": "没",
+          "pinyin": null,
+          "pdfPage": 109
+        },
+        {
+          "char": "到",
+          "pinyin": null,
+          "pdfPage": 109
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            107,
+            108,
+            109
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            107,
+            108,
+            109
+          ],
+          "message": "本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "咕咚",
+      "sourceLessonId": null,
+      "pdfPages": [
+        107,
+        108,
+        109
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "木瓜熟了。一个木瓜从高高的树上掉进湖里，咕咚！",
+          "pdfPages": [
+            107
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "兔子吓了一跳，拔腿就跑。小猴子看见了，问他为什么跑。兔子一边跑一边叫：“不好啦，‘咕咚’来了，可怕极了！”",
+          "pdfPages": [
+            107
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "小猴子一听，就跟着跑起来。他一边跑一边大叫：“不好啦，不好啦，‘咕咚’来了，大家快跑哇！”",
+          "pdfPages": [
+            107
+          ]
+        },
+        {
+          "id": "paragraph-4",
+          "text": "这一下可热闹了。狐狸呀，山羊啊，小鹿哇，一个跟着一个跑起来。大伙儿一边跑一边叫：“快逃命啊，‘咕咚’来了！”",
+          "pdfPages": [
+            107
+          ]
+        },
+        {
+          "id": "paragraph-5",
+          "text": "大象看见了，也跟着跑起来。野牛拦住他，问：“‘咕咚’在哪里，你看见了？”大象说：“没看见，大伙儿都说‘咕咚’来了。”野牛又问大伙儿，大伙儿也都说没看见。",
+          "pdfPages": [
+            108
+          ]
+        },
+        {
+          "id": "paragraph-6",
+          "text": "最后问兔子，兔子说：“是我听见的，‘咕咚’就在那边的湖里。”",
+          "pdfPages": [
+            108
+          ]
+        },
+        {
+          "id": "paragraph-7",
+          "text": "兔子领着大家来到湖边。正好又有一个木瓜从高高的树上掉进湖里，咕咚！",
+          "pdfPages": [
+            109
+          ]
+        },
+        {
+          "id": "paragraph-8",
+          "text": "大伙儿你看看我，我看看你，都笑了。",
+          "pdfPages": [
+            109
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "木瓜熟了。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "一个木瓜从高高的树上掉进湖里，咕咚！",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "兔子吓了一跳，拔腿就跑。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-4",
+          "text": "小猴子看见了，问他为什么跑。",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-5",
+          "text": "兔子一边跑一边叫：“不好啦，‘咕咚’来了，可怕极了！”",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-6",
+          "text": "小猴子一听，就跟着跑起来。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-7",
+          "text": "他一边跑一边大叫：“不好啦，不好啦，‘咕咚’来了，大家快跑哇！”",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-8",
+          "text": "这一下可热闹了。",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-9",
+          "text": "狐狸呀，山羊啊，小鹿哇，一个跟着一个跑起来。",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-10",
+          "text": "大伙儿一边跑一边叫：“快逃命啊，‘咕咚’来了！”",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-11",
+          "text": "大象看见了，也跟着跑起来。",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-12",
+          "text": "野牛拦住他，问：“‘咕咚’在哪里，你看见了？”",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-13",
+          "text": "大象说：“没看见，大伙儿都说‘咕咚’来了。”",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-14",
+          "text": "野牛又问大伙儿，大伙儿也都说没看见。",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-15",
+          "text": "最后问兔子，兔子说：“是我听见的，‘咕咚’就在那边的湖里。”",
+          "paragraphId": "paragraph-6"
+        },
+        {
+          "id": "sentence-16",
+          "text": "兔子领着大家来到湖边。",
+          "paragraphId": "paragraph-7"
+        },
+        {
+          "id": "sentence-17",
+          "text": "正好又有一个木瓜从高高的树上掉进湖里，咕咚！",
+          "paragraphId": "paragraph-7"
+        },
+        {
+          "id": "sentence-18",
+          "text": "大伙儿你看看我，我看看你，都笑了。",
+          "paragraphId": "paragraph-8"
+        }
+      ]
+    },
+    {
+      "lessonKey": "reading-20",
+      "lessonNumber": 20,
+      "recognitionCharacters": [
+        {
+          "char": "壁",
+          "pinyin": "bì",
+          "pdfPage": 121
+        },
+        {
+          "char": "借",
+          "pinyin": "jiè",
+          "pdfPage": 121
+        },
+        {
+          "char": "咬",
+          "pinyin": "yǎo",
+          "pdfPage": 121
+        },
+        {
+          "char": "难",
+          "pinyin": "nán",
+          "pdfPage": 121
+        },
+        {
+          "char": "哪",
+          "pinyin": "na",
+          "pdfPage": 121
+        },
+        {
+          "char": "爬",
+          "pinyin": "pá",
+          "pdfPage": 121
+        },
+        {
+          "char": "您",
+          "pinyin": "nín",
+          "pdfPage": 121
+        },
+        {
+          "char": "拨",
+          "pinyin": "bō",
+          "pdfPage": 121
+        },
+        {
+          "char": "赶",
+          "pinyin": "gǎn",
+          "pdfPage": 121
+        },
+        {
+          "char": "摆",
+          "pinyin": "bǎi",
+          "pdfPage": 121
+        },
+        {
+          "char": "过",
+          "pinyin": "guò",
+          "pdfPage": 121
+        },
+        {
+          "char": "孩",
+          "pinyin": "hái",
+          "pdfPage": 121
+        },
+        {
+          "char": "转",
+          "pinyin": "zhuǎn",
+          "pdfPage": 121
+        }
+      ],
+      "writingCharacters": [
+        {
+          "char": "向",
+          "pinyin": null,
+          "pdfPage": 113
+        },
+        {
+          "char": "边",
+          "pinyin": null,
+          "pdfPage": 113
+        },
+        {
+          "char": "行",
+          "pinyin": null,
+          "pdfPage": 113
+        },
+        {
+          "char": "草",
+          "pinyin": null,
+          "pdfPage": 113
+        },
+        {
+          "char": "赶",
+          "pinyin": null,
+          "pdfPage": 113
+        },
+        {
+          "char": "过",
+          "pinyin": null,
+          "pdfPage": 113
+        },
+        {
+          "char": "找",
+          "pinyin": null,
+          "pdfPage": 113
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            110,
+            111,
+            112
+          ],
+          "message": "本册未设词语表。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "教材目录及课后栏目",
+          "pdfPages": [
+            110,
+            111,
+            112
+          ],
+          "message": "本课无单独课后词语清单。",
+          "resolved": true
+        }
+      ],
+      "issues": [],
+      "lessonType": "reading",
+      "title": "小壁虎借尾巴",
+      "sourceLessonId": null,
+      "pdfPages": [
+        110,
+        111,
+        112
+      ],
+      "status": "reviewed",
+      "paragraphs": [
+        {
+          "id": "paragraph-1",
+          "text": "小壁虎在墙角捉蚊子，一条蛇咬住了他的尾巴。小壁虎一挣，挣断尾巴逃走了。",
+          "pdfPages": [
+            110
+          ]
+        },
+        {
+          "id": "paragraph-2",
+          "text": "没有尾巴多难看哪！小壁虎想：向谁去借一条尾巴呢？",
+          "pdfPages": [
+            110
+          ]
+        },
+        {
+          "id": "paragraph-3",
+          "text": "小壁虎爬呀爬，爬到小河边。他看见小鱼摇着尾巴，在河里游来游去。小壁虎说：“小鱼姐姐，您把尾巴借给我行吗？”小鱼说：“不行啊，我要用尾巴拨水呢。”",
+          "pdfPages": [
+            110
+          ]
+        },
+        {
+          "id": "paragraph-4",
+          "text": "小壁虎爬呀爬，爬到大树上。他看见老牛甩着尾巴，在树下吃草。小壁虎说：“牛伯伯，您把尾巴借给我行吗？”老牛说：“不行啊，我要用尾巴赶蝇子呢。”",
+          "pdfPages": [
+            111
+          ]
+        },
+        {
+          "id": "paragraph-5",
+          "text": "小壁虎爬呀爬，爬到房檐下。他看见燕子摆着尾巴，在空中飞来飞去。小壁虎说：“燕子阿姨，您把尾巴借给我行吗？”燕子说：“不行啊，我要用尾巴掌握方向呢。”",
+          "pdfPages": [
+            111
+          ]
+        },
+        {
+          "id": "paragraph-6",
+          "text": "小壁虎借不到尾巴，心里很难过。他爬呀爬，爬回家里找妈妈。",
+          "pdfPages": [
+            112
+          ]
+        },
+        {
+          "id": "paragraph-7",
+          "text": "小壁虎把借尾巴的事告诉了妈妈。妈妈笑着说：“傻孩子，你转过身子看看。”小壁虎转身一看，高兴得叫了起来：“我长出一条新尾巴啦！”",
+          "pdfPages": [
+            112
+          ]
+        }
+      ],
+      "sentences": [
+        {
+          "id": "sentence-1",
+          "text": "小壁虎在墙角捉蚊子，一条蛇咬住了他的尾巴。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-2",
+          "text": "小壁虎一挣，挣断尾巴逃走了。",
+          "paragraphId": "paragraph-1"
+        },
+        {
+          "id": "sentence-3",
+          "text": "没有尾巴多难看哪！",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-4",
+          "text": "小壁虎想：向谁去借一条尾巴呢？",
+          "paragraphId": "paragraph-2"
+        },
+        {
+          "id": "sentence-5",
+          "text": "小壁虎爬呀爬，爬到小河边。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-6",
+          "text": "他看见小鱼摇着尾巴，在河里游来游去。",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-7",
+          "text": "小壁虎说：“小鱼姐姐，您把尾巴借给我行吗？”",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-8",
+          "text": "小鱼说：“不行啊，我要用尾巴拨水呢。”",
+          "paragraphId": "paragraph-3"
+        },
+        {
+          "id": "sentence-9",
+          "text": "小壁虎爬呀爬，爬到大树上。",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-10",
+          "text": "他看见老牛甩着尾巴，在树下吃草。",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-11",
+          "text": "小壁虎说：“牛伯伯，您把尾巴借给我行吗？”",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-12",
+          "text": "老牛说：“不行啊，我要用尾巴赶蝇子呢。”",
+          "paragraphId": "paragraph-4"
+        },
+        {
+          "id": "sentence-13",
+          "text": "小壁虎爬呀爬，爬到房檐下。",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-14",
+          "text": "他看见燕子摆着尾巴，在空中飞来飞去。",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-15",
+          "text": "小壁虎说：“燕子阿姨，您把尾巴借给我行吗？”",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-16",
+          "text": "燕子说：“不行啊，我要用尾巴掌握方向呢。”",
+          "paragraphId": "paragraph-5"
+        },
+        {
+          "id": "sentence-17",
+          "text": "小壁虎借不到尾巴，心里很难过。",
+          "paragraphId": "paragraph-6"
+        },
+        {
+          "id": "sentence-18",
+          "text": "他爬呀爬，爬回家里找妈妈。",
+          "paragraphId": "paragraph-6"
+        },
+        {
+          "id": "sentence-19",
+          "text": "小壁虎把借尾巴的事告诉了妈妈。",
+          "paragraphId": "paragraph-7"
+        },
+        {
+          "id": "sentence-20",
+          "text": "妈妈笑着说：“傻孩子，你转过身子看看。”",
+          "paragraphId": "paragraph-7"
+        },
+        {
+          "id": "sentence-21",
+          "text": "小壁虎转身一看，高兴得叫了起来：“我长出一条新尾巴啦！”",
+          "paragraphId": "paragraph-7"
+        }
+      ]
+    }
+  ],
+  "phonicsLessons": []
+}

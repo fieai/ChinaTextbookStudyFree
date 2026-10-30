@@ -1,0 +1,2855 @@
+{
+  "schemaVersion": 1,
+  "bookId": "chinese-g6up-2026",
+  "lessons": [
+    {
+      "lessonNumber": 1,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "勒",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "吟",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "骏",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "鞭",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "裳",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "蹄",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "腐",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "貌",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "拘",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "稍",
+          "pinyin": null,
+          "pdfPage": 132
+        }
+      ],
+      "words": [
+        {
+          "text": "柔美",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "勾勒",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "境界",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "惊叹",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "低吟",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "奇丽",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "骏马",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "回味",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "洒脱",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "衣裳",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "疾驰",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "静寂",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "礼貌",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "拘束",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "回敬",
+          "source": "词语表",
+          "pdfPage": 134
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 2,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "缀",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "窥",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "紫",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "潇",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "雅",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "檐",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "浊",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "拙",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "簇",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "遮",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "恍",
+          "pinyin": null,
+          "pdfPage": 132
+        }
+      ],
+      "words": [
+        {
+          "text": "宅院",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "潇洒",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "幽雅",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "伏案",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "轻灵",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "浑浊",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "笨拙",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "参差",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "遮掩",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "文思",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "如同",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "何以",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "恰如",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "恍然",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "顺心",
+          "source": "词语表",
+          "pdfPage": 134
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 3,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "德",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "暮",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "旷",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "鹊",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "蝉",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "稻",
+          "pinyin": null,
+          "pdfPage": 132
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "词语表",
+          "pdfPages": [
+            134,
+            135,
+            136
+          ],
+          "message": "教材词语表未列本课，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 4,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "律",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "蒙",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "丸",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "崖",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "渡",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "索",
+          "pinyin": null,
+          "pdfPage": 132
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "词语表",
+          "pdfPages": [
+            134,
+            135,
+            136
+          ],
+          "message": "教材词语表未列本课，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 5,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "贯",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "棋",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "悬",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "斩",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "截",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "沸",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "砸",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "雹",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "昂",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "豪",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "迈",
+          "pinyin": null,
+          "pdfPage": 132
+        }
+      ],
+      "words": [
+        {
+          "text": "奋战",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "险要",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "沉着",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "全神贯注",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "崎岖",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "横七竖八",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "悬崖",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "斩钉截铁",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "热血沸腾",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "居高临下",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "粉身碎骨",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "眺望",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "昂首",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "豪迈",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "气壮山河",
+          "source": "词语表",
+          "pdfPage": 134
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 6,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "政",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "府",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "宾",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "宣",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "拂",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "阅",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "率",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "榴",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "辆",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "嗓",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "哑",
+          "pinyin": null,
+          "pdfPage": 132
+        }
+      ],
+      "words": [
+        {
+          "text": "政府",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "汇集",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "爆发",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "排山倒海",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "庄严",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "宣告",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "欢跃",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "雄壮",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "肃立",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "飘拂",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "完毕",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "检阅",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "率领",
+          "source": "词语表",
+          "pdfPage": 134
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 7,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "蔽",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "卧",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "伪",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "摧",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "幕",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "搜",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "喜",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "液",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "缩",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "熄",
+          "pinyin": null,
+          "pdfPage": 132
+        }
+      ],
+      "words": [
+        {
+          "text": "隐蔽",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "潜伏",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "前沿",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "伪装",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "枯黄",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "作为",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "摧毁",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "突击",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "搜索",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "蔓延",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "幸而",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "浓重",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "落空",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "忍耐",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "熄灭",
+          "source": "词语表",
+          "pdfPage": 134
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 8,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "凛",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "搏",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "俊",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "棍",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "裁",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "筹",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "橡",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "雕",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "泰",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "屏",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "禁",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "蹲",
+          "pinyin": null,
+          "pdfPage": 132
+        }
+      ],
+      "words": [
+        {
+          "text": "前功尽弃",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "威风凛凛",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "搏斗",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "疲倦",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "别出心裁",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "技高一筹",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "得意扬扬",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "观摩",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "弄巧成拙",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "知趣",
+          "source": "词语表",
+          "pdfPage": 134
+        },
+        {
+          "text": "大步流星",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "不禁",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "一无所获",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "念念有词",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "忘乎所以",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "心满意足",
+          "source": "词语表",
+          "pdfPage": 135
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 9,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "谜",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "猜",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "尚",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "析",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "效",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "轨",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "谓",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "斑",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "萎",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "燥",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "漠",
+          "pinyin": null,
+          "pdfPage": 132
+        }
+      ],
+      "words": [
+        {
+          "text": "盛会",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "系统",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "猜测",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "尚未",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "分析",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "效应",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "轨道",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "表明",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "所谓",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "斑点",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "枯萎",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "干燥",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "沙漠",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "进一步",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "一系列",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "探索",
+          "source": "词语表",
+          "pdfPage": 135
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 10,
+      "recognitionCharacters": [],
+      "writingCharacters": [],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "writingCharacters",
+          "source": "写字表",
+          "pdfPages": [
+            132,
+            133
+          ],
+          "message": "教材写字表未列本课，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "词语表",
+          "pdfPages": [
+            134,
+            135,
+            136
+          ],
+          "message": "教材词语表未列本课，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 11,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "黎",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "疯",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "淌",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "盯",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "肆",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "伍",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "揪",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "呻",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "膛",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "废",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "塌",
+          "pinyin": null,
+          "pdfPage": 132
+        }
+      ],
+      "words": [
+        {
+          "text": "黎明",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "狂奔",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "惊慌",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "跌跌撞撞",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "拥戴",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "清瘦",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "乱哄哄",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "沙哑",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "依次",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "放肆",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "队伍",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "呻吟",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "胸膛",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "吞没",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "猛然",
+          "source": "词语表",
+          "pdfPage": 135
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 12,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "妻",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "娜",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "唉",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "僵",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "淋",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "嘿",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "糟",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "霉",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "嘛",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "惨",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "熬",
+          "pinyin": null,
+          "pdfPage": 132
+        }
+      ],
+      "words": [
+        {
+          "text": "风暴",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "心惊肉跳",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "勉强",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "抱怨",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "倾听",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "探望",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "照顾",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "张罗",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "仍旧",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "僵硬",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "自作自受",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "湿淋淋",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "糟糕",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "倒霉",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "忧虑",
+          "source": "词语表",
+          "pdfPage": 135
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 13,
+      "recognitionCharacters": [],
+      "writingCharacters": [],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "writingCharacters",
+          "source": "写字表",
+          "pdfPages": [
+            132,
+            133
+          ],
+          "message": "教材写字表未列本课，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "词语表",
+          "pdfPages": [
+            134,
+            135,
+            136
+          ],
+          "message": "教材词语表未列本课，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 14,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "盏",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "豫",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "副",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "倚",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "制",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "插",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "聚",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "惴",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "漆",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "堡",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "枪",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "编",
+          "pinyin": null,
+          "pdfPage": 132
+        }
+      ],
+      "words": [
+        {
+          "text": "宏伟",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "赞叹",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "自制",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "微弱",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "聚精会神",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "不由得",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "点燃",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "漆黑",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "后续",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "阻击",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "突破",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "暴露",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "不惜",
+          "source": "词语表",
+          "pdfPage": 135
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 15,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "篷",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "嫌",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "瓦",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "柜",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "嘻",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "嚷",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "锅",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "酱",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "唇",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "蹦",
+          "pinyin": null,
+          "pdfPage": 132
+        }
+      ],
+      "words": [
+        {
+          "text": "斗篷",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "瓦蓝",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "衣柜",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "遮盖",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "闷雷",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "央求",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "心思",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "不声不响",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "逗引",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "张望",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "果真",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "甜丝丝",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "理直气壮",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "起劲",
+          "source": "词语表",
+          "pdfPage": 135
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 16,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "帘",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "裹",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "薄",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "篮",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "渺",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "资",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "滥",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "胁",
+          "pinyin": null,
+          "pdfPage": 132
+        },
+        {
+          "char": "福",
+          "pinyin": null,
+          "pdfPage": 132
+        }
+      ],
+      "words": [
+        {
+          "text": "眼帘",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "摇篮",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "渺小",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "资源",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "无私",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "节制",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "枯竭",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "毁坏",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "滥用",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "威胁",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "移居",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "指望",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "设想",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "目睹",
+          "source": "词语表",
+          "pdfPage": 135
+        },
+        {
+          "text": "造福",
+          "source": "词语表",
+          "pdfPage": 136
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 17,
+      "recognitionCharacters": [],
+      "writingCharacters": [],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "writingCharacters",
+          "source": "写字表",
+          "pdfPages": [
+            132,
+            133
+          ],
+          "message": "教材写字表未列本课，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "词语表",
+          "pdfPages": [
+            134,
+            135,
+            136
+          ],
+          "message": "教材词语表未列本课，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 18,
+      "recognitionCharacters": [],
+      "writingCharacters": [],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "writingCharacters",
+          "source": "写字表",
+          "pdfPages": [
+            132,
+            133
+          ],
+          "message": "教材写字表未列本课，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "词语表",
+          "pdfPages": [
+            134,
+            135,
+            136
+          ],
+          "message": "教材词语表未列本课，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 19,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "涯",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "牵",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "莺",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "苔",
+          "pinyin": null,
+          "pdfPage": 133
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "词语表",
+          "pdfPages": [
+            134,
+            135,
+            136
+          ],
+          "message": "教材词语表未列本课，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 20,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "仓",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "聪",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "置",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "悦",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "施",
+          "pinyin": null,
+          "pdfPage": 133
+        }
+      ],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "词语表",
+          "pdfPages": [
+            134,
+            135,
+            136
+          ],
+          "message": "教材词语表未列本课，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 21,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "谐",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "拦",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "添",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "怖",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "愉",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "蟋",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "蟀",
+          "pinyin": null,
+          "pdfPage": 133
+        }
+      ],
+      "words": [
+        {
+          "text": "街心",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "走动",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "和谐",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "清脆",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "单调",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "增加",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "神秘",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "轻易",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "入神",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "唯恐",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "恐怖",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "愉快",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "证实",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "蟋蟀",
+          "source": "词语表",
+          "pdfPage": 136
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 22,
+      "recognitionCharacters": [],
+      "writingCharacters": [],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "writingCharacters",
+          "source": "写字表",
+          "pdfPages": [
+            132,
+            133
+          ],
+          "message": "教材写字表未列本课，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "词语表",
+          "pdfPages": [
+            134,
+            135,
+            136
+          ],
+          "message": "教材词语表未列本课，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 23,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "郑",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "拜",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "偷",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "租",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "厨",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "毡",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "羞",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "爹",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "猬",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "伶",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "俐",
+          "pinyin": null,
+          "pdfPage": 133
+        }
+      ],
+      "words": [
+        {
+          "text": "一望无际",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "其间",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "尽力",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "郑重",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "讲究",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "以及",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "允许",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "明晃晃",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "可见",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "无端",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "伶俐",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "潮汛",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "往常",
+          "source": "词语表",
+          "pdfPage": 136
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 24,
+      "recognitionCharacters": [],
+      "writingCharacters": [
+        {
+          "char": "搁",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "萍",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "藻",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "漾",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "焰",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "削",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "缕",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "晕",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "骤",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "撕",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "坠",
+          "pinyin": null,
+          "pdfPage": 133
+        },
+        {
+          "char": "剌",
+          "pinyin": null,
+          "pdfPage": 133
+        }
+      ],
+      "words": [
+        {
+          "text": "昏沉",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "茅屋",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "荡漾",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "解散",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "退缩",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "边缘",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "瘦削",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "浮动",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "骤然",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "陡然",
+          "source": "词语表",
+          "pdfPage": 136
+        },
+        {
+          "text": "何尝",
+          "source": "词语表",
+          "pdfPage": 136
+        }
+      ],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 25,
+      "recognitionCharacters": [],
+      "writingCharacters": [],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "writingCharacters",
+          "source": "写字表",
+          "pdfPages": [
+            132,
+            133
+          ],
+          "message": "教材写字表未列本课，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "词语表",
+          "pdfPages": [
+            134,
+            135,
+            136
+          ],
+          "message": "教材词语表未列本课，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    },
+    {
+      "lessonNumber": 26,
+      "recognitionCharacters": [],
+      "writingCharacters": [],
+      "words": [],
+      "sourceAbsence": [
+        {
+          "type": "source_absence",
+          "field": "recognitionCharacters",
+          "source": "目录及书末附表",
+          "pdfPages": [
+            6,
+            132,
+            133,
+            134,
+            135,
+            136
+          ],
+          "message": "六年级本册未设置识字表，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "writingCharacters",
+          "source": "写字表",
+          "pdfPages": [
+            132,
+            133
+          ],
+          "message": "教材写字表未列本课，保留空数组。",
+          "resolved": true
+        },
+        {
+          "type": "source_absence",
+          "field": "words",
+          "source": "词语表",
+          "pdfPages": [
+            134,
+            135,
+            136
+          ],
+          "message": "教材词语表未列本课，保留空数组。",
+          "resolved": true
+        }
+      ],
+      "issues": []
+    }
+  ],
+  "verification": {
+    "method": "Rendered PDF pages 132–136, visually transcribed",
+    "printedTotals": {
+      "writing": 180,
+      "words": 215
+    }
+  }
+}

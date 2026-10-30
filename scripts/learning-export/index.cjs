@@ -9,6 +9,10 @@ const { loadAuthority } = require('./authority.cjs')
 const { loadCatalog, buildCatalog, bookPageLabel } = require('./catalog.cjs')
 const { loadSourceQuestions, buildQuestions } = require('./questions.cjs')
 const { buildStudioLessons } = require('./studio.cjs')
+const { loadReadingSources, buildTextbookCards } = require('./cards.cjs')
+const { buildReadingLessons, RULES_PATH } = require('./reading-language.cjs')
+const { loadPinyinAnnotations, applyPinyinAnnotations } = require('./pinyin.cjs')
+const { loadContextCandidates } = require('./tts-context.cjs')
 const { inspectPages, materializeMedia, inputFingerprint } = require('./pages.cjs')
 const { statistics, sharedEndpoints, markdownReport } = require('./report.cjs')
 const { validateExport } = require('./validate.cjs')
@@ -32,7 +36,7 @@ function options(argv = process.argv.slice(2), env = process.env) {
   const { values } = parseArgs({ args: argv, options: {
     'source-root': { type: 'string' }, 'site-dir': { type: 'string' },
     'thinky-root': { type: 'string', default: env.THINKY_ROOT || DEFAULT_THINKY },
-    'evidence-root': { type: 'string', default: env.THINKY_ROOT || DEFAULT_EVIDENCE_ROOT },
+    'evidence-root': { type: 'string', default: env.THINKY_EVIDENCE_ROOT || DEFAULT_EVIDENCE_ROOT },
     'output-root': { type: 'string', default: path.join(WORKTREE, '.local/learning-export') },
     'validate': { type: 'string' },
     'help': { type: 'boolean', short: 'h' },
@@ -69,6 +73,8 @@ function exportContent(config) {
   guardedOutput(config.outputRoot)
   const authority = loadAuthority(config.thinkyRoot)
   check(authority.contract.LessonAuthoringSchema, 'Thinky contract dist missing LessonAuthoringSchema; coordinator must build contract v1.6 part two')
+  check(authority.contract.PinyinSourceSchema,
+    `Thinky contract at ${config.thinkyRoot} lacks pinyinSource and optional character pinyin; select a built new contract with THINKY_ROOT or --thinky-root (see docs/learning-export.md)`)
   const inputFiles = []
   const addInput = (label, filename) => {
     const file = inputFile(label, filename)
@@ -78,8 +84,6 @@ function exportContent(config) {
   const data = loadCatalog({ ...config, addInput })
   const strokes = readStrokeDocuments(config)
   const studio = buildStudioLessons({ ...config, strokeDataByCharacter: strokes.references })
-  const audio = attachCachedAudio(studio, { root: config.ttsRoot ?? WORKTREE, env: config.ttsEnv ?? process.env })
-  inputFiles.push(...audio.inputs)
   addInput('exporter/tts-overrides.json', path.join(__dirname, 'tts-overrides.json'))
   inputFiles.push(...strokes.inputFiles)
   for (const filename of studio.inputFiles) addInput(filename.startsWith(config.siteDir) ? `prototype/${path.basename(filename)}` : `evidence/${path.basename(filename)}`, filename)
@@ -95,6 +99,35 @@ function exportContent(config) {
   const questionResult = buildQuestions({ records: sourceRecords, assignment: data.assignment, catalog: data.catalog,
     evidenceDir: config.evidenceDir, contract: authority.contract, knowledgePoints: firstCatalog.knowledgePoints })
   const contentCatalog = buildCatalog({ ...data, patches: studio.patches, questions: questionResult.questions })
+  const readingBooks = loadReadingSources({ raw: data.raw, addInput })
+  const pinyinAnnotations = loadPinyinAnnotations(addInput)
+  const contextCandidates = loadContextCandidates(addInput)
+  check(pinyinAnnotations.generator.supplementalProvenance?.sha256 === inputFiles.find(file => file.label === 'prototype/lesson-studio.js').sha256,
+    'Supplemental pinyin vocabulary differs from frozen studio source')
+  addInput('reading-prep/pronunciation-rules.json', RULES_PATH)
+  const reading = buildReadingLessons({ books: contentCatalog.books, readingBooks,
+    strokeDataByCharacter: strokes.references, pronunciationRules: readJson(RULES_PATH) })
+  const cards = buildTextbookCards({ books: contentCatalog.books, raw: data.raw, readingBooks,
+    questions: questionResult.questions, questionProvenance: questionResult.provenance })
+  for (const book of contentCatalog.books) for (const { content: lesson } of book.lessons) {
+    if (cards.patches[lesson.sourceLessonId]) lesson.cards = cards.patches[lesson.sourceLessonId].cards
+    Object.assign(lesson, reading.patches[lesson.sourceLessonId])
+  }
+  const audio = attachCachedAudio({ ...studio,
+    patches: Object.fromEntries(contentCatalog.books.flatMap(book => book.lessons).map(({ content }) => [content.sourceLessonId, content])) },
+    { root: config.ttsRoot ?? WORKTREE, env: config.ttsEnv ?? process.env, contextCandidates })
+  const pinyin = applyPinyinAnnotations(contentCatalog.books, readingBooks, pinyinAnnotations)
+  // Audio contexts already read the confirmed lesson annotations via the
+  // fingerprinted candidates; refresh display coverage after applying them.
+  for (const book of reading.report.books) for (const detail of book.lessons) {
+    const lesson = contentCatalog.books.find(item => item.sourceBookId === book.sourceBookId).lessons
+      .find(item => item.content.sourceLessonId === detail.sourceLessonId).content
+    detail.wordsWithoutPinyin = (lesson.basicStages || []).filter(stage => stage.props.activity === 'words')
+      .flatMap(stage => (stage.props.words || []).filter(item => !item.pinyin).map(item => item.text))
+    detail.writingWithoutPinyin = (lesson.basicStages || []).filter(stage => stage.widget === 'hanzi-write')
+      .flatMap(stage => (stage.props.characters || []).filter(item => !item.pinyin).map(item => item.char))
+  }
+  inputFiles.push(...audio.inputs)
   const pageResult = inspectPages({ ...config, books: data.raw.books })
   for (const book of contentCatalog.books) {
     const pages = pageResult.manifest.books.find(item => item.sourceBookId === book.sourceBookId).pages
@@ -161,7 +194,11 @@ function exportContent(config) {
     checks: { ...validation.checks, packageHashAuthorityParity: { valid: true },
       frozenInputs: { valid: true, count: inputs.length }, pageInventory: { valid: true, count: pageResult.mediaSources.length } },
     issues: validation.issues, questionContractIssues: questionResult.contractIssues,
-    warnings, gaps: [...studio.gaps, ...audio.gaps],
+    warnings, gaps: [...studio.gaps, ...audio.gaps,
+      ...(validation.issues.some(issue => issue.path.endsWith('.pinyin') && /received undefined/u.test(issue.message))
+        ? ['当前 Thinky Character.pinyin / LanguageWord.pinyin 必填，无法表达源稿未注音的字词；未填占位拼音，阻断有效包。需要在 Thinky 契约及无拼音消费流程完成兼容后重新导出。'] : []),
+      ...(validation.issues.some(issue => /\.family\.\d+$/u.test(issue.path) && /pinyinSource/u.test(issue.message))
+        ? ['当前 Thinky CharacterFamily 尚不接受 pinyinSource；字族词保留同一注音来源字段，未删除字段绕过契约，需要该 schema 支持可选来源后重新导出并 validate-only。'] : [])],
     interactions: content.books.flatMap(book => book.lessons).flatMap(({ content: lesson }) =>
       [...(lesson.basicStages ?? []), ...(lesson.extension?.stages ?? [])]
         .filter(stage => RESTORED_INTERACTIONS[lesson.sourceLessonId]?.includes(stage.key))
@@ -170,10 +207,13 @@ function exportContent(config) {
           ...(stage.props.presentation ? { presentation: stage.props.presentation } : {}) }))),
     strokeData: coverage,
     audio: audio.coverage,
+    cards: cards.report,
+    chineseBasicStages: reading.report,
+    pinyin,
     authoringFiles: Object.keys(authorings).map(id => `authoring.${id}.json`),
     authoringSha256: Object.fromEntries(Object.entries(authorings).map(([id, value]) => [id, contentHash(value)])),
     mediaManifestSha256: contentHash(media),
-    books: statistics(content, pageResult.manifest, pageResult.bookEvidence),
+    books: statistics(content, pageResult.manifest, pageResult.bookEvidence, cards.report),
     assets: { physicalPages: pageResult.mediaSources.length,
       strokeDocuments: documents.length, audioFiles: audio.sources.length, uniqueMediaFiles: media.media.length },
     inputs, questionProvenance: questionResult.provenance,
@@ -239,6 +279,7 @@ function main() {
     sourceRevision: result.report.sourceRevision, books: result.report.books.map(book => ({
       sourceBookId: book.sourceBookId, lessons: book.lessons, studio: book.studio, textbookOnly: book.textbookOnly,
       questions: book.questions, knowledgePoints: book.knowledgePoints, pageImages: book.pageImages,
+      lessonsWithCards: book.lessonsWithCards, cardCount: book.cardCount, noCardLessons: book.noCardLessons,
       missingPrintedPageCount: book.missingPrintedPages.length,
     })),
     audio: { files: result.report.assets.audioFiles, deliverySupported: result.report.audio.deliverySupported,

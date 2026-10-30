@@ -8,6 +8,7 @@ const { parseArgs } = require('node:util')
 const { sha256 } = require('./common.cjs')
 const { collectAudioEntries, loadSettings, loadCredentials, readOverrides,
   prepareEntries, readManifest, readCachedAudio } = require('./tts-common.cjs')
+const { contextSourceCounts } = require('./tts-context.cjs')
 
 const ROOT = path.resolve(__dirname, '../..')
 
@@ -22,6 +23,7 @@ function atomicWrite(filename, bytes) {
 function cliOptions(argv = process.argv.slice(2), env = process.env) {
   const { values } = parseArgs({ args: argv, options: {
     'dry-run': { type: 'boolean' }, sample: { type: 'boolean' }, only: { type: 'string' }, limit: { type: 'string' },
+    book: { type: 'string', multiple: true },
     concurrency: { type: 'string', default: '2' },
     'source-root': { type: 'string' }, 'site-dir': { type: 'string' },
     'thinky-root': { type: 'string' }, 'evidence-root': { type: 'string' },
@@ -35,7 +37,7 @@ function cliOptions(argv = process.argv.slice(2), env = process.env) {
   if (limit !== undefined && (!Number.isSafeInteger(limit) || limit < 1)) throw new Error('limit 必须为正整数')
   validateSampleOptions(values.sample, values.only, limit)
   return { root: ROOT, config, dryRun: values['dry-run'] || false, sample: values.sample || false,
-    only: values.only, limit, concurrency, help: values.help }
+    only: values.only, book: values.book, limit, concurrency, help: values.help }
 }
 
 function validateSampleOptions(sample, only, limit) {
@@ -64,6 +66,16 @@ function buildPlan(entries, cacheDir, manifest, settings = {}) {
   const cachedKeys = new Set(cached.map(entry => entry.cacheKey))
   const pending = new Map(active.filter(entry => !cachedKeys.has(entry.cacheKey)).map(entry => [entry.cacheKey, entry]))
   const estimatedBillableCharacters = [...pending.values()].reduce((sum, entry) => sum + entry.charCount, 0)
+  const books = [...new Set(entries.map(entry => entry.sourceBookId).filter(Boolean))].sort().map(sourceBookId => {
+    const selected = entries.filter(entry => entry.sourceBookId === sourceBookId)
+    const activeBook = selected.filter(entry => !entry.skipped)
+    const pendingBook = new Map(activeBook.filter(entry => !cachedKeys.has(entry.cacheKey)).map(entry => [entry.cacheKey, entry]))
+    return { sourceBookId, totalEntries: selected.length, skippedEntries: selected.length - activeBook.length,
+      totalCharacters: activeBook.reduce((sum, entry) => sum + entry.charCount, 0),
+      cachedEntries: activeBook.filter(entry => cachedKeys.has(entry.cacheKey)).length,
+      uniqueNewRequests: pendingBook.size,
+      estimatedBillableCharacters: [...pendingBook.values()].reduce((sum, entry) => sum + entry.charCount, 0) }
+  })
   return {
     schemaVersion: 1, modelId: settings.modelId, languageCode: settings.languageCode,
     languageCodeEffective: Boolean(settings.languageCode && settings.modelId !== 'eleven_multilingual_v2'),
@@ -72,11 +84,19 @@ function buildPlan(entries, cacheDir, manifest, settings = {}) {
     cachedEntries: cached.length, newEntries: active.length - cached.length,
     uniqueNewRequests: pending.size, estimatedBillableCharacters,
     estimatedCredits: estimatedBillableCharacters,
+    books,
+    characterContextSources: contextSourceCounts(entries),
+    singleReadings: active.filter(entry => entry.singleReading).map(({ id, text, expectedPinyin, readingNote }) =>
+      ({ id, text, expectedPinyin, readingNote })),
     billingNote: '按实际朗读文本的 Unicode 字符数（含标点和空白）估算；相同配置和文本去重。约 1 credit/字符仅作参考，实际以账户模型费率、额度和服务端结算为准。重试可能增加计费。',
-    needsListeningReview: active.filter(entry => entry.polyphonic).map(entry => ({ id: entry.id, text: entry.text, readings: entry.polyphonic })),
-    missingWords: active.filter(entry => entry.missingWord).map(entry => ({ id: entry.id, text: entry.text, reason: '无组词' })),
-    entries: entries.map(({ id, lessonId, text, readingText, cacheKey, charCount, skipped, polyphonic, supportsAudio, kind, contextWord, missingWord }) => ({
-      id, lessonId, text, readingText, cacheKey, charCount, skipped, supportsAudio, kind, contextWord, missingWord,
+    needsListeningReview: active.filter(entry => entry.polyphonic).map(entry => ({ id: entry.id, text: entry.text,
+      readings: entry.polyphonic, expectedPinyin: entry.expectedPinyin, contextWord: entry.contextWord })),
+    missingWords: entries.filter(entry => entry.missingWord).map(entry => ({ id: entry.id, text: entry.text,
+      reason: entry.pronunciationIssue || '无组词' })),
+    entries: entries.map(({ id, lessonId, sourceBookId, text, readingText, cacheKey, charCount, skipped, polyphonic, supportsAudio, kind,
+      contextWord, missingWord, expectedPinyin, expectedPinyinSource, contextSource, contextEvidence, singleReading, readingNote, pronunciationIssue }) => ({
+      id, lessonId, sourceBookId, text, readingText, cacheKey, charCount, skipped, supportsAudio, kind, contextWord, missingWord,
+      expectedPinyin, expectedPinyinSource, contextSource, contextEvidence, singleReading, readingNote, pronunciationIssue,
       cached: Boolean(!skipped && cachedKeys.has(cacheKey)), ...(polyphonic ? { polyphonic } : {}),
     })),
   }
@@ -139,8 +159,9 @@ function acquireGenerationLock(cacheDir) {
   }
 }
 
-async function runTts({ root = ROOT, env = process.env, config, patches,
-  dryRun = false, sample = false, only, limit, concurrency = 2, fetchImpl = globalThis.fetch,
+async function runTts({ root = ROOT, env = process.env, config, patches, rawEntries, entryOverrides, contextCandidates,
+  planPath, resultPath,
+  dryRun = false, sample = false, only, book, limit, concurrency = 2, fetchImpl = globalThis.fetch,
   sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds)),
   maxRetries = 3, log = message => console.log(message), cacheDir = path.join(root, '.local/tts-cache') } = {}) {
   if (!Number.isSafeInteger(concurrency) || concurrency < 1 || concurrency > 16) throw new Error('并发数必须为 1 至 16')
@@ -152,35 +173,67 @@ async function runTts({ root = ROOT, env = process.env, config, patches,
   const apiKey = loadCredentials({ root, env })
   if (!dryRun && !apiKey) throw new Error('请配置 ELEVENLABS_API_KEY；未配置时仅允许 --dry-run')
   if (!dryRun && !settings.voiceId) throw new Error('请配置 ELEVENLABS_VOICE_ID')
-  if (!patches) {
+  if (rawEntries !== undefined && (!Array.isArray(rawEntries)
+    || rawEntries.some(entry => !entry || typeof entry.id !== 'string' || !entry.id
+      || typeof entry.text !== 'string' || !entry.text.trim() || !entry.lessonId)
+    || new Set(rawEntries.map(entry => entry.id)).size !== rawEntries.length))
+    throw new Error('读音清单条目无效或 ID 重复')
+  if (rawEntries === undefined && !patches) {
     config ||= require('./index.cjs').options([], env)
-    patches = require('./studio.cjs').buildStudioLessons(config).patches
+    const cards = require('./cards.cjs').loadCardLessons(config).patches
+    const reading = require('./reading-language.cjs').loadReadingLessonPatches(config)
+    patches = Object.fromEntries([...new Set([...Object.keys(cards), ...Object.keys(reading)])]
+      .map(id => [id, { ...cards[id], ...reading[id] }]))
+    Object.assign(patches, require('./studio.cjs').buildStudioLessons(config).patches)
   }
-  let entries = prepareEntries(collectAudioEntries(patches), readOverrides(root), settings)
+  const raw = rawEntries ?? collectAudioEntries(patches, { contextCandidates })
+  const fileOverrides = readOverrides(root)
+  const overrides = { entries: { ...fileOverrides.entries, ...entryOverrides?.entries },
+    texts: { ...fileOverrides.texts, ...entryOverrides?.texts } }
+  let entries = prepareEntries(raw, overrides, settings).map(entry => ({ ...entry,
+    skipped: entry.skipped || Boolean(entry.pronunciation?.blockers?.length) }))
+  if (book !== undefined) {
+    const books = Array.isArray(book) ? book : [book]
+    if (!books.length || books.some(id => typeof id !== 'string' || !raw.some(entry => entry.sourceBookId === id)))
+      throw new Error('未找到 --book 指定的教材 ID')
+    entries = entries.filter(entry => books.includes(entry.sourceBookId))
+  }
   if (only) {
-    if (!Object.hasOwn(patches, only)) throw new Error('未找到 --only 指定的课程 ID')
+    if (!entries.some(entry => entry.lessonId === only)) throw new Error('未找到 --only 指定的课程 ID')
     entries = entries.filter(entry => entry.lessonId === only)
   }
   if (limit !== undefined) entries = entries.slice(0, limit)
   if (sample) entries = selectSample(entries)
-  fs.mkdirSync(cacheDir, { recursive: true, mode: 0o700 })
+  if (!dryRun) fs.mkdirSync(cacheDir, { recursive: true, mode: 0o700 })
   const release = dryRun ? () => {} : acquireGenerationLock(cacheDir)
   try {
     const manifest = readManifest(cacheDir)
     const plan = buildPlan(entries, cacheDir, manifest, settings)
-    atomicWrite(path.join(cacheDir, 'plan.json'), `${JSON.stringify(plan, null, 2)}\n`)
+    // Dry-runs may run alongside a paid generation. All their output lives
+    // outside the cache, including sample listings; never acquire its lock.
+    const reportDir = dryRun ? path.join(root, '.local/tts-dry-run') : cacheDir
+    const planFilename = planPath || path.join(reportDir, 'plan.json')
+    if (dryRun && (path.resolve(planFilename) === path.resolve(cacheDir)
+      || path.resolve(planFilename).startsWith(`${path.resolve(cacheDir)}${path.sep}`)))
+      throw new Error('dry-run 报告不能写入音频缓存目录')
+    fs.mkdirSync(path.dirname(planFilename), { recursive: true, mode: 0o700 })
+    atomicWrite(planFilename, `${JSON.stringify(plan, null, 2)}\n`)
     log(`读音计划：${plan.totalEntries} 条，${plan.totalCharacters} 字符；已缓存 ${plan.cachedEntries} 条，需新生成 ${plan.newEntries} 条（去重请求 ${plan.uniqueNewRequests} 次）；预估计费 ${plan.estimatedBillableCharacters} 字符 / 约 ${plan.estimatedCredits} credits。`)
     log(`模型：${settings.modelId}；language_code：${settings.languageCode || '未指定'}（${plan.languageCodeEffective ? '生效' : '不生效'}）。`)
+    for (const item of plan.books) log(`教材 ${item.sourceBookId}：${item.totalEntries} 条，${item.totalCharacters} 字符；已缓存 ${item.cachedEntries} 条，去重待生成 ${item.uniqueNewRequests} 次 / ${item.estimatedBillableCharacters} 字符。`)
+    log(`单字上下文来源：${JSON.stringify(plan.characterContextSources)}；暂停 ${plan.skippedEntries} 条；单读 ${plan.singleReadings.length} 条。`)
+    log(`读音计划报告：${planFilename}`)
     const characterExamples = entries.filter(entry => entry.isCharacter && !entry.skipped).slice(0, 3)
     if (characterExamples.length) log(`单字朗读示例：${characterExamples.map(entry => `${entry.id} → ${entry.readingText}`).join('；')}`)
-    if (plan.missingWords.length) log(`无组词（仅朗读单字）：${plan.missingWords.map(entry => `${entry.text}（${entry.id}）`).join('、')}`)
-    if (plan.needsListeningReview.length) log(`请人工试听多音字：${plan.needsListeningReview.map(entry => `${entry.text}（${entry.id}）`).join('、')}`)
+    if (plan.missingWords.length) log(`无组词或读音待核对：共 ${plan.missingWords.length} 条（新增基础关未确认的单字暂停生成）；${plan.missingWords.slice(0, 20).map(entry => `${entry.text}（${entry.id}：${entry.reason}）`).join('、')}${plan.missingWords.length > 20 ? '；其余见 plan.json' : ''}`)
+    if (plan.needsListeningReview.length) log(`请人工试听多音字：共 ${plan.needsListeningReview.length} 条；${plan.needsListeningReview.slice(0, 20).map(entry => `${entry.text}（${entry.id}）`).join('、')}${plan.needsListeningReview.length > 20 ? '；其余见 plan.json' : ''}`)
     const writeSample = results => {
       if (!sample) return
       const statuses = new Map(results.map(item => [item.id, item.status]))
       const lines = entries.map(entry => `${entry.id}\t${entry.readingText}\t${path.resolve(cacheDir, `${entry.cacheKey}.mp3`)}\t${statuses.get(entry.id) || (readCachedAudio(cacheDir, entry, manifest) ? 'cached' : 'planned')}`)
       const listing = `条目 ID\t朗读文本\tmp3 文件绝对路径\t状态\n${lines.join('\n')}\n`
-      atomicWrite(path.join(cacheDir, 'sample.txt'), listing)
+      fs.mkdirSync(reportDir, { recursive: true, mode: 0o700 })
+      atomicWrite(path.join(reportDir, 'sample.txt'), listing)
       log(listing.trimEnd())
     }
     if (dryRun) {
@@ -239,7 +292,9 @@ async function runTts({ root = ROOT, env = process.env, config, patches,
     const summary = { plan, results, success: results.filter(item => item.status === 'success').length,
       cached: results.filter(item => item.status === 'cached').length, failed: results.filter(item => item.status === 'failed').length,
       skipped: plan.skippedEntries }
-    atomicWrite(path.join(cacheDir, 'result.json'), `${JSON.stringify({ ...summary, plan: undefined }, null, 2)}\n`)
+    const resultFilename = resultPath || path.join(cacheDir, 'result.json')
+    fs.mkdirSync(path.dirname(resultFilename), { recursive: true, mode: 0o700 })
+    atomicWrite(resultFilename, `${JSON.stringify({ ...summary, plan: undefined }, null, 2)}\n`)
     writeSample(results)
     log(`读音完成：成功 ${summary.success} 条，缓存 ${summary.cached} 条，失败 ${summary.failed} 条，跳过 ${summary.skipped} 条。`)
     return summary
@@ -249,7 +304,7 @@ async function runTts({ root = ROOT, env = process.env, config, patches,
 async function main() {
   const options = cliOptions()
   if (options.help) {
-    console.log('node scripts/learning-export/tts-elevenlabs.cjs [--dry-run] [--only LESSON_ID] [--sample | --limit N] [--concurrency 2] [--source-root DIR] [--site-dir DIR] [--thinky-root DIR] [--evidence-root DIR]')
+    console.log('node scripts/learning-export/tts-elevenlabs.cjs [--dry-run] [--book BOOK_ID (可重复)] [--only LESSON_ID] [--sample | --limit N] [--concurrency 2] [--source-root DIR] [--site-dir DIR] [--thinky-root DIR] [--evidence-root DIR]')
     return
   }
   const result = await runTts(options)
@@ -260,7 +315,7 @@ if (require.main === module) main().catch(error => {
   // Only fixed messages from our own configuration validation are printable.
   const safe = new Set(['请配置 ELEVENLABS_API_KEY；未配置时仅允许 --dry-run', '请配置 ELEVENLABS_VOICE_ID',
     '已有读音生成任务持有缓存锁；确认没有生成进程后，可删除 .local/tts-cache/.generation.lock 再运行', '无法创建读音缓存锁',
-    '并发数必须为 1 至 16', 'limit 必须为正整数', '未找到 --only 指定的课程 ID', '.env.local 配置格式无效', 'tts-overrides.json 格式无效',
+    '并发数必须为 1 至 16', 'limit 必须为正整数', '未找到 --only 指定的课程 ID', '未找到 --book 指定的教材 ID', '.env.local 配置格式无效', 'tts-overrides.json 格式无效', 'dry-run 报告不能写入音频缓存目录',
     '--sample 必须配合 --only 指定课程', '--sample 不能与 --limit 同时使用', '--sample 指定课程不足 3 个单字、3 个词语和 2 个句子'])
   const settingsError = /^ELEVENLABS_(?:STABILITY|SIMILARITY_BOOST|STYLE|SPEED) 数值范围无效$|^ELEVENLABS_USE_SPEAKER_BOOST 必须为 true 或 false$|^ELEVENLABS_OUTPUT_FORMAT 必须为 MP3 格式$/u.test(error.message || '')
   console.error(safe.has(error.message) || settingsError ? error.message : '读音生成未启动或未完成；请检查环境变量、路径和参数配置。')

@@ -1,0 +1,1832 @@
+{
+  "schemaVersion": 1,
+  "description": "配音前读音规则。上下文词为编辑提供的发音提示，不作为教材词语表新增项；拼音是期望读音，非服务端强制音素。",
+  "policies": {
+    "character": "优先教材拼音；多音字使用读音匹配的带词读。未确定读音或无上下文的单字暂停生成。",
+    "neutralTone": "轻声保留正常汉字，结合完整词语和句子交给中文模型；不机械把所有子、头、了改成轻声。",
+    "toneSandhi": "一、不与第三声变调保留汉字和语境，不把表层变调写回教材拼音；合成后试听。",
+    "poetry": "保留诗句换行和原标点；古诗文、通假字、古今异读列入试听，不添加模型专属标签。",
+    "number": "年份与标识号逐位读；数量用基数，小数逐位读小数部分，分数按分母分之分子；仅改变朗读副本。",
+    "phonics": "汉语拼音字母不读作英文。没有选定音素方案的字母段暂停普通TTS。"
+  },
+  "invalidSourceReadings": {},
+  "polyphonicContexts": {
+    "落": {
+      "luò": [
+        "落叶",
+        "篱落"
+      ],
+      "là": [
+        "丢三落四"
+      ],
+      "lào": [
+        "落枕"
+      ]
+    },
+    "降": {
+      "jiàng": [
+        "下降"
+      ],
+      "xiáng": [
+        "投降"
+      ]
+    },
+    "场": {
+      "chǎng": [
+        "广场"
+      ],
+      "cháng": [
+        "一场雨"
+      ]
+    },
+    "的": {
+      "de": [
+        "好的",
+        "弯弯的",
+        "宽宽的"
+      ],
+      "dí": [
+        "的确"
+      ],
+      "dì": [
+        "目的"
+      ]
+    },
+    "得": {
+      "de": [
+        "跑得快",
+        "烧得",
+        "睡得"
+      ],
+      "děi": [
+        "就得",
+        "真得谢谢"
+      ],
+      "dé": [
+        "得到",
+        "得救"
+      ]
+    },
+    "背": {
+      "bèi": [
+        "背诵"
+      ],
+      "bēi": [
+        "背着书包",
+        "背着年迈"
+      ]
+    },
+    "种": {
+      "zhòng": [
+        "种树",
+        "种了"
+      ],
+      "zhǒng": [
+        "种子"
+      ]
+    },
+    "都": {
+      "dōu": [
+        "都是",
+        "都参加",
+        "都明白",
+        "都来到"
+      ],
+      "dū": [
+        "首都"
+      ]
+    },
+    "乐": {
+      "lè": [
+        "快乐"
+      ],
+      "yuè": [
+        "音乐"
+      ]
+    },
+    "好": {
+      "hǎo": [
+        "好人",
+        "好多"
+      ],
+      "hào": [
+        "爱好"
+      ]
+    },
+    "当": {
+      "dāng": [
+        "当时"
+      ],
+      "dàng": [
+        "上当"
+      ]
+    },
+    "还": {
+      "hái": [
+        "还有",
+        "还是"
+      ],
+      "huán": [
+        "还给"
+      ]
+    },
+    "劲": {
+      "jìn": [
+        "使劲"
+      ],
+      "jìng": [
+        "强劲"
+      ]
+    },
+    "觉": {
+      "jiào": [
+        "睡觉"
+      ],
+      "jué": [
+        "感觉",
+        "觉得"
+      ]
+    },
+    "分": {
+      "fēn": [
+        "分开"
+      ],
+      "fèn": [
+        "水分"
+      ]
+    },
+    "鲜": {
+      "xiān": [
+        "鲜花"
+      ],
+      "xiǎn": [
+        "鲜为人知"
+      ]
+    },
+    "了": {
+      "liǎo": [
+        "了解"
+      ],
+      "le": [
+        "好了"
+      ]
+    },
+    "蚂": {
+      "mǎ": [
+        "蚂蚁"
+      ],
+      "mà": [
+        "蚂蚱"
+      ]
+    },
+    "结": {
+      "jié": [
+        "团结"
+      ],
+      "jiē": [
+        "结实",
+        "结一个苹果"
+      ]
+    },
+    "朝": {
+      "zhāo": [
+        "朝阳"
+      ],
+      "cháo": [
+        "朝向",
+        "朝我"
+      ]
+    },
+    "相": {
+      "xiāng": [
+        "相同",
+        "两相和"
+      ],
+      "xiàng": [
+        "照相"
+      ]
+    },
+    "教": {
+      "jiào": [
+        "教室"
+      ],
+      "jiāo": [
+        "教书",
+        "教喜鹊",
+        "教他们",
+        "教道"
+      ]
+    },
+    "露": {
+      "lù": [
+        "露水"
+      ],
+      "lòu": [
+        "露面"
+      ]
+    },
+    "角": {
+      "jiǎo": [
+        "牛角"
+      ],
+      "jué": [
+        "角色"
+      ]
+    },
+    "要": {
+      "yào": [
+        "需要",
+        "要出门",
+        "要去"
+      ],
+      "yāo": [
+        "要求"
+      ]
+    },
+    "呢": {
+      "ne": [
+        "好呢",
+        "劲儿呢"
+      ],
+      "ní": [
+        "呢喃"
+      ]
+    },
+    "吗": {
+      "ma": [
+        "好吗",
+        "高兴吗",
+        "下雨吗"
+      ],
+      "má": [
+        "干吗"
+      ]
+    },
+    "空": {
+      "kòng": [
+        "空地"
+      ],
+      "kōng": [
+        "天空",
+        "空中"
+      ]
+    },
+    "闷": {
+      "mēn": [
+        "闷热"
+      ],
+      "mèn": [
+        "烦闷"
+      ]
+    },
+    "啊": {
+      "a": [
+        "好啊",
+        "飘啊"
+      ],
+      "à": [
+        "啊，原来如此"
+      ],
+      "ā": [
+        "啊，祖国"
+      ],
+      "á": [
+        "啊，你说什么"
+      ],
+      "ǎ": [
+        "啊，怎么回事"
+      ]
+    },
+    "为": {
+      "wèi": [
+        "为了",
+        "为什么"
+      ],
+      "wéi": [
+        "作为"
+      ]
+    },
+    "兴": {
+      "xìng": [
+        "高兴"
+      ],
+      "xīng": [
+        "兴奋"
+      ]
+    },
+    "着": {
+      "zhe": [
+        "看着",
+        "扛着",
+        "捧着",
+        "抱着",
+        "走着"
+      ],
+      "zháo": [
+        "着火"
+      ],
+      "zhuó": [
+        "着陆"
+      ],
+      "zhāo": [
+        "高着"
+      ]
+    },
+    "干": {
+      "gàn": [
+        "干活"
+      ],
+      "gān": [
+        "干净"
+      ]
+    },
+    "啦": {
+      "la": [
+        "好啦",
+        "谢谢你啦"
+      ],
+      "lā": [
+        "哗啦"
+      ]
+    },
+    "哪": {
+      "nǎ": [
+        "哪里"
+      ],
+      "na": [
+        "天哪"
+      ],
+      "né": [
+        "哪吒"
+      ]
+    },
+    "没": {
+      "méi": [
+        "没有",
+        "没看见"
+      ],
+      "mò": [
+        "淹没"
+      ]
+    },
+    "难": {
+      "nán": [
+        "困难",
+        "难忘"
+      ],
+      "nàn": [
+        "灾难"
+      ]
+    },
+    "转": {
+      "zhuǎn": [
+        "转身"
+      ],
+      "zhuàn": [
+        "转圈"
+      ]
+    },
+    "参": {
+      "cān": [
+        "参加"
+      ],
+      "shēn": [
+        "人参"
+      ],
+      "cēn": [
+        "参差"
+      ]
+    },
+    "少": {
+      "shǎo": [
+        "多少"
+      ],
+      "shào": [
+        "少年"
+      ]
+    },
+    "中": {
+      "zhōng": [
+        "中国"
+      ],
+      "zhòng": [
+        "中弹"
+      ]
+    },
+    "和": {
+      "hé": [
+        "和平"
+      ],
+      "huò": [
+        "和弄"
+      ],
+      "huó": [
+        "和面"
+      ],
+      "hè": [
+        "应和"
+      ],
+      "hú": [
+        "和牌"
+      ]
+    },
+    "长": {
+      "cháng": [
+        "长短"
+      ],
+      "zhǎng": [
+        "长大"
+      ]
+    },
+    "喝": {
+      "hē": [
+        "喝水",
+        "喝起水"
+      ],
+      "hè": [
+        "喝彩"
+      ]
+    },
+    "处": {
+      "chù": [
+        "到处",
+        "一处"
+      ],
+      "chǔ": [
+        "处理"
+      ]
+    },
+    "答": {
+      "dá": [
+        "回答"
+      ],
+      "dā": [
+        "答应"
+      ]
+    },
+    "冲": {
+      "chōng": [
+        "冲出"
+      ],
+      "chòng": [
+        "冲着"
+      ]
+    },
+    "曾": {
+      "céng": [
+        "曾经"
+      ],
+      "zēng": [
+        "姓曾"
+      ]
+    },
+    "磨": {
+      "mò": [
+        "石磨"
+      ],
+      "mó": [
+        "磨刀"
+      ]
+    },
+    "应": {
+      "yīng": [
+        "应该"
+      ],
+      "yìng": [
+        "回应"
+      ]
+    },
+    "传": {
+      "chuán": [
+        "传说"
+      ],
+      "zhuàn": [
+        "传记"
+      ]
+    },
+    "骨": {
+      "gǔ": [
+        "骨头"
+      ],
+      "gū": [
+        "花骨朵"
+      ]
+    },
+    "漂": {
+      "piào": [
+        "漂亮"
+      ],
+      "piāo": [
+        "漂流"
+      ],
+      "piǎo": [
+        "漂白"
+      ]
+    },
+    "炸": {
+      "zhá": [
+        "油炸"
+      ],
+      "zhà": [
+        "爆炸"
+      ]
+    },
+    "舍": {
+      "shě": [
+        "舍得"
+      ],
+      "shè": [
+        "宿舍"
+      ]
+    },
+    "便": {
+      "biàn": [
+        "方便"
+      ],
+      "pián": [
+        "便宜"
+      ]
+    },
+    "唉": {
+      "ài": [
+        "唉，真可惜"
+      ],
+      "āi": [
+        "唉声叹气"
+      ]
+    },
+    "重": {
+      "zhòng": [
+        "重要"
+      ],
+      "chóng": [
+        "重新"
+      ]
+    },
+    "量": {
+      "liáng": [
+        "测量"
+      ],
+      "liàng": [
+        "力量"
+      ]
+    },
+    "佛": {
+      "fú": [
+        "仿佛"
+      ],
+      "fó": [
+        "佛像"
+      ]
+    },
+    "尽": {
+      "jǐn": [
+        "尽管"
+      ],
+      "jìn": [
+        "尽力"
+      ]
+    },
+    "任": {
+      "rèn": [
+        "任务"
+      ],
+      "rén": [
+        "姓任"
+      ]
+    },
+    "待": {
+      "dài": [
+        "等待",
+        "守株待兔"
+      ],
+      "dāi": [
+        "待着"
+      ]
+    },
+    "号": {
+      "hào": [
+        "号码"
+      ],
+      "háo": [
+        "号叫"
+      ]
+    },
+    "挑": {
+      "tiāo": [
+        "挑水"
+      ],
+      "tiǎo": [
+        "挑起事端"
+      ]
+    },
+    "系": {
+      "jì": [
+        "系鞋带",
+        "系在",
+        "系一根",
+        "系住"
+      ],
+      "xì": [
+        "关系"
+      ]
+    },
+    "曲": {
+      "qǔ": [
+        "歌曲"
+      ],
+      "qū": [
+        "弯曲"
+      ]
+    },
+    "撒": {
+      "sǎ": [
+        "撒种"
+      ],
+      "sā": [
+        "撒手"
+      ]
+    },
+    "盛": {
+      "shèng": [
+        "盛开"
+      ],
+      "chéng": [
+        "盛饭"
+      ]
+    },
+    "钉": {
+      "dìng": [
+        "钉钉子"
+      ],
+      "dīng": [
+        "钉子"
+      ]
+    },
+    "将": {
+      "jiāng": [
+        "将来"
+      ],
+      "jiàng": [
+        "将军",
+        "飞将"
+      ]
+    },
+    "薄": {
+      "báo": [
+        "薄片",
+        "薄薄"
+      ],
+      "bó": [
+        "薄雾"
+      ],
+      "bò": [
+        "薄荷"
+      ]
+    },
+    "担": {
+      "dàn": [
+        "担子"
+      ],
+      "dān": [
+        "担心"
+      ]
+    },
+    "似": {
+      "shì": [
+        "似的"
+      ],
+      "sì": [
+        "相似"
+      ]
+    },
+    "笼": {
+      "lǒng": [
+        "笼罩"
+      ],
+      "lóng": [
+        "灯笼"
+      ]
+    },
+    "论": {
+      "lùn": [
+        "讨论"
+      ],
+      "lún": [
+        "论语"
+      ]
+    },
+    "切": {
+      "qiè": [
+        "亲切"
+      ],
+      "qiē": [
+        "切开"
+      ]
+    },
+    "散": {
+      "sàn": [
+        "散步"
+      ],
+      "sǎn": [
+        "散文"
+      ]
+    },
+    "累": {
+      "lèi": [
+        "劳累"
+      ],
+      "lěi": [
+        "积累"
+      ],
+      "léi": [
+        "果实累累"
+      ]
+    },
+    "称": {
+      "chēng": [
+        "称赞"
+      ],
+      "chèn": [
+        "匀称"
+      ]
+    },
+    "折": {
+      "zhé": [
+        "折断",
+        "折颈"
+      ],
+      "zhē": [
+        "折腾"
+      ],
+      "shé": [
+        "折本"
+      ]
+    },
+    "乘": {
+      "chéng": [
+        "乘车",
+        "乘凉"
+      ],
+      "shèng": [
+        "千乘之国"
+      ]
+    },
+    "挨": {
+      "āi": [
+        "挨着"
+      ],
+      "ái": [
+        "挨打"
+      ]
+    },
+    "差": {
+      "chā": [
+        "差别"
+      ],
+      "chà": [
+        "差不多"
+      ],
+      "chāi": [
+        "出差"
+      ],
+      "cī": [
+        "参差"
+      ]
+    },
+    "屏": {
+      "bǐng": [
+        "屏息"
+      ],
+      "píng": [
+        "屏幕",
+        "屏风"
+      ]
+    },
+    "隆": {
+      "lōng": [
+        "轰隆"
+      ],
+      "lóng": [
+        "隆重"
+      ]
+    },
+    "缝": {
+      "féng": [
+        "缝补"
+      ],
+      "fèng": [
+        "缝隙"
+      ]
+    },
+    "旋": {
+      "xuàn": [
+        "旋风"
+      ],
+      "xuán": [
+        "旋转",
+        "盘旋"
+      ]
+    },
+    "臂": {
+      "bì": [
+        "手臂"
+      ],
+      "bei": [
+        "胳臂"
+      ]
+    },
+    "强": {
+      "qiáng": [
+        "强大"
+      ],
+      "qiǎng": [
+        "勉强"
+      ],
+      "jiàng": [
+        "倔强"
+      ]
+    },
+    "禁": {
+      "jìn": [
+        "禁止"
+      ],
+      "jīn": [
+        "不禁"
+      ]
+    },
+    "划": {
+      "huá": [
+        "划船"
+      ],
+      "huà": [
+        "计划"
+      ]
+    },
+    "脏": {
+      "zāng": [
+        "肮脏"
+      ],
+      "zàng": [
+        "心脏"
+      ]
+    },
+    "削": {
+      "xiāo": [
+        "削皮"
+      ],
+      "xuē": [
+        "削弱",
+        "瘦削"
+      ]
+    },
+    "晃": {
+      "huǎng": [
+        "晃眼"
+      ],
+      "huàng": [
+        "摇晃"
+      ]
+    },
+    "读": {
+      "dú": [
+        "读书",
+        "朗读"
+      ],
+      "dòu": [
+        "句读"
+      ]
+    },
+    "校": {
+      "xiào": [
+        "学校"
+      ],
+      "jiào": [
+        "校对"
+      ]
+    },
+    "知": {
+      "zhī": [
+        "知道"
+      ],
+      "zhì": [
+        "是知也"
+      ]
+    },
+    "识": {
+      "shí": [
+        "认识",
+        "知识"
+      ],
+      "zhì": [
+        "默而识之"
+      ]
+    },
+    "地": {
+      "de": [
+        "飞快地"
+      ],
+      "dì": [
+        "天地",
+        "地上"
+      ]
+    },
+    "见": {
+      "jiàn": [
+        "看见"
+      ],
+      "xiàn": [
+        "路转溪桥忽见"
+      ]
+    },
+    "行": {
+      "xíng": [
+        "行走",
+        "不行",
+        "行吗"
+      ],
+      "háng": [
+        "银行"
+      ],
+      "hàng": [
+        "树行子"
+      ]
+    },
+    "只": {
+      "zhī": [
+        "一只"
+      ],
+      "zhǐ": [
+        "只有"
+      ]
+    },
+    "数": {
+      "shǔ": [
+        "数数",
+        "数星星"
+      ],
+      "shù": [
+        "数学",
+        "无数"
+      ],
+      "shuò": [
+        "数见不鲜"
+      ]
+    },
+    "作": {
+      "zuò": [
+        "作业",
+        "工作"
+      ],
+      "zuō": [
+        "作坊"
+      ]
+    },
+    "扇": {
+      "shān": [
+        "扇风"
+      ],
+      "shàn": [
+        "扇子"
+      ]
+    },
+    "扁": {
+      "biǎn": [
+        "扁豆"
+      ],
+      "piān": [
+        "扁舟"
+      ]
+    },
+    "宿": {
+      "sù": [
+        "住宿"
+      ],
+      "xiǔ": [
+        "一宿"
+      ],
+      "xiù": [
+        "星宿"
+      ]
+    },
+    "吓": {
+      "xià": [
+        "吓人"
+      ],
+      "hè": [
+        "恐吓"
+      ]
+    },
+    "咽": {
+      "yān": [
+        "咽喉"
+      ],
+      "yàn": [
+        "吞咽"
+      ],
+      "yè": [
+        "呜咽"
+      ]
+    },
+    "咳": {
+      "ké": [
+        "咳嗽"
+      ],
+      "hāi": [
+        "咳，真怪"
+      ]
+    },
+    "圈": {
+      "quān": [
+        "圆圈"
+      ],
+      "juàn": [
+        "羊圈"
+      ],
+      "juān": [
+        "圈鸡"
+      ]
+    },
+    "打": {
+      "dǎ": [
+        "打球"
+      ],
+      "dá": [
+        "一打"
+      ]
+    },
+    "奇": {
+      "qí": [
+        "奇怪"
+      ],
+      "jī": [
+        "奇数"
+      ]
+    },
+    "斗": {
+      "dǒu": [
+        "北斗"
+      ],
+      "dòu": [
+        "战斗"
+      ]
+    },
+    "泊": {
+      "bó": [
+        "停泊"
+      ],
+      "pō": [
+        "湖泊"
+      ]
+    },
+    "别": {
+      "bié": [
+        "别人",
+        "告别"
+      ],
+      "biè": [
+        "别扭"
+      ]
+    },
+    "模": {
+      "mó": [
+        "模型",
+        "模糊"
+      ],
+      "mú": [
+        "模样"
+      ]
+    },
+    "解": {
+      "jiě": [
+        "解决"
+      ],
+      "jiè": [
+        "押解"
+      ],
+      "xiè": [
+        "姓解"
+      ]
+    },
+    "弹": {
+      "dàn": [
+        "子弹"
+      ],
+      "tán": [
+        "弹琴"
+      ]
+    },
+    "度": {
+      "dù": [
+        "温度",
+        "难度"
+      ],
+      "duó": [
+        "忖度"
+      ]
+    },
+    "恶": {
+      "è": [
+        "凶恶"
+      ],
+      "ě": [
+        "恶心"
+      ],
+      "wù": [
+        "厌恶"
+      ]
+    },
+    "率": {
+      "lǜ": [
+        "效率"
+      ],
+      "shuài": [
+        "率领"
+      ]
+    },
+    "更": {
+      "gēng": [
+        "更改"
+      ],
+      "gèng": [
+        "更加",
+        "更有"
+      ]
+    },
+    "发": {
+      "fā": [
+        "发现",
+        "出发"
+      ],
+      "fà": [
+        "头发"
+      ]
+    },
+    "血": {
+      "xuè": [
+        "鲜血"
+      ],
+      "xiě": [
+        "流血"
+      ]
+    },
+    "埋": {
+      "mái": [
+        "埋头"
+      ],
+      "mán": [
+        "埋怨"
+      ]
+    },
+    "奔": {
+      "bēn": [
+        "奔跑"
+      ],
+      "bèn": [
+        "投奔",
+        "奔向"
+      ]
+    },
+    "调": {
+      "diào": [
+        "调动"
+      ],
+      "tiáo": [
+        "调整"
+      ]
+    },
+    "绿": {
+      "lǜ": [
+        "绿色",
+        "绿丝绦"
+      ],
+      "lù": [
+        "绿林"
+      ]
+    },
+    "铺": {
+      "pū": [
+        "铺开",
+        "铺水"
+      ],
+      "pù": [
+        "店铺"
+      ]
+    },
+    "正": {
+      "zhèng": [
+        "正在",
+        "立正"
+      ],
+      "zhēng": [
+        "正月"
+      ]
+    },
+    "会": {
+      "huì": [
+        "开会",
+        "就会"
+      ],
+      "kuài": [
+        "会计"
+      ]
+    }
+  },
+  "entryOverrides": {},
+  "numericPhrases": [
+    {
+      "text": "391高地",
+      "readingText": "三九一高地",
+      "reason": "地名中的阵地编号逐位读，不按数量读。"
+    },
+    {
+      "text": "（1889）",
+      "readingText": "（一八八九）",
+      "reason": "故宫材料中的公历年份括注。"
+    }
+  ],
+  "characterContexts": {
+    "弓": {
+      "word": "弓箭",
+      "source": "editorial-pronunciation-context"
+    },
+    "枣": {
+      "word": "红枣",
+      "source": "editorial-pronunciation-context"
+    },
+    "掰": {
+      "word": "掰开",
+      "source": "editorial-pronunciation-context"
+    },
+    "喂": {
+      "word": "喂养",
+      "source": "editorial-pronunciation-context"
+    },
+    "德": {
+      "word": "品德",
+      "source": "editorial-pronunciation-context"
+    },
+    "刘": {
+      "word": "姓刘",
+      "source": "editorial-pronunciation-context"
+    },
+    "哇": {
+      "word": "好哇",
+      "source": "editorial-pronunciation-context"
+    },
+    "晒": {
+      "word": "晒太阳",
+      "source": "editorial-pronunciation-context"
+    },
+    "俩": {
+      "word": "我俩",
+      "source": "editorial-pronunciation-context"
+    },
+    "咏": {
+      "word": "歌咏",
+      "source": "editorial-pronunciation-context"
+    },
+    "贺": {
+      "word": "祝贺",
+      "source": "editorial-pronunciation-context"
+    },
+    "莺": {
+      "word": "黄莺",
+      "source": "editorial-pronunciation-context"
+    },
+    "籽": {
+      "word": "种籽",
+      "source": "editorial-pronunciation-context"
+    },
+    "茁": {
+      "word": "茁壮",
+      "source": "editorial-pronunciation-context"
+    },
+    "嘛": {
+      "word": "好嘛",
+      "source": "editorial-pronunciation-context"
+    },
+    "谣": {
+      "word": "歌谣",
+      "source": "editorial-pronunciation-context"
+    },
+    "艾": {
+      "word": "艾草",
+      "source": "editorial-pronunciation-context"
+    },
+    "赚": {
+      "word": "赚钱",
+      "source": "editorial-pronunciation-context"
+    },
+    "赔": {
+      "word": "赔钱",
+      "source": "editorial-pronunciation-context"
+    },
+    "炖": {
+      "word": "炖肉",
+      "source": "editorial-pronunciation-context"
+    },
+    "郁": {
+      "word": "郁闷",
+      "source": "editorial-pronunciation-context"
+    },
+    "驮": {
+      "word": "驮着",
+      "source": "editorial-pronunciation-context"
+    },
+    "哩": {
+      "word": "哩哩哩",
+      "source": "editorial-pronunciation-context"
+    },
+    "甫": {
+      "word": "杜甫",
+      "source": "editorial-pronunciation-context"
+    },
+    "蝉": {
+      "word": "蝉鸣",
+      "source": "editorial-pronunciation-context"
+    },
+    "咦": {
+      "word": "咦，怎么回事",
+      "source": "editorial-pronunciation-context"
+    },
+    "茵": {
+      "word": "绿茵茵",
+      "source": "editorial-pronunciation-context"
+    },
+    "驱": {
+      "word": "驱赶",
+      "source": "editorial-pronunciation-context"
+    },
+    "萧": {
+      "word": "萧瑟",
+      "source": "editorial-pronunciation-context"
+    },
+    "韵": {
+      "word": "韵味",
+      "source": "editorial-pronunciation-context"
+    },
+    "眯": {
+      "word": "眯眼",
+      "source": "editorial-pronunciation-context"
+    },
+    "哦": {
+      "word": "哦，原来如此",
+      "source": "editorial-pronunciation-context"
+    },
+    "喵": {
+      "word": "喵喵叫",
+      "source": "editorial-pronunciation-context"
+    },
+    "丫": {
+      "word": "丫头",
+      "source": "editorial-pronunciation-context"
+    },
+    "诱": {
+      "word": "诱人",
+      "source": "editorial-pronunciation-context"
+    },
+    "渣": {
+      "word": "残渣",
+      "source": "editorial-pronunciation-context"
+    },
+    "舱": {
+      "word": "船舱",
+      "source": "editorial-pronunciation-context"
+    },
+    "衔": {
+      "word": "衔着",
+      "source": "editorial-pronunciation-context"
+    },
+    "亦": {
+      "word": "人云亦云",
+      "source": "editorial-pronunciation-context"
+    },
+    "皆": {
+      "word": "皆大欢喜",
+      "source": "editorial-pronunciation-context"
+    },
+    "灶": {
+      "word": "炉灶",
+      "source": "editorial-pronunciation-context"
+    },
+    "沾": {
+      "word": "沾水",
+      "source": "editorial-pronunciation-context"
+    },
+    "旷": {
+      "word": "空旷",
+      "source": "editorial-pronunciation-context"
+    },
+    "膜": {
+      "word": "薄膜",
+      "source": "editorial-pronunciation-context"
+    },
+    "瞎": {
+      "word": "瞎子",
+      "source": "editorial-pronunciation-context"
+    },
+    "冀": {
+      "word": "希冀",
+      "source": "editorial-pronunciation-context"
+    },
+    "翘": {
+      "word": "翘尾巴",
+      "source": "editorial-pronunciation-context"
+    },
+    "摊": {
+      "word": "摆摊",
+      "source": "editorial-pronunciation-context"
+    },
+    "贩": {
+      "word": "商贩",
+      "source": "editorial-pronunciation-context"
+    },
+    "拽": {
+      "word": "拉拽",
+      "source": "editorial-pronunciation-context"
+    },
+    "啃": {
+      "word": "啃骨头",
+      "source": "editorial-pronunciation-context"
+    },
+    "馋": {
+      "word": "嘴馋",
+      "source": "editorial-pronunciation-context"
+    },
+    "墨": {
+      "word": "墨水",
+      "source": "editorial-pronunciation-context"
+    },
+    "溅": {
+      "word": "飞溅",
+      "source": "editorial-pronunciation-context"
+    },
+    "颠": {
+      "word": "颠倒",
+      "source": "editorial-pronunciation-context"
+    },
+    "猪": {
+      "word": "小猪",
+      "source": "editorial-pronunciation-context"
+    },
+    "揉": {
+      "word": "揉面",
+      "source": "editorial-pronunciation-context"
+    },
+    "夹": {
+      "word": "夹袄",
+      "source": "editorial-pronunciation-context"
+    },
+    "胶": {
+      "word": "胶水",
+      "source": "editorial-pronunciation-context"
+    },
+    "嫌": {
+      "word": "嫌弃",
+      "source": "editorial-pronunciation-context"
+    },
+    "盐": {
+      "word": "食盐",
+      "source": "editorial-pronunciation-context"
+    },
+    "昧": {
+      "word": "愚昧",
+      "source": "editorial-pronunciation-context"
+    },
+    "穗": {
+      "word": "麦穗",
+      "source": "editorial-pronunciation-context"
+    },
+    "吻": {
+      "word": "亲吻",
+      "source": "editorial-pronunciation-context"
+    },
+    "蛾": {
+      "word": "飞蛾",
+      "source": "editorial-pronunciation-context"
+    },
+    "忌": {
+      "word": "顾忌",
+      "source": "editorial-pronunciation-context"
+    },
+    "策": {
+      "word": "策略",
+      "source": "editorial-pronunciation-context"
+    },
+    "评": {
+      "word": "评论",
+      "source": "editorial-pronunciation-context"
+    },
+    "逊": {
+      "word": "谦逊",
+      "source": "editorial-pronunciation-context"
+    },
+    "曰": {
+      "word": "子曰",
+      "source": "editorial-pronunciation-context"
+    },
+    "溺": {
+      "word": "溺水",
+      "source": "editorial-pronunciation-context"
+    },
+    "拣": {
+      "word": "挑拣",
+      "source": "editorial-pronunciation-context"
+    },
+    "浆": {
+      "word": "豆浆",
+      "source": "editorial-pronunciation-context"
+    },
+    "颂": {
+      "word": "歌颂",
+      "source": "editorial-pronunciation-context"
+    },
+    "砖": {
+      "word": "砖头",
+      "source": "editorial-pronunciation-context"
+    },
+    "鹅": {
+      "word": "白鹅",
+      "source": "editorial-pronunciation-context"
+    },
+    "捶": {
+      "word": "捶打",
+      "source": "editorial-pronunciation-context"
+    },
+    "吁": {
+      "word": "吁，停住",
+      "source": "editorial-pronunciation-context"
+    },
+    "帅": {
+      "word": "帅气",
+      "source": "editorial-pronunciation-context"
+    },
+    "溃": {
+      "word": "崩溃",
+      "source": "editorial-pronunciation-context"
+    },
+    "戎": {
+      "word": "戎装",
+      "source": "editorial-pronunciation-context"
+    },
+    "菲": {
+      "word": "芳菲",
+      "source": "editorial-pronunciation-context"
+    },
+    "抛": {
+      "word": "抛开",
+      "source": "editorial-pronunciation-context"
+    },
+    "魏": {
+      "word": "姓魏",
+      "source": "editorial-pronunciation-context"
+    },
+    "炕": {
+      "word": "火炕",
+      "source": "editorial-pronunciation-context"
+    },
+    "鬼": {
+      "word": "鬼怪",
+      "source": "editorial-pronunciation-context"
+    },
+    "箩": {
+      "word": "箩筐",
+      "source": "editorial-pronunciation-context"
+    },
+    "亩": {
+      "word": "田亩",
+      "source": "editorial-pronunciation-context"
+    },
+    "哟": {
+      "word": "哎哟",
+      "source": "editorial-pronunciation-context"
+    },
+    "嚓": {
+      "word": "嚓嚓",
+      "source": "editorial-pronunciation-context"
+    },
+    "嗒": {
+      "word": "滴嗒",
+      "source": "editorial-pronunciation-context"
+    },
+    "睑": {
+      "word": "眼睑",
+      "source": "editorial-pronunciation-context"
+    },
+    "泻": {
+      "word": "腹泻",
+      "source": "editorial-pronunciation-context"
+    },
+    "碉": {
+      "word": "碉堡",
+      "source": "editorial-pronunciation-context"
+    },
+    "廉": {
+      "word": "廉洁",
+      "source": "editorial-pronunciation-context"
+    },
+    "卿": {
+      "word": "爱卿",
+      "source": "editorial-pronunciation-context"
+    },
+    "隼": {
+      "word": "游隼",
+      "source": "editorial-pronunciation-context"
+    },
+    "曼": {
+      "word": "曼妙",
+      "source": "editorial-pronunciation-context"
+    },
+    "剖": {
+      "word": "解剖",
+      "source": "editorial-pronunciation-context"
+    },
+    "嘈": {
+      "word": "嘈杂",
+      "source": "editorial-pronunciation-context"
+    },
+    "殴": {
+      "word": "殴打",
+      "source": "editorial-pronunciation-context"
+    },
+    "禽": {
+      "word": "家禽",
+      "source": "editorial-pronunciation-context"
+    },
+    "筛": {
+      "word": "筛子",
+      "source": "editorial-pronunciation-context"
+    },
+    "酿": {
+      "word": "酿酒",
+      "source": "editorial-pronunciation-context"
+    },
+    "偎": {
+      "word": "依偎",
+      "source": "editorial-pronunciation-context"
+    },
+    "筐": {
+      "word": "竹筐",
+      "source": "editorial-pronunciation-context"
+    },
+    "拗": {
+      "word": "执拗",
+      "source": "editorial-pronunciation-context"
+    },
+    "邸": {
+      "word": "府邸",
+      "source": "editorial-pronunciation-context"
+    },
+    "熏": {
+      "word": "熏陶",
+      "source": "editorial-pronunciation-context"
+    },
+    "亥": {
+      "word": "亥时",
+      "source": "editorial-pronunciation-context"
+    },
+    "龚": {
+      "word": "姓龚",
+      "source": "editorial-pronunciation-context"
+    },
+    "恃": {
+      "word": "有恃无恐",
+      "source": "editorial-pronunciation-context"
+    },
+    "惶": {
+      "word": "惶恐",
+      "source": "editorial-pronunciation-context"
+    },
+    "胎": {
+      "word": "胎儿",
+      "source": "editorial-pronunciation-context"
+    },
+    "兜": {
+      "word": "衣兜",
+      "source": "editorial-pronunciation-context"
+    },
+    "缴": {
+      "word": "缴纳",
+      "source": "editorial-pronunciation-context"
+    },
+    "铠": {
+      "word": "铠甲",
+      "source": "editorial-pronunciation-context"
+    },
+    "肋": {
+      "word": "肋骨",
+      "source": "editorial-pronunciation-context"
+    },
+    "宸": {
+      "word": "宸宇",
+      "source": "editorial-pronunciation-context"
+    },
+    "淳": {
+      "word": "淳朴",
+      "source": "editorial-pronunciation-context"
+    },
+    "暝": {
+      "word": "暝色",
+      "source": "editorial-pronunciation-context"
+    },
+    "浣": {
+      "word": "浣洗",
+      "source": "editorial-pronunciation-context"
+    },
+    "愈": {
+      "word": "痊愈",
+      "source": "editorial-pronunciation-context"
+    },
+    "酥": {
+      "word": "酥软",
+      "source": "editorial-pronunciation-context"
+    },
+    "幔": {
+      "word": "帷幔",
+      "source": "editorial-pronunciation-context"
+    },
+    "矣": {
+      "word": "足矣",
+      "source": "editorial-pronunciation-context"
+    },
+    "煞": {
+      "word": "煞白",
+      "source": "editorial-pronunciation-context"
+    },
+    "琐": {
+      "word": "烦琐",
+      "source": "editorial-pronunciation-context"
+    },
+    "侣": {
+      "word": "伴侣",
+      "source": "editorial-pronunciation-context"
+    },
+    "窥": {
+      "word": "窥视",
+      "source": "editorial-pronunciation-context"
+    },
+    "丸": {
+      "word": "药丸",
+      "source": "editorial-pronunciation-context"
+    },
+    "俊": {
+      "word": "俊俏",
+      "source": "editorial-pronunciation-context"
+    },
+    "谜": {
+      "word": "谜语",
+      "source": "editorial-pronunciation-context"
+    },
+    "淌": {
+      "word": "流淌",
+      "source": "editorial-pronunciation-context"
+    },
+    "嘿": {
+      "word": "嘿嘿",
+      "source": "editorial-pronunciation-context"
+    },
+    "倚": {
+      "word": "倚靠",
+      "source": "editorial-pronunciation-context"
+    },
+    "惴": {
+      "word": "惴惴不安",
+      "source": "editorial-pronunciation-context"
+    },
+    "仓": {
+      "word": "仓库",
+      "source": "editorial-pronunciation-context"
+    },
+    "拜": {
+      "word": "拜访",
+      "source": "editorial-pronunciation-context"
+    },
+    "毡": {
+      "word": "毡帽",
+      "source": "editorial-pronunciation-context"
+    }
+  },
+  "neutralToneWords": {
+    "孩子": "háizi",
+    "时候": "shíhou",
+    "事情": "shìqing",
+    "眼睛": "yǎnjing",
+    "耳朵": "ěrduo",
+    "石头": "shítou",
+    "木头": "mùtou",
+    "骨头": "gǔtou",
+    "朋友": "péngyou",
+    "先生": "xiānsheng",
+    "喜欢": "xǐhuan",
+    "告诉": "gàosu",
+    "认识": "rènshi",
+    "明白": "míngbai",
+    "暖和": "nuǎnhuo",
+    "舒服": "shūfu",
+    "商量": "shāngliang",
+    "咱们": "zánmen",
+    "你们": "nǐmen",
+    "我们": "wǒmen"
+  }
+}

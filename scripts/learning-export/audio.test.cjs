@@ -42,12 +42,19 @@ test('all converted audio targets are bundled, supported props validate, and abs
   const env = { ELEVENLABS_VOICE_ID: 'test-voice', ELEVENLABS_API_KEY: secret }
   try {
     const studio = buildStudioLessons(config)
+    const studioLessonIds = new Set(Object.keys(studio.patches))
+    const studioOnly = items => items.filter(item => studioLessonIds.has(item.lessonId || item.id.split('/')[0]))
     const entries = prepareEntries(collectAudioEntries(studio.patches), {}, loadSettings({ root, env }))
+    assert.equal(entries.length, 125, 'the existing studio lesson collection must not change')
     assert.ok(entries.some(item => item.id.endsWith('/whole')))
     assert.ok(entries.some(item => item.id.includes('/family/')))
     assert.ok(entries.some(item => item.id.includes('/pairs/')))
     const missing = entries.find(item => item.isCharacter)
-    cacheEntries(root, entries.filter(item => item.id !== missing.id && item.cacheKey !== missing.cacheKey))
+    const readingPatches = require('./reading-language.cjs').loadReadingLessonPatches(config)
+    const newEntries = prepareEntries(collectAudioEntries(readingPatches), {}, loadSettings({ root, env }))
+    const newCached = ['sentence', 'whole', 'character', 'word'].map(kind => newEntries.find(entry => entry.kind === kind))
+    assert.ok(newCached.every(Boolean))
+    cacheEntries(root, [...entries.filter(item => item.id !== missing.id && item.cacheKey !== missing.cacheKey), ...newCached])
     const result = exportContent({ ...config, ttsRoot: root, ttsEnv: env, outputRoot })
     assert.equal(result.report.valid, true, JSON.stringify(result.report.issues))
     for (const name of fs.readdirSync(result.outputDir).filter(name => name !== 'media'))
@@ -66,20 +73,26 @@ test('all converted audio targets are bundled, supported props validate, and abs
       else assert.equal(entry.target.audio, undefined)
     }
     assert.ok(result.report.audio.entries.some(item => item.status === 'missing'))
-    const newTargets = collectAudioEntries(lessons).filter(item => item.id.includes('/family/') || item.id.endsWith('/whole'))
+    const newTargets = studioOnly(collectAudioEntries(lessons)).filter(item => item.id.includes('/family/') || item.id.endsWith('/whole'))
     assert.ok(newTargets.length > 0)
     for (const entry of newTargets) {
       const record = result.report.audio.entries.find(item => item.id === entry.id)
       assert.equal(record.status, 'attached', entry.id)
       assert.deepEqual(entry.target.audio, { sha256: record.sha256, kind: 'audio' })
     }
-    assert.ok(result.report.audio.entries.every(item => item.status !== 'contract-unsupported'))
+    assert.ok(studioOnly(result.report.audio.entries).every(item => item.status !== 'contract-unsupported'))
+    for (const entry of newCached) {
+      const actual = collectAudioEntries(lessons).find(item => item.id === entry.id)
+      assert.equal(result.report.audio.entries.find(item => item.id === entry.id).status, 'attached')
+      assert.equal(actual.target.audio.kind, 'audio')
+    }
+    assert.ok(result.report.audio.entries.some(item => readingPatches[item.lessonId] && item.status === 'missing'))
     const missingWords = entries.filter(item => item.missingWord)
       .map(({ id, text }) => ({ id, text, reason: '无组词' }))
     assert.ok(missingWords.length > 0, 'fixture includes characters without lesson context words')
-    assert.deepEqual(result.report.audio.missingWords, missingWords)
+    assert.deepEqual(studioOnly(result.report.audio.missingWords), missingWords)
     const savedReport = JSON.parse(fs.readFileSync(path.join(result.outputDir, 'report.json'), 'utf8'))
-    assert.deepEqual(savedReport.audio.missingWords, missingWords)
+    assert.deepEqual(studioOnly(savedReport.audio.missingWords), missingWords)
     for (const entry of entries) {
       const saved = savedReport.audio.entries.find(item => item.id === entry.id)
       assert.equal(saved.readingText, entry.readingText)
@@ -88,7 +101,7 @@ test('all converted audio targets are bundled, supported props validate, and abs
         assert.equal(saved.readingNote, '无组词')
       }
     }
-    const counts = result.report.audio.lessons
+    const counts = studioOnly(result.report.audio.lessons)
     assert.equal(counts.reduce((n, x) => n + x.total, 0), entries.length)
     assert.ok(counts.every(x => x.total === x.withAudio + x.missingAudio))
     assert.ok(counts.every(x => x.withAudio === x.attached && x.unsupported === 0))
@@ -136,3 +149,77 @@ test('entry-specific word overrides do not overwrite the shared dictation word r
     assert.notEqual(result[0].target.audio.sha256, result[1].target.audio.sha256)
   } finally { fs.rmSync(root, { recursive: true, force: true }) }
 })
+
+test('cached textbook card readings are reported without adding unsupported audio to cards', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'export-card-audio-'))
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }))
+  const env = { ELEVENLABS_VOICE_ID: 'test-voice' }
+  const patch = { level: 'textbook-only', cards: [
+    { key: 'recognize-yang', kind: 'character', label: '扬', prompt: '读一读。', answer: 'yáng；组词：飘扬' },
+    { key: 'poem-first', kind: 'reading', label: '第一句', prompt: '迟日江山丽。', answer: '读得流畅。' },
+  ] }
+  const input = { patches: { lesson: patch } }, original = structuredClone(patch)
+  const entries = prepareEntries(collectAudioEntries(input.patches), {}, loadSettings({ root, env }))
+  cacheEntries(root, entries)
+  const result = attachCachedAudio(input, { root, env })
+  assert.equal(result.coverage.entries.length, entries.length)
+  assert.equal(result.sources.length, 0, 'unreferenced card recordings must not enter package media')
+  assert.ok(result.coverage.entries.every(entry => entry.status === 'contract-unsupported'))
+  assert.equal(result.coverage.lessons[0].attached, 0)
+  assert.equal(result.coverage.lessons[0].unsupported, entries.length)
+  assert.deepEqual(patch, original)
+  assert.ok(patch.cards.every(card => !Object.hasOwn(card, 'audio')))
+})
+
+for (const byteLength of [2 * 1024 * 1024, 2 * 1024 * 1024 + 1]) {
+  test(`cached whole-lesson audio at ${byteLength} bytes respects the 2 MiB contract limit`, t => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'export-audio-size-'))
+    t.after(() => fs.rmSync(root, { recursive: true, force: true }))
+    const env = { ELEVENLABS_VOICE_ID: 'test-voice' }
+    const input = { patches: { lesson: { basicStages: [{ key: 'reading', widget: 'read-aloud', props: {
+      sentences: [{ id: 'first', text: '山坡上的花开了。' }, { id: 'second', text: '小朋友一起看花。' }],
+    } }] } } }
+    const entries = prepareEntries(collectAudioEntries(input.patches), {}, loadSettings({ root, env }))
+    const whole = entries.find(entry => entry.kind === 'whole')
+    assert.ok(whole)
+    const cacheDir = cacheEntries(root, [whole])
+    const filename = path.join(cacheDir, `${whole.cacheKey}.mp3`)
+    const bytes = Buffer.alloc(byteLength)
+    fs.readFileSync(filename).copy(bytes)
+    fs.writeFileSync(filename, bytes)
+    const digest = sha256(bytes)
+    const manifestPath = path.join(cacheDir, 'manifest.json')
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+    manifest.entries[whole.id].sha256 = digest
+    fs.writeFileSync(manifestPath, jsonBytes(manifest))
+    const originalManifest = fs.readFileSync(manifestPath)
+
+    const result = attachCachedAudio(input, { root, env })
+    const actual = collectAudioEntries(input.patches).find(entry => entry.id === whole.id)
+    const record = result.coverage.entries.find(entry => entry.id === whole.id)
+    const rejected = byteLength > 2 * 1024 * 1024
+    assert.equal(record.status, rejected ? 'contract-unsupported' : 'attached')
+    assert.equal(record.sha256, digest)
+    assert.deepEqual(result.inputs, [{ label: `tts/${whole.id}`, path: filename, sha256: digest }])
+    assert.deepEqual(result.coverage.lessons, [{ lessonId: 'lesson', total: 3, withAudio: 1,
+      missingAudio: 2, attached: rejected ? 0 : 1, unsupported: rejected ? 1 : 0, skipped: 0 }])
+    if (rejected) {
+      const reason = 'Audio exceeds 2 MiB size limit'
+      assert.equal(actual.target.audio, undefined)
+      assert.deepEqual(result.sources, [])
+      assert.equal(record.rejectionReason, reason)
+      assert.equal(record.byteLength, byteLength)
+      assert.deepEqual(result.coverage.rejectedMedia, [{ id: whole.id, text: whole.text, byteLength, reason }])
+    } else {
+      assert.deepEqual(actual.target.audio, { sha256: digest, kind: 'audio' })
+      assert.equal(result.sources.length, 1)
+      assert.equal(result.sources[0].size, byteLength)
+      assert.equal(result.sources[0].sha256, digest)
+      assert.deepEqual(result.sources[0].bytes, bytes)
+      assert.equal(record.rejectionReason, undefined)
+      assert.deepEqual(result.coverage.rejectedMedia, [])
+    }
+    assert.deepEqual(fs.readFileSync(filename), bytes, 'attachment must preserve the original cached recording')
+    assert.deepEqual(fs.readFileSync(manifestPath), originalManifest, 'attachment must preserve the cache manifest')
+  })
+}
