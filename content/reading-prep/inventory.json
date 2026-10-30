@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "scope": "Chinese numbered reading/recognition lessons in current local textbook assets; phonics separately",
+  "books": [
+    {
+      "bookId": "chinese-g1up-2026",
+      "pdfPath": "/Users/shouzongchang/Documents/ZCTD/ChinaTextbookStudyFree/apps/web/public/textbooks/chinese-g1up-2026/book.pdf",
+      "sha256": "382950551037d929daa105e17c28a239f3096b272c5519d51e97c164e75036b5",
+      "pageCount": 118,
+      "status": "prepared",
+      "editionClaim": "local-current-asset; 2026 is an asset ID, not publication year",
+      "adjacentFiles": [],
+      "expectedLessonCount": 18,
+      "expectedPhonicsCount": 14
+    },
+    {
+      "bookId": "chinese-g1down-2026",
+      "pdfPath": "/Users/shouzongchang/Documents/ZCTD/ChinaTextbookStudyFree/apps/web/public/textbooks/chinese-g1down-2026/book.pdf",
+      "sha256": "610b101c9e79146749e47a950dadbda35885b75d185bb6c8bd26b79926c02fae",
+      "pageCount": 127,
+      "status": "prepared",
+      "editionClaim": "local-current-asset; 2026 is an asset ID, not publication year",
+      "adjacentFiles": [],
+      "expectedLessonCount": 28
+    },
+    {
+      "bookId": "chinese-g2up-2026",
+      "pdfPath": "/Users/shouzongchang/Documents/ZCTD/ChinaTextbookStudyFree/apps/web/public/textbooks/chinese-g2up-2026/book.pdf",
+      "sha256": "6fc53aff8729ac6a4d9065333432559e07e0e40d96576c3b32c43527a47eeda8",
+      "pageCount": 126,
+      "status": "prepared",
+      "editionClaim": "local-current-asset; 2026 is an asset ID, not publication year",
+      "adjacentFiles": [],
+      "expectedLessonCount": 27
+    },
+    {
+      "bookId": "chinese-g2down-2026",
+      "pdfPath": "/Users/shouzongchang/Documents/ZCTD/ChinaTextbookStudyFree/apps/web/public/textbooks/chinese-g2down-2026/book.pdf",
+      "sha256": "7f4e31d5da011cbabd27f58a5244b244614929e0a6b3286944c8fa419b11fe25",
+      "pageCount": 130,
+      "status": "prepared",
+      "editionClaim": "local-current-asset; 2026 is an asset ID, not publication year",
+      "adjacentFiles": [],
+      "expectedLessonCount": 28
+    },
+    {
+      "bookId": "chinese-g3up-2026",
+      "pdfPath": "/Users/shouzongchang/Documents/ZCTD/ChinaTextbookStudyFree/apps/web/public/textbooks/chinese-g3up-2026/book.pdf",
+      "sha256": "3f3780c85933c3af679f410d7ccfc365507847a13f0358bf012c77860be8f72a",
+      "pageCount": 124,
+      "status": "prepared",
+      "editionClaim": "local-current-asset; 2026 is an asset ID, not publication year",
+      "adjacentFiles": [],
+      "expectedLessonCount": 26
+    },
+    {
+      "bookId": "chinese-g3down-2026",
+      "pdfPath": "/Users/shouzongchang/Documents/ZCTD/ChinaTextbookStudyFree/apps/web/public/textbooks/chinese-g3down-2026/book.pdf",
+      "sha256": "971b1697384b9f397c5d29412486cc6803e9d4329895085e68720c5007871121",
+      "pageCount": 126,
+      "status": "prepared",
+      "editionClaim": "local-current-asset; 2026 is an asset ID, not publication year",
+      "adjacentFiles": [],
+      "expectedLessonCount": 27
+    },
+    {
+      "bookId": "chinese-g4up-2026",
+      "pdfPath": "/Users/shouzongchang/Documents/ZCTD/ChinaTextbookStudyFree/apps/web/public/textbooks/chinese-g4up-2026/book.pdf",
+      "sha256": "439c61d66f18b0a7bbead2f0274dd76a8802585179f7ffe42793c602b1c90f43",
+      "pageCount": 138,
+      "status": "prepared",
+      "editionClaim": "local-current-asset; 2026 is an asset ID, not publication year",
+      "adjacentFiles": [],
+      "expectedLessonCount": 27
+    },
+    {
+      "bookId": "chinese-g5up-2026",
+      "pdfPath": "/Users/shouzongchang/Documents/ZCTD/ChinaTextbookStudyFree/apps/web/public/textbooks/chinese-g5up-2026/book.pdf",
+      "sha256": "49968467aa3cea89e25a88f111e41cdb1ba21eeda8828bd0ed83ead2774b3f7e",
+      "pageCount": 130,
+      "status": "prepared",
+      "editionClaim": "local-current-asset; 2026 is an asset ID, not publication year",
+      "adjacentFiles": [],
+      "expectedLessonCount": 25
+    },
+    {
+      "bookId": "chinese-g6up-2026",
+      "pdfPath": "/Users/shouzongchang/Documents/ZCTD/ChinaTextbookStudyFree/apps/web/public/textbooks/chinese-g6up-2026/book.pdf",
+      "sha256": "6033314386cab7e6877252b41c2216936e0d630b7d8fe9c3bd10be180bb92814",
+      "pageCount": 138,
+      "status": "prepared",
+      "editionClaim": "local-current-asset; 2026 is an asset ID, not publication year",
+      "adjacentFiles": [],
+      "expectedLessonCount": 26
+    }
+  ],
+  "missingLocalCurrentBooks": [
+    "chinese-g4down",
+    "chinese-g5down",
+    "chinese-g6down"
+  ]
+}

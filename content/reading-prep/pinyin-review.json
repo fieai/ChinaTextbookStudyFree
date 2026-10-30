@@ -1,0 +1,1969 @@
+{
+  "schemaVersion": 1,
+  "instructions": {
+    "priority": "教材明确拼音 > 人工核对 reviewed > 词典 dictionary；未决条目省略 pinyin。",
+    "toneSandhi": "教材词语表的标调惯例尚未确认；含一/不的词合并核对，建议统一按本调 yī / bù 处理。顶层 decision.yiBuToneStyle 填 original（本调）或 sandhi（变调），未决定为 null；不改 TTS 朗读文本。",
+    "review": "编辑 pinyin-review.json：逐条 decision 填完整拼音（例如 rè nao）或 hide，可覆盖全局一/不决定；重跑本脚本并重新导出。Markdown 勾选框仅供阅读，JSON decision 才会生效。",
+    "fingerprint": "decision 绑定条目、课文/词语上下文、教材已知读音、规则和词典版本；指纹变化的旧决定进入 staleDecisions，不自动沿用。",
+    "polyphonicCharacter": "缺注音字优先借同课/同册/九册教材的唯一读音；有多个教材读音时用本课词语词典读音筛选；上下文冲突或无法判断则隐藏。",
+    "dictionary": "词组词典已匹配的字不因异读送审；未收词仅检查内置常用多音字和九册教材/规则中实际出现至少两种读音的字。轻声仅认常见词或叠词，词典已标轻声且与规则一致则直接采用。"
+  },
+  "decision": {
+    "yiBuToneStyle": "sandhi"
+  },
+  "entries": [
+    {
+      "id": "chinese-g3up-2026:8:words:意思",
+      "fingerprint": "41c9cfc822b567e4d9e15a6cfc8ffc915601eb2be4c5904b51048fc206b89f1c",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 8,
+      "lessonTitle": "总也倒不了的老屋",
+      "field": "words",
+      "itemKey": "意思",
+      "text": "意思",
+      "suggestedPinyin": "yì si",
+      "reasons": [
+        "教材读音冲突：思 建议 si，教材已知 sī"
+      ],
+      "reasonCategories": [
+        "textbookConflict"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "意": [
+          "yì",
+          "yī"
+        ],
+        "思": [
+          "sī",
+          "sāi"
+        ]
+      },
+      "decision": "yì si"
+    },
+    {
+      "id": "chinese-g3up-2026:12:words:大吃一惊",
+      "fingerprint": "a6eecad4c6aeb84cd4d51f3cf80f3b6b070b990c82242ccb8ac3aa22854f5349",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 12,
+      "lessonTitle": "在牛肚子里旅行",
+      "field": "words",
+      "itemKey": "大吃一惊",
+      "text": "大吃一惊",
+      "suggestedPinyin": "dà chī yī jīng",
+      "reasons": [
+        "教材读音冲突：大 建议 dà，教材已知 dài",
+        "一/不变调：建议统一展示本调 yī / bù，教材惯例待全局确认"
+      ],
+      "reasonCategories": [
+        "textbookConflict",
+        "yiBuTone"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "大": [
+          "dà",
+          "dài",
+          "tài"
+        ],
+        "吃": [
+          "chī",
+          "qī"
+        ],
+        "一": [
+          "yī",
+          "yí",
+          "yì"
+        ],
+        "惊": [
+          "jīng",
+          "liáng"
+        ]
+      },
+      "yiBuSuggestions": {
+        "original": "dà chī yī jīng",
+        "sandhi": "dà chī yì jīng"
+      },
+      "decision": "dà chī yì jīng"
+    },
+    {
+      "id": "chinese-g3up-2026:16:words:鹿角",
+      "fingerprint": "9736e00ae13f07d5b032538f797793e1a0744006d64bd98c1abfec1926df757c",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 16,
+      "lessonTitle": "富饶的西沙群岛",
+      "field": "words",
+      "itemKey": "鹿角",
+      "text": "鹿角",
+      "suggestedPinyin": "lù jiǎo",
+      "reasons": [
+        "教材读音冲突：角 建议 jiǎo，教材已知 jué",
+        "未收词含常用多音字：角"
+      ],
+      "reasonCategories": [
+        "textbookConflict",
+        "polyphonicUnlisted"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "鹿": [
+          "lù",
+          "lǘ"
+        ],
+        "角": [
+          "jiǎo",
+          "jué",
+          "lù",
+          "gǔ"
+        ]
+      },
+      "decision": "lù jiǎo"
+    },
+    {
+      "id": "chinese-g3up-2026:21:words:大自然",
+      "fingerprint": "f85db0cd6f012a307e54d3a6049b859f888ad13031d81cadff89cdcc6d681e05",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 21,
+      "lessonTitle": "大自然的声音",
+      "field": "words",
+      "itemKey": "大自然",
+      "text": "大自然",
+      "suggestedPinyin": "dà zì rán",
+      "reasons": [
+        "教材读音冲突：大 建议 dà，教材已知 dài"
+      ],
+      "reasonCategories": [
+        "textbookConflict"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "大": [
+          "dà",
+          "dài",
+          "tài"
+        ],
+        "自": [
+          "zì"
+        ],
+        "然": [
+          "rán"
+        ]
+      },
+      "decision": "dà zì rán"
+    },
+    {
+      "id": "chinese-g3down-2026:6:words:温和",
+      "fingerprint": "915edd6623823d40336d15e4dbc50b3a74bcbf32b5e88ceb357bc3b138da08cc",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 6,
+      "lessonTitle": "会摇尾巴的狼",
+      "field": "words",
+      "itemKey": "温和",
+      "text": "温和",
+      "suggestedPinyin": "wēn hé",
+      "reasons": [
+        "教材读音冲突：和 建议 hé，教材已知 huò"
+      ],
+      "reasonCategories": [
+        "textbookConflict"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "温": [
+          "wēn",
+          "yùn"
+        ],
+        "和": [
+          "hé",
+          "hè",
+          "hú",
+          "huó",
+          "huò",
+          "huo"
+        ]
+      },
+      "decision": "wēn hé"
+    },
+    {
+      "id": "chinese-g3down-2026:6:words:相信",
+      "fingerprint": "6997f9d73b76019e7393ebc10264c829570f07cd1cdd53f3f581eb05eedc81dc",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 6,
+      "lessonTitle": "会摇尾巴的狼",
+      "field": "words",
+      "itemKey": "相信",
+      "text": "相信",
+      "suggestedPinyin": "xiāng xìn",
+      "reasons": [
+        "教材读音冲突：相 建议 xiāng，教材已知 xiàng"
+      ],
+      "reasonCategories": [
+        "textbookConflict"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "相": [
+          "xiāng",
+          "xiàng"
+        ],
+        "信": [
+          "xìn",
+          "shēn"
+        ]
+      },
+      "decision": "xiāng xìn"
+    },
+    {
+      "id": "chinese-g3down-2026:10:words:大约",
+      "fingerprint": "4b3d3afbde6d0999381e6ea77d4767a8e682f9bd954bb41465d1053bc643cee3",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 10,
+      "lessonTitle": "石蜂",
+      "field": "words",
+      "itemKey": "大约",
+      "text": "大约",
+      "suggestedPinyin": "dà yuē",
+      "reasons": [
+        "教材读音冲突：大 建议 dà，教材已知 dài"
+      ],
+      "reasonCategories": [
+        "textbookConflict"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "大": [
+          "dà",
+          "dài",
+          "tài"
+        ],
+        "约": [
+          "yuē",
+          "yāo"
+        ]
+      },
+      "decision": "dà yuē"
+    },
+    {
+      "id": "chinese-g3down-2026:13:words:伟大",
+      "fingerprint": "abb80aa34e542bb5b67471a0c15a7eea07a96c5032bc0c0052f13e9f2535a77e",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 13,
+      "lessonTitle": "纸的发明",
+      "field": "words",
+      "itemKey": "伟大",
+      "text": "伟大",
+      "suggestedPinyin": "wěi dà",
+      "reasons": [
+        "教材读音冲突：大 建议 dà，教材已知 dài"
+      ],
+      "reasonCategories": [
+        "textbookConflict"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "伟": [
+          "wěi"
+        ],
+        "大": [
+          "dà",
+          "dài",
+          "tài"
+        ]
+      },
+      "decision": "wěi dà"
+    },
+    {
+      "id": "chinese-g3down-2026:13:words:便宜",
+      "fingerprint": "54ee339e81bd5dbb3bc8f71318d2620cc1bd75a256c7b20a5ef2d394c0ec5ac1",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 13,
+      "lessonTitle": "纸的发明",
+      "field": "words",
+      "itemKey": "便宜",
+      "text": "便宜",
+      "suggestedPinyin": "pián yi",
+      "reasons": [
+        "教材读音冲突：宜 建议 yi，教材已知 yí"
+      ],
+      "reasonCategories": [
+        "textbookConflict"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "便": [
+          "biàn",
+          "pián",
+          "biān"
+        ],
+        "宜": [
+          "yí"
+        ]
+      },
+      "decision": "pián yi"
+    },
+    {
+      "id": "chinese-g3down-2026:17:words:形状",
+      "fingerprint": "1ec889eaae7698a1c5f9a00bc3f445331309a18a6cdebd62b3523e75ca46a7f0",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 17,
+      "lessonTitle": "我变成了一棵树",
+      "field": "words",
+      "itemKey": "形状",
+      "text": "形状",
+      "suggestedPinyin": "xíng zhuàng",
+      "reasons": [
+        "教材读音冲突：状 建议 zhuàng，教材已知 zhuàn"
+      ],
+      "reasonCategories": [
+        "textbookConflict"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "形": [
+          "xíng"
+        ],
+        "状": [
+          "zhuàng"
+        ]
+      },
+      "decision": "xíng zhuàng"
+    },
+    {
+      "id": "chinese-g3down-2026:17:words:互相",
+      "fingerprint": "4de17b0c18ea16312b64c2f79df14dfb201e632ae6a2f2e879d440bcce1a7029",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 17,
+      "lessonTitle": "我变成了一棵树",
+      "field": "words",
+      "itemKey": "互相",
+      "text": "互相",
+      "suggestedPinyin": "hù xiāng",
+      "reasons": [
+        "教材读音冲突：相 建议 xiāng，教材已知 xiàng"
+      ],
+      "reasonCategories": [
+        "textbookConflict"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "互": [
+          "hù"
+        ],
+        "相": [
+          "xiāng",
+          "xiàng"
+        ]
+      },
+      "decision": "hù xiāng"
+    },
+    {
+      "id": "chinese-g3down-2026:22:words:乘凉",
+      "fingerprint": "666ae08bd5274be3b42b6fe396db5fbdd74eb3d4fc247b00a62ba08a036991d6",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 22,
+      "lessonTitle": "火烧云",
+      "field": "words",
+      "itemKey": "乘凉",
+      "text": "乘凉",
+      "suggestedPinyin": "chéng liáng",
+      "reasons": [
+        "教材读音冲突：乘 建议 chéng，教材已知 shèng"
+      ],
+      "reasonCategories": [
+        "textbookConflict"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "乘": [
+          "chéng",
+          "shèng"
+        ],
+        "凉": [
+          "liáng",
+          "liàng"
+        ]
+      },
+      "decision": "chéng liáng"
+    },
+    {
+      "id": "chinese-g3down-2026:23:words:奇形怪状",
+      "fingerprint": "55b14d3935a39ff350dbb420701472fe5aa300d5fe322b4a37a759b8f3285d8a",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 23,
+      "lessonTitle": "暴风雨来临之前",
+      "field": "words",
+      "itemKey": "奇形怪状",
+      "text": "奇形怪状",
+      "suggestedPinyin": "qí xíng guài zhuàng",
+      "reasons": [
+        "教材读音冲突：状 建议 zhuàng，教材已知 zhuàn"
+      ],
+      "reasonCategories": [
+        "textbookConflict"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "奇": [
+          "qí",
+          "jī",
+          "ǎi",
+          "yǐ"
+        ],
+        "形": [
+          "xíng"
+        ],
+        "怪": [
+          "guài"
+        ],
+        "状": [
+          "zhuàng"
+        ]
+      },
+      "decision": "qí xíng guài zhuàng"
+    },
+    {
+      "id": "chinese-g3down-2026:23:words:轰隆隆",
+      "fingerprint": "b4734a662a886201e7a7b9c6b55d906e233b42314ab5f354b4b439fa11cbe40b",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 23,
+      "lessonTitle": "暴风雨来临之前",
+      "field": "words",
+      "itemKey": "轰隆隆",
+      "text": "轰隆隆",
+      "suggestedPinyin": "hōng lōng lóng",
+      "reasons": [
+        "教材读音冲突：隆 建议 lóng，教材已知 lōng",
+        "未收词含常用多音字：隆"
+      ],
+      "reasonCategories": [
+        "textbookConflict",
+        "polyphonicUnlisted"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "轰": [
+          "hōng"
+        ],
+        "隆": [
+          "lóng",
+          "lōng"
+        ]
+      },
+      "decision": "hōng lōng lōng"
+    },
+    {
+      "id": "chinese-g3down-2026:25:words:大方",
+      "fingerprint": "5541aa07738ea8728c38d51271a4b91efef482c712576e7d9c19ec942d698040",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 25,
+      "lessonTitle": "慢性子裁缝和急性子顾客",
+      "field": "words",
+      "itemKey": "大方",
+      "text": "大方",
+      "suggestedPinyin": "dà fāng",
+      "reasons": [
+        "教材读音冲突：大 建议 dà，教材已知 dài",
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "textbookConflict",
+        "neutralTone"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "大": [
+          "dà",
+          "dài",
+          "tài"
+        ],
+        "方": [
+          "fāng",
+          "fáng",
+          "fǎng",
+          "páng",
+          "wǎng",
+          "fēng"
+        ]
+      },
+      "decision": "dà fang"
+    },
+    {
+      "id": "chinese-g3down-2026:26:words:骨头",
+      "fingerprint": "77178d291e94afb6161f158d167f210efb529d9447a9a49e0c0a8ff00e7ec87b",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 26,
+      "lessonTitle": "漏",
+      "field": "words",
+      "itemKey": "骨头",
+      "text": "骨头",
+      "suggestedPinyin": "gǔ tou",
+      "reasons": [
+        "教材读音冲突：头 建议 tou，教材已知 tóu"
+      ],
+      "reasonCategories": [
+        "textbookConflict"
+      ],
+      "category": "textbookConflict",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "骨": [
+          "gǔ",
+          "gū",
+          "gú"
+        ],
+        "头": [
+          "tóu",
+          "tou"
+        ]
+      },
+      "decision": "gǔ tou"
+    },
+    {
+      "id": "chinese-g3up-2026:1:words:热闹",
+      "fingerprint": "edcd70809721be8461f3529a458f271792c41b18271169810bf4b773805e701c",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 1,
+      "lessonTitle": "大青树下的小学",
+      "field": "words",
+      "itemKey": "热闹",
+      "text": "热闹",
+      "suggestedPinyin": "rè nào",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "热": [
+          "rè"
+        ],
+        "闹": [
+          "nào"
+        ]
+      },
+      "decision": "rè nao"
+    },
+    {
+      "id": "chinese-g3up-2026:1:supplementalWords:招呼",
+      "fingerprint": "d9deb6fcbca58e203d35aa11e0d195162560fcee70b9294081da5942f8008966",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 1,
+      "lessonTitle": "大青树下的小学",
+      "field": "supplementalWords",
+      "itemKey": "招呼",
+      "text": "招呼",
+      "suggestedPinyin": "zhāo hū",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "招": [
+          "zhāo",
+          "qiáo",
+          "sháo"
+        ],
+        "呼": [
+          "hū",
+          "xiāo",
+          "xū",
+          "hè",
+          "xià"
+        ]
+      },
+      "source": "冻结 lesson-studio.js DQS.writeChars[].w：招、呼 字族，去重",
+      "decision": "zhāo hu"
+    },
+    {
+      "id": "chinese-g3up-2026:6:words:频频",
+      "fingerprint": "111ac70a3789e3abd8c72630a52d18fdc0689da629f9f29b50f485d0eab224c9",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 6,
+      "lessonTitle": "秋天的雨",
+      "field": "words",
+      "itemKey": "频频",
+      "text": "频频",
+      "suggestedPinyin": "pín pín",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "频": [
+          "pín"
+        ]
+      },
+      "decision": "pín pín"
+    },
+    {
+      "id": "chinese-g3up-2026:8:words:漂亮",
+      "fingerprint": "5b6dc285382cdb13e3a30356f411b1e68a0085159296f0321534fd00cf3e73eb",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 8,
+      "lessonTitle": "总也倒不了的老屋",
+      "field": "words",
+      "itemKey": "漂亮",
+      "text": "漂亮",
+      "suggestedPinyin": "piào liàng",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "漂": [
+          "piāo",
+          "piào",
+          "piǎo",
+          "biāo"
+        ],
+        "亮": [
+          "liàng",
+          "liáng"
+        ]
+      },
+      "decision": "piào liang"
+    },
+    {
+      "id": "chinese-g3up-2026:11:words:葫芦",
+      "fingerprint": "af57607aa404dee423aaffbb064ec3dc67920414040ac9ff2d38c5d73f1e57d8",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 11,
+      "lessonTitle": "宝葫芦的秘密（节选）",
+      "field": "words",
+      "itemKey": "葫芦",
+      "text": "葫芦",
+      "suggestedPinyin": "hú lú",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "葫": [
+          "hú"
+        ],
+        "芦": [
+          "lú",
+          "lǔ",
+          "hù"
+        ]
+      },
+      "decision": "hú lu"
+    },
+    {
+      "id": "chinese-g3up-2026:11:words:指甲",
+      "fingerprint": "84976ee66bfe77b20fac575d202330aed10ed60183efaf0610f80a86b9e615f8",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 11,
+      "lessonTitle": "宝葫芦的秘密（节选）",
+      "field": "words",
+      "itemKey": "指甲",
+      "text": "指甲",
+      "suggestedPinyin": "zhǐ jiǎ",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "指": [
+          "zhǐ",
+          "zhī",
+          "zhí"
+        ],
+        "甲": [
+          "jiǎ"
+        ]
+      },
+      "decision": "zhǐ jia"
+    },
+    {
+      "id": "chinese-g3up-2026:11:words:衣服",
+      "fingerprint": "c7c1db4a26733642905a69fefd64b7e7e31f924c862caee5d731198391fb31b6",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 11,
+      "lessonTitle": "宝葫芦的秘密（节选）",
+      "field": "words",
+      "itemKey": "衣服",
+      "text": "衣服",
+      "suggestedPinyin": "yī fú",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "衣": [
+          "yī",
+          "yì"
+        ],
+        "服": [
+          "fú",
+          "fù",
+          "bì",
+          "bó"
+        ]
+      },
+      "decision": "yī fu"
+    },
+    {
+      "id": "chinese-g3up-2026:11:words:要是",
+      "fingerprint": "0d38dcefcc82e38bb6886b11ed5e0ba4cc8bd3adf2a3b358854ad3fde47b02e8",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 11,
+      "lessonTitle": "宝葫芦的秘密（节选）",
+      "field": "words",
+      "itemKey": "要是",
+      "text": "要是",
+      "suggestedPinyin": "yào shì",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "要": [
+          "yào",
+          "yāo",
+          "yǎo"
+        ],
+        "是": [
+          "shì",
+          "tí"
+        ]
+      },
+      "decision": "yào shi"
+    },
+    {
+      "id": "chinese-g3up-2026:12:words:答应",
+      "fingerprint": "9beed38cf9c2b9e0c2dd117726614e31cb8078e5161bf485e66a1b7c28dc65ca",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 12,
+      "lessonTitle": "在牛肚子里旅行",
+      "field": "words",
+      "itemKey": "答应",
+      "text": "答应",
+      "suggestedPinyin": "dā yìng",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "答": [
+          "dá",
+          "dā"
+        ],
+        "应": [
+          "yīng",
+          "yìng"
+        ]
+      },
+      "decision": "dā ying"
+    },
+    {
+      "id": "chinese-g3up-2026:18:words:起来",
+      "fingerprint": "210e7aca54efafcf25695b79a9de2e9ed2e54817036a96432c993a3111b84c7b",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 18,
+      "lessonTitle": "美丽的小兴安岭",
+      "field": "words",
+      "itemKey": "起来",
+      "text": "起来",
+      "suggestedPinyin": "qǐ lái",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "起": [
+          "qǐ"
+        ],
+        "来": [
+          "lái"
+        ]
+      },
+      "decision": "qǐ lai"
+    },
+    {
+      "id": "chinese-g3up-2026:22:words:精神",
+      "fingerprint": "f9ba121c650b859a6edbf3365a8a967ffad7e891661d8c9bfd8b4b0c0f8dc4ec",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 22,
+      "lessonTitle": "读不完的大书",
+      "field": "words",
+      "itemKey": "精神",
+      "text": "精神",
+      "suggestedPinyin": "jīng shén",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "精": [
+          "jīng",
+          "qíng",
+          "jìng"
+        ],
+        "神": [
+          "shén",
+          "shēn"
+        ]
+      },
+      "decision": "jīng shén"
+    },
+    {
+      "id": "chinese-g3up-2026:25:words:匆匆",
+      "fingerprint": "e003e658bdc5bf63c27e9a26f9d4db583cc6e0101df9355db0f8a55affa2959e",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 25,
+      "lessonTitle": "手术台就是阵地",
+      "field": "words",
+      "itemKey": "匆匆",
+      "text": "匆匆",
+      "suggestedPinyin": "cōng cōng",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "匆": [
+          "cōng"
+        ]
+      },
+      "decision": "cōng cōng"
+    },
+    {
+      "id": "chinese-g3down-2026:2:words:活泼",
+      "fingerprint": "b4705df00f73d036bb996ea77b8d7b157aa58ac68649b26e152c6a6c8563fa48",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 2,
+      "lessonTitle": "燕子",
+      "field": "words",
+      "itemKey": "活泼",
+      "text": "活泼",
+      "suggestedPinyin": "huó pō",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "活": [
+          "huó",
+          "guō"
+        ],
+        "泼": [
+          "pō"
+        ]
+      },
+      "decision": "huó po"
+    },
+    {
+      "id": "chinese-g3down-2026:3:words:莲蓬",
+      "fingerprint": "9cd9af0532712af6e045a8c7df2b34f7d13909e6a861700cb59cf5c826f250da",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 3,
+      "lessonTitle": "荷花",
+      "field": "words",
+      "itemKey": "莲蓬",
+      "text": "莲蓬",
+      "suggestedPinyin": "lián péng",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "莲": [
+          "lián"
+        ],
+        "蓬": [
+          "péng",
+          "pèng"
+        ]
+      },
+      "decision": "lián peng"
+    },
+    {
+      "id": "chinese-g3down-2026:6:words:认识",
+      "fingerprint": "8d367c5c6e93a6d24b78a24d8a7fc456f3aaf985ab046ac74e409d5128652ad7",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 6,
+      "lessonTitle": "会摇尾巴的狼",
+      "field": "words",
+      "itemKey": "认识",
+      "text": "认识",
+      "suggestedPinyin": "rèn shí",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "认": [
+          "rèn"
+        ],
+        "识": [
+          "shí",
+          "shì",
+          "zhì"
+        ]
+      },
+      "decision": "rèn shi"
+    },
+    {
+      "id": "chinese-g3down-2026:6:words:收拾",
+      "fingerprint": "a9f4cec29b102437877136cce07c2446b3cfac7d204c75ee8a4f6ae13fff72d7",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 6,
+      "lessonTitle": "会摇尾巴的狼",
+      "field": "words",
+      "itemKey": "收拾",
+      "text": "收拾",
+      "suggestedPinyin": "shōu shí",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "收": [
+          "shōu"
+        ],
+        "拾": [
+          "shí",
+          "shè",
+          "jiè"
+        ]
+      },
+      "decision": "shōu shi"
+    },
+    {
+      "id": "chinese-g3down-2026:7:words:痛快",
+      "fingerprint": "fa3a058a7d50d195857aa6475d8786dc1c67e160dfc7eb3c2a7de4931db459a2",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 7,
+      "lessonTitle": "鹿角和鹿腿",
+      "field": "words",
+      "itemKey": "痛快",
+      "text": "痛快",
+      "suggestedPinyin": "tòng kuài",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "痛": [
+          "tòng"
+        ],
+        "快": [
+          "kuài"
+        ]
+      },
+      "decision": "tòng kuai"
+    },
+    {
+      "id": "chinese-g3down-2026:7:words:机灵",
+      "fingerprint": "099439bff17c7938f2703d483a8e922e65379a832bd968e1b4526152b74715d3",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 7,
+      "lessonTitle": "鹿角和鹿腿",
+      "field": "words",
+      "itemKey": "机灵",
+      "text": "机灵",
+      "suggestedPinyin": "jī líng",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "机": [
+          "jī",
+          "wèi"
+        ],
+        "灵": [
+          "líng"
+        ]
+      },
+      "decision": "jī ling"
+    },
+    {
+      "id": "chinese-g3down-2026:9:words:清楚",
+      "fingerprint": "8d49a0f3b09a0fa3c1618feb451d5087e5469a89169842c26db6af55010526ec",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 9,
+      "lessonTitle": "海底世界",
+      "field": "words",
+      "itemKey": "清楚",
+      "text": "清楚",
+      "suggestedPinyin": "qīng chǔ",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "清": [
+          "qīng",
+          "qìng"
+        ],
+        "楚": [
+          "chǔ"
+        ]
+      },
+      "decision": "qīng chu"
+    },
+    {
+      "id": "chinese-g3down-2026:10:words:记号",
+      "fingerprint": "2e5218204180dbc443765e64d024385faf31055f24b2f92c742f10f1416c5d87",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 10,
+      "lessonTitle": "石蜂",
+      "field": "words",
+      "itemKey": "记号",
+      "text": "记号",
+      "suggestedPinyin": "jì hào",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "记": [
+          "jì"
+        ],
+        "号": [
+          "hào",
+          "háo",
+          "xiāo"
+        ]
+      },
+      "decision": "jì hao"
+    },
+    {
+      "id": "chinese-g3down-2026:16:words:结实",
+      "fingerprint": "9a472689d305f62d7fa1a6bb8dad45e643d81a3f18f0b74ba9095eeeeb1d7927",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 16,
+      "lessonTitle": "胡萝卜先生的长胡子",
+      "field": "words",
+      "itemKey": "结实",
+      "text": "结实",
+      "suggestedPinyin": "jiē shí",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "结": [
+          "jié",
+          "jiē"
+        ],
+        "实": [
+          "shí"
+        ]
+      },
+      "decision": "jiē shi"
+    },
+    {
+      "id": "chinese-g3down-2026:17:words:喜欢",
+      "fingerprint": "0d90f0fe50abf2b5acb16257fcafc840b6d6d60a8ed6b994f4b0633b7c45aeaa",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 17,
+      "lessonTitle": "我变成了一棵树",
+      "field": "words",
+      "itemKey": "喜欢",
+      "text": "喜欢",
+      "suggestedPinyin": "xǐ huān",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "喜": [
+          "xǐ",
+          "xī",
+          "chì"
+        ],
+        "欢": [
+          "huān"
+        ]
+      },
+      "decision": "xǐ huan"
+    },
+    {
+      "id": "chinese-g3down-2026:17:words:容易",
+      "fingerprint": "6d6acba29aa9f38f5f49961f19e1ddb191f0b9ccd9690a1aeafc7e97f2dfbc7e",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 17,
+      "lessonTitle": "我变成了一棵树",
+      "field": "words",
+      "itemKey": "容易",
+      "text": "容易",
+      "suggestedPinyin": "róng yì",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "容": [
+          "róng",
+          "yǒng"
+        ],
+        "易": [
+          "yì"
+        ]
+      },
+      "decision": "róng yì"
+    },
+    {
+      "id": "chinese-g3down-2026:17:words:麻烦",
+      "fingerprint": "95ca3981b36913b5a7ef31b4de9d2d3a1b34f2687aa77f1a4f25d30e51525f01",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 17,
+      "lessonTitle": "我变成了一棵树",
+      "field": "words",
+      "itemKey": "麻烦",
+      "text": "麻烦",
+      "suggestedPinyin": "má fán",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "麻": [
+          "má",
+          "mā"
+        ],
+        "烦": [
+          "fán"
+        ]
+      },
+      "decision": "má fan"
+    },
+    {
+      "id": "chinese-g3down-2026:17:words:眼睛",
+      "fingerprint": "4705f1c7795e45118aec681c93e41784b57ac5cd47c65f3f335da0fce3fdbb18",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 17,
+      "lessonTitle": "我变成了一棵树",
+      "field": "words",
+      "itemKey": "眼睛",
+      "text": "眼睛",
+      "suggestedPinyin": "yǎn jīng",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "眼": [
+          "yǎn",
+          "wěn"
+        ],
+        "睛": [
+          "jīng",
+          "jǐng"
+        ]
+      },
+      "decision": "yǎn jing"
+    },
+    {
+      "id": "chinese-g3down-2026:18:words:葫芦",
+      "fingerprint": "16c50f97fdc5da0675a76eaccfffb637ca8f5f5e3a4576af7449e9f3f4b1f00f",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 18,
+      "lessonTitle": "童年的水墨画",
+      "field": "words",
+      "itemKey": "葫芦",
+      "text": "葫芦",
+      "suggestedPinyin": "hú lú",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "葫": [
+          "hú"
+        ],
+        "芦": [
+          "lú",
+          "lǔ",
+          "hù"
+        ]
+      },
+      "decision": "hú lu"
+    },
+    {
+      "id": "chinese-g3down-2026:22:words:偏偏",
+      "fingerprint": "6d4aad2d470881b5d725bf30e93ef8224df4c3baf51220221c7d14c506d17666",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 22,
+      "lessonTitle": "火烧云",
+      "field": "words",
+      "itemKey": "偏偏",
+      "text": "偏偏",
+      "suggestedPinyin": "piān piān",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "偏": [
+          "piān"
+        ]
+      },
+      "decision": "piān piān"
+    },
+    {
+      "id": "chinese-g3down-2026:23:words:动静",
+      "fingerprint": "05952c34ed53eaf68625db0867e6e2a4a345bb3942c8f52555d18e61ea777916",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 23,
+      "lessonTitle": "暴风雨来临之前",
+      "field": "words",
+      "itemKey": "动静",
+      "text": "动静",
+      "suggestedPinyin": "dòng jìng",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "动": [
+          "dòng"
+        ],
+        "静": [
+          "jìng"
+        ]
+      },
+      "decision": "dòng jing"
+    },
+    {
+      "id": "chinese-g3down-2026:25:words:笑话",
+      "fingerprint": "b54ecd8007efc61d060c8824e54e958501b99d6ae04bb27b9b8e873ae22d92d8",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 25,
+      "lessonTitle": "慢性子裁缝和急性子顾客",
+      "field": "words",
+      "itemKey": "笑话",
+      "text": "笑话",
+      "suggestedPinyin": "xiào huà",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "笑": [
+          "xiào"
+        ],
+        "话": [
+          "huà"
+        ]
+      },
+      "decision": "xiào hua"
+    },
+    {
+      "id": "chinese-g3down-2026:26:words:厉害",
+      "fingerprint": "1241adeee8496cdcf95f184bd954a52f493cb74db9ba125feb3b61b91b037be4",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 26,
+      "lessonTitle": "漏",
+      "field": "words",
+      "itemKey": "厉害",
+      "text": "厉害",
+      "suggestedPinyin": "lì hài",
+      "reasons": [
+        "可能轻声：常见轻声词或叠词与词典标调不一致，须按本课核对"
+      ],
+      "reasonCategories": [
+        "neutralTone"
+      ],
+      "category": "neutralTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "厉": [
+          "lì"
+        ],
+        "害": [
+          "hài",
+          "hé"
+        ]
+      },
+      "decision": "lì hai"
+    },
+    {
+      "id": "chinese-g3up-2026:15:words:一本正经",
+      "fingerprint": "3338fa5779e1c3ac89c6cc8580c639bbc658a485e10de0f578c3ad2895aac473",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 15,
+      "lessonTitle": "金色的草地",
+      "field": "words",
+      "itemKey": "一本正经",
+      "text": "一本正经",
+      "suggestedPinyin": "yī běn zhèng jīng",
+      "reasons": [
+        "一/不变调：建议统一展示本调 yī / bù，教材惯例待全局确认"
+      ],
+      "reasonCategories": [
+        "yiBuTone"
+      ],
+      "category": "yiBuTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "一": [
+          "yī",
+          "yí",
+          "yì"
+        ],
+        "本": [
+          "běn",
+          "bēn"
+        ],
+        "正": [
+          "zhèng",
+          "zhēng"
+        ],
+        "经": [
+          "jīng",
+          "jìng"
+        ]
+      },
+      "yiBuSuggestions": {
+        "original": "yī běn zhèng jīng",
+        "sandhi": "yì běn zhèng jīng"
+      },
+      "decision": "yì běn zhèng jīng"
+    },
+    {
+      "id": "chinese-g3up-2026:25:words:当头一棒",
+      "fingerprint": "a68ddfba6ae3b45a49a6db3b036a18a632108eebbde85032b8c2a0b63487cdd3",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 25,
+      "lessonTitle": "手术台就是阵地",
+      "field": "words",
+      "itemKey": "当头一棒",
+      "text": "当头一棒",
+      "suggestedPinyin": "dāng tóu yī bàng",
+      "reasons": [
+        "一/不变调：建议统一展示本调 yī / bù，教材惯例待全局确认"
+      ],
+      "reasonCategories": [
+        "yiBuTone"
+      ],
+      "category": "yiBuTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "当": [
+          "dāng",
+          "dàng"
+        ],
+        "头": [
+          "tóu",
+          "tou"
+        ],
+        "一": [
+          "yī",
+          "yí",
+          "yì"
+        ],
+        "棒": [
+          "bàng"
+        ]
+      },
+      "yiBuSuggestions": {
+        "original": "dāng tóu yī bàng",
+        "sandhi": "dāng tóu yí bàng"
+      },
+      "decision": "dāng tóu yí bàng"
+    },
+    {
+      "id": "chinese-g3down-2026:3:words:了不起",
+      "fingerprint": "ede3fcd0c6266bb94ea70d8f87774da9c9b4eae0832a0e49072647fd28e034a1",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 3,
+      "lessonTitle": "荷花",
+      "field": "words",
+      "itemKey": "了不起",
+      "text": "了不起",
+      "suggestedPinyin": "liǎo bù qǐ",
+      "reasons": [
+        "一/不变调：建议统一展示本调 yī / bù，教材惯例待全局确认"
+      ],
+      "reasonCategories": [
+        "yiBuTone"
+      ],
+      "category": "yiBuTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "了": [
+          "le",
+          "liǎo",
+          "liào"
+        ],
+        "不": [
+          "bù",
+          "fǒu",
+          "fōu",
+          "fū",
+          "bú"
+        ],
+        "起": [
+          "qǐ"
+        ]
+      },
+      "yiBuSuggestions": {
+        "original": "liǎo bù qǐ",
+        "sandhi": "liǎo bù qǐ"
+      },
+      "decision": "liǎo bu qǐ"
+    },
+    {
+      "id": "chinese-g3down-2026:14:words:不但",
+      "fingerprint": "8118c9d271b832c0a174ddc8c11e95b357b7b512111cc5c9d6c3099e03db38ee",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 14,
+      "lessonTitle": "赵州桥",
+      "field": "words",
+      "itemKey": "不但",
+      "text": "不但",
+      "suggestedPinyin": "bù dàn",
+      "reasons": [
+        "一/不变调：建议统一展示本调 yī / bù，教材惯例待全局确认"
+      ],
+      "reasonCategories": [
+        "yiBuTone"
+      ],
+      "category": "yiBuTone",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "不": [
+          "bù",
+          "fǒu",
+          "fōu",
+          "fū",
+          "bú"
+        ],
+        "但": [
+          "dàn",
+          "tǎn",
+          "yàn"
+        ]
+      },
+      "yiBuSuggestions": {
+        "original": "bù dàn",
+        "sandhi": "bú dàn"
+      },
+      "decision": "bú dàn"
+    },
+    {
+      "id": "chinese-g3up-2026:1:writingCharacters:读",
+      "fingerprint": "11ddc74741cc97b3735f374dec174f83dad52e06c5e0671f1a6a4cfb9bed0868",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 1,
+      "lessonTitle": "大青树下的小学",
+      "field": "writingCharacters",
+      "itemKey": "读",
+      "text": "读",
+      "suggestedPinyin": "dòu / dú",
+      "reasons": [
+        "九册教材/规则有多个读音，本课词语无法唯一确定"
+      ],
+      "reasonCategories": [
+        "polyphonicUnlisted"
+      ],
+      "category": "polyphonicUnlisted",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "读": [
+          "dú",
+          "dòu"
+        ]
+      },
+      "contextWords": [],
+      "decision": "dú"
+    },
+    {
+      "id": "chinese-g3up-2026:4:writingCharacters:相",
+      "fingerprint": "f8bccf117a4b1dead9e4bbc0e25ad047694539ba6973ba1b5437336b023a0325",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 4,
+      "lessonTitle": "古诗三首",
+      "field": "writingCharacters",
+      "itemKey": "相",
+      "text": "相",
+      "suggestedPinyin": "xiàng / xiāng",
+      "reasons": [
+        "九册教材/规则有多个读音，本课词语无法唯一确定"
+      ],
+      "reasonCategories": [
+        "polyphonicUnlisted"
+      ],
+      "category": "polyphonicUnlisted",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "相": [
+          "xiāng",
+          "xiàng"
+        ]
+      },
+      "contextWords": [],
+      "decision": "xiāng"
+    },
+    {
+      "id": "chinese-g3up-2026:4:writingCharacters:落",
+      "fingerprint": "6a57983ee931d55933d19b621a641dd624ab000cd74205d14245d34d9cca248c",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 4,
+      "lessonTitle": "古诗三首",
+      "field": "writingCharacters",
+      "itemKey": "落",
+      "text": "落",
+      "suggestedPinyin": "luò / là / lào",
+      "reasons": [
+        "九册教材/规则有多个读音，本课词语无法唯一确定"
+      ],
+      "reasonCategories": [
+        "polyphonicUnlisted"
+      ],
+      "category": "polyphonicUnlisted",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "落": [
+          "luò",
+          "là",
+          "lào",
+          "luō"
+        ]
+      },
+      "contextWords": [],
+      "decision": "luò"
+    },
+    {
+      "id": "chinese-g3up-2026:11:words:得到",
+      "fingerprint": "f34397559be665a19dc6d80bce1f77efafc0464d93f072922e2b8454b4a14707",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 11,
+      "lessonTitle": "宝葫芦的秘密（节选）",
+      "field": "words",
+      "itemKey": "得到",
+      "text": "得到",
+      "suggestedPinyin": "dé dào",
+      "reasons": [
+        "未收词含常用多音字：得"
+      ],
+      "reasonCategories": [
+        "polyphonicUnlisted"
+      ],
+      "category": "polyphonicUnlisted",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "得": [
+          "dé",
+          "de",
+          "děi"
+        ],
+        "到": [
+          "dào"
+        ]
+      },
+      "decision": "dé dào"
+    },
+    {
+      "id": "chinese-g3up-2026:11:words:最好",
+      "fingerprint": "2269f9da6176790eb6ee96b72bc3d92a8aebc6fbd71a42b66490dbac53fd07ad",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 11,
+      "lessonTitle": "宝葫芦的秘密（节选）",
+      "field": "words",
+      "itemKey": "最好",
+      "text": "最好",
+      "suggestedPinyin": "zuì hǎo",
+      "reasons": [
+        "未收词含常用多音字：好"
+      ],
+      "reasonCategories": [
+        "polyphonicUnlisted"
+      ],
+      "category": "polyphonicUnlisted",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "最": [
+          "zuì",
+          "cuō"
+        ],
+        "好": [
+          "hǎo",
+          "hào"
+        ]
+      },
+      "decision": "zuì hǎo"
+    },
+    {
+      "id": "chinese-g3up-2026:15:words:盛开",
+      "fingerprint": "d10409dd22d577f45ca28827aa5acecfb5a864ee3990e3689f50ec5342e53f22",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 15,
+      "lessonTitle": "金色的草地",
+      "field": "words",
+      "itemKey": "盛开",
+      "text": "盛开",
+      "suggestedPinyin": "shèng kāi",
+      "reasons": [
+        "未收词含常用多音字：盛"
+      ],
+      "reasonCategories": [
+        "polyphonicUnlisted"
+      ],
+      "category": "polyphonicUnlisted",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "盛": [
+          "shèng",
+          "chéng"
+        ],
+        "开": [
+          "kāi"
+        ]
+      },
+      "decision": "shèng kāi"
+    },
+    {
+      "id": "chinese-g3up-2026:15:writingCharacters:盛",
+      "fingerprint": "d7639b92fc48495e7fcd855cc3bab231c774f3d289298d898994926117690d8f",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 15,
+      "lessonTitle": "金色的草地",
+      "field": "writingCharacters",
+      "itemKey": "盛",
+      "text": "盛",
+      "suggestedPinyin": "chéng / shèng",
+      "reasons": [
+        "九册教材/规则有多个读音，本课词语无法唯一确定"
+      ],
+      "reasonCategories": [
+        "polyphonicUnlisted"
+      ],
+      "category": "polyphonicUnlisted",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "盛": [
+          "shèng",
+          "chéng"
+        ]
+      },
+      "contextWords": [],
+      "decision": "shèng"
+    },
+    {
+      "id": "chinese-g3up-2026:15:writingCharacters:朝",
+      "fingerprint": "57619275f6f7fb320a6bb672246f392251168125b5a54a601798b88b3d9f5135",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 15,
+      "lessonTitle": "金色的草地",
+      "field": "writingCharacters",
+      "itemKey": "朝",
+      "text": "朝",
+      "suggestedPinyin": "cháo / zhāo",
+      "reasons": [
+        "九册教材/规则有多个读音，本课词语无法唯一确定"
+      ],
+      "reasonCategories": [
+        "polyphonicUnlisted"
+      ],
+      "category": "polyphonicUnlisted",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "朝": [
+          "cháo",
+          "zhāo",
+          "zhū"
+        ]
+      },
+      "contextWords": [],
+      "decision": "cháo"
+    },
+    {
+      "id": "chinese-g3up-2026:17:words:散发",
+      "fingerprint": "046ca15463af822f9d2d069dd91e39a50c53597a4fcadcd17e4bffeab7c1084c",
+      "bookId": "chinese-g3up-2026",
+      "lessonNumber": 17,
+      "lessonTitle": "海滨小城",
+      "field": "words",
+      "itemKey": "散发",
+      "text": "散发",
+      "suggestedPinyin": "sàn fà",
+      "reasons": [
+        "词典读音存疑：发 应为 fā"
+      ],
+      "reasonCategories": [
+        "polyphonicUnlisted"
+      ],
+      "category": "polyphonicUnlisted",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "散": [
+          "sàn",
+          "sǎn",
+          "sān"
+        ],
+        "发": [
+          "fā",
+          "fà"
+        ]
+      },
+      "decision": "sàn fā"
+    },
+    {
+      "id": "chinese-g3down-2026:5:writingCharacters:待",
+      "fingerprint": "511da305cca8edb2f4c97579f948cf1bf5ad93fba770bf6a498f2b1783c9481d",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 5,
+      "lessonTitle": "守株待兔",
+      "field": "writingCharacters",
+      "itemKey": "待",
+      "text": "待",
+      "suggestedPinyin": "dài / dāi",
+      "reasons": [
+        "九册教材/规则有多个读音，本课词语无法唯一确定"
+      ],
+      "reasonCategories": [
+        "polyphonicUnlisted"
+      ],
+      "category": "polyphonicUnlisted",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "待": [
+          "dài",
+          "dāi"
+        ]
+      },
+      "contextWords": [],
+      "decision": "dài"
+    },
+    {
+      "id": "chinese-g3down-2026:7:writingCharacters:喝",
+      "fingerprint": "1ee9902d4fd23016b0816f73a43321b144931ee4b6ecaa4644a59c134f9739fd",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 7,
+      "lessonTitle": "鹿角和鹿腿",
+      "field": "writingCharacters",
+      "itemKey": "喝",
+      "text": "喝",
+      "suggestedPinyin": "hè / hē",
+      "reasons": [
+        "九册教材/规则有多个读音，本课词语无法唯一确定"
+      ],
+      "reasonCategories": [
+        "polyphonicUnlisted"
+      ],
+      "category": "polyphonicUnlisted",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "喝": [
+          "hē",
+          "hè",
+          "yè",
+          "kài"
+        ]
+      },
+      "contextWords": [],
+      "decision": "hē"
+    },
+    {
+      "id": "chinese-g3down-2026:10:words:减少",
+      "fingerprint": "7d71f6a4e171fa02837275bd2af0049cc5ef2ad4c71136433e58cf38c4b5a44d",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 10,
+      "lessonTitle": "石蜂",
+      "field": "words",
+      "itemKey": "减少",
+      "text": "减少",
+      "suggestedPinyin": "jiǎn shǎo",
+      "reasons": [
+        "未收词含常用多音字：少"
+      ],
+      "reasonCategories": [
+        "polyphonicUnlisted"
+      ],
+      "category": "polyphonicUnlisted",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "减": [
+          "jiǎn"
+        ],
+        "少": [
+          "shǎo",
+          "shào"
+        ]
+      },
+      "decision": "jiǎn shǎo"
+    },
+    {
+      "id": "chinese-g3down-2026:16:writingCharacters:系",
+      "fingerprint": "8ffeb523f3f1f2f245d044fef9d27ad4f1a0d3119d6d3eaf2e2cda8d204d12b4",
+      "bookId": "chinese-g3down-2026",
+      "lessonNumber": 16,
+      "lessonTitle": "胡萝卜先生的长胡子",
+      "field": "writingCharacters",
+      "itemKey": "系",
+      "text": "系",
+      "suggestedPinyin": "jì / xì",
+      "reasons": [
+        "九册教材/规则有多个读音，本课词语无法唯一确定"
+      ],
+      "reasonCategories": [
+        "polyphonicUnlisted"
+      ],
+      "category": "polyphonicUnlisted",
+      "resolvedByGlobal": false,
+      "candidateReadings": {
+        "系": [
+          "xì",
+          "jì"
+        ]
+      },
+      "contextWords": [],
+      "decision": "jì"
+    }
+  ],
+  "staleDecisions": [],
+  "summary": {
+    "total": 63,
+    "pending": 0,
+    "confirmed": 63,
+    "hide": 0,
+    "staleDecisions": 0,
+    "reasonCounts": {
+      "textbookConflict": 16,
+      "neutralTone": 30,
+      "yiBuTone": 4,
+      "polyphonicUnlisted": 13
+    },
+    "pendingReasonCounts": {
+      "textbookConflict": 0,
+      "neutralTone": 0,
+      "yiBuTone": 0,
+      "polyphonicUnlisted": 0
+    }
+  }
+}
